@@ -1,3 +1,10 @@
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL40.*;
+import static org.lwjgl.system.MemoryUtil.*;
+
+import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL;
+
 /**
  * <p>
  * The player class contains state and behaviours for a player object.
@@ -15,13 +22,6 @@
  * Daniel Morgan spent 3 hours over may 17th and 18th 2022
  * </p>
  */
-
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL40.*;
-import static org.lwjgl.system.MemoryUtil.*;
-
-import org.lwjgl.glfw.GLFWVidMode;
-import org.lwjgl.opengl.GL;
 
 class Main implements Runnable {
     /** The width of the program window */

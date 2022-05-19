@@ -1,3 +1,5 @@
+import static org.lwjgl.opengl.GL40.*;
+
 /**
  * <p>
  * This class contains wrapper methods and abstractions for the graphics 
@@ -15,8 +17,6 @@
  * Daniel Morgan spent 2 hours on may 17th and 18th 2022.
  * </p>
  */
-
-import static org.lwjgl.opengl.GL40.*;
 
 public class Graphics {
 
@@ -46,7 +46,7 @@ public class Graphics {
         glEnd();
     }
     /**
-     * Wrapper function which draws a rectangle to the screen
+     * Wrapper function which draws a rectangle to the screen buffer
      * @param x X coordinate of the rectangle
      * @param y Y coordinate of the rectangle
      * @param width Width of the rectangle

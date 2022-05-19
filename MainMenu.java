@@ -13,7 +13,8 @@
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
  * </p>
  */
-public class MainMenu() {
+
+public class MainMenu {
    /** The user's selection from the menu*/
    private int selection;
    /**
