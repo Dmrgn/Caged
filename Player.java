@@ -14,6 +14,7 @@
  * File was created by Daniel Morgan on may 17th, 2022.
  * </p>
  */
+
 public class Player {
     public Vector pos;
     public Player(float x, float y) {

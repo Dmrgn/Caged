@@ -19,6 +19,18 @@
 import static org.lwjgl.opengl.GL40.*;
 
 public class Graphics {
+
+    /**
+     * Wrapper method which draws a quad (shape with four verticies) to the screen buffer
+     * @param x1 X coordinate of the first vertex
+     * @param y1 Y coordinate of the first vertex
+     * @param x2 X coordinate of the second vertex
+     * @param y2 Y coordinate of the second vertex
+     * @param x3 X coordinate of the third vertex
+     * @param y3 Y coordinate of the third vertex
+     * @param x4 X coordinate of the fourth vertex
+     * @param y4 Y coordinate of the fourth vertex
+     */
     static void drawQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
         glColor3f(0.0f, 0.0f, 1.0f);
         Vector p1 = (new Vector(x1, y1)).div(Main.getDims()).sub(new Vector(0.5f, 0.5f)).mul(2);
@@ -33,6 +45,13 @@ public class Graphics {
         }
         glEnd();
     }
+    /**
+     * Wrapper function which draws a rectangle to the screen
+     * @param x X coordinate of the rectangle
+     * @param y Y coordinate of the rectangle
+     * @param width Width of the rectangle
+     * @param height Height of the rectangle
+     */
     static void drawRect(float x, float y, float width, float height) {
         drawQuad(x, y, x + width, y, x + width, y + height, x, y + height);
     }
