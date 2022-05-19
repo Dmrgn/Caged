@@ -10,6 +10,7 @@
  * @since May 19th, 2022
  * <p>
  * File was created by Samuel Huang on May 19th, 2022.
+ * Samuel Huang spent 10 minutes on this file.
  * </p>
  */
 public class SplashScreen {
