@@ -9,9 +9,10 @@
  *
  * @version 1.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
- * @since May 19th, 2022
+ * @since May 17th, 2022
  * <p>
- * File was created by Daniel Morgan on may 19th, 2022.
+ * File was created by Daniel Morgan on may 17th, 2022.
+ * Daniel Morgan spent 3 hours over may 17th and 18th 2022
  * </p>
  */
 
@@ -23,23 +24,32 @@ import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
 class Main implements Runnable {
-    private static int width = 1280;
-    private static int height = 720;
-    private static Vector dims = new Vector(width,height);
+    /** The width of the program window */
+    private static final int width = 1280;
+    /** The height of the program window */
+    private static final int height = 720;
+    /** The dimensions of the program window stored as a vector */
+    private static final Vector dims = new Vector(width,height);
 
+    /** Instance of the main thread this program is running on */
     private Thread thread;
+    /** Boolean set to false when program should exit */
     private boolean running = false;
 
+    /** Pointer to the memory address storing the current window */
     private long window;
 
+    /** Instance of the player */
     public Player player = new Player(20f,20f);
 
+    /** Method run when the program should start on a new thread */
     public void start() {
         running = true;
         thread = new Thread(this, "Game");
         thread.start();
     }
 
+    /** Method run when the program should initialize GLFW and OpenGL */
     private void init() {
         if (!glfwInit()) {
             throw new RuntimeException("Could not init GlFW.");
@@ -61,44 +71,58 @@ class Main implements Runnable {
 
         GL.createCapabilities();
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-        System.out.println((new Vector(0,0)).lerp(new Vector(10,10), 0.1f));
     }
 
+    /** Main game loop run on the main thread */
     public void run() {
         init();
         while (running) {
             update();
-            render();
+            draw();
 
             if (glfwWindowShouldClose(window))
                 running = false;
         }
     }
 
+    /** Handles updating the game logic for the current frame */
     private void update() {
         glfwPollEvents();
         player.update();
     }
 
-    private void render() {
+    /** Handles rendering the current frame */
+    private void draw() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         player.draw();
         glfwSwapBuffers(window);
     }
 
+    /** 
+     * returns the width of the current window 
+     * @return Width of the current window in pixels
+     */
     public static int getWidth() {
         return width;
     }
-
+    /** 
+     * returns the height of the current window 
+     * @return Height of the current window in pixels
+     */
     public static int getHeight() {
         return height;
     }
-
+    /** 
+     * returns the dimensions of the current window as a Vector 
+     * @return Dimensions of the current window as a {@link Vector}
+     */
     public static Vector getDims() {
         return dims;
     }
 
+    /**
+     * Main method run at the start of the program
+     */
     public static void main(String[] args) {
         new Main().start();
     }
