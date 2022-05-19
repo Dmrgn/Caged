@@ -11,6 +11,9 @@ public class Vector {
     static public Vector div(Vector v1, float scalar) {
         return new Vector(v1.x / scalar, v1.y / scalar);
     }
+    static public Vector div(Vector v1, Vector v2) {
+        return new Vector(v1.x / v2.x, v1.y / v2.y);
+    }
     static public Vector lerp(Vector v1, Vector v2, float scalar) {
         return Vector.add(v1, Vector.sub(v2, v1).mul(scalar));
     }
@@ -29,6 +32,12 @@ public class Vector {
     }
     public Vector mul(float scalar) {
         return Vector.mul(this, scalar);
+    }
+    public Vector div(float scalar) {
+        return Vector.div(this, scalar);
+    }
+    public Vector div(Vector v1) {
+        return Vector.div(this, v1);
     }
     public Vector lerp(Vector v1, float scalar) {
         return Vector.lerp(this, v1, scalar);

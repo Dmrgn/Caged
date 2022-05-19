@@ -10,6 +10,7 @@ public class Keyboard extends GLFWKeyCallback {
     public void invoke(long window, int key, int scancode, int action, int mods) {
         if (action == GLFW_PRESS) {
             keys.add(Integer.valueOf(key));
+            System.out.println("Here");
         }
         if (action == GLFW_RELEASE) {
             keys.remove(Integer.valueOf(key));

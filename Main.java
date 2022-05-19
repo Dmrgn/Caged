@@ -1,3 +1,20 @@
+/**
+ * <p>
+ * The player class contains state and behaviours for a player object.
+ * The player object can be controled by the keyboard to perform actions such as 
+ * movement and slashing. Contains functionality for drawing the player.
+ * </p>
+ *
+ * <h2>ICS 4U0 with Krasteva, V.</h2>
+ *
+ * @version 1.0
+ * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+ * @since May 19th, 2022
+ * <p>
+ * File was created by Daniel Morgan on may 19th, 2022.
+ * </p>
+ */
+
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL40.*;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -8,6 +25,7 @@ import org.lwjgl.opengl.GL;
 class Main implements Runnable {
     private static int width = 1280;
     private static int height = 720;
+    private static Vector dims = new Vector(width,height);
 
     private Thread thread;
     private boolean running = false;
@@ -27,7 +45,6 @@ class Main implements Runnable {
             throw new RuntimeException("Could not init GlFW.");
         }
 
-        // glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
         window = glfwCreateWindow(width, height, "Game", NULL, NULL);
         if (window == NULL) {
             throw new RuntimeException("Failed to create the GLFW window.");
@@ -61,21 +78,7 @@ class Main implements Runnable {
 
     private void update() {
         glfwPollEvents();
-        // if (Keyboard.keys.contains(GLFW_KEY_A)) {
-
-        // }
-        // if (Keyboard.keys.contains(GLFW_KEY_W)) {
-            
-        // }
-        // if (Keyboard.keys.contains(GLFW_KEY_D)) {
-            
-        // }
-        // if (Keyboard.keys.contains(GLFW_KEY_S)) {
-            
-        // }
-        Vector diff = Vector.sub(new Vector(width,height), player.pos);
-        float percent = diff.x+diff.y;
-        player.pos = player.pos.lerp(new Vector(width,height), 0.001f);
+        player.update();
     }
 
     private void render() {
@@ -84,12 +87,16 @@ class Main implements Runnable {
         glfwSwapBuffers(window);
     }
 
-    static public int getWidth() {
+    public static int getWidth() {
         return width;
     }
 
-    static public int getHeight() {
+    public static int getHeight() {
         return height;
+    }
+
+    public static Vector getDims() {
+        return dims;
     }
 
     public static void main(String[] args) {
