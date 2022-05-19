@@ -12,20 +12,17 @@
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
  * </p>
  */
-public Level1 extends Level {
-   /**
-   * Method for the user to play the game
-   */
-   public void play(){
-   }
-   /**
-   * Updates the level's background and state
-   */
-   public void update(){
-   }
-   /**
-   * Draws the level's background and assets
-   */
-   public void draw(){
-   }
+public class Level1 extends Level {
+    /**
+     * Method for the user to play the game
+     */
+    public void play() {}
+    /**
+     * Updates the level's background and state
+     */
+    public void update() {}
+    /**
+     * Draws the level's background and assets
+     */
+    public void draw() {}
 }

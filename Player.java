@@ -22,8 +22,8 @@ public class Player {
     }
     public void update() {
         Vector diff = Vector.sub(Main.getDims(), pos);
-        float percent = (diff.x+diff.y)/(Main.getWidth()+Main.getHeight());
-        pos = pos.lerp(Main.getDims(), (1-percent)*0.01f);
+        float percent = (diff.x + diff.y) / (Main.getWidth() + Main.getHeight());
+        pos = pos.lerp(Main.getDims(), (1 - percent) * 0.01f);
     }
     public void draw() {
         Graphics.drawRect(pos.x, pos.y, 100f, 100f);

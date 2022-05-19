@@ -14,28 +14,24 @@
  * </p>
  */
 public abstract class Level implements GameObject {
-   /**
-   * Controls adding the player to that level
-   */
-   public void enter(Player player){
-   }
-   /**
-   * Controls removing the player from that level
-   */
-   public void exit(Player player){
-   }
-   /**
-   * Abstract method for playing in that level and loading assets
-   */
-   public abstract void play();
-   /**
-   * Draw method from the interface GameObject that is to be overridden by the subclasses
-   */
-   public void draw(){
-   }
-   /**
-   * Update method from the interface GameObject that is to be overridden by the subclasses
-   */
-   public void update(){
-   }
+    /**
+     * Controls adding the player to that level
+     */
+    public void enter(Player player) {}
+    /**
+     * Controls removing the player from that level
+     */
+    public void exit(Player player) {}
+    /**
+     * Abstract method for playing in that level and loading assets
+     */
+    public abstract void play();
+    /**
+     * Draw method from the interface GameObject that is to be overridden by the subclasses
+     */
+    public void draw() {}
+    /**
+     * Update method from the interface GameObject that is to be overridden by the subclasses
+     */
+    public void update() {}
 }

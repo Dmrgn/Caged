@@ -15,24 +15,23 @@
  */
 
 public class MainMenu {
-   /** The user's selection from the menu*/
-   private int selection;
-   /**
-   * MainMenu constructor, initializes selection to 0 as a default
-   */
-   public MainMenu(){
-      selection = 0;
-   }
-   /**
-   * Displays the graphics to the user
-   */
-   public void display() {
-   }
-   /**
-   * Getter method for the selection instance variable
-   * @return The user's selection
-   */
-   public int getSelection(){
-      return selection;
-   }
+    /** The user's selection from the menu*/
+    private int selection;
+    /**
+     * MainMenu constructor, initializes selection to 0 as a default
+     */
+    public MainMenu() {
+        selection = 0;
+    }
+    /**
+     * Displays the graphics to the user
+     */
+    public void display() {}
+    /**
+     * Getter method for the selection instance variable
+     * @return The user's selection
+     */
+    public int getSelection() {
+        return selection;
+    }
 }

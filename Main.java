@@ -29,7 +29,7 @@ class Main implements Runnable {
     /** The height of the program window */
     private static final int height = 720;
     /** The dimensions of the program window stored as a vector */
-    private static final Vector dims = new Vector(width,height);
+    private static final Vector dims = new Vector(width, height);
 
     /** Instance of the main thread this program is running on */
     private Thread thread;
@@ -40,7 +40,7 @@ class Main implements Runnable {
     private long window;
 
     /** Instance of the player */
-    public Player player = new Player(20f,20f);
+    public Player player = new Player(20f, 20f);
 
     /** Method run when the program should start on a new thread */
     public void start() {

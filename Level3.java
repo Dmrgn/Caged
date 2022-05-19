@@ -13,19 +13,16 @@
  * </p>
  */
 public class Level3 extends Level {
-   /**
-   * Method for the user to play the game
-   */
-   public void play(){
-   }
-   /**
-   * Updates the level's background and state
-   */
-   public void update(){
-   }
-   /**
-   * Draws the level's background and assets
-   */
-   public void draw(){
-   }
+    /**
+     * Method for the user to play the game
+     */
+    public void play() {}
+    /**
+     * Updates the level's background and state
+     */
+    public void update() {}
+    /**
+     * Draws the level's background and assets
+     */
+    public void draw() {}
 }
