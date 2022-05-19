@@ -12,7 +12,7 @@
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
  * </p>
  */
-public Level3 extends Level {
+public class Level3 extends Level {
    /**
    * Method for the user to play the game
    */
