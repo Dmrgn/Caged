@@ -16,7 +16,7 @@
 public class Credits
 {
    /** This Image variable stores the credits page. */
-   private Image creditsPage;
+   private Image screen;
    /**
      * The constructor of the Credits Class.
      */
