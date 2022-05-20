@@ -20,9 +20,9 @@ public class Credits
    /**
      * The constructor of the Credits Class.
      */
-   public Credits()
+   public Credits(Image page)
    {
-   
+      screen = page;
    }
    /**
      * This method gets called to display the credits screen
