@@ -20,9 +20,9 @@ public class ExitScreen
    /**
      * The constructor of the ExitScreen Class.
      */
-   public ExitScreen()
+   public ExitScreen(Image page)
    {
-   
+      exitPage = page;
    }
    /**
      * This method gets called to display the exit screen
