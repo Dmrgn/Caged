@@ -19,8 +19,8 @@ import org.lwjgl.opengl.GL;
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
- * 1 hour was spent by Ryan Atlas on this file on May 17th, 18th and 20th, 2022.
- * Daniel Morgan spent 3 hours over may 17th and 18th 2022
+ * 1 hour was spent by Ryan Atlas on this file on May 17th, 18th and 20th, 2022 making the game loop and adding comments.
+ * Daniel Morgan spent 3 hours over may 17th and 18th 2022 adding LWJGL graphical functionality
  * </p>
  */
 public class Main implements Runnable {
