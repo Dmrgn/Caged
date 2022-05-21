@@ -4,26 +4,28 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
-
 /**
  * <p>
- * The player class contains state and behaviours for a player object.
+ * This file acts as the main driver class that runs the game. This is the only class to have a main method
+ * and controls the main game loop, calling methods from the game class and keeping the game running as long as
+ * the player chooses not to exit. The player class contains state and behaviours for a player object.
  * The player object can be controled by the keyboard to perform actions such as 
  * movement and slashing. Contains functionality for drawing the player.
  * </p>
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.0
+ * @version 1.1
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
- * File was created by Daniel Morgan on may 17th, 2022.
+ * 1 hour was spent by Ryan Atlas on this file on May 17th, 18th and 20th, 2022.
  * Daniel Morgan spent 3 hours over may 17th and 18th 2022
  * </p>
  */
-
-class Main implements Runnable {
+public class Main implements Runnable {
+   /** Whether or not the player has exited the main game loop*/
+   public static boolean exited = false;
     /** The width of the program window */
     private static final int width = 1280;
     /** The height of the program window */
@@ -119,11 +121,28 @@ class Main implements Runnable {
     public static Vector getDims() {
         return dims;
     }
-
-    /**
-     * Main method run at the start of the program
-     */
-    public static void main(String[] args) {
-        new Main().start();
-    }
+   /**
+   * Main method that runs at the start of the program
+   * and creates a Game object and calls all of its methods
+   * @param args Not used
+   */
+   public static void main(String[] args) {
+      new Main().start();
+      Game isp = new Game();
+      isp.splashScreen();
+      while(!exited) {
+        //  int choice = isp.mainMenu();
+//          switch(choice) {
+//             case 1:
+//                break;
+//             case 2:
+//                break;
+//             case 3:
+//                break;
+//             case 4:
+//                exited = true;
+//                break;
+//          }
+      }
+   }
 }
