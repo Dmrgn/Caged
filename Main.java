@@ -74,6 +74,13 @@ public class Main implements Runnable {
         GL.createCapabilities();
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(0.0, width, height, 0.0, -1.0, 1.0);
+        glMatrixMode(GL_MODELVIEW);
+
+        glEnable(GL_TEXTURE_2D);
+
         try{
             player = new Player(20f, 20f);
         } catch (Exception e) {

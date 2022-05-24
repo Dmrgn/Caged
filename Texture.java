@@ -29,43 +29,64 @@ import static org.lwjgl.stb.STBImageResize.*;
 
 public class Texture {
 
-    public static Texture load(String path) throws IOException, Exception {
-        
-        // System.out.println("Loading " + path + " from")
+    private int width;
+    private int height;
+    private int id;
+    private int comp;
+    private ByteBuffer image;
+
+    public Texture(String imagePath) {
+        try {
+            load(imagePath);
+        } catch (Exception e) {
+            System.out.println("Could not load texture " + imagePath + " " + e.toString());
+        }
+    }
+
+    public Texture(ByteBuffer image, int id, int width, int height, int comp) {
+        this.id = id;
+        this.width = width;
+        this.height = height;
+        this.comp = comp;
+        this.image = image;
+    }
+
+    public void load(String path) throws IOException {
         ByteBuffer imageBuffer;
         try {
-            imageBuffer = IOUtil.ioResourceToByteBuffer(path, 1024*8);
-        } catch (Exception e) {
-            throw new Exception(e);
+            imageBuffer = IOUtil.ioResourceToByteBuffer(path, 8 * 1024);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        
+
         try (MemoryStack stack = stackPush()) {
-            IntBuffer w = stack.mallocInt(1);
-            IntBuffer h = stack.mallocInt(1);
+            IntBuffer w    = stack.mallocInt(1);
+            IntBuffer h    = stack.mallocInt(1);
             IntBuffer comp = stack.mallocInt(1);
-            
+
             // Use info to read image metadata without decoding the entire image.
             // We don't need this for this demo, just testing the API.
             if (!stbi_info_from_memory(imageBuffer, w, h, comp)) {
-                throw new Exception("Failed to read image information: " + stbi_failure_reason());
+                throw new RuntimeException("Failed to read image information: " + stbi_failure_reason());
             } else {
                 System.out.println("OK with reason: " + stbi_failure_reason());
             }
-            
+
             System.out.println("Image width: " + w.get(0));
             System.out.println("Image height: " + h.get(0));
             System.out.println("Image components: " + comp.get(0));
             System.out.println("Image HDR: " + stbi_is_hdr_from_memory(imageBuffer));
 
             // Decode the image
-            ByteBuffer image = stbi_load_from_memory(imageBuffer, w, h, comp, 4);
+            image = stbi_load_from_memory(imageBuffer, w, h, comp, 0);
             if (image == null) {
-                throw new Exception("Failed to load image: " + stbi_failure_reason());
+                throw new RuntimeException("Failed to load image: " + stbi_failure_reason());
             }
 
-            return new Texture(imageBuffer, -1, w.get(0), h.get(0), comp.get(0));
-        } catch (Exception e) {
-            throw e;
+            this.width = w.get(0);
+            this.height = h.get(0);
+            this.comp = comp.get(0);
+            this.id = createTexture();
         }
     }
 
@@ -147,27 +168,32 @@ public class Texture {
         }
     }
 
-    private int width;
-    private int height;
-    private int id;
-    private int comp;
-    private ByteBuffer image;
+    public void draw(Vector pos) {
+        glPushMatrix();
+        glTranslatef(Main.getWidth() * 0.5f, Main.getHeight() * 0.5f, 0.0f);
+        glTranslatef(-width * 0.5f, -height * 0.5f, 0.0f);
 
-    public Texture(String imagePath) throws IOException, Exception {
-        Texture temp = load(imagePath);
-        width = temp.getWidth();
-        height = temp.getHeight();
-        id = temp.getId();
-    }
+        System.out.println(Main.getWidth() + " " + Main.getHeight() + " ");
 
-    public Texture(ByteBuffer image, int id, int width, int height, int comp) {
-        this.id = id;
-        this.width = width;
-        this.height = height;
-        this.comp = comp;
-        this.image = image;
-        if (this.id == -1) this.id = createTexture();
-        System.out.println(this.id);
+        bind();
+        glBegin(GL_QUADS);
+        {
+            glTexCoord2f(0.0f, 0.0f);
+            glVertex2f(0.0f, 0.0f);
+
+            glTexCoord2f(1.0f, 0.0f);
+            glVertex2f(width, 0.0f);
+
+            glTexCoord2f(1.0f, 1.0f);
+            glVertex2f(width, height);
+
+            glTexCoord2f(0.0f, 1.0f);
+            glVertex2f(0.0f, height);
+        }
+        glEnd();
+        unbind();
+
+        glPopMatrix();
     }
 
     public void bind() {

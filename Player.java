@@ -54,6 +54,7 @@ public class Player implements GameObject{
     * from the GameObject interface
     */
     public void draw() {
+        texture.draw(pos);
         Graphics.drawRect(pos.x, pos.y, 100f, 100f);
     }
 }
