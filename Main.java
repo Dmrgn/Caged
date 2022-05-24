@@ -1,6 +1,7 @@
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL40.*;
 import static org.lwjgl.system.MemoryUtil.*;
+import static org.lwjgl.glfw.Callbacks.*;
 
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -10,6 +11,10 @@ import org.lwjgl.opengl.GL;
  * The player class contains state and behaviours for a player object.
  * The player object can be controled by the keyboard to perform actions such as 
  * movement and slashing. Contains functionality for drawing the player.
+ * 
+ * ****NOTE****
+ * Currently the main method displays a rectangle for testing purposes.
+ * 
  * </p>
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
@@ -40,7 +45,7 @@ class Main implements Runnable {
     private long window;
 
     /** Instance of the player */
-    public Player player = new Player(20f, 20f);
+    public Player player;
 
     /** Method run when the program should start on a new thread */
     public void start() {
@@ -64,13 +69,24 @@ class Main implements Runnable {
 
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         glfwSetWindowPos(window, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
-
         glfwMakeContextCurrent(window);
+        
+        GL.createCapabilities();
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(0.0, width, height, 0.0, -1.0, 1.0);
+        glMatrixMode(GL_MODELVIEW);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        
         glfwSwapInterval(1);
         glfwShowWindow(window);
 
-        GL.createCapabilities();
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        try {
+            player = new Player(20f, 20f);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            //TODO: handle exception
+        }
     }
 
     /** Main game loop run on the main thread */
@@ -83,6 +99,7 @@ class Main implements Runnable {
             if (glfwWindowShouldClose(window))
                 running = false;
         }
+        destroy();
     }
 
     /** Handles updating the game logic for the current frame */
@@ -93,9 +110,38 @@ class Main implements Runnable {
 
     /** Handles rendering the current frame */
     private void draw() {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        player.draw();
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+        System.out.println(width + " " + height + " ");
+        
+        glEnable(GL_TEXTURE_2D);
+        player.texture.bind();
+        glBegin(GL_QUADS);
+        {
+            glTexCoord2f(0.0f, 0.0f);
+            glVertex2f(0.0f, 0.0f);
+
+            glTexCoord2f(1.0f, 0.0f);
+            glVertex2f(player.texture.getWidth(), 0.0f);
+
+            glTexCoord2f(1.0f, 1.0f);
+            glVertex2f(player.texture.getWidth(), player.texture.getWidth());
+
+            glTexCoord2f(0.0f, 1.0f);
+            glVertex2f(0.0f, player.texture.getWidth());
+        }
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+
         glfwSwapBuffers(window);
+    }
+
+    private void destroy() {
+        GL.setCapabilities(null);
+        
+        glfwFreeCallbacks(window);
+        glfwDestroyWindow(window);
+        glfwTerminate();
     }
 
     /** 
