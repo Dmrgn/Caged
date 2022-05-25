@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 /**
@@ -34,6 +35,12 @@ public class Player implements GameObject{
     private static final int SPEED = 10;
     public Image sprite;
     public Node player;
+    private boolean jump = false;
+    private boolean left = false;
+    private boolean right = false;
+    private boolean dash = false;
+    private boolean interact = false;
+    private Scene scene;
     /**
     * The Player class constructor which takes in two floats 
     * in order to initialize the position vector and sets all other
@@ -45,19 +52,46 @@ public class Player implements GameObject{
         this.pos = new Vector(x, y);
         hp = 100;
         sprite = new Image("Sprite.png");
-        player = new ImageView(player.sprite);
-        Group p = new Group(player.player);
-        Scene scene = new Scene(p, width, height, Color.WHITE);
+        player = new ImageView(sprite);
+        Group p = new Group(player);
+        scene = new Scene(p, 1280, 720, Color.WHITE);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
-               if (e.getCode() == D) {
+               if (e.getCode() == KeyCode.D){
+                  right = true;
                }
-               if (e.getCode() == A) {
+               if (e.getCode() == KeyCode.A) {
+                  left = true;
                }
-               if (e.getCode() == W) {
+               if (e.getCode() == KeyCode.W) {
+                  jump = true;
                }
-               if (e.getCode() == SHIFT) {
+               if (e.getCode() == KeyCode.SHIFT) {
+                  dash = true;
+               }
+               if (e.getCode() == KeyCode.E){
+                  interact = true;
+               }
+            }
+        });
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+               if (e.getCode() == KeyCode.D){
+                  right = false;
+               }
+               if (e.getCode() == KeyCode.A) {
+                  left = false;
+               }
+               if (e.getCode() == KeyCode.W) {
+                  jump = false;
+               }
+               if (e.getCode() == KeyCode.SHIFT) {
+                  dash = false;
+               }
+               if (e.getCode() == KeyCode.E){
+                  interact = false;
                }
             }
         });
@@ -67,15 +101,28 @@ public class Player implements GameObject{
     * from the GameObject interface
     */
     public void update() {
-        Vector diff = Vector.sub(Main.getDims(), pos);
-        float percent = (diff.x + diff.y) / (Main.getWidth() + Main.getHeight());
-        pos = pos.lerp(Main.getDims(), (1 - percent) * 0.01f);
+        // Vector diff = Vector.sub(Main.getDims(), pos);
+//         float percent = (diff.x + diff.y) / (Main.getWidth() + Main.getHeight());
+//         pos = pos.lerp(Main.getDims(), (1 - percent) * 0.01f);
+       int dx = 0, dy = 0;
+       if (right) {
+           dx += 3;
+       } else if (left) {
+           dx -= 3;
+       }
+       if (dash) {
+         dx *= 2;
+       }
+       pos.x += dx;
     }
     /**
-    * D\aws the player on the screen, implementation of the method
+    * Draws the player on the screen, implementation of the method
     * from the GameObject interface
     */
     public void draw() {
-        
+        player.relocate(pos.x, pos.y);
+    }
+    public Scene getScene() {
+      return scene;
     }
 }

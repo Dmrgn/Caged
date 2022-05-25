@@ -151,7 +151,16 @@ public class Main extends Application {
       window.setMinHeight(height);
       window.setResizable(false);
       player = new Player(0, 0);
-      //window.setScene(scene);
+      Scene scene = player.getScene();
+      window.setScene(scene);
+      AnimationTimer at = new AnimationTimer() {
+         @Override
+         public void handle (long l) {
+            player.update();
+            player.draw();
+         }
+      };
+      at.start();
       window.show();
     }
    /**
