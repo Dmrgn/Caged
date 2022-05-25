@@ -1,5 +1,11 @@
-import java.io.IOException;
-
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.*;
+import javafx.scene.image.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 /**
  * <p>
  * The player class contains state and behaviours for a player object.
@@ -26,8 +32,8 @@ public class Player implements GameObject{
     private int hp;
     /* The player's movement speed which is a constant*/
     private static final int SPEED = 10;
-    /** The player's texture sprite */
-    public Texture texture;
+    public Image sprite;
+    public Node player;
     /**
     * The Player class constructor which takes in two floats 
     * in order to initialize the position vector and sets all other
@@ -35,10 +41,26 @@ public class Player implements GameObject{
     * @param x The player's x coordinate
     * @param y The player's y coordinate
     */
-    public Player(float x, float y) throws IOException, Exception {
+    public Player(float x, float y) {
         this.pos = new Vector(x, y);
-        texture = new Texture("face.png");
         hp = 100;
+        sprite = new Image("Sprite.png");
+        player = new ImageView(player.sprite);
+        Group p = new Group(player.player);
+        Scene scene = new Scene(p, width, height, Color.WHITE);
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+               if (e.getCode() == D) {
+               }
+               if (e.getCode() == A) {
+               }
+               if (e.getCode() == W) {
+               }
+               if (e.getCode() == SHIFT) {
+               }
+            }
+        });
     }
     /** 
     * Updates the player's position Vector, implementation of the method
@@ -54,7 +76,6 @@ public class Player implements GameObject{
     * from the GameObject interface
     */
     public void draw() {
-        texture.draw(pos);
-        Graphics.drawRect(pos.x, pos.y, 100f, 100f);
+        
     }
 }
