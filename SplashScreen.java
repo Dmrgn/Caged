@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.*;
+import javafx.scene.paint.*;
+
 /**
  * <p>
  * This class contains code for the SplashScreen
@@ -24,14 +26,16 @@ public class SplashScreen {
     private Stage stage;
     /** This Image variable stores the logo image. */
     private Image logo;
+    private ImageView imageViewLogo; 
     /** This Image variable stores the cage image. */
     private Image cage;
+    private ImageView imageViewCage; 
     /** This Image array variable stores all the text images for the Logo Page Animation. */
-    private Image[] text1;
+    private Image[] screen1Text;
+    private ImageView[] imageViewScreen1Text;
     /** This Image array variable stores all the text images for the Game Name Page Animation. */
-    private Image[] text2;
-        
-    private ImageView imageViewLogo; 
+    private Image[] screen2Text;
+    private ImageView[] imageViewScreen2Text;
 
     /**
      * The constructor of the Splash Screen Class.
@@ -39,12 +43,35 @@ public class SplashScreen {
      */
     public SplashScreen(Stage stage)  {
        this.stage = stage; 
+       screen1Text = new Image[2];
+       screen2Text = new Image[5];
+       imageViewScreen1Text = new ImageView[2];
+       imageViewScreen2Text = new ImageView[5];
        
     }
-    public void importImages() throws FileNotFoundException
+    private void importImagesS1() throws FileNotFoundException
     {
-       logo = new Image(new FileInputStream("C:\\Users\\SamuelH\\Documents\\ICS 12\\ISP\\Caged-master\\ISP Splash Screen Images\\Logo.png")); 
-       imageViewLogo = new ImageView(logo); 
+       logo = new Image(new FileInputStream("ISP Splash Screen Images\\Logo.png")); 
+       imageViewLogo = new ImageView(logo);
+       screen1Text[0] = new Image(new FileInputStream("ISP Splash Screen Images\\CompanyName.png"));
+       screen1Text[1] = new Image(new FileInputStream("ISP Splash Screen Images\\Presents.png"));
+       imageViewScreen1Text[0] = new ImageView(screen1Text[0]);
+       imageViewScreen1Text[1] = new ImageView(screen1Text[1]);
+    }
+    private void importImagesS2() throws FileNotFoundException
+    {
+       cage = new Image(new FileInputStream("ISP Splash Screen Images\\Cage.png")); 
+       imageViewCage = new ImageView(cage);
+       screen2Text[0] = new Image(new FileInputStream("ISP Splash Screen Images\\Caged.png"));
+       screen2Text[1] = new Image(new FileInputStream("ISP Splash Screen Images\\Inside.png"));
+       screen2Text[2] = new Image(new FileInputStream("ISP Splash Screen Images\\The.png")); 
+       screen2Text[3] = new Image(new FileInputStream("ISP Splash Screen Images\\Mind.png"));
+       screen2Text[4] = new Image(new FileInputStream("ISP Splash Screen Images\\Continue.png"));
+       imageViewScreen2Text[0] = new ImageView(screen2Text[0]);
+       imageViewScreen2Text[1] = new ImageView(screen2Text[1]);
+       imageViewScreen2Text[2] = new ImageView(screen2Text[2]);
+       imageViewScreen2Text[3] = new ImageView(screen2Text[3]);
+       imageViewScreen2Text[4] = new ImageView(screen2Text[4]);
     }
 
     /**
@@ -52,19 +79,34 @@ public class SplashScreen {
      *
      */
     public void animateCompName() throws FileNotFoundException {
-      importImages();
-      //Setting the position of the image logo 
-      imageViewLogo.setX(200); 
-      imageViewLogo.setY(250);
-      //setting the fit height and width of the image view 
-      imageViewLogo.setFitHeight(250); 
-      imageViewLogo.setFitWidth(250); 
-      //Setting the preserve ratio of the image view 
-      imageViewLogo.setPreserveRatio(true);      
+      importImagesS1();
+      //Setting the position of the image LOGO:
+      imageViewLogo.setX(450); 
+      imageViewLogo.setY(150);
+      imageViewLogo.setFitHeight(350); 
+      imageViewLogo.setFitWidth(350); 
+      imageViewLogo.setPreserveRatio(true);
+      //Setting the position of textImage1
+      imageViewScreen1Text[0].setX(460);
+      imageViewScreen1Text[0].setY(100);
+      imageViewScreen1Text[0].setFitHeight(125); 
+      imageViewScreen1Text[0].setFitWidth(350); 
+      imageViewScreen1Text[0].setPreserveRatio(true);      
+      //Setting the position of textImage1
+      imageViewScreen1Text[1].setX(545);
+      imageViewScreen1Text[1].setY(525);
+      imageViewScreen1Text[1].setFitHeight(40); 
+      imageViewScreen1Text[1].setFitWidth(180); 
+      imageViewScreen1Text[1].setPreserveRatio(true);
       //Creating a Group object  
-      Group root = new Group(imageViewLogo);  
+      Group root = new Group(imageViewLogo, imageViewScreen1Text[0], imageViewScreen1Text[1]);  
       //Creating a scene object 
-      Scene scene = new Scene(root, 600, 500);  
+      Scene scene = new Scene(root, 600, 500); 
+      RadialGradient background = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
+            new Stop(0, Color.WHITE),
+            new Stop(1, Color.BLACK)
+      }); 
+      scene.setFill(background);
       stage.setScene(scene);
       //stage.show(); 
       
@@ -81,7 +123,7 @@ public class SplashScreen {
      * This method gets called to display and animate the game name of the splash screen
      *
      */
-    public void animateGameName() {
+    public void animateGameName() throws FileNotFoundException {
 
     }
 
