@@ -1,9 +1,3 @@
-// import static org.lwjgl.glfw.GLFW.*;
-// import static org.lwjgl.opengl.GL40.*;
-// import static org.lwjgl.system.MemoryUtil.*;
-// 
-// import org.lwjgl.glfw.GLFWVidMode;
-// import org.lwjgl.opengl.GL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -25,12 +19,14 @@ import javafx.scene.paint.Color;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.1
+ * @version 2.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
  * 1 hour was spent by Ryan Atlas on this file on May 17th, 18th and 20th, 2022 making the game loop and adding comments.
  * Daniel Morgan spent 3 hours over may 17th and 18th 2022 adding LWJGL graphical functionality
+ * Ryan Atlas spent 1 hour adding the window functionality for JavaFX and adding the main animation loop
+ * for the Player on May 25th and 26th
  * </p>
  */
 public class Main extends Application {
@@ -42,87 +38,10 @@ public class Main extends Application {
     private static final int height = 720;
     /** The dimensions of the program window stored as a vector */
     private static final Vector dims = new Vector(width, height);
-
-    /** Instance of the main thread this program is running on */
-    // private Thread thread;
-//     /** Boolean set to false when program should exit */
-     private boolean running = false;
-// 
-//     /** Pointer to the memory address storing the current window */
-//     private long window;
-
+    /** Boolean set to false when program should exit */
+    private boolean running = false;
     /** Instance of the player */
-     public Player player;
-
-    /** Method run when the program should start on a new thread */
-  //   public void start() {
-//         running = true;
-//         thread = new Thread(this, "Game");
-//         thread.start();
-//     }
-// 
-//     /** Method run when the program should initialize GLFW and OpenGL */
-//     private void init() {
-//         if (!glfwInit()) {
-//             throw new RuntimeException("Could not init GlFW.");
-//         }
-// 
-//         window = glfwCreateWindow(width, height, "Game", NULL, NULL);
-//         if (window == NULL) {
-//             throw new RuntimeException("Failed to create the GLFW window.");
-//         }
-// 
-//         glfwSetKeyCallback(window, new Keyboard());
-// 
-//         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-//         glfwSetWindowPos(window, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
-// 
-//         glfwMakeContextCurrent(window);
-//         glfwSwapInterval(1);
-//         glfwShowWindow(window);
-// 
-//         GL.createCapabilities();
-//         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-// 
-//         glMatrixMode(GL_PROJECTION);
-//         glLoadIdentity();
-//         glOrtho(0.0, width, height, 0.0, -1.0, 1.0);
-//         glMatrixMode(GL_MODELVIEW);
-// 
-//         glEnable(GL_TEXTURE_2D);
-// 
-//         try{
-//             player = new Player(20f, 20f);
-//         } catch (Exception e) {
-//             System.out.println(e.toString());
-//         }
-//     }
-// 
-//     /** Main game loop run on the main thread */
-//     public void run() {
-//         init();
-//         while (running) {
-//             update();
-//             draw();
-// 
-//             if (glfwWindowShouldClose(window))
-//                 running = false;
-//         }
-//     }
-// 
-//     /** Handles updating the game logic for the current frame */
-//     private void update() {
-//         glfwPollEvents();
-//         player.update();
-//     }
-// 
-//     /** Handles rendering the current frame */
-//     private void draw() {
-//         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//         player.draw();
-//         glfwSwapBuffers(window);
-//     }
-
+    public Player player;
     /** 
      * returns the width of the current window 
      * @return Width of the current window in pixels
@@ -143,14 +62,20 @@ public class Main extends Application {
      */
     public static Vector getDims() {
         return dims;
-    }
+    }   
+    /**
+    * Overriden start method inherited from JavaFX's Application class.
+    * This method is used to display the window of the game as well as to
+    * control the size of the window and display scenes on it
+    * @param window The window that the game is displayed on
+    */
     @Override
     public void start(Stage window){
       window.setTitle("Caged Inside the Mind");
       window.setMinWidth(width);
       window.setMinHeight(height);
       window.setResizable(false);
-      player = new Player(0, 0);
+      player = new Player(0, 500);
       Scene scene = player.getScene();
       window.setScene(scene);
       AnimationTimer at = new AnimationTimer() {
@@ -173,7 +98,7 @@ public class Main extends Application {
       // Game isp = new Game();
 //       isp.splashScreen();
 //       while(!exited) {
-        //  int choice = isp.mainMenu();
+//         int choice = isp.mainMenu();
 //          switch(choice) {
 //             case 1:
 //                break;

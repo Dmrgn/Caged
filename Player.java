@@ -7,6 +7,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import java.util.Timer;
+import java.util.TimerTask;
 /**
  * <p>
  * The player class contains state and behaviours for a player object.
@@ -16,13 +18,15 @@ import javafx.stage.Stage;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.1
+ * @version 2.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
  * File was created by Daniel Morgan on May 17th, 2022.
  * Daniel Morgan spent 30 minutes on this file on May 17th
  * Ryan Atlas spent 20 minutes on this file on May 20th, adding new comments and attributes
+ * Ryan Atlas spent 2 hours on this file on May 25th and 26th adding comments, attributes
+ * keyboard input and movement controls for JavaFX
  * </p>
  */
 
@@ -33,24 +37,43 @@ public class Player implements GameObject{
     private int hp;
     /* The player's movement speed which is a constant*/
     private static final int SPEED = 10;
+    /* The player's jump height which is a constant*/
+    private static final int JUMP_HEIGHT = 50;
+    /* The player's Sprite as an Image*/
     public Image sprite;
+    /* The Node that is added to the scene and whose movement is updated*/
     public Node player;
-    private boolean jump = false;
-    private boolean left = false;
-    private boolean right = false;
-    private boolean dash = false;
-    private boolean interact = false;
+    /* Whether the player is jumping or not*/
+    private boolean jump;
+    /* Whether the player is moving left or not*/
+    private boolean left;
+    /* Whether the player is moving right or not*/
+    private boolean right;
+    /* Whether the player is dashing or not*/
+    private boolean dash;
+    /* Whether the player is interacting with an object or not*/
+    private boolean interact;
+    /* Whether the player is grounded or not*/
+    private boolean grounded;
+    /* Current scene*/
     private Scene scene;
     /**
     * The Player class constructor which takes in two floats 
     * in order to initialize the position vector and sets all other
-    * variables to their default.
+    * variables to their default. The constructor also initializes
+    * the scene and EventHandlers for KeyEvents
     * @param x The player's x coordinate
     * @param y The player's y coordinate
     */
     public Player(float x, float y) {
         this.pos = new Vector(x, y);
         hp = 100;
+        jump = false;
+        dash = false;
+        interact = false;
+        grounded = true;
+        right = false;
+        left = false;
         sprite = new Image("Sprite.png");
         player = new ImageView(sprite);
         Group p = new Group(player);
@@ -97,23 +120,37 @@ public class Player implements GameObject{
         });
     }
     /** 
-    * Updates the player's position Vector, implementation of the method
-    * from the GameObject interface
+    * Updates the player's position Vector based on keyboard input, implementation 
+    * of the method from the GameObject interface
     */
     public void update() {
-        // Vector diff = Vector.sub(Main.getDims(), pos);
-//         float percent = (diff.x + diff.y) / (Main.getWidth() + Main.getHeight());
-//         pos = pos.lerp(Main.getDims(), (1 - percent) * 0.01f);
        int dx = 0, dy = 0;
        if (right) {
-           dx += 3;
+           dx += SPEED/5;
        } else if (left) {
-           dx -= 3;
+           dx -= SPEED/5;
        }
        if (dash) {
          dx *= 2;
        }
        pos.x += dx;
+       if (!grounded) {          
+            dy = -1*JUMP_HEIGHT;
+            grounded = true;
+       }
+       if (jump && grounded) {
+          grounded = false;
+          dy += JUMP_HEIGHT;
+          Timer jumpTimer = new Timer();
+          TimerTask endJump = new TimerTask() {
+             @Override
+             public void run() {
+                jump = false;
+             }
+          };
+          jumpTimer.schedule(endJump, 700L);
+       }
+       pos.y -= dy;
     }
     /**
     * Draws the player on the screen, implementation of the method
@@ -122,6 +159,11 @@ public class Player implements GameObject{
     public void draw() {
         player.relocate(pos.x, pos.y);
     }
+    /**
+    * Returns the scene with the player on it so it may be used
+    * in the Main class
+    * @return The current scene
+    */
     public Scene getScene() {
       return scene;
     }
