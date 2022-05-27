@@ -20,7 +20,6 @@ import javafx.scene.image.*;
  * and the parsing of platforms) added.
  * </p>
  */
-
 public class LevelDataParser {
    /** Textures will have set keys for specific roles but different file paths so a HashMap is used to get the texture's file path*/
    private HashMap<String, String> textures;
@@ -58,7 +57,7 @@ public class LevelDataParser {
          } else if (data[0].equals("Sign")) {
             
          } else {
-            System.out.println("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");
+            throw new RuntimeException("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");
          }
       }
       Group g = new Group(levelObject);
