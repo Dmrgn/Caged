@@ -62,10 +62,10 @@ public class SplashScreen {
     {
        cage = new Image(new FileInputStream("ISP Splash Screen Images\\Cage.png")); 
        imageViewCage = new ImageView(cage);
-       screen2Text[0] = new Image(new FileInputStream("ISP Splash Screen Images\\Caged.png"));
-       screen2Text[1] = new Image(new FileInputStream("ISP Splash Screen Images\\Inside.png"));
-       screen2Text[2] = new Image(new FileInputStream("ISP Splash Screen Images\\The.png")); 
-       screen2Text[3] = new Image(new FileInputStream("ISP Splash Screen Images\\Mind.png"));
+       screen2Text[0] = new Image(new FileInputStream("ISP Splash Screen Images\\Check\\Caged.png"));
+       screen2Text[1] = new Image(new FileInputStream("ISP Splash Screen Images\\Check\\Inside.png"));
+       screen2Text[2] = new Image(new FileInputStream("ISP Splash Screen Images\\Check\\The.png")); 
+       screen2Text[3] = new Image(new FileInputStream("ISP Splash Screen Images\\Check\\Mind.png"));
        screen2Text[4] = new Image(new FileInputStream("ISP Splash Screen Images\\Continue.png"));
        imageViewScreen2Text[0] = new ImageView(screen2Text[0]);
        imageViewScreen2Text[1] = new ImageView(screen2Text[1]);
@@ -73,6 +73,7 @@ public class SplashScreen {
        imageViewScreen2Text[3] = new ImageView(screen2Text[3]);
        imageViewScreen2Text[4] = new ImageView(screen2Text[4]);
     }
+    
 
     /**
      * This method gets called to display and animate the company name and logo portion of the splash screen
@@ -124,7 +125,42 @@ public class SplashScreen {
      *
      */
     public void animateGameName() throws FileNotFoundException {
-
+      importImagesS2();
+      //Setting the position of the image LOGO:
+      imageViewCage.setX(450); 
+      imageViewCage.setY(150);
+      imageViewCage.setFitHeight(350); 
+      imageViewCage.setFitWidth(350); 
+      imageViewCage.setPreserveRatio(true);
+      //Setting the position of textImage
+      imageViewScreen2Text[0].setX(250);
+      imageViewScreen2Text[0].setY(100);
+      imageViewScreen2Text[0].setFitHeight(175); 
+      imageViewScreen2Text[0].setFitWidth(150); 
+      imageViewScreen2Text[0].setPreserveRatio(true);      
+      //Setting the position of textImage2
+      imageViewScreen2Text[1].setX(425);
+      imageViewScreen2Text[1].setY(100);
+      imageViewScreen2Text[1].setFitHeight(175); 
+      imageViewScreen2Text[1].setFitWidth(150); 
+      imageViewScreen2Text[1].setPreserveRatio(true);
+      //Setting the position of textImage3
+      imageViewScreen2Text[2].setX(600);
+      imageViewScreen2Text[2].setY(100);
+      imageViewScreen2Text[2].setFitHeight(175); 
+      imageViewScreen2Text[2].setFitWidth(150); 
+      imageViewScreen2Text[2].setPreserveRatio(true);
+      //Setting the position of textImage3
+      imageViewScreen2Text[3].setX(775);
+      imageViewScreen2Text[3].setY(100);
+      imageViewScreen2Text[3].setFitHeight(175); 
+      imageViewScreen2Text[3].setFitWidth(150); 
+      imageViewScreen2Text[3].setPreserveRatio(true);
+      //Creating a Group object  
+      Group root = new Group(imageViewCage, imageViewScreen2Text[0], imageViewScreen2Text[1], imageViewScreen2Text[2], imageViewScreen2Text[3]); 
+      //Creating a scene object 
+      Scene scene = new Scene(root, 600, 500); 
+      stage.setScene(scene);
     }
 
 }
