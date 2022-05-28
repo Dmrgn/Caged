@@ -84,7 +84,7 @@ public class Player implements GameObject {
     public void update() {
         handleInput();
         vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
-        vel = vel.max(new Vector(MAX_SPEED, 0)).min(new Vector(-MAX_SPEED, 0));
+        vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED)).min(new Vector(-MAX_SPEED, -MAX_SPEED));
         if (isDashing) {
             vel = vel.mul(1.5f);
         }
@@ -92,7 +92,6 @@ public class Player implements GameObject {
         Vector diff = Vector.sub(vel, vel.mul(0.9f));
         diff = diff.max(new Vector(ACCELERATION*0.9f, 0)).min(new Vector(-ACCELERATION*0.9f, 0));
         vel = vel.sub(diff);
-        System.out.println(vel);
         // if (!isGrounded) {
         //     dy = -1 * JUMP_HEIGHT;
         //     isGrounded = true;
@@ -129,7 +128,7 @@ public class Player implements GameObject {
         } else {
             moveDirection = 0;
         }
-        if (Keyboard.isKeyDown(KeyCode.W)) {
+        if (Keyboard.isKeyDown(KeyCode.SPACE)) {
             isJumping = true;
         } else {
             isJumping = false;
