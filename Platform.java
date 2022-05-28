@@ -1,5 +1,6 @@
 import javafx.scene.*;
 import javafx.scene.image.*;
+import javafx.scene.image.Image;
 /**
  * <p>
  * This class contains data about the platforms and also will make sure that all of the platforms
@@ -39,7 +40,7 @@ public class Platform implements GameObject {
    * Getter method for the Node 
    * @return The Node
    */
-   public getNode() {
+   public Node getNode() {
       return node;
    }
    /**

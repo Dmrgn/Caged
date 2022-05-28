@@ -1,7 +1,8 @@
 import java.io.*;
 import java.util.HashMap;
 import javafx.scene.*;
-import javafx.scene.image.*;
+import java.util.ArrayList;
+
 /**
  * <p>
  * This class prevents us from having to hard code all of the level objects
@@ -42,11 +43,11 @@ public class LevelDataParser {
       String line = "";
       BufferedReader fr = new BufferedReader(new FileReader(fileName));
       line = fr.readLine();
-      ArrayList<Node> levelObjects = new ArrayList<>();
+      ArrayList<Node> levelObjects = new ArrayList<Node>();
       while (line != null) {
          String[] data = line.split(", ");
          if (data[0].equals("Platform")){
-            Platform p = new Platform(textures.get("Platform"), data[1], data[2]);
+            Platform p = new Platform(textures.get("Platform"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
             levelObjects.add(p.getNode());
          } else if (data[0].equals("Enemy1")){
             
@@ -60,7 +61,7 @@ public class LevelDataParser {
             throw new RuntimeException("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");
          }
       }
-      Group g = new Group(levelObject);
+      Group g = new Group(levelObjects);
       return g;
    }
 }
