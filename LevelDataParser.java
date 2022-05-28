@@ -16,9 +16,9 @@ import java.util.ArrayList;
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 27th, 2022
  * <p>
- * File was created by Ryan Atlas on May 27th, 2022. Comments were added, variables created,
- * the constructor was made and the readFile method had most of its functionality (the file reading
- * and the parsing of platforms) added.
+ * File was created by Ryan Atlas on May 27th, 2022. 45 minutes were spent by Ryan Atlas.
+ * Comments were added, variables created, the constructor was made and the readFile method
+ * had most of its functionality (the file reading and the parsing of platforms, signs and doors) added.
  * </p>
  */
 public class LevelDataParser {
@@ -54,9 +54,11 @@ public class LevelDataParser {
          } else if (data[0].equals("Enemy2")){
          
          } else if (data[0].equals("Door")) {
-         
+            Door d = new Door(textures.get("DoorClosed"), textures.get("DoorOpen"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+            levelObjects.add(d.getNode());
          } else if (data[0].equals("Sign")) {
-            
+            Sign s = new Sign(textures.get("DoorClosed"), Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3]);
+            levelObjects.add(s.getNode());
          } else {
             throw new RuntimeException("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");
          }
