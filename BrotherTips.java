@@ -1,3 +1,5 @@
+import javafx.scene.image.Image;
+
 /**
  * <p>
  * This class contains code for the BrotherTips Transition Screen
@@ -13,26 +15,23 @@
  * Samuel Huang spent 10 minutes on this file.
  * </p>
  */
-public class BrotherTips
-{
+public class BrotherTips {
     /** This Image variable stores the current Transition page. */
-   private Image screen;
-   /**
+    private Image screen;
+    /**
      * The constructor of the BrotherTips Class.
      * @param page is used to take in the current Image used for the certain transition
      */
-   public BrotherTips(Image page)
-   {
-      screen = page;
-   }
+    public BrotherTips(Image page) {
+        screen = page;
+    }
     /**
      * This method gets called to display the tips screen
      *
      */
-   public void display()
-   {
-   
-   }
-   
-   
+    public void display() {
+
+    }
+
+
 }

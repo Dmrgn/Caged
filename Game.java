@@ -20,6 +20,7 @@ import javafx.stage.Stage;
  * @since May 18th, 2022
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 18th, 2022.
+ * 2 hours were spent by Daniel Morgan on this file over May 27th and 28th, 2022.
  * </p>
  */
 public class Game {
@@ -29,6 +30,18 @@ public class Game {
     private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     /** Current scene*/
     private Scene scene;
+    /** Current group of scene layers: foreground/background/midground */
+    private Group sceneGroup = new Group();
+    /** Individual scene layers to contain rendered objects */
+    private Group foreground = new Group();
+    private Group midground = new Group();
+    private Group background = new Group();
+    /** Programatic representation of scene layers */
+    public static enum SceneLayer {
+        FOREGROUND,
+        MIDGROUND,
+        BACKGROUND
+    }
     /** Reference to the current window object */
     Stage window;
     /**
@@ -41,9 +54,18 @@ public class Game {
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
         window.setResizable(false);
-        GameObject player = attachObject(new Player(50,Main.getHeight()-200));
-        GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100));
-        buildScene(new Group(player.getNode(), platform.getNode()));
+        // render the background, then midground, then foreground first
+        background.setViewOrder(0);
+        midground.setViewOrder(1);
+        foreground.setViewOrder(2);
+        // add layers to sceneGroup
+        sceneGroup.getChildren().addAll(foreground, midground, background);
+        // add sceneGroup to the window and create the scene
+        buildScene(sceneGroup);
+        // add a player and platform to the scene
+        GameObject player = attachObject(new Player(50,Main.getHeight()-200), SceneLayer.FOREGROUND);
+        GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
+        // set the current scene
         window.setScene(scene);
     }
     /**
@@ -73,9 +95,24 @@ public class Game {
     }
     /**
      * Adds the specified object to the game's list of objects
+     * and attaches it to the specified {@link SceneLayer}
+     * @param gameObject The gameobject to add to the scene
+     * @param layer The layer to add the {@link GameObject} gameObject to
+     * @return The added {@link GameObject}
      */
-    public GameObject attachObject(GameObject gameObject) {
+    public GameObject attachObject(GameObject gameObject, SceneLayer layer) {
         gameObjects.add(gameObject);
+        switch (layer) {
+            case FOREGROUND:
+                foreground.getChildren().add(gameObject.getNode());
+                break;
+            case MIDGROUND:
+                midground.getChildren().add(gameObject.getNode());
+                break;
+            case BACKGROUND:
+                background.getChildren().add(gameObject.getNode());
+                break;
+        }
         return gameObject;
     }
     /**

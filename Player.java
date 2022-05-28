@@ -31,32 +31,37 @@ import java.util.TimerTask;
  */
 
 public class Player implements GameObject {
+    /** The player's movement speed which is a constant*/
+    private static final float MAX_SPEED = 4;
+    /** The player's acceleration speed which is a constant*/
+    private static final float ACCELERATION = 0.3f;
+    /** The player's jump height which is a constant*/
+    private static final int JUMP_HEIGHT = 50;
     /** The player's position stored as a Vector*/
     public Vector pos;
     /** The velocity stores as a Vector */
     public Vector vel;
     /** The player's current hp*/
     private int hp;
-    /** The player's movement speed which is a constant*/
-    private static final float MAX_SPEED = 3;
-    /** The player's acceleration speed which is a constant*/
-    private static final float ACCELERATION = 0.15f;
-    /** The player's jump height which is a constant*/
-    private static final int JUMP_HEIGHT = 50;
     /** The player's Sprite as an Image*/
     public Image sprite;
     /** The Node that is added to the scene and whose movement is updated*/
     public Node player;
-    /** Whether the player is jumping or not*/
-    private boolean isJumping;
     /** The direction the player is moving (1 right -1 left 0 idle) */
     private int moveDirection;
-    /** Whether the player is dashing or not*/
-    private boolean isDashing;
     /** Whether the player is interacting with an object or not*/
     private boolean interact;
     /** Whether the player is grounded or not*/
     private boolean isGrounded;
+    /** Possible player states */
+    private enum PlayerState {
+        IDLE,
+        DASHING,
+        MOVING,
+        DAMAGED
+    }
+    /** Current state of the player */
+    private PlayerState state;
     /**
      * The Player class constructor which takes in two floats 
      * in order to initialize the position vector and sets all other
@@ -69,46 +74,83 @@ public class Player implements GameObject {
         this.pos = new Vector(x, y);
         vel = new Vector(0, 0);
         hp = 100;
-        isJumping = false;
-        isDashing = false;
+        state = PlayerState.IDLE;
         interact = false;
-        isGrounded = true;
+        isGrounded = false;
         moveDirection = 0;
         sprite = new Image("assets/player.png");
         player = new ImageView(sprite);
+    }
+    /**
+     * Attempts to change the player's state to the given state
+     * @return The new state of the player
+     */
+    private PlayerState requestStateChange(PlayerState newState) {
+        switch (state) {
+            case IDLE:
+                return state = newState;
+            case DASHING:
+                switch (newState) {
+                    case IDLE:
+                        return state = PlayerState.IDLE;
+                    case DAMAGED:
+                        return state = PlayerState.DAMAGED;
+                }
+                break;
+            case MOVING:
+                return state = newState;
+            case DAMAGED:
+                switch (newState) {
+                    case IDLE:
+                        return state = PlayerState.IDLE;
+                }
+                break;
+        }
+        System.out.println("Changing state to " + state);
+        return state;
     }
     /** 
      * Updates the player's position Vector based on keyboard input, implementation 
      * of the method from the GameObject interface
      */
     public void update() {
-        handleInput();
-        vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
-        vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED)).min(new Vector(-MAX_SPEED, -MAX_SPEED));
-        if (isDashing) {
-            vel = vel.mul(1.5f);
+        // handle lateral movement keyboard input
+        if (Keyboard.isKeyDown(KeyCode.D))
+            moveDirection = 1;
+        else if (Keyboard.isKeyDown(KeyCode.A))
+            moveDirection = -1;
+        else
+            moveDirection = 0;
+        // handle logic based on player state
+        switch (state) {
+            case IDLE: {
+                // State logic
+                // Handle exiting this state
+                if (moveDirection != 0) requestStateChange(PlayerState.MOVING);
+                break;
+            }
+            case DASHING: {
+
+                break;
+            }
+            case MOVING: {
+                // State logic
+                vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
+                vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED)).min(new Vector(-MAX_SPEED, -MAX_SPEED));
+                // Handle exiting this state
+                if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
+                break;
+            }
+            case DAMAGED: {
+
+                break;
+            }
         }
+        // State independent logic
         pos = pos.add(vel);
         Vector diff = Vector.sub(vel, vel.mul(0.9f));
         diff = diff.max(new Vector(ACCELERATION*0.9f, 0)).min(new Vector(-ACCELERATION*0.9f, 0));
         vel = vel.sub(diff);
-        // if (!isGrounded) {
-        //     dy = -1 * JUMP_HEIGHT;
-        //     isGrounded = true;
-        // }
-        // if (isJumping && isGrounded) {
-        //     isGrounded = false;
-        //     dy += JUMP_HEIGHT;
-        //     Timer jumpTimer = new Timer();
-        //     TimerTask endJump = new TimerTask() {
-        //         @Override
-        //         public void run() {
-        //             isJumping = false;
-        //         }
-        //     };
-        //     jumpTimer.schedule(endJump, 700L);
-        // }
-        // pos.y -= dy;
     }
     /**
      * Draws the player on the screen, implementation of the method
@@ -116,33 +158,6 @@ public class Player implements GameObject {
      */
     public void draw() {
         player.relocate(pos.x, pos.y);
-    }
-    /**
-     * Handles the players interaction with keyboard input
-     */
-    private void handleInput() {
-        if (Keyboard.isKeyDown(KeyCode.D)) {
-            moveDirection = 1;
-        } else if (Keyboard.isKeyDown(KeyCode.A)) {
-            moveDirection = -1;
-        } else {
-            moveDirection = 0;
-        }
-        if (Keyboard.isKeyDown(KeyCode.SPACE)) {
-            isJumping = true;
-        } else {
-            isJumping = false;
-        }
-        if (Keyboard.isKeyDown(KeyCode.SHIFT)) {
-            isDashing = true;
-        } else {
-            isDashing = false;
-        }
-        if (Keyboard.isKeyDown(KeyCode.E)) {
-            interact = true;
-        } else {
-            interact = false;
-        }
     }
     /**
      * Gets the node this player is attached to and returns it

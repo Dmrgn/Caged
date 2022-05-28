@@ -17,7 +17,7 @@ import javafx.scene.image.Image;
  * the constructor was made and the getNode(), draw(), inRange(), display() and update() methods were added
  * </p>
  */
-public class Sign implements GameObject, Interactable{
+public class Sign implements GameObject, Interactable {
     /** JavaFX node for the platform*/
     private Node node;
     /** Image for the sign's locked texture */

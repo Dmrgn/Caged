@@ -1,3 +1,5 @@
+import javafx.scene.image.Image;
+
 /**
  * <p>
  * This class contains code for the Credits Screen
@@ -13,31 +15,27 @@
  * Samuel Huang spent 10 minutes on this file.
  * </p>
  */
-public class Credits
-{
-   /** This Image variable stores the credits page. */
-   private Image screen;
-   /**
+public class Credits {
+    /** This Image variable stores the credits page. */
+    private Image screen;
+    /**
      * The constructor of the Credits Class.
      */
-   public Credits(Image page)
-   {
-      screen = page;
-   }
-   /**
+    public Credits(Image page) {
+        screen = page;
+    }
+    /**
      * This method gets called to display the credits screen
      *
      */
-   public void display()
-   {
-   
-   }
-   /**
+    public void display() {
+
+    }
+    /**
      * This method sends the user back to the menu screen
      *
      */
-   public void back()
-   {
-   
-   }
+    public void back() {
+
+    }
 }
