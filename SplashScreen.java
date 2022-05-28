@@ -5,7 +5,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.*;
 import javafx.scene.paint.*;
-
+import javafx.scene.text.*;
+import javafx.animation.*;
+import javafx.util.*;
 /**
  * <p>
  * This class contains code for the SplashScreen
@@ -27,16 +29,9 @@ public class SplashScreen {
     /** This Image variable stores the logo image. */
     private Image logo;
     private ImageView imageViewLogo; 
-    /** This Image variable stores the cage image. */
-    private Image cage;
-    private ImageView imageViewCage; 
     /** This Image array variable stores all the text images for the Logo Page Animation. */
     private Image[] screen1Text;
     private ImageView[] imageViewScreen1Text;
-    /** This Image array variable stores all the text images for the Game Name Page Animation. */
-    private Image[] screen2Text;
-    private ImageView[] imageViewScreen2Text;
-
     /**
      * The constructor of the Splash Screen Class.
      * Images are initialized to then be used in the splash screen.
@@ -44,10 +39,7 @@ public class SplashScreen {
     public SplashScreen(Stage stage)  {
        this.stage = stage; 
        screen1Text = new Image[2];
-       screen2Text = new Image[5];
        imageViewScreen1Text = new ImageView[2];
-       imageViewScreen2Text = new ImageView[5];
-       
     }
     private void importImagesS1() throws FileNotFoundException
     {
@@ -58,23 +50,6 @@ public class SplashScreen {
        imageViewScreen1Text[0] = new ImageView(screen1Text[0]);
        imageViewScreen1Text[1] = new ImageView(screen1Text[1]);
     }
-    private void importImagesS2() throws FileNotFoundException
-    {
-       cage = new Image(new FileInputStream("ISP Splash Screen Images\\Cage.png")); 
-       imageViewCage = new ImageView(cage);
-       screen2Text[0] = new Image(new FileInputStream("ISP Splash Screen Images\\Check\\Caged.png"));
-       screen2Text[1] = new Image(new FileInputStream("ISP Splash Screen Images\\Check\\Inside.png"));
-       screen2Text[2] = new Image(new FileInputStream("ISP Splash Screen Images\\Check\\The.png")); 
-       screen2Text[3] = new Image(new FileInputStream("ISP Splash Screen Images\\Check\\Mind.png"));
-       screen2Text[4] = new Image(new FileInputStream("ISP Splash Screen Images\\Continue.png"));
-       imageViewScreen2Text[0] = new ImageView(screen2Text[0]);
-       imageViewScreen2Text[1] = new ImageView(screen2Text[1]);
-       imageViewScreen2Text[2] = new ImageView(screen2Text[2]);
-       imageViewScreen2Text[3] = new ImageView(screen2Text[3]);
-       imageViewScreen2Text[4] = new ImageView(screen2Text[4]);
-    }
-    
-
     /**
      * This method gets called to display and animate the company name and logo portion of the splash screen
      *
@@ -83,13 +58,13 @@ public class SplashScreen {
       importImagesS1();
       //Setting the position of the image LOGO:
       imageViewLogo.setX(450); 
-      imageViewLogo.setY(150);
+      imageViewLogo.setY(-250);
       imageViewLogo.setFitHeight(350); 
       imageViewLogo.setFitWidth(350); 
       imageViewLogo.setPreserveRatio(true);
       //Setting the position of textImage1
       imageViewScreen1Text[0].setX(460);
-      imageViewScreen1Text[0].setY(100);
+      imageViewScreen1Text[0].setY(-150);
       imageViewScreen1Text[0].setFitHeight(125); 
       imageViewScreen1Text[0].setFitWidth(350); 
       imageViewScreen1Text[0].setPreserveRatio(true);      
@@ -107,6 +82,17 @@ public class SplashScreen {
             new Stop(0, Color.WHITE),
             new Stop(1, Color.BLACK)
       }); 
+      TranslateTransition translateCompName = new TranslateTransition();
+      translateCompName.setNode(imageViewScreen1Text[0]);
+      translateCompName.setDuration(Duration.millis(1000));
+      translateCompName.setByY(250);
+      translateCompName.play();
+      //Translates the logo
+      TranslateTransition translateLogo = new TranslateTransition();
+      translateLogo.setNode(imageViewLogo);
+      translateLogo.setDuration(Duration.millis(2000));
+      translateLogo.setByY(400);
+      translateLogo.play();
       scene.setFill(background);
       stage.setScene(scene);
       //stage.show(); 
@@ -125,41 +111,21 @@ public class SplashScreen {
      *
      */
     public void animateGameName() throws FileNotFoundException {
-      importImagesS2();
-      //Setting the position of the image LOGO:
-      imageViewCage.setX(450); 
-      imageViewCage.setY(150);
-      imageViewCage.setFitHeight(350); 
-      imageViewCage.setFitWidth(350); 
-      imageViewCage.setPreserveRatio(true);
-      //Setting the position of textImage
-      imageViewScreen2Text[0].setX(250);
-      imageViewScreen2Text[0].setY(100);
-      imageViewScreen2Text[0].setFitHeight(175); 
-      imageViewScreen2Text[0].setFitWidth(150); 
-      imageViewScreen2Text[0].setPreserveRatio(true);      
-      //Setting the position of textImage2
-      imageViewScreen2Text[1].setX(425);
-      imageViewScreen2Text[1].setY(100);
-      imageViewScreen2Text[1].setFitHeight(175); 
-      imageViewScreen2Text[1].setFitWidth(150); 
-      imageViewScreen2Text[1].setPreserveRatio(true);
-      //Setting the position of textImage3
-      imageViewScreen2Text[2].setX(600);
-      imageViewScreen2Text[2].setY(100);
-      imageViewScreen2Text[2].setFitHeight(175); 
-      imageViewScreen2Text[2].setFitWidth(150); 
-      imageViewScreen2Text[2].setPreserveRatio(true);
-      //Setting the position of textImage3
-      imageViewScreen2Text[3].setX(775);
-      imageViewScreen2Text[3].setY(100);
-      imageViewScreen2Text[3].setFitHeight(175); 
-      imageViewScreen2Text[3].setFitWidth(150); 
-      imageViewScreen2Text[3].setPreserveRatio(true);
+      Text title = new Text("Caged Inside the Mind");
+      title.setFont(Font.font ("Times New Roman", FontWeight.BOLD, 62));
+      title.setFill(Color.WHITE);
+      title.setX(350);
+      title.setY(100);
+      Text continueText = new Text("Press any key to continue...");
+      continueText.setFont(Font.font ("Times New Roman", 36));
+      continueText.setFill(Color.WHITE);
+      continueText.setX(450);
+      continueText.setY(600);
       //Creating a Group object  
-      Group root = new Group(imageViewCage, imageViewScreen2Text[0], imageViewScreen2Text[1], imageViewScreen2Text[2], imageViewScreen2Text[3]); 
+      Group root = new Group(title, continueText); 
       //Creating a scene object 
       Scene scene = new Scene(root, 600, 500); 
+      scene.setFill(Color.BLACK);
       stage.setScene(scene);
     }
 

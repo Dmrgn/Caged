@@ -1,3 +1,4 @@
+import javafx.scene.image.*;
 /**
  * <p>
  * This class contains code for the Transition Screen
