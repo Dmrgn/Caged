@@ -30,141 +30,125 @@ import java.util.TimerTask;
  * </p>
  */
 
-public class Player implements GameObject{
-   /** The player's position stored as a Vector*/
+public class Player implements GameObject {
+    /** The player's position stored as a Vector*/
     public Vector pos;
+    /** The velocity stores as a Vector */
+    public Vector vel;
     /** The player's current hp*/
     private int hp;
-    /* The player's movement speed which is a constant*/
-    private static final int SPEED = 10;
-    /* The player's jump height which is a constant*/
+    /** The player's movement speed which is a constant*/
+    private static final float MAX_SPEED = 3;
+    /** The player's acceleration speed which is a constant*/
+    private static final float ACCELERATION = 0.15f;
+    /** The player's jump height which is a constant*/
     private static final int JUMP_HEIGHT = 50;
-    /* The player's Sprite as an Image*/
+    /** The player's Sprite as an Image*/
     public Image sprite;
-    /* The Node that is added to the scene and whose movement is updated*/
+    /** The Node that is added to the scene and whose movement is updated*/
     public Node player;
-    /* Whether the player is jumping or not*/
-    private boolean jump;
-    /* Whether the player is moving left or not*/
-    private boolean left;
-    /* Whether the player is moving right or not*/
-    private boolean right;
-    /* Whether the player is dashing or not*/
-    private boolean dash;
-    /* Whether the player is interacting with an object or not*/
+    /** Whether the player is jumping or not*/
+    private boolean isJumping;
+    /** The direction the player is moving (1 right -1 left 0 idle) */
+    private int moveDirection;
+    /** Whether the player is dashing or not*/
+    private boolean isDashing;
+    /** Whether the player is interacting with an object or not*/
     private boolean interact;
-    /* Whether the player is grounded or not*/
-    private boolean grounded;
-    /* Current scene*/
-    private Scene scene;
+    /** Whether the player is grounded or not*/
+    private boolean isGrounded;
     /**
-    * The Player class constructor which takes in two floats 
-    * in order to initialize the position vector and sets all other
-    * variables to their default. The constructor also initializes
-    * the scene and EventHandlers for KeyEvents
-    * @param x The player's x coordinate
-    * @param y The player's y coordinate
-    */
+     * The Player class constructor which takes in two floats 
+     * in order to initialize the position vector and sets all other
+     * variables to their default. The constructor also initializes
+     * the scene and EventHandlers for KeyEvents
+     * @param x The player's x coordinate
+     * @param y The player's y coordinate
+     */
     public Player(float x, float y) {
         this.pos = new Vector(x, y);
+        vel = new Vector(0, 0);
         hp = 100;
-        jump = false;
-        dash = false;
+        isJumping = false;
+        isDashing = false;
         interact = false;
-        grounded = true;
-        right = false;
-        left = false;
-        sprite = new Image("Sprite.png");
+        isGrounded = true;
+        moveDirection = 0;
+        sprite = new Image("assets/player.png");
         player = new ImageView(sprite);
-        Group p = new Group(player);
-        scene = new Scene(p, 1280, 720, Color.WHITE);
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent e) {
-               if (e.getCode() == KeyCode.D){
-                  right = true;
-               }
-               if (e.getCode() == KeyCode.A) {
-                  left = true;
-               }
-               if (e.getCode() == KeyCode.W) {
-                  jump = true;
-               }
-               if (e.getCode() == KeyCode.SHIFT) {
-                  dash = true;
-               }
-               if (e.getCode() == KeyCode.E){
-                  interact = true;
-               }
-            }
-        });
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent e) {
-               if (e.getCode() == KeyCode.D){
-                  right = false;
-               }
-               if (e.getCode() == KeyCode.A) {
-                  left = false;
-               }
-               if (e.getCode() == KeyCode.W) {
-                  jump = false;
-               }
-               if (e.getCode() == KeyCode.SHIFT) {
-                  dash = false;
-               }
-               if (e.getCode() == KeyCode.E){
-                  interact = false;
-               }
-            }
-        });
     }
     /** 
-    * Updates the player's position Vector based on keyboard input, implementation 
-    * of the method from the GameObject interface
-    */
+     * Updates the player's position Vector based on keyboard input, implementation 
+     * of the method from the GameObject interface
+     */
     public void update() {
-       int dx = 0, dy = 0;
-       if (right) {
-           dx += SPEED/5;
-       } else if (left) {
-           dx -= SPEED/5;
-       }
-       if (dash) {
-         dx *= 2;
-       }
-       pos.x += dx;
-       if (!grounded) {          
-            dy = -1*JUMP_HEIGHT;
-            grounded = true;
-       }
-       if (jump && grounded) {
-          grounded = false;
-          dy += JUMP_HEIGHT;
-          Timer jumpTimer = new Timer();
-          TimerTask endJump = new TimerTask() {
-             @Override
-             public void run() {
-                jump = false;
-             }
-          };
-          jumpTimer.schedule(endJump, 700L);
-       }
-       pos.y -= dy;
+        handleInput();
+        vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
+        vel = vel.max(new Vector(MAX_SPEED, 0)).min(new Vector(-MAX_SPEED, 0));
+        if (isDashing) {
+            vel = vel.mul(1.5f);
+        }
+        pos = pos.add(vel);
+        Vector diff = Vector.sub(vel, vel.mul(0.9f));
+        diff = diff.max(new Vector(ACCELERATION*0.9f, 0)).min(new Vector(-ACCELERATION*0.9f, 0));
+        vel = vel.sub(diff);
+        System.out.println(vel);
+        // if (!isGrounded) {
+        //     dy = -1 * JUMP_HEIGHT;
+        //     isGrounded = true;
+        // }
+        // if (isJumping && isGrounded) {
+        //     isGrounded = false;
+        //     dy += JUMP_HEIGHT;
+        //     Timer jumpTimer = new Timer();
+        //     TimerTask endJump = new TimerTask() {
+        //         @Override
+        //         public void run() {
+        //             isJumping = false;
+        //         }
+        //     };
+        //     jumpTimer.schedule(endJump, 700L);
+        // }
+        // pos.y -= dy;
     }
     /**
-    * Draws the player on the screen, implementation of the method
-    * from the GameObject interface
-    */
+     * Draws the player on the screen, implementation of the method
+     * from the GameObject interface
+     */
     public void draw() {
         player.relocate(pos.x, pos.y);
     }
     /**
-    * Returns the scene with the player on it so it may be used
-    * in the Main class
-    * @return The current scene
-    */
-    public Scene getScene() {
-      return scene;
+     * Handles the players interaction with keyboard input
+     */
+    private void handleInput() {
+        if (Keyboard.isKeyDown(KeyCode.D)) {
+            moveDirection = 1;
+        } else if (Keyboard.isKeyDown(KeyCode.A)) {
+            moveDirection = -1;
+        } else {
+            moveDirection = 0;
+        }
+        if (Keyboard.isKeyDown(KeyCode.W)) {
+            isJumping = true;
+        } else {
+            isJumping = false;
+        }
+        if (Keyboard.isKeyDown(KeyCode.SHIFT)) {
+            isDashing = true;
+        } else {
+            isDashing = false;
+        }
+        if (Keyboard.isKeyDown(KeyCode.E)) {
+            interact = true;
+        } else {
+            interact = false;
+        }
+    }
+    /**
+     * Gets the node this player is attached to and returns it
+     */
+    public Node getNode() {
+        return player;
     }
 }

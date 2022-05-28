@@ -1,3 +1,5 @@
+import javafx.scene.Node;
+
 /**
  * <p>
  * This interface is used so that all game objects can appear on the screen
@@ -14,12 +16,16 @@
  * </p>
  */
 public interface GameObject {
-   /**
-   * Draw method that draws the object
-   */
-   public void draw();
-   /**
-   * Update method that updates where that object is drawn
-   */
-   public void update();
+    /**
+     * Draw method that draws the object
+     */
+    public void draw();
+    /**
+     * Update method that updates where that object is drawn
+     */
+    public void update();
+    /**
+     * Gets the Node representing the object
+     */
+    public Node getNode();
 }

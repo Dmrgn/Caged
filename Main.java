@@ -30,8 +30,8 @@ import javafx.scene.paint.Color;
  * </p>
  */
 public class Main extends Application {
-   /** Whether or not the player has exited the main game loop*/
-   public static boolean exited = false;
+    /** Whether or not the player has exited the main game loop*/
+    public static boolean exited = false;
     /** The width of the program window */
     private static final int width = 1280;
     /** The height of the program window */
@@ -42,6 +42,8 @@ public class Main extends Application {
     private boolean running = false;
     /** Instance of the player */
     public Player player;
+    /** Instance of the current game */
+    public Game game;
     /** 
      * returns the width of the current window 
      * @return Width of the current window in pixels
@@ -62,54 +64,41 @@ public class Main extends Application {
      */
     public static Vector getDims() {
         return dims;
-    }   
-    /**
-    * Overriden start method inherited from JavaFX's Application class.
-    * This method is used to display the window of the game as well as to
-    * control the size of the window and display scenes on it
-    * @param window The window that the game is displayed on
-    */
-    @Override
-    public void start(Stage window){
-      window.setTitle("Caged Inside the Mind");
-      window.setMinWidth(width);
-      window.setMinHeight(height);
-      window.setResizable(false);
-      player = new Player(0, 500);
-      Scene scene = player.getScene();
-      window.setScene(scene);
-      AnimationTimer at = new AnimationTimer() {
-         @Override
-         public void handle (long l) {
-            player.update();
-            player.draw();
-         }
-      };
-      at.start();
-      window.show();
     }
-   /**
-   * Main method that runs at the start of the program
-   * and creates a Game object and calls all of its methods
-   * @param args Used to call launch
-   */
-   public static void main(String[] args) {
-      launch(args);
-      // Game isp = new Game();
-//       isp.splashScreen();
-//       while(!exited) {
-//         int choice = isp.mainMenu();
-//          switch(choice) {
-//             case 1:
-//                break;
-//             case 2:
-//                break;
-//             case 3:
-//                break;
-//             case 4:
-//                exited = true;
-//                break;
-//          }
-//       }
-   }
+    /**
+     * Overriden start method inherited from JavaFX's Application class.
+     * This method is used to display the window of the game as well as to
+     * control the size of the window and display scenes on it
+     * @param window The window that the game is displayed on
+     */
+    @Override
+    public void start(Stage window) {
+        game = new Game(window);
+        Keyboard.init(game.getScene());
+        game.playGame();
+    }
+    /**
+     * Main method that runs at the start of the program
+     * and creates a Game object and calls all of its methods
+     * @param args Used to call launch
+     */
+    public static void main(String[] args) {
+        launch(args);
+        // Game isp = new Game();
+        //       isp.splashScreen();
+        //       while(!exited) {
+        //         int choice = isp.mainMenu();
+        //          switch(choice) {
+        //             case 1:
+        //                break;
+        //             case 2:
+        //                break;
+        //             case 3:
+        //                break;
+        //             case 4:
+        //                exited = true;
+        //                break;
+        //          }
+        //       }
+    }
 }

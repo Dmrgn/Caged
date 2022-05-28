@@ -1,3 +1,5 @@
+import javafx.scene.image.Image;
+
 /**
  * <p>
  * This class contains code for the Exit Screen

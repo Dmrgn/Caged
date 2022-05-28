@@ -70,6 +70,26 @@ public class Vector {
         return Vector.add(v1, Vector.sub(v2, v1).mul(scalar));
     }
 
+    /**
+     * Returns the lesser value between {@link Vector} v1 and {@link Vector} max
+     * @param v1 The {@link Vector} to be clamped
+     * @param max {@link Vector} representing the maximum values to clamp {@link Vector} v1 to
+     * @return Lesser values between each component of {@link Vector} v1 and {@link Vector} max
+     */
+    static public Vector max(Vector v1, Vector max) {
+        return new Vector(v1.x > max.x ? max.x : v1.x, v1.y > max.y ? max.y : v1.y);
+    }
+
+    /**
+     * Returns the lesser value between {@link Vector} v1 and {@link Vector} max
+     * @param v1 The {@link Vector} to be clamped
+     * @param min {@link Vector} representing the minimum values to clamp {@link Vector} v1 to
+     * @return Lesser values between each component of {@link Vector} v1 and {@link Vector} min
+     */
+    static public Vector min(Vector v1, Vector min) {
+        return new Vector(v1.x < min.x ? min.x : v1.x, v1.y < min.y ? min.y : v1.y);
+    }
+
     /** The x and y components of this vector. */
     public float x, y;
     
@@ -81,6 +101,13 @@ public class Vector {
     public Vector(float x, float y) {
         this.x = x;
         this.y = y;
+    }
+    /**
+     * Returns the string representation of this vector
+     */
+    @Override
+    public String toString() {
+        return "Vector : " + x + ", " + y;
     }
     /** Instance implementation of {@link #add(Vector, Vector)} */
     public Vector add(Vector v1) {
@@ -105,5 +132,13 @@ public class Vector {
     /** Instance implementation of {@link #lerp(Vector, Vector, float)} */
     public Vector lerp(Vector v1, float scalar) {
         return Vector.lerp(this, v1, scalar);
+    }
+    /** Instance implementation of {@link #max(Vector, Vector)} */
+    public Vector max(Vector max) {
+        return Vector.max(this, max);
+    }
+    /** Instance implementation of {@link #min(Vector, Vector)} */
+    public Vector min(Vector min) {
+        return Vector.min(this, min);
     }
 }
