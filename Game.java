@@ -24,6 +24,8 @@ import javafx.stage.Stage;
  * </p>
  */
 public class Game {
+    /** Gravity applied to all moveable objects */
+    public static final float GRAVITY = 1.0f;
     /** ArrayList of gameobjects in the current scene */
     private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     /** Current scene*/
@@ -31,7 +33,8 @@ public class Game {
     /** Reference to the current window object */
     Stage window;
     /**
-     *
+     * Inits a game scene
+     * @param w The window to use for the game
      */
     public Game(Stage w) {
         window = w;
@@ -39,8 +42,10 @@ public class Game {
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
         window.setResizable(false);
-        GameObject player = attachObject(new Player(50,100));
-        buildScene(new Group(player.getNode()));
+        GameObject player = attachObject(new Player(50,Main.getHeight()-200));
+        //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100));
+        GameObject platform = attachObject(new Platform("C:\\Users\\ryatl\\IdeaProjects\\May 27th ISP\\platform.png",50,Main.getHeight()-100));
+        buildScene(new Group(player.getNode(), platform.getNode()));
         window.setScene(scene);
     }
     /**
@@ -107,6 +112,6 @@ public class Game {
      * Builds a scene with the specified group
      */
     public void buildScene(Group g) {
-        scene = new Scene(g, 1280, 720, Color.WHITE);
+        scene = new Scene(g, 1280, 720, Color.BLACK);
     }
 }
