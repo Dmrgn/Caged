@@ -118,13 +118,13 @@ public class SplashScreen {
      */
     public void transition() throws FileNotFoundException{
       //Fade out everything
-      FadeTransition logoFade = new FadeTransition(Duration.millis(2000), imageViewLogo);
-      FadeTransition word1Fade = new FadeTransition(Duration.millis(2000), imageViewScreen1Text[0]);
-      FadeTransition word2Fade = new FadeTransition(Duration.millis(2000), imageViewScreen1Text[1]);
+      FadeTransition logoFade = new FadeTransition(Duration.millis(1000), imageViewLogo);
+      FadeTransition word1Fade = new FadeTransition(Duration.millis(1000), imageViewScreen1Text[0]);
+      FadeTransition word2Fade = new FadeTransition(Duration.millis(1000), imageViewScreen1Text[1]);
       logoFade.setToValue(0);
       word1Fade.setToValue(0);
       word2Fade.setToValue(0);
-      SequentialTransition transitionPart = new SequentialTransition (new PauseTransition(Duration.millis(9000)), word1Fade, logoFade, word2Fade);  //9+6 = 15 seconds
+      SequentialTransition transitionPart = new SequentialTransition (new PauseTransition(Duration.millis(9000)), word1Fade, logoFade, word2Fade);  //9+3 = 12 seconds
       transitionPart.play();
       
     }
@@ -157,14 +157,32 @@ public class SplashScreen {
       //Creating a Group object  
       Group root = new Group(background, title, continueText, imageViewCage); 
       //Creating a scene object 
-      Scene scene = new Scene(root, 600, 500); 
-      stage.setScene(scene);
-      
+      Scene scene = new Scene(root, 1260, 680); 
+      /*
+      Timer timer = new Timer();
+            TimerTask screen2 = new TimerTask() {
+                @Override
+                public void run() {
+                     stage.setScene(scene);
+                }
+            };
+            timer.schedule(screen2, 13000L);  
+            */
+      RadialGradient backgroundGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
+            new Stop(0, Color.WHITE),
+            new Stop(1, Color.BLACK)
+      }); 
+      scene.setFill(backgroundGradient);
+      Timeline timeline = new Timeline(new KeyFrame(Duration.millis(12000), ev -> {
+        stage.setScene(scene);
+        System.out.println("hi");
+       }));
+       timeline.play();
       //animations
-      FadeTransition titleFade = new FadeTransition(Duration.millis(2000), title);
+      FadeTransition titleFade = new FadeTransition(Duration.millis(1000), title);
       FadeTransition blackScreen = new FadeTransition(Duration.millis(2000), background);
-      FadeTransition cageFade = new FadeTransition(Duration.millis(2000), imageViewCage);
-      FadeTransition continueFade = new FadeTransition(Duration.millis(2000), continueText);
+      FadeTransition cageFade = new FadeTransition(Duration.millis(1000), imageViewCage);
+      FadeTransition continueFade = new FadeTransition(Duration.millis(1000), continueText);
       blackScreen.setFromValue(0);
       blackScreen.setToValue(1);
       titleFade.setFromValue(0);
@@ -173,7 +191,7 @@ public class SplashScreen {
       cageFade.setToValue(1);
       continueFade.setFromValue(0);
       continueFade.setToValue(1);
-      SequentialTransition transitionParts = new SequentialTransition (new PauseTransition(Duration.millis(1000)), blackScreen, titleFade, cageFade, continueFade);  
+      SequentialTransition transitionParts = new SequentialTransition (new PauseTransition(Duration.millis(13000)), blackScreen, titleFade, cageFade, continueFade);  
       transitionParts.play();
     }
     
