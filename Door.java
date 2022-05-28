@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
  * @since May 27th, 2022
  * <p>
  * File was created by Ryan Atlas on May 27th, 2022. 20 minutes spent. Comments were added, variables created,
- * the constructor was made and the getNode(), draw() and update() methods were added
+ * the constructor was made and the getNode(), draw(), inRange(), display(), openDoor() and update() methods were added
  * </p>
  */
 public class Door implements GameObject, Interactable{
