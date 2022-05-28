@@ -22,7 +22,7 @@ import javafx.scene.shape.*;
  * @since May 19th, 2022
  * <p>
  * File was created by Samuel Huang on May 19th, 2022.
- * Samuel Huang spent 3 hours on this file.
+ * Samuel Huang spent 4 hours on this file.
  * </p>
  */
 public class SplashScreen {
