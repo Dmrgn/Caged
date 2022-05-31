@@ -23,6 +23,7 @@ import javafx.scene.shape.*;
  * @since May 17th, 2022
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
+ * 1 hour was spent by Samuel Huang on this file on May 30th, 2022.
  * </p>
  */
 
