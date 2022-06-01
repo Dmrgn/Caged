@@ -56,9 +56,8 @@ public class Keyboard {
      * Gets the coordinates of the mouse
      * @return The x and y coordinates as indices 0 and 1 in an array respectively
      */
-    public static double[] mouseCoords(){
-        double[] arr = {mouseX, mouseY};
-        return arr;
+    public static Vector mouseCoords(){
+        return new Vector((float)mouseX, (float)mouseY);
     }
     /**
      * Initialize a keyboard listener to detect keys being pressed
