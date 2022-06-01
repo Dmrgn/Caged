@@ -145,15 +145,48 @@ public class MainMenu {
     }
     public void checkSelections()
     {
-        HitBox box1 = new HitBox(new Vector(325, 225), new Vector(975, 285));
+        Button button1 = new Button(new Vector(325, 225), new Vector(975, 285));//325, 225, 650, 60
+        Button button2 = new Button(new Vector(325, 335), new Vector(975, 395));//325, 335, 650, 60
+        Button button3 = new Button(new Vector(325, 445), new Vector(975, 505));//325, 445, 650, 60
+        Button button4 = new Button(new Vector(325, 555), new Vector(975, 615));//325, 555, 650, 60
         //check for button 1
-        if(box1.)
+        if(button1.hovering())
         {
-            if(Keyboard.isMouseClicked())
-            {
-               selection = 1;
-            }
+            //add animation to button being hovered on
         }
+        if(button1.pressed())
+        {
+            selection = 1;
+        }
+        //check for button 2
+        if(button2.hovering())
+        {
+            //add animation to button being hovered on
+        }
+        if(button2.pressed())
+        {
+            selection = 2;
+        }
+        //check for button 3
+        if(button3.hovering())
+        {
+            //add animation to button being hovered on
+        }
+        if(button3.pressed())
+        {
+            selection = 3;
+        }
+        //check for button 4
+        if(button4.hovering())
+        {
+            //add animation to button being hovered on
+        }
+        if(button4.pressed())
+        {
+            selection = 4;
+        }
+
+
     }
     /**
      * Getter method for the selection instance variable
