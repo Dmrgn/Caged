@@ -41,7 +41,7 @@ public class MainMenu {
     /**
      * Displays the graphics to the user
      */
-    public void display() throws FileNotFoundException 
+    public void display() 
     {
         RadialGradient backgroundGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
             new Stop(0, Color.WHITE),
@@ -142,6 +142,18 @@ public class MainMenu {
         quitButtonFade.setFromValue(0);
         quitButtonFade.setToValue(1);
         quitButtonFade.play();
+    }
+    public void checkSelections()
+    {
+        HitBox box1 = new HitBox(new Vector(325, 225), new Vector(975, 285));
+        //check for button 1
+        if(box1.)
+        {
+            if(Keyboard.isMouseClicked())
+            {
+               selection = 1;
+            }
+        }
     }
     /**
      * Getter method for the selection instance variable
