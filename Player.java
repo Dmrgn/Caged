@@ -1,14 +1,6 @@
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.image.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import java.util.Timer;
-import java.util.TimerTask;
 /**
  * <p>
  * The player class contains state and behaviours for a player object.
@@ -30,23 +22,25 @@ import java.util.TimerTask;
  * </p>
  */
 
-public class Player implements GameObject {
+public class Player extends CollidableObject implements GameObject {
+    /** The dimensions of the player's hitbox in pixels */
+    private static Vector HITBOX_SIZE = new Vector(30, 30);
     /** The player's movement speed which is a constant*/
     private static final float MAX_SPEED = 4;
     /** The player's acceleration speed which is a constant*/
     private static final float ACCELERATION = 0.3f;
     /** The player's jump height which is a constant*/
-    private static final int JUMP_HEIGHT = 50;
+    private static final float JUMP_HEIGHT = 50.0f;
     /** The player's position stored as a Vector*/
     public Vector pos;
     /** The velocity stores as a Vector */
     public Vector vel;
-    /** The player's current hp*/
-    private int hp;
     /** The player's Sprite as an Image*/
     public Image sprite;
     /** The Node that is added to the scene and whose movement is updated*/
     public Node player;
+    /** The player's current hp*/
+    private int hp;
     /** The direction the player is moving (1 right -1 left 0 idle) */
     private int moveDirection;
     /** Whether the player is interacting with an object or not*/
@@ -75,6 +69,7 @@ public class Player implements GameObject {
         vel = new Vector(0, 0);
         hp = 100;
         state = PlayerState.IDLE;
+        createHitBox(pos, pos.add(HITBOX_SIZE));
         interact = false;
         isGrounded = false;
         moveDirection = 0;
@@ -109,6 +104,8 @@ public class Player implements GameObject {
         System.out.println("Changing state to " + state);
         return state;
     }
+
+    int thing = 2;
     /** 
      * Updates the player's position Vector based on keyboard input, implementation 
      * of the method from the GameObject interface
@@ -137,6 +134,9 @@ public class Player implements GameObject {
                 // State logic
                 vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
                 vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED)).min(new Vector(-MAX_SPEED, -MAX_SPEED));
+
+                
+
                 // Handle exiting this state
                 if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
                 break;
@@ -146,11 +146,27 @@ public class Player implements GameObject {
                 break;
             }
         }
+
         // State independent logic
+        vel = vel.add(new Vector(0, Game.GRAVITY));
         pos = pos.add(vel);
+        // update hitbox for next frame
+        createHitBox(pos, pos.add(HITBOX_SIZE));
+
+        if (Game.touchingCollidable(this)) {
+            pos.y = pos.y-(vel.y*1.5f);
+            createHitBox(pos, pos.add(HITBOX_SIZE));
+            vel.y = 0;
+            if (Keyboard.isKeyDown(KeyCode.W)) {
+                vel = vel.add(new Vector(0, JUMP_HEIGHT));
+            }
+        }
+
         Vector diff = Vector.sub(vel, vel.mul(0.9f));
         diff = diff.max(new Vector(ACCELERATION*0.9f, 0)).min(new Vector(-ACCELERATION*0.9f, 0));
         vel = vel.sub(diff);
+
+        createHitBox(pos, pos.add(HITBOX_SIZE));
     }
     /**
      * Draws the player on the screen, implementation of the method

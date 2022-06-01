@@ -17,41 +17,43 @@ import javafx.scene.image.Image;
  * the constructor was made and the getNode(), draw() and update() methods were added 
  * </p>
  */
-public class Platform implements GameObject {
-   /** JavaFX node for the platform*/
-   private Node node;
-   /** Image for the platform's texture */
-   private Image image;
-   /** The Vector for the platform's position*/
-   private Vector pos;
-   /**
-   * Class constructor that initializes variables and sets
-   * the Node's texture to be the image specified
-   * @param imageFile The file for the image
-   * @param x The x coord of the platform
-   * @param y The y coord of the platform
-   */
-   public Platform(String imageFile, int x, int y){
-      image = new Image(imageFile);
-      node = new ImageView(image);
-      pos = new Vector(x, y);
-   }
-   /**
-   * Getter method for the Node 
-   * @return The Node
-   */
-   public Node getNode() {
-      return node;
-   }
-   /**
-   * Overriden draw method from GameObject that draws the object at its position
-   */
-   public void draw() {
-      node.relocate(pos.x, pos.y);
-   }
-   /**
-   * Overriden update method from GameObject
-   */
-   public void update() {
-   }
+public class Platform extends CollidableObject implements GameObject {
+    /** JavaFX node for the platform*/
+    private Node node;
+    /** Image for the platform's texture */
+    private Image image;
+    /** The Vector for the platform's position*/
+    private Vector pos;
+    /**
+     * Class constructor that initializes variables and sets
+     * the Node's texture to be the image specified
+     * @param imageFile The file for the image
+     * @param x The x coord of the platform
+     * @param y The y coord of the platform
+     */
+    public Platform(String imageFile, int x, int y) {
+        image = new Image(imageFile);
+        node = new ImageView(image);
+        pos = new Vector(x, y);
+        createHitBox(pos, pos.add(new Vector(200, 50)));
+    }
+    /**
+     * Getter method for the Node 
+     * @return the {@link Node} representing this platform
+     */
+    public Node getNode() {
+        return node;
+    }
+    /**
+     * Implementation of the update method from GameObject
+     */
+    public void update() {
+
+    }
+    /**
+     * Implementation of the draw method from GameObject that draws the object at its position
+     */
+    public void draw() {
+        node.relocate(pos.x, pos.y);
+    }
 }

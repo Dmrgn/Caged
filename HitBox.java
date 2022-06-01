@@ -21,6 +21,11 @@ public class HitBox {
      * @return true if the two hitboxes are overlapping otherwise false
      */
     public static boolean areBoxesColliding(HitBox b1, HitBox b2) {
+        System.out.println("==================");
+        System.out.println(b1.p1);
+        System.out.println(b1.p2);
+        System.out.println(b2.p1);
+        System.out.println(b2.p2);
         if (b1.p1.x >= b2.p1.x - b1.getWidth() &&   // right of the left edge AND
             b1.p1.x <= b2.p2.x &&                   // left of the right edge AND
             b1.p1.y >= b2.p1.y - b1.getHeight() &&  // below the top AND

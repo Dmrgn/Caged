@@ -25,9 +25,9 @@ import javafx.stage.Stage;
  */
 public class Game {
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 1.0f;
+    public static final float GRAVITY = 0.01f;
     /** ArrayList of gameobjects in the current scene */
-    private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+    private static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     /** Current scene*/
     private Scene scene;
     /** Current group of scene layers: foreground/background/midground */
@@ -67,6 +67,21 @@ public class Game {
         GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
         // set the current scene
         window.setScene(scene);
+    }
+    /**
+     * Tests if the passed object is touching any collidable objects in the scene
+     * @param object1
+     * @return
+     */
+    public static boolean touchingCollidable(CollidableObject object1) {
+        for (GameObject object2 : gameObjects) {
+            if (object2 instanceof CollidableObject && object1 != object2) {
+                if (CollidableObject.touching((CollidableObject)object2, object1)) {
+                    return true;
+                }
+            }
+        };
+        return false;
     }
     /**
      * Creates and initializes the different levels of the game

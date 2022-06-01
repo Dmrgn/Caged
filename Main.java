@@ -1,13 +1,5 @@
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.scene.layout.StackPane;
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
-import javafx.scene.*;
-import javafx.scene.image.*;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 /**
  * <p>
  * This file acts as the main driver class that runs the game. This is the only class to have a main method
