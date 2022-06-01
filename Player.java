@@ -30,7 +30,7 @@ public class Player extends CollidableObject implements GameObject {
     /** The player's acceleration speed which is a constant*/
     private static final float ACCELERATION = 0.3f;
     /** The player's jump height which is a constant*/
-    private static final float JUMP_HEIGHT = 50.0f;
+    private static final float JUMP_HEIGHT = 2.5f;
     /** The player's position stored as a Vector*/
     public Vector pos;
     /** The velocity stores as a Vector */
@@ -41,6 +41,8 @@ public class Player extends CollidableObject implements GameObject {
     public Node player;
     /** The player's current hp*/
     private int hp;
+    /** The number of frames the player has been dashing for */
+    private int dashingFrames = 0;
     /** The direction the player is moving (1 right -1 left 0 idle) */
     private int moveDirection;
     /** Whether the player is interacting with an object or not*/
@@ -105,7 +107,6 @@ public class Player extends CollidableObject implements GameObject {
         return state;
     }
 
-    int thing = 2;
     /** 
      * Updates the player's position Vector based on keyboard input, implementation 
      * of the method from the GameObject interface
@@ -127,7 +128,9 @@ public class Player extends CollidableObject implements GameObject {
                 break;
             }
             case DASHING: {
+                // State Logic
 
+                // Handle exiting this state
                 break;
             }
             case MOVING: {
@@ -135,10 +138,9 @@ public class Player extends CollidableObject implements GameObject {
                 vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
                 vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED)).min(new Vector(-MAX_SPEED, -MAX_SPEED));
 
-                
-
                 // Handle exiting this state
                 if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
+                if (Keyboard.isKeyDown(KeyCode.SHIFT)) requestStateChange(PlayerState.DASHING);
                 break;
             }
             case DAMAGED: {
@@ -149,23 +151,41 @@ public class Player extends CollidableObject implements GameObject {
 
         // State independent logic
         vel = vel.add(new Vector(0, Game.GRAVITY));
-        pos = pos.add(vel);
-        // update hitbox for next frame
-        createHitBox(pos, pos.add(HITBOX_SIZE));
-
+        
+        // Handle vertical collisions
         if (Game.touchingCollidable(this)) {
             pos.y = pos.y-(vel.y*1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;
             if (Keyboard.isKeyDown(KeyCode.W)) {
-                vel = vel.add(new Vector(0, JUMP_HEIGHT));
+                vel = vel.add(new Vector(0, -JUMP_HEIGHT));
             }
         }
+        // Handle lateral collisions
+        if (Game.touchingCollidable(this)) {
+            pos.x = pos.x-(vel.x*1.5f);
+            createHitBox(pos, pos.add(HITBOX_SIZE));
+            vel.x = 0;
+        }
 
+        pos = pos.add(vel);
+        createHitBox(pos, pos.add(HITBOX_SIZE));
+
+        // if (Game.touchingCollidable(this)) {
+        //     pos = pos.sub(vel.mul(3f));
+        //     createHitBox(pos, pos.add(HITBOX_SIZE));
+        //     vel = vel.mul(-0.5f);
+        //     if (Keyboard.isKeyDown(KeyCode.W)) {
+        //         vel = vel.add(new Vector(0, -JUMP_HEIGHT));
+        //     }
+        // }
+        
+        // reduce velocity for next frame
         Vector diff = Vector.sub(vel, vel.mul(0.9f));
         diff = diff.max(new Vector(ACCELERATION*0.9f, 0)).min(new Vector(-ACCELERATION*0.9f, 0));
         vel = vel.sub(diff);
-
+        
+        // create hitbox for next frame
         createHitBox(pos, pos.add(HITBOX_SIZE));
     }
     /**

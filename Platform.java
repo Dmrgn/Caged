@@ -35,7 +35,7 @@ public class Platform extends CollidableObject implements GameObject {
         image = new Image(imageFile);
         node = new ImageView(image);
         pos = new Vector(x, y);
-        createHitBox(pos, pos.add(new Vector(200, 50)));
+        createHitBox(pos.add(new Vector(10,10)), pos.add(new Vector(120, 50)));
     }
     /**
      * Getter method for the Node 
