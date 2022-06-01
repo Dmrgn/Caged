@@ -4,6 +4,7 @@ import javafx.event.*;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.*;
 /**
  * <p>
  * This class creates an abstraction for dealing with the user's keyboard input.
@@ -28,9 +29,9 @@ public class Keyboard {
     /** Is the mouse being clicked currently*/
     private static boolean mouseClicked = false;
     /** Mouse x coord*/
-    private static int mouseX;
+    private static double mouseX;
     /** Mouse y coord*/
-    private static int mouseY;
+    private static double mouseY;
 
     /**
      * Checks whether a key is currently down
@@ -55,8 +56,8 @@ public class Keyboard {
      * Gets the coordinates of the mouse
      * @return The x and y coordinates as indices 0 and 1 in an array respectively
      */
-    public static int[] mouseCoords(){
-        int[] arr = {mouseX, mouseY};
+    public static double[] mouseCoords(){
+        double[] arr = {mouseX, mouseY};
         return arr;
     }
     /**
