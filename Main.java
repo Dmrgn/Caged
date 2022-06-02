@@ -1,13 +1,7 @@
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.scene.layout.StackPane;
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
-import javafx.scene.*;
-import javafx.scene.image.*;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
+import java.util.*;
+import java.io.*;
 /**
  * <p>
  * This file acts as the main driver class that runs the game. This is the only class to have a main method
@@ -72,25 +66,10 @@ public class Main extends Application {
      * @param window The window that the game is displayed on
      */
     @Override
-    public void start(Stage window) {
-        window.setTitle("Caged Inside the Mind");
-        window.setMinWidth(width);
-        window.setMinHeight(height);
-        window.setResizable(false);
-       // SplashScreen s = new SplashScreen(window);
-        //s.animateCompName();
-        MainMenu m = new MainMenu(window);
-        m.display();
-        
-        window.show();
-        while(true)
-        {
-            m.checkSelections();
-            if(m.getSelection() == 1)
-            {
-               break;
-            }
-        }
+    public void start(Stage window) throws FileNotFoundException{
+        game = new Game(window);
+        Keyboard.init(game.getScene());
+        game.playGame();
     }
     /**
      * Main method that runs at the start of the program

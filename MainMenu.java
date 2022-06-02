@@ -153,37 +153,46 @@ public class MainMenu {
         if(button1.hovering())
         {
             //add animation to button being hovered on
+            System.out.println("Hovering on 1");
         }
         if(button1.pressed())
         {
             selection = 1;
+            System.out.println("1 ");
         }
         //check for button 2
         if(button2.hovering())
         {
             //add animation to button being hovered on
+            System.out.println("Hovering on 2");
         }
         if(button2.pressed())
         {
             selection = 2;
+            System.out.println("2");
         }
         //check for button 3
         if(button3.hovering())
         {
             //add animation to button being hovered on
+            System.out.println("Hovering on 3");
+            
         }
         if(button3.pressed())
         {
             selection = 3;
+            System.out.println("3");
         }
         //check for button 4
         if(button4.hovering())
         {
             //add animation to button being hovered on
+            System.out.println("Hovering on 4");
         }
         if(button4.pressed())
         {
             selection = 4;
+            System.out.println("4");
         }
 
 

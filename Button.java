@@ -26,6 +26,7 @@ public class Button
    {
       if(Keyboard.mouseCoords().x >= p1.x && Keyboard.mouseCoords().x <= p2.x && Keyboard.mouseCoords().y >= p1.y && Keyboard.mouseCoords().y <= p2.y)
       {
+         System.out.println("hover");
          return true;
       }
       return false;
@@ -35,6 +36,7 @@ public class Button
    {
       if(hovering() && Keyboard.isMouseClicked())
       {
+         System.out.println("work?");
          return true;
       }
       return false;
