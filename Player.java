@@ -170,15 +170,6 @@ public class Player extends CollidableObject implements GameObject {
 
         pos = pos.add(vel);
         createHitBox(pos, pos.add(HITBOX_SIZE));
-
-        // if (Game.touchingCollidable(this)) {
-        //     pos = pos.sub(vel.mul(3f));
-        //     createHitBox(pos, pos.add(HITBOX_SIZE));
-        //     vel = vel.mul(-0.5f);
-        //     if (Keyboard.isKeyDown(KeyCode.W)) {
-        //         vel = vel.add(new Vector(0, -JUMP_HEIGHT));
-        //     }
-        // }
         
         // reduce velocity for next frame
         Vector diff = Vector.sub(vel, vel.mul(0.9f));

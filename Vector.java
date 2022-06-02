@@ -89,6 +89,16 @@ public class Vector {
     static public Vector min(Vector v1, Vector min) {
         return new Vector(v1.x < min.x ? min.x : v1.x, v1.y < min.y ? min.y : v1.y);
     }
+    
+    /**
+     * Returns the distance between {@link Vector} v1 and {@link Vector} v2 as a float
+     * @param v1 The first {@link Vector} to find the distance from
+     * @param v2 The second {@link Vector} to find the distance from
+     * @return The distance between {@link Vector} v1 and {@link Vector} v2 as a float
+     */
+    static public float dist(Vector v1, Vector v2) {
+        return (float)Math.abs(Math.sqrt(Math.pow(v2.x - v1.x,2f) + Math.pow(v2.y - v1.y,2f)));
+    }
 
     /** The x and y components of this vector. */
     public float x, y;
@@ -140,5 +150,9 @@ public class Vector {
     /** Instance implementation of {@link #min(Vector, Vector)} */
     public Vector min(Vector min) {
         return Vector.min(this, min);
+    }
+    /** Instance implementation of {@link #dist(Vector, Vector)} */
+    public float dist(Vector v1) {
+        return dist(this, v1);
     }
 }

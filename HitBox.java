@@ -29,6 +29,25 @@ public class HitBox {
         }
         return false;
     }
+    /** 
+     * Creates an array representing the distance of a point 
+     * to each pair of adjacent sides. Ordered, Left, Top
+     * Right, Bottom sides. 
+     */
+    public static float[] calculateDistanceToSides(HitBox b, Vector p) {
+        HitBox[] sides = {
+            new HitBox(b.p1, b.p1.add(new Vector(0,b.getHeight()))), // left face
+            new HitBox(b.p1, b.p1.add(new Vector(b.getWidth(),0))),  // top face
+            new HitBox(b.p1.add(new Vector(b.getWidth(),0)), b.p2),  // right face
+            new HitBox(b.p1.add(new Vector(0,b.getHeight())), b.p2), // bottom face
+        };
+        float[] distances = new float[4];
+        for (int i = 0; i < distances.length; i++) {
+            distances[i] = Vector.dist(Vector.lerp(sides[i].p1, sides[i].p2, 0.5f), p);
+            System.out.println(distances[i]);
+        }
+        return distances;
+    }
     public Vector p1, p2;
     public HitBox(Vector p1, Vector p2) {
         this.p1 = p1;
