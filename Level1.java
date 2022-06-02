@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.*;
 /**
  * <p>
  * This class creates the first level inheriting from the Level abstract class
@@ -5,14 +7,28 @@
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.0
+ * @version 2.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
+ * Two minutes were spent by Ryan Atlas on this file on May 27th adding the getNode() method
  * </p>
  */
 public class Level1 extends Level {
+    public Level1() {
+        textures = new HashMap();
+        textures.put("DoorOpen", "");
+        textures.put("DoorClosed", "");
+        textures.put("Platform", "C:\\Users\\ryatl\\IdeaProjects\\May 27th ISP\\platform.png");
+        textures.put("Sign", "");
+        levelScreen = 0;
+        files = new String[]{"Level1_1.txt"};
+        ldp = new LevelDataParser(textures);
+    }
+    public ArrayList<GameObject> getObjects () throws IOException {
+        return ldp.readFile(files[levelScreen]);
+    }
     /**
      * Method for the user to play the game
      */
@@ -20,9 +36,12 @@ public class Level1 extends Level {
     /**
      * Updates the level's background and state
      */
-    public void update() {}
+    public void update() {
+
+    }
     /**
      * Draws the level's background and assets
      */
-    public void draw() {}
+    public void draw() {
+    }
 }

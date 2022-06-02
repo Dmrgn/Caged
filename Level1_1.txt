@@ -1,0 +1,2 @@
+Platform, 0, 540
+Platform, 200, 400
