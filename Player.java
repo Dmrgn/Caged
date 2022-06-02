@@ -26,11 +26,11 @@ public class Player extends CollidableObject implements GameObject {
     /** The dimensions of the player's hitbox in pixels */
     private static Vector HITBOX_SIZE = new Vector(30, 30);
     /** The player's movement speed which is a constant*/
-    private static final float MAX_SPEED = 4;
+    private static final float MAX_SPEED = 2.5f;
     /** The player's acceleration speed which is a constant*/
-    private static final float ACCELERATION = 0.3f;
+    private static final float ACCELERATION = 0.15f;
     /** The player's jump height which is a constant*/
-    private static final float JUMP_HEIGHT = 2.5f;
+    private static final float JUMP_HEIGHT = 3.0f;
     /** The player's position stored as a Vector*/
     public Vector pos;
     /** The velocity stores as a Vector */
