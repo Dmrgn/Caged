@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  */
 public class Game {
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.01f;
+    public static final float GRAVITY = 0.08f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     /** Current scene*/
@@ -156,10 +156,6 @@ public class Game {
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
-//                gameObjects.forEach((GameObject obj) -> {
-//                    obj.update();
-//                    obj.draw();
-//                });
                 for (GameObject obj: gameObjects){
                     obj.update();
                     obj.draw();

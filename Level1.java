@@ -20,7 +20,7 @@ public class Level1 extends Level {
         textures = new HashMap();
         textures.put("DoorOpen", "");
         textures.put("DoorClosed", "");
-        textures.put("Platform", "C:\\Users\\ryatl\\IdeaProjects\\May 27th ISP\\platform.png");
+        textures.put("Platform", "assets/platform.png");
         textures.put("Sign", "");
         levelScreen = 0;
         files = new String[]{"Level1_1.txt"};
