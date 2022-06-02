@@ -22,7 +22,7 @@ import javafx.scene.input.KeyCode;
  * </p>
  */
 
-public class Player extends CollidableObject implements GameObject {
+public class Player extends CollidableObject {
     /** The dimensions of the player's hitbox in pixels */
     private static Vector HITBOX_SIZE = new Vector(30, 30);
     /** The player's movement speed which is a constant*/
@@ -33,8 +33,6 @@ public class Player extends CollidableObject implements GameObject {
     private static final float ACCELERATION = 0.15f;
     /** The player's jump height which is a constant*/
     private static final float JUMP_HEIGHT = 5.0f;
-    /** The player's position stored as a Vector*/
-    public Vector pos;
     /** The velocity stores as a Vector */
     public Vector vel;
     /** The player's Sprite as an Image*/

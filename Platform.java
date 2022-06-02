@@ -17,13 +17,11 @@ import javafx.scene.image.Image;
  * the constructor was made and the getNode(), draw() and update() methods were added 
  * </p>
  */
-public class Platform extends CollidableObject implements GameObject {
+public class Platform extends CollidableObject {
     /** JavaFX node for the platform*/
     private Node node;
     /** Image for the platform's texture */
     private Image image;
-    /** The Vector for the platform's position*/
-    private Vector pos;
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified

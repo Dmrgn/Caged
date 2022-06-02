@@ -15,17 +15,18 @@ import javafx.scene.Node;
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
  * </p>
  */
-public interface GameObject {
+public abstract class GameObject {
+    public Vector pos;
     /**
      * Draw method that draws the object
      */
-    public void draw();
+    public abstract void draw();
     /**
      * Update method that updates where that object is drawn
      */
-    public void update();
+    public abstract void update();
     /**
      * Gets the Node representing the object
      */
-    public Node getNode();
+    public abstract Node getNode();
 }

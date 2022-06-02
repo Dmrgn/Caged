@@ -23,7 +23,7 @@ public class Level1 extends Level {
         textures.put("Platform", "assets/platform.png");
         textures.put("Sign", "");
         levelScreen = 0;
-        files = new String[]{"Level1_1.txt"};
+        files = new String[]{"Level1_1.txt", "Level1_2.txt"};
         ldp = new LevelDataParser(textures);
     }
     public ArrayList<GameObject> getObjects () throws IOException {
