@@ -37,8 +37,9 @@ public class Game {
     private Group foreground = new Group();
     private Group midground = new Group();
     private Group background = new Group();
+    private GameObject player;
     /** Game's current level*/
-    private int level;
+    private Level level;
     /** Programatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -53,7 +54,6 @@ public class Game {
      */
     public Game(Stage w) {
         window = w;
-        level = 1;
         window.setTitle("Caged Inside the Mind");
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
@@ -67,9 +67,9 @@ public class Game {
         // add sceneGroup to the window and create the scene
         buildScene(sceneGroup);
         // add a player and platform to the scene
-        GameObject player = attachObject(new Player(50,Main.getHeight()-200), SceneLayer.FOREGROUND);
-        Level level1 = new Level1();
-        createLevel(level1);
+        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
+        level = new Level1();
+        createLevel(level);
         //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
         // set the current scene
         window.setScene(scene);
@@ -96,7 +96,6 @@ public class Game {
      */
     public void createLevel(Level level) {
         try {
-            System.out.println("test 4");
             ArrayList<GameObject> objects = level.getObjects();
             for (GameObject obj : objects) {
                 attachObject(obj, SceneLayer.FOREGROUND);
@@ -159,6 +158,15 @@ public class Game {
                 for (GameObject obj: gameObjects){
                     obj.update();
                     obj.draw();
+                }
+                if (player.pos.x >= 1280) {
+                    updateLevelScreen(level);
+                    createLevel(level);
+                    window.setScene(scene);
+                } else if (player.pos.y >= 720) {
+                    createLevel(level);
+                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
+                    window.setScene(scene);
                 }
             }
         };

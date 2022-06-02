@@ -1,8 +1,7 @@
+import javafx.scene.*;
 /**
  * <p>
- * This class prevents us from having to hard code all of the level objects
- * by using .txt files to store level data and parsing them to something that can
- * be easily turned into Objects within the level.
+ * //REDO TOP COMMENT
  * </p>
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
@@ -14,7 +13,7 @@
  * File was created by Daniel Morgan on May 28th, 2022. 30 minutes were spent by Daniel Morgan.
  * </p>
  */
-public class CollidableObject {
+public abstract class CollidableObject extends GameObject {
     /**
      * Tests if the two passed collidable objects are touching
      * @param o1 The first object to test against
@@ -39,4 +38,17 @@ public class CollidableObject {
         hitbox.p1 = p1;
         hitbox.p2 = p2;
     }
+    /**
+     * Draw method that draws the object
+     */
+    public abstract void draw();
+    /**
+     * Update method that updates where that object is drawn
+     */
+    public abstract void update();
+    /**
+     * Gets the Node representing the object
+     */
+    public abstract Node getNode();
+
 }
