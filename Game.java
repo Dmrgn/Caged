@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 18th, 2022.
  * 2 hours were spent by Daniel Morgan on this file over May 27th and 28th, 2022.
+ * 3 hours were spent on this file by Daniel Morgan over June 1st and 2nd, 2022.
  * </p>
  */
 public class Game {
@@ -96,7 +98,6 @@ public class Game {
      */
     public void createLevel(Level level) {
         try {
-            System.out.println("test 4");
             ArrayList<GameObject> objects = level.getObjects();
             for (GameObject obj : objects) {
                 attachObject(obj, SceneLayer.FOREGROUND);
