@@ -145,6 +145,7 @@ public class Player extends CollidableObject implements GameObject {
 
                 vel = new Vector(dashDirection*5, vel.y*0.8f);
 
+
                 // Handle exiting this state
                 dashingFrames+=2;
                 if (dashingFrames > DASH_DURATION) requestStateChange(PlayerState.IDLE);
@@ -154,7 +155,8 @@ public class Player extends CollidableObject implements GameObject {
                 // State logic
                 vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
                 vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED)).min(new Vector(-MAX_SPEED, -MAX_SPEED));
-                facingDirection = moveDirection;
+                if (moveDirection != 0)
+                    facingDirection = moveDirection;
 
                 // Handle exiting this state
                 if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
