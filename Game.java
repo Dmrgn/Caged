@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.animation.AnimationTimer;
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
  */
 public class Game {
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.08f;
+    public static final float GRAVITY = 0.01f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     /** Current scene*/
@@ -36,6 +37,8 @@ public class Game {
     private Group foreground = new Group();
     private Group midground = new Group();
     private Group background = new Group();
+    /** Game's current level*/
+    private int level;
     /** Programatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -50,6 +53,7 @@ public class Game {
      */
     public Game(Stage w) {
         window = w;
+        level = 1;
         window.setTitle("Caged Inside the Mind");
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
@@ -64,7 +68,9 @@ public class Game {
         buildScene(sceneGroup);
         // add a player and platform to the scene
         GameObject player = attachObject(new Player(50,Main.getHeight()-200), SceneLayer.FOREGROUND);
-        GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
+        Level level1 = new Level1();
+        createLevel(level1);
+        //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
         // set the current scene
         window.setScene(scene);
     }
@@ -89,7 +95,19 @@ public class Game {
      * @param level The Level to be created
      */
     public void createLevel(Level level) {
-        
+        try {
+            System.out.println("test 4");
+            ArrayList<GameObject> objects = level.getObjects();
+            for (GameObject obj : objects) {
+                attachObject(obj, SceneLayer.FOREGROUND);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateLevelScreen(Level level){
+        level.levelScreen++;
+        createLevel(level);
     }
     /**
      * Creates the two boss fights in the game which are designed to teach the
@@ -97,7 +115,7 @@ public class Game {
      * @param boss The boss whose fight is being created
      */
     public void createBossfight(Boss boss) {}
-    /** 
+    /**
      * Creates and displays the splash screen to the user
      */
     public void splashScreen() {}
@@ -138,10 +156,14 @@ public class Game {
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                gameObjects.forEach((GameObject obj) -> {
+//                gameObjects.forEach((GameObject obj) -> {
+//                    obj.update();
+//                    obj.draw();
+//                });
+                for (GameObject obj: gameObjects){
                     obj.update();
                     obj.draw();
-                });
+                }
             }
         };
         at.start();
