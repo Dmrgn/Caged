@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  */
 public class Game {
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.05f;
+    public static final float GRAVITY = 0.08f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     /** Current scene*/

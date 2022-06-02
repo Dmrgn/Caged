@@ -27,10 +27,12 @@ public class Player extends CollidableObject implements GameObject {
     private static Vector HITBOX_SIZE = new Vector(30, 30);
     /** The player's movement speed which is a constant*/
     private static final float MAX_SPEED = 2.5f;
+    /** Duration of the player's dash in frames */
+    private static final float DASH_DURATION = 80;
     /** The player's acceleration speed which is a constant*/
     private static final float ACCELERATION = 0.15f;
     /** The player's jump height which is a constant*/
-    private static final float JUMP_HEIGHT = 3.0f;
+    private static final float JUMP_HEIGHT = 5.0f;
     /** The player's position stored as a Vector*/
     public Vector pos;
     /** The velocity stores as a Vector */
@@ -42,9 +44,13 @@ public class Player extends CollidableObject implements GameObject {
     /** The player's current hp*/
     private int hp;
     /** The number of frames the player has been dashing for */
-    private int dashingFrames = 0;
+    private float dashingFrames = 0;
+    /** The direction the player is dashing in */
+    private int dashDirection = -1;
     /** The direction the player is moving (1 right -1 left 0 idle) */
     private int moveDirection;
+    /** The direction the player is facing */
+    private int facingDirection = 1;
     /** Whether the player is interacting with an object or not*/
     private boolean interact;
     /** Whether the player is grounded or not*/
@@ -119,28 +125,40 @@ public class Player extends CollidableObject implements GameObject {
             moveDirection = -1;
         else
             moveDirection = 0;
+        dashingFrames-= 0.3;
         // handle logic based on player state
         switch (state) {
             case IDLE: {
                 // State logic
                 // Handle exiting this state
                 if (moveDirection != 0) requestStateChange(PlayerState.MOVING);
+                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashingFrames <= 0) requestStateChange(PlayerState.DASHING);
                 break;
             }
             case DASHING: {
                 // State Logic
+                if (dashingFrames <= 0) {
+                    // just began the dash
+                    dashDirection = facingDirection;
+                    dashingFrames = 0;
+                }
+
+                vel = new Vector(dashDirection*5, vel.y*0.8f);
 
                 // Handle exiting this state
+                dashingFrames+=2;
+                if (dashingFrames > DASH_DURATION) requestStateChange(PlayerState.IDLE);
                 break;
             }
             case MOVING: {
                 // State logic
                 vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
                 vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED)).min(new Vector(-MAX_SPEED, -MAX_SPEED));
+                facingDirection = moveDirection;
 
                 // Handle exiting this state
                 if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
-                if (Keyboard.isKeyDown(KeyCode.SHIFT)) requestStateChange(PlayerState.DASHING);
+                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashingFrames <= 0) requestStateChange(PlayerState.DASHING);
                 break;
             }
             case DAMAGED: {
