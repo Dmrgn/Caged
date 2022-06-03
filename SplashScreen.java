@@ -27,10 +27,10 @@ import javafx.scene.shape.*;
  */
 public class SplashScreen {
 
-    private Stage stage;
+    private final Stage stage;
     /** This Image variable stores the logo image. */
     private Image logo;
-    private ImageView imageViewLogo; 
+    private ImageView imageViewLogo;
     /** This Image array variable stores all the text images for the Logo Page Animation. */
     private Image[] screen1Text;
     private ImageView[] imageViewScreen1Text;
@@ -50,7 +50,7 @@ public class SplashScreen {
     }
     private void importImages() throws FileNotFoundException
     {
-       logo = new Image(new FileInputStream("ISP Splash Screen Images\\Logo.png")); 
+       logo = new Image(new FileInputStream("ISP Splash Screen Images\\Logo.png"));
        imageViewLogo = new ImageView(logo);
        cage = new Image(new FileInputStream("ISP Splash Screen Images\\Cage.png")); 
        imageViewCage = new ImageView(cage);
@@ -86,10 +86,8 @@ public class SplashScreen {
       Group root = new Group(imageViewLogo, imageViewScreen1Text[0], imageViewScreen1Text[1]);  
       //Creating a scene object 
       Scene scene = new Scene(root, 600, 500); 
-      RadialGradient background = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-            new Stop(0, Color.WHITE),
-            new Stop(1, Color.BLACK)
-      }); 
+      RadialGradient background = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop(0, Color.WHITE),
+              new Stop(1, Color.BLACK));
       TranslateTransition translateCompName = new TranslateTransition();
       translateCompName.setNode(imageViewScreen1Text[0]);
       translateCompName.setDuration(Duration.millis(2000));
@@ -168,10 +166,8 @@ public class SplashScreen {
             };
             timer.schedule(screen2, 13000L);  
             */
-      RadialGradient backgroundGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-            new Stop(0, Color.WHITE),
-            new Stop(1, Color.BLACK)
-      }); 
+      RadialGradient backgroundGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop(0, Color.WHITE),
+              new Stop(1, Color.BLACK));
       scene.setFill(backgroundGradient);
       Timeline timeline = new Timeline(new KeyFrame(Duration.millis(12000), ev -> {
         stage.setScene(scene);

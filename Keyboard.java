@@ -92,6 +92,13 @@ public class Keyboard {
                 mouseClicked = false;
             }
         });
+        scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                mouseX = e.getSceneX();
+                mouseY = e.getSceneY();
+            }
+        });
     }
 
 }

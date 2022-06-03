@@ -1,4 +1,11 @@
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * <p>
@@ -17,25 +24,34 @@ import javafx.scene.image.Image;
  */
 public class Credits {
     /** This Image variable stores the credits page. */
-    private Image screen;
+    private ImageView screen;
+    private Stage window;
     /**
      * The constructor of the Credits Class.
      */
-    public Credits(Image page) {
-        screen = page;
+    public Credits(Stage window) throws FileNotFoundException {
+        //screen = new ImageView( new Image(new FileInputStream("ISP Splash Screen Images\\Credits.png")));//add file first
+        this.window = window;
     }
     /**
      * This method gets called to display the credits screen
      *
      */
-    public void display() {
-
+    public void display() throws FileNotFoundException{
+        //Setting the position of the image:
+        screen.setX(0);
+        screen.setY(0);
+        screen.setFitHeight(780);
+        screen.setFitWidth(1260);
+        screen.setPreserveRatio(true);
+        Group root = new Group(screen);
+        //Creating a scene object
+        Scene scene = new Scene(root, 600, 500);
+        window.setScene(scene);
     }
     /**
      * This method sends the user back to the menu screen
      *
      */
-    public void back() {
-
-    }
+    public void back() {}
 }
