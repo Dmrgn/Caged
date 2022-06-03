@@ -26,11 +26,13 @@ import javafx.stage.Stage;
  */
 public class Game {
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.01f;
+    public static final float GRAVITY = 0.08f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     /** Current scene*/
     private Scene scene;
+    /** The instance of the player */
+    private GameObject player;
     /** Current group of scene layers: foreground/background/midground */
     private Group sceneGroup = new Group();
     /** Individual scene layers to contain rendered objects */
@@ -38,7 +40,7 @@ public class Game {
     private Group midground = new Group();
     private Group background = new Group();
     /** Game's current level*/
-    private int level;
+    private Level level;
     /** Programatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -53,7 +55,6 @@ public class Game {
      */
     public Game(Stage w) {
         window = w;
-        level = 1;
         window.setTitle("Caged Inside the Mind");
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
@@ -67,7 +68,7 @@ public class Game {
         // add sceneGroup to the window and create the scene
         buildScene(sceneGroup);
         // add a player and platform to the scene
-        GameObject player = attachObject(new Player(50,Main.getHeight()-200), SceneLayer.FOREGROUND);
+        player = attachObject(new Player(50,Main.getHeight()-200), SceneLayer.FOREGROUND);
         Level level1 = new Level1();
         createLevel(level1);
         //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
@@ -115,6 +116,7 @@ public class Game {
             for (GameObject obj : objects) {
                 attachObject(obj, SceneLayer.FOREGROUND);
             }
+            this.level = level;
         } catch (IOException e) {
             e.printStackTrace();
         }
