@@ -95,9 +95,9 @@ public class Game {
      * @param object1
      * @return
      */
-    public static boolean touchingCollidable(GameObject parent, HitBox hitbox) {
+    public static boolean touchingCollidable(HitBox hitbox) {
         for (GameObject obj : gameObjects) {
-            if (obj instanceof CollidableObject && obj != parent) {
+            if (obj instanceof CollidableObject) {
                 if (HitBox.areBoxesColliding(((CollidableObject)obj).getHitBox(), hitbox)) {
                     return true;
                 }
@@ -121,8 +121,8 @@ public class Game {
             e.printStackTrace();
         }
     }
-    public void updateLevelScreen(Level level){
-        level.levelScreen++;
+    public void updateLevelScreen(Level level, int screen){
+        level.levelScreen = screen;
         foreground.getChildren().clear(); 
         gameObjects.clear();       
         
@@ -178,17 +178,29 @@ public class Game {
                     obj.update();
                     obj.draw();
                 }
-                  if (player.pos.x >= 1280) {
-                    updateLevelScreen(level);
+                if (level instanceof Level1) {
+                  if (level.levelScreen == 0 && player.pos.x >= 1280) {
+                    updateLevelScreen(level, 1);
                     createLevel(level);
                     player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
                     window.setScene(scene);
-                  } else if (player.pos.y >= 720) {
+                  } else if (level.levelScreen == 0 && player.pos.y >= 720) {
+                    createLevel(level);
+                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
+                    window.setScene(scene);
+                  }
+                  if (level.levelScreen == 1 && player.pos.x <= 0) {
+                    updateLevelScreen(level, 0);
+                    createLevel(level);
+                    player = attachObject(new Player(1180,250), SceneLayer.FOREGROUND);
+                    window.setScene(scene);
+                  } else if (level.levelScreen == 1 && player.pos.y >= 720) {
                     createLevel(level);
                     player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
                     window.setScene(scene);
                   }
                }
+            }
         };
         at.start();
         window.show();
