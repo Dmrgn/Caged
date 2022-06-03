@@ -95,9 +95,9 @@ public class Game {
      * @param object1
      * @return
      */
-    public static boolean touchingCollidable(HitBox hitbox) {
+    public static boolean touchingCollidable(GameObject parent, HitBox hitbox) {
         for (GameObject obj : gameObjects) {
-            if (obj instanceof CollidableObject) {
+            if (obj instanceof CollidableObject && obj != parent) {
                 if (HitBox.areBoxesColliding(((CollidableObject)obj).getHitBox(), hitbox)) {
                     return true;
                 }

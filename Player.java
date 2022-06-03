@@ -53,7 +53,10 @@ public class Player extends CollidableObject {
     private boolean interact;
     /** Whether the player is grounded or not*/
     private boolean isGrounded;
-    /**  */
+    /** The bottom hitbox of the player */
+    private HitBox lowerHitBox;
+    /** The top hitbox of the player */
+    private HitBox upperHitBox;
     /** Possible player states */
     private enum PlayerState {
         IDLE,
@@ -82,6 +85,12 @@ public class Player extends CollidableObject {
         moveDirection = 0;
         sprite = new Image("assets/player.png");
         player = new ImageView(sprite);
+    }
+    @Override
+    public void createHitBox(Vector pos1, Vector pos2) {
+        hitbox = new HitBox(pos1, pos2);
+        lowerHitBox = new HitBox(pos1.add(new Vector(0, HITBOX_SIZE.y/2)), pos2);
+        upperHitBox = new HitBox(pos1, pos2.sub(new Vector(0, HITBOX_SIZE.y/2)));
     }
     /**
      * Attempts to change the player's state to the given state
@@ -173,7 +182,7 @@ public class Player extends CollidableObject {
         vel = vel.add(new Vector(0, Game.GRAVITY));
 
         // Handle vertical collisions
-        if (Game.touchingCollidable(this)) {
+        if (Game.touchingCollidable(this, lowerHitBox)) {
             pos.y = pos.y - (vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;
@@ -182,6 +191,11 @@ public class Player extends CollidableObject {
                 jumped = true;
                 System.out.println(vel);
             }
+        }
+        if (Game.touchingCollidable(this, upperHitBox)) {
+            pos.y = pos.y + Math.abs(vel.y * 1.5f);
+            createHitBox(pos, pos.add(HITBOX_SIZE));
+            vel.y = 0;
         }
         frameCount++;
         if (frameCount % 60 == 0) {
@@ -193,7 +207,6 @@ public class Player extends CollidableObject {
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.x = 0;
         }
-        if (jumped) System.out.println(vel);
 
         pos = pos.add(vel);
         createHitBox(pos, pos.add(HITBOX_SIZE));
@@ -202,8 +215,6 @@ public class Player extends CollidableObject {
         Vector diff = Vector.sub(vel, vel.mul(0.9f));
         diff = diff.max(new Vector(ACCELERATION * 0.9f, 0)).min(new Vector(-ACCELERATION * 0.9f, 0));
         vel = vel.sub(diff);
-
-        if (jumped) System.out.println(vel);
 
         // create hitbox for next frame
         createHitBox(pos, pos.add(HITBOX_SIZE));
