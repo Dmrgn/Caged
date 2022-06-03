@@ -43,10 +43,8 @@ public class MainMenu {
      */
     public void display() 
     {
-        RadialGradient backgroundGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-            new Stop(0, Color.WHITE),
-            new Stop(1, Color.BLACK)
-        }); 
+        RadialGradient backgroundGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop(0, Color.WHITE),
+                new Stop(1, Color.BLACK));
         //menu options
         //original with gradient
         Rectangle newGameButtonO = new Rectangle(325, 225, 650, 60);
@@ -115,6 +113,7 @@ public class MainMenu {
         scene.setFill(backgroundGradient);
         //animate each button on rect
         //button 1
+
         FadeTransition newGameButtonFade = new FadeTransition(Duration.millis(2000), newGameButton);
         newGameButtonFade.setCycleCount(FadeTransition.INDEFINITE);
         newGameButtonFade.setAutoReverse(true);
@@ -142,6 +141,8 @@ public class MainMenu {
         quitButtonFade.setFromValue(0);
         quitButtonFade.setToValue(1);
         quitButtonFade.play();
+
+
     }
     public void checkSelections()
     {
@@ -192,6 +193,7 @@ public class MainMenu {
         if(button4.pressed())
         {
             selection = 4;
+            stage.close();
             System.out.println("4");
         }
 
