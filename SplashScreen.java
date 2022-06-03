@@ -171,7 +171,6 @@ public class SplashScreen {
       scene.setFill(backgroundGradient);
       Timeline timeline = new Timeline(new KeyFrame(Duration.millis(12000), ev -> {
         stage.setScene(scene);
-        System.out.println("hi");
        }));
        timeline.play();
       //animations
