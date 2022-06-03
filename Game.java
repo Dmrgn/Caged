@@ -123,8 +123,9 @@ public class Game {
     }
     public void updateLevelScreen(Level level){
         level.levelScreen++;
-        foreground.getChildren().clear();        
-        createLevel(level);
+        foreground.getChildren().clear(); 
+        gameObjects.clear();       
+        
     }
     /**
      * Creates the two boss fights in the game which are designed to teach the
@@ -177,16 +178,17 @@ public class Game {
                     obj.update();
                     obj.draw();
                 }
-                if (player.pos.x >= 1280) {
+                  if (player.pos.x >= 1280) {
                     updateLevelScreen(level);
-                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                    window.setScene(scene);
-                } else if (player.pos.y >= 720) {
                     createLevel(level);
                     player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
                     window.setScene(scene);
-                }
-            }
+                  } else if (player.pos.y >= 720) {
+                    createLevel(level);
+                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
+                    window.setScene(scene);
+                  }
+               }
         };
         at.start();
         window.show();
