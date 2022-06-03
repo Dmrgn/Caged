@@ -92,6 +92,21 @@ public class Game {
         return false;
     }
     /**
+     * Tests if the passed hitbox is touching any collidable objects in the scene
+     * @param object1
+     * @return
+     */
+    public static boolean touchingCollidable(HitBox hitbox) {
+        for (GameObject obj : gameObjects) {
+            if (obj instanceof CollidableObject) {
+                if (HitBox.areBoxesColliding(((CollidableObject)obj).getHitBox(), hitbox)) {
+                    return true;
+                }
+            }
+        };
+        return false;
+    }
+    /**
      * Creates and initializes the different levels of the game
      * as they are needed.
      * @param level The Level to be created
@@ -108,6 +123,7 @@ public class Game {
     }
     public void updateLevelScreen(Level level){
         level.levelScreen++;
+        foreground.getChildren().clear();        
         createLevel(level);
     }
     /**
@@ -163,7 +179,7 @@ public class Game {
                 }
                 if (player.pos.x >= 1280) {
                     updateLevelScreen(level);
-                    createLevel(level);
+                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
                     window.setScene(scene);
                 } else if (player.pos.y >= 720) {
                     createLevel(level);

@@ -30,7 +30,7 @@ public class Player extends CollidableObject {
     /** Duration of the player's dash in frames */
     private static final float DASH_DURATION = 80;
     /** The player's acceleration speed which is a constant*/
-    private static final float ACCELERATION = 0.15f;
+    private static final float ACCELERATION = 0.10f;
     /** The player's jump height which is a constant*/
     private static final float JUMP_HEIGHT = 5.0f;
     /** The velocity stores as a Vector */
@@ -53,6 +53,7 @@ public class Player extends CollidableObject {
     private boolean interact;
     /** Whether the player is grounded or not*/
     private boolean isGrounded;
+    /**  */
     /** Possible player states */
     private enum PlayerState {
         IDLE,
@@ -131,7 +132,6 @@ public class Player extends CollidableObject {
                 // State logic
                 // Handle exiting this state
                 if (moveDirection != 0) requestStateChange(PlayerState.MOVING);
-                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashingFrames <= 0) requestStateChange(PlayerState.DASHING);
                 break;
             }
             case DASHING: {
@@ -158,7 +158,7 @@ public class Player extends CollidableObject {
 
                 // Handle exiting this state
                 if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
-                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashingFrames <= 0) requestStateChange(PlayerState.DASHING);
+                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashingFrames <= 0 && moveDirection != 0) requestStateChange(PlayerState.DASHING);
                 break;
             }
             case DAMAGED: {

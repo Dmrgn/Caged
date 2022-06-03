@@ -39,6 +39,13 @@ public abstract class CollidableObject extends GameObject {
         hitbox.p2 = p2;
     }
     /**
+     * Returns the hitbox of this object
+     * @return The hitbox of this object
+     */
+    public HitBox getHitBox() {
+        return hitbox;
+    }
+    /**
      * Draw method that draws the object
      */
     public abstract void draw();
