@@ -190,7 +190,10 @@ public class SplashScreen {
         SequentialTransition transitionParts = new SequentialTransition (new PauseTransition(Duration.millis(13000)), blackScreen, titleFade, cageFade, continueFade);
         transitionParts.play();
     }
-
+    /**
+     * This method is the method that is called to run the splash screen
+     *
+     */
     public void runSplashScreen() throws FileNotFoundException
     {
         importImages();
