@@ -10,6 +10,7 @@ import javafx.scene.text.*;
 import javafx.animation.*;
 import javafx.util.*;
 import javafx.scene.shape.*;
+import javafx.scene.input.*;
 /**
  * <p>
  * This file controls the main menu of the game. It is called by the Game class
@@ -38,12 +39,12 @@ public class MainMenu {
      */
     public MainMenu(Stage stage) {
         selection = 0;
-        this.stage = stage;
+        this.stage = stage; 
     }
     /**
      * Displays the graphics to the user
      */
-    public void display()
+    public void display() 
     {
         RadialGradient backgroundGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop(0, Color.WHITE),
                 new Stop(1, Color.BLACK));
@@ -62,6 +63,7 @@ public class MainMenu {
         quitButtonO.setFill(backgroundGradient);
         quitButtonO.setStroke(Color.WHITE);
         //layered
+
         Rectangle newGameButton = new Rectangle(325, 225, 650, 60);
         newGameButton.setFill(Color.BLACK);
         newGameButton.setStroke(Color.WHITE);
@@ -107,13 +109,15 @@ public class MainMenu {
         quitText.setX(600);
         quitText.setY(595);
         //background
-        Rectangle background = new Rectangle(0, 0, 1270, 720);
-        background.setFill(Color.BLACK);
-        Group root = new Group(background, title, newGameButtonO, instructionsButtonO, creditsButtonO, quitButtonO, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
-        Scene scene = new Scene(root, 600, 500);
+
+        //Rectangle background = new Rectangle(0, 0, 1270, 720);
+        //background.setFill(Color.BLACK);
+        Group root = new Group(title,newGameButtonO, instructionsButtonO, creditsButtonO, quitButtonO, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
+        Scene scene = new Scene(root, 600, 500); 
         stage.setScene(scene);
-        scene.setFill(backgroundGradient);
+        scene.setFill(Color.BLACK);
         Keyboard.init(scene);
+
         //animate each button on rect
         //button 1
         FadeTransition newGameButtonFade = new FadeTransition(Duration.millis(2000), newGameButton);
@@ -158,7 +162,6 @@ public class MainMenu {
     }
     public void checkSelections(AnimationTimer timer, AnimationTimer after)
     {
-
         Button button1 = new Button(new Vector(325, 225), new Vector(975, 285));//325, 225, 650, 60
         Button button2 = new Button(new Vector(325, 335), new Vector(975, 395));//325, 335, 650, 60
         Button button3 = new Button(new Vector(325, 445), new Vector(975, 505));//325, 445, 650, 60
@@ -173,10 +176,10 @@ public class MainMenu {
         }
         if(button1.pressed())
         {
-            timer.stop();
-            after.start();
             selection = 1;
             System.out.println("1 ");
+            timer.stop();
+            after.start();
         }
         //check for button 2
         if(button2.hovering())
@@ -190,6 +193,8 @@ public class MainMenu {
         {
             selection = 2;
             System.out.println("2");
+            timer.stop();
+            after.start();
         }
         //check for button 3
         if(button3.hovering())
@@ -198,12 +203,14 @@ public class MainMenu {
             System.out.println("Hovering on 3");
             Arrays.fill(buttonActive, false);
             buttonActive[2] = true;
-
+            
         }
         if(button3.pressed())
         {
             selection = 3;
             System.out.println("3");
+            timer.stop();
+            after.start();
         }
         //check for button 4
         if(button4.hovering())
