@@ -7,12 +7,13 @@ import java.util.*;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 2.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
  * Two minutes were spent by Ryan Atlas on this file on May 27th adding the getNode() method
+ * 30 minutes were spent by Ryan Atlas on May 30th-June 1st adding text file input and using this to test level file reading
  * </p>
  */
 public class Level1 extends Level {

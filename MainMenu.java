@@ -38,12 +38,12 @@ public class MainMenu {
      */
     public MainMenu(Stage stage) {
         selection = 0;
-        this.stage = stage; 
+        this.stage = stage;
     }
     /**
      * Displays the graphics to the user
      */
-    public void display() 
+    public void display()
     {
         RadialGradient backgroundGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop(0, Color.WHITE),
                 new Stop(1, Color.BLACK));
@@ -110,7 +110,7 @@ public class MainMenu {
         Rectangle background = new Rectangle(0, 0, 1270, 720);
         background.setFill(Color.BLACK);
         Group root = new Group(background, title, newGameButtonO, instructionsButtonO, creditsButtonO, quitButtonO, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
-        Scene scene = new Scene(root, 600, 500); 
+        Scene scene = new Scene(root, 600, 500);
         stage.setScene(scene);
         scene.setFill(backgroundGradient);
         //animate each button on rect
@@ -194,7 +194,7 @@ public class MainMenu {
             System.out.println("Hovering on 3");
             Arrays.fill(buttonActive, false);
             buttonActive[2] = true;
-            
+
         }
         if(button3.pressed())
         {
