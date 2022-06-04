@@ -1,11 +1,15 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * <p>
@@ -60,9 +64,9 @@ public class Game {
         window.setMinHeight(Main.getHeight());
         window.setResizable(false);
         // render the background, then midground, then foreground first
-        background.setViewOrder(0);
-        midground.setViewOrder(1);
-        foreground.setViewOrder(2);
+        //background.setViewOrder(0);
+        //midground.setViewOrder(1);
+        //foreground.setViewOrder(2);
         // add layers to sceneGroup
         sceneGroup.getChildren().addAll(foreground, midground, background);
         // add sceneGroup to the window and create the scene
@@ -95,9 +99,9 @@ public class Game {
      * @param object1
      * @return
      */
-    public static boolean touchingCollidable(GameObject parent, HitBox hitbox) {
+    public static boolean touchingCollidable(HitBox hitbox) {
         for (GameObject obj : gameObjects) {
-            if (obj instanceof CollidableObject && obj != parent) {
+            if (obj instanceof CollidableObject) {
                 if (HitBox.areBoxesColliding(((CollidableObject)obj).getHitBox(), hitbox)) {
                     return true;
                 }
@@ -121,11 +125,10 @@ public class Game {
             e.printStackTrace();
         }
     }
-    public void updateLevelScreen(Level level, int screen){
-        level.levelScreen = screen;
-        foreground.getChildren().clear(); 
-        gameObjects.clear();       
-        
+    public void updateLevelScreen(Level level){
+        level.levelScreen++;
+        foreground.getChildren().clear();
+        createLevel(level);
     }
     /**
      * Creates the two boss fights in the game which are designed to teach the
@@ -136,13 +139,20 @@ public class Game {
     /**
      * Creates and displays the splash screen to the user
      */
-    public void splashScreen() {}
+    public void splashScreen() throws FileNotFoundException {
+        SplashScreen splash = new SplashScreen(window);
+        splash.runSplashScreen();
+    }
     /**
      * Creates and displays the main menu to the user
      * @return The user's selection of options from the menu
      */
     public int mainMenu() {
-        return 0;
+        MainMenu menu = new MainMenu(window);
+        menu.display();
+
+        menu.checkSelections();
+        return menu.getSelection();
     }
     /**
      * Adds the specified object to the game's list of objects
@@ -170,7 +180,9 @@ public class Game {
      * Method that is active as long as the player is currently playing
      * the actual gameplay section of the game
      */
-    public void playGame() {
+    public void playGame() throws FileNotFoundException {
+        splashScreen();
+        //mainMenu();
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -178,31 +190,21 @@ public class Game {
                     obj.update();
                     obj.draw();
                 }
-                if (level instanceof Level1) {
-                  if (level.levelScreen == 0 && player.pos.x >= 1280) {
-                    updateLevelScreen(level, 1);
+                if (player.pos.x >= 1280) {
+                    updateLevelScreen(level);
+                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
+                    window.setScene(scene);
+                } else if (player.pos.y >= 720) {
                     createLevel(level);
                     player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
                     window.setScene(scene);
-                  } else if (level.levelScreen == 0 && player.pos.y >= 720) {
-                    createLevel(level);
-                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                    window.setScene(scene);
-                  }
-                  if (level.levelScreen == 1 && player.pos.x <= 0) {
-                    updateLevelScreen(level, 0);
-                    createLevel(level);
-                    player = attachObject(new Player(1180,250), SceneLayer.FOREGROUND);
-                    window.setScene(scene);
-                  } else if (level.levelScreen == 1 && player.pos.y >= 720) {
-                    createLevel(level);
-                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                    window.setScene(scene);
-                  }
-               }
+                }
             }
         };
-        at.start();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(18000), ev -> {
+            at.start();
+        }));
+        timeline.play();
         window.show();
     }
     /**

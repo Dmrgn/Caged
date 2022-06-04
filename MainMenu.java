@@ -31,6 +31,8 @@ public class MainMenu {
     /** The user's selection from the menu*/
     private int selection;
     private Stage stage;
+
+    private boolean[] buttonActive = new boolean[4];
     /**
      * MainMenu constructor, initializes selection to 0 as a default
      */
@@ -113,36 +115,45 @@ public class MainMenu {
         scene.setFill(backgroundGradient);
         //animate each button on rect
         //button 1
-
         FadeTransition newGameButtonFade = new FadeTransition(Duration.millis(2000), newGameButton);
         newGameButtonFade.setCycleCount(FadeTransition.INDEFINITE);
         newGameButtonFade.setAutoReverse(true);
         newGameButtonFade.setFromValue(0);
         newGameButtonFade.setToValue(1);
-        newGameButtonFade.play();
+        //for hovering animation stopping
+        if(!buttonActive[0]) {
+            newGameButtonFade.play();
+        }
         //button 2
         FadeTransition instructionsButtonFade = new FadeTransition(Duration.millis(2000), instructionsButton);
         instructionsButtonFade.setCycleCount(FadeTransition.INDEFINITE);
         instructionsButtonFade.setAutoReverse(true);
         instructionsButtonFade.setFromValue(0);
         instructionsButtonFade.setToValue(1);
-        instructionsButtonFade.play();
+        //for hovering animation stopping
+        if(!buttonActive[1]) {
+            instructionsButtonFade.play();
+        }
         //button 3
         FadeTransition creditsButtonFade = new FadeTransition(Duration.millis(2000), creditsButton);
         creditsButtonFade.setCycleCount(FadeTransition.INDEFINITE);
         creditsButtonFade.setAutoReverse(true);
         creditsButtonFade.setFromValue(0);
         creditsButtonFade.setToValue(1);
-        creditsButtonFade.play();
+        //for hovering animation stopping
+        if(!buttonActive[2]) {
+            creditsButtonFade.play();
+        }
         //button 4
         FadeTransition quitButtonFade = new FadeTransition(Duration.millis(2000), quitButton);
         quitButtonFade.setCycleCount(FadeTransition.INDEFINITE);
         quitButtonFade.setAutoReverse(true);
         quitButtonFade.setFromValue(0);
         quitButtonFade.setToValue(1);
-        quitButtonFade.play();
-
-
+        //for hovering animation stopping
+        if(!buttonActive[3]) {
+            quitButtonFade.play();
+        }
     }
     public void checkSelections()
     {
@@ -155,6 +166,8 @@ public class MainMenu {
         {
             //add animation to button being hovered on
             System.out.println("Hovering on 1");
+            Arrays.fill(buttonActive, false);
+            buttonActive[0] = true;
         }
         if(button1.pressed())
         {
@@ -166,6 +179,8 @@ public class MainMenu {
         {
             //add animation to button being hovered on
             System.out.println("Hovering on 2");
+            Arrays.fill(buttonActive, false);
+            buttonActive[1] = true;
         }
         if(button2.pressed())
         {
@@ -177,6 +192,8 @@ public class MainMenu {
         {
             //add animation to button being hovered on
             System.out.println("Hovering on 3");
+            Arrays.fill(buttonActive, false);
+            buttonActive[2] = true;
             
         }
         if(button3.pressed())
@@ -189,6 +206,8 @@ public class MainMenu {
         {
             //add animation to button being hovered on
             System.out.println("Hovering on 4");
+            Arrays.fill(buttonActive, false);
+            buttonActive[3] = true;
         }
         if(button4.pressed())
         {
