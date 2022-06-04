@@ -29,6 +29,8 @@ public class Player extends CollidableObject {
     private static final float MAX_SPEED = 2.5f;
     /** Duration of the player's dash in frames */
     private static final float DASH_DURATION = 80;
+    /** The number of frames until the player can dash again */
+    private static final int DASH_COOL_DOWN = 20;
     /** The player's acceleration speed which is a constant*/
     private static final float ACCELERATION = 0.10f;
     /** The player's jump height which is a constant*/
@@ -43,6 +45,10 @@ public class Player extends CollidableObject {
     private int hp;
     /** The number of frames the player has been dashing for */
     private float dashingFrames = 0;
+    /** The number of frames until the player can dash again */
+    private float dashCoolDown = 0;
+    /** If the player has used their dash in the air */
+    private boolean hasDash = false;
     /** The direction the player is dashing in */
     private int dashDirection = -1;
     /** The direction the player is moving (1 right -1 left 0 idle) */
@@ -134,7 +140,8 @@ public class Player extends CollidableObject {
             moveDirection = -1;
         else
             moveDirection = 0;
-        dashingFrames -= 0.3;
+        dashCoolDown -= 1;
+        dashingFrames -= 1;
         // handle logic based on player state
         switch (state) {
             case IDLE: {
@@ -148,6 +155,8 @@ public class Player extends CollidableObject {
                 if (dashingFrames <= 0) {
                     // just began the dash
                     dashDirection = facingDirection;
+                    dashCoolDown = DASH_DURATION;
+                    hasDash = false;
                     dashingFrames = 0;
                 }
 
@@ -167,7 +176,7 @@ public class Player extends CollidableObject {
 
                 // Handle exiting this state
                 if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
-                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashingFrames <= 0 && moveDirection != 0) requestStateChange(PlayerState.DASHING);
+                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashCoolDown <= 0 && hasDash && moveDirection != 0) requestStateChange(PlayerState.DASHING);
                 break;
             }
             case DAMAGED: {
@@ -183,6 +192,7 @@ public class Player extends CollidableObject {
 
         // Handle vertical collisions
         if (Game.touchingCollidable(this, lowerHitBox)) {
+            hasDash = true;
             pos.y = pos.y - (vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;
