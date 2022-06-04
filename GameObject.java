@@ -8,11 +8,12 @@ import javafx.scene.Node;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
+ * Ten minutes were spent by Ryan Atlas on June 1st restructuring it to be an abstract class with the pos variable
  * </p>
  */
 public abstract class GameObject {

@@ -8,12 +8,13 @@ import javafx.scene.image.Image;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 2.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 27th, 2022
  * <p>
  * File was created by Ryan Atlas on May 27th, 2022. 20 minutes spent. Comments were added, variables created,
  * the constructor was made and the getNode(), draw(), inRange(), display(), openDoor() and update() methods were added
+ * Ten minutes were spent by Ryan Atlas on June 2nd restructuring the file to work with the new GameObject
  * </p>
  */
 public class Door extends GameObject implements Interactable {

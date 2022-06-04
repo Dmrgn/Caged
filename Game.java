@@ -20,12 +20,15 @@ import javafx.util.Duration;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 18th, 2022
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 18th, 2022.
  * 2 hours were spent by Daniel Morgan on this file over May 27th and 28th, 2022.
+ * 2 hours were spent by Daniel Morgan May 30th-June 3rd fixing collision and physics
+ * 2 hours were by Ryan Atlas June 1st-3rd working on moving between screens and creating levels
+ * 30 minutes were spent by Samuel Huang on June 3rd working on the animation timeline and splash screen/menu methods
  * </p>
  */
 public class Game {
@@ -39,9 +42,11 @@ public class Game {
     private GameObject player;
     /** Current group of scene layers: foreground/background/midground */
     private Group sceneGroup = new Group();
-    /** Individual scene layers to contain rendered objects */
+    /** Individual scene layers to contain rendered objects: foreground */
     private Group foreground = new Group();
+    /** Individual scene layers to contain rendered objects: midground*/
     private Group midground = new Group();
+    /** Individual scene layers to contain rendered objects: background */
     private Group background = new Group();
     /** Game's current level*/
     private Level level;
@@ -52,7 +57,7 @@ public class Game {
         BACKGROUND
     }
     /** Reference to the current window object */
-    Stage window;
+    public Stage window;
     /**
      * Inits a game scene
      * @param w The window to use for the game
@@ -81,8 +86,8 @@ public class Game {
     }
     /**
      * Tests if the passed object is touching any collidable objects in the scene
-     * @param object1
-     * @return
+     * @param object1 The object being passed in to see if it is colliding
+     * @return Whether an object is touching a collidable object
      */
     public static boolean touchingCollidable(CollidableObject object1) {
         for (GameObject object2 : gameObjects) {
@@ -96,8 +101,9 @@ public class Game {
     }
     /**
      * Tests if the passed hitbox is touching any collidable objects in the scene
-     * @param object1
-     * @return
+     * @param parent Original object being checked
+     * @param hitbox Hitbox being checked
+     * @return Whether the hitbox is touching a collidable
      */
     public static boolean touchingCollidable(GameObject parent, HitBox hitbox) {
         for (GameObject obj : gameObjects) {
@@ -125,10 +131,18 @@ public class Game {
             e.printStackTrace();
         }
     }
-    public void updateLevelScreen(Level level){
-        level.levelScreen++;
+
+    /**
+     * Reads the file at the index of the files array in the Level class and loads all the new
+     * GameObjects while clearing old ones
+     * @param level Current level
+     * @param screen Screen number to read the right file
+     */
+    public void updateLevelScreen(Level level, int screen){
+        level.levelScreen = screen;
         foreground.getChildren().clear();
-        createLevel(level);
+        gameObjects.clear();
+
     }
     /**
      * Creates the two boss fights in the game which are designed to teach the
@@ -138,6 +152,7 @@ public class Game {
     public void createBossfight(Boss boss) {}
     /**
      * Creates and displays the splash screen to the user
+     * @throws FileNotFoundException In case the files cannot be found
      */
     public void splashScreen() throws FileNotFoundException {
         // SplashScreen splash = new SplashScreen(window);
@@ -156,7 +171,7 @@ public class Game {
     /**
      * Adds the specified object to the game's list of objects
      * and attaches it to the specified {@link SceneLayer}
-     * @param gameObject The gameobject to add to the scene
+     * @param gameObject The GameObject to add to the scene
      * @param layer The layer to add the {@link GameObject} gameObject to
      * @return The added {@link GameObject}
      */
@@ -178,6 +193,7 @@ public class Game {
     /**
      * Method that is active as long as the player is currently playing
      * the actual gameplay section of the game
+     * @throws FileNotFoundException For splashScreen
      */
     public void playGame() throws FileNotFoundException {
         MainMenu menu = new MainMenu(window);
@@ -189,14 +205,27 @@ public class Game {
                     obj.update();
                     obj.draw();
                 }
-                if (player.pos.x >= 1280) {
-                    updateLevelScreen(level);
-                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                    window.setScene(scene);
-                } else if (player.pos.y >= 720) {
-                    createLevel(level);
-                    player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                    window.setScene(scene);
+                if (level instanceof Level1) {
+                    if (level.levelScreen == 0 && player.pos.x >= 1280) {
+                        updateLevelScreen(level, 1);
+                        createLevel(level);
+                        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
+                        window.setScene(scene);
+                    } else if (level.levelScreen == 0 && player.pos.y >= 720) {
+                        createLevel(level);
+                        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
+                        window.setScene(scene);
+                    }
+                    if (level.levelScreen == 1 && player.pos.x <= 0) {
+                        updateLevelScreen(level, 0);
+                        createLevel(level);
+                        player = attachObject(new Player(1180,250), SceneLayer.FOREGROUND);
+                        window.setScene(scene);
+                    } else if (level.levelScreen == 1 && player.pos.y >= 720) {
+                        createLevel(level);
+                        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
+                        window.setScene(scene);
+                    }
                 }
             }
         };

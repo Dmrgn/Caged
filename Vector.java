@@ -6,11 +6,12 @@
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 18th, 2022
  * <p>
- * Daniel Morgan spent one hour on May 18th, 2022.
+ * Daniel Morgan spent one hour on May 18th, 2022 adding most functionality.
+ * Daniel Morgan spent 20 minutes on May 30th adding dist()
  * </p>
  */
 public class Vector {

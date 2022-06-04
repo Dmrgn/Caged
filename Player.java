@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCode;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 2.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
@@ -19,6 +19,7 @@ import javafx.scene.input.KeyCode;
  * Ryan Atlas spent 20 minutes on this file on May 20th, adding new comments and attributes
  * Ryan Atlas spent 2 hours on this file on May 25th and 26th adding comments, attributes
  * keyboard input and movement controls for JavaFX
+ * 3 hours were spent by Daniel Morgan fixing physics, adding hitboxes and states
  * </p>
  */
 
@@ -45,10 +46,8 @@ public class Player extends CollidableObject {
     private int hp;
     /** The number of frames the player has been dashing for */
     private float dashingFrames = 0;
-    /** The number of frames until the player can dash again */
+    /** The number of frames the player has been dashing for */
     private float dashCoolDown = 0;
-    /** If the player has used their dash in the air */
-    private boolean hasDash = false;
     /** The direction the player is dashing in */
     private int dashDirection = -1;
     /** The direction the player is moving (1 right -1 left 0 idle) */
@@ -57,6 +56,8 @@ public class Player extends CollidableObject {
     private int facingDirection = 1;
     /** Whether the player is interacting with an object or not*/
     private boolean interact;
+    /** Whether the player is interacting with an object or not*/
+    private boolean hasDash = false;
     /** Whether the player is grounded or not*/
     private boolean isGrounded;
     /** The bottom hitbox of the player */
@@ -73,7 +74,7 @@ public class Player extends CollidableObject {
     /** Current state of the player */
     private PlayerState state;
     /**
-     * The Player class constructor which takes in two floats 
+     * The Player class constructor which takes in two floats
      * in order to initialize the position vector and sets all other
      * variables to their default. The constructor also initializes
      * the scene and EventHandlers for KeyEvents
@@ -126,12 +127,11 @@ public class Player extends CollidableObject {
         System.out.println("Changing state to " + state);
         return state;
     }
-
-    /** 
-     * Updates the player's position Vector based on keyboard input, implementation 
+    long frameCount = 0;
+    /**
+     * Updates the player's position Vector based on keyboard input, implementation
      * of the method from the GameObject interface
      */
-    long frameCount = 0;
     public void update() {
         // handle lateral movement keyboard input
         if (Keyboard.isKeyDown(KeyCode.D))
@@ -140,8 +140,7 @@ public class Player extends CollidableObject {
             moveDirection = -1;
         else
             moveDirection = 0;
-        dashCoolDown -= 1;
-        dashingFrames -= 1;
+        dashingFrames -= 0.3;
         // handle logic based on player state
         switch (state) {
             case IDLE: {
@@ -176,7 +175,7 @@ public class Player extends CollidableObject {
 
                 // Handle exiting this state
                 if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
-                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashCoolDown <= 0 && hasDash && moveDirection != 0) requestStateChange(PlayerState.DASHING);
+                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashingFrames <= 0 && moveDirection != 0) requestStateChange(PlayerState.DASHING);
                 break;
             }
             case DAMAGED: {
@@ -191,7 +190,6 @@ public class Player extends CollidableObject {
 
         // Handle vertical collisions
         if (Game.touchingCollidable(this, lowerHitBox)) {
-            hasDash = true;
             pos.y = pos.y - (vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;

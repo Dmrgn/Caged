@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 2.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 27th, 2022
  * <p>

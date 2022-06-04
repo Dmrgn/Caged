@@ -32,7 +32,6 @@ public class Keyboard {
     private static double mouseX;
     /** Mouse y coord*/
     private static double mouseY;
-
     /**
      * Checks whether a key is currently down
      * @param code KeyCode for key
@@ -43,7 +42,6 @@ public class Keyboard {
             return true;
         return false;
     }
-
     /**
      * Gets whether the mouse is being clicked
      * @return Is the mouse being clicked?
@@ -51,7 +49,6 @@ public class Keyboard {
     public static boolean isMouseClicked(){
         return mouseClicked;
     }
-
     /**
      * Gets the coordinates of the mouse
      * @return The x and y coordinates as indices 0 and 1 in an array respectively
@@ -92,13 +89,5 @@ public class Keyboard {
                 mouseClicked = false;
             }
         });
-        scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                mouseX = e.getSceneX();
-                mouseY = e.getSceneY();
-            }
-        });
     }
-
 }

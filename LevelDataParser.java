@@ -12,13 +12,14 @@ import java.util.ArrayList;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 2.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 27th, 2022
  * <p>
  * File was created by Ryan Atlas on May 27th, 2022. 45 minutes were spent by Ryan Atlas.
  * Comments were added, variables created, the constructor was made and the readFile method
  * had most of its functionality (the file reading and the parsing of platforms, signs and doors) added.
+ * 30 minutes were spent by Ryan Atlas on May 30th fixing file reading for some Objects
  * </p>
  */
 public class LevelDataParser {

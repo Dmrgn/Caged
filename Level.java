@@ -5,17 +5,18 @@ import javafx.scene.*;
 
 /**
  * <p>
- * This abstract class creates a template for all the levels and implements
- * GameObject so that all the Levels can be drawn and updated
+ * This abstract class creates a template for all the levels and contains essential
+ * methods and attributes for all Levels to access
  * </p>
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
+ * 20 minutes were spent by Ryan Atlas restructuring this file and adding more attributes and methods on May 30th, 2022
  * </p>
  */
 public abstract class Level {

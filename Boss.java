@@ -5,14 +5,15 @@
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
+ * Ten minutes were spent by Ryan Atlas on June 2nd restructuring the file to work with the new GameObject
  * </p>
  */
-public abstract class Boss implements GameObject {
+public abstract class Boss extends GameObject {
    /** The boss's hp*/
    protected int hp;
    /**
@@ -24,11 +25,9 @@ public abstract class Boss implements GameObject {
    /**
    * Draw method from the interface GameObject that is to be overridden by the subclasses
    */
-   public void draw(){
-   }
+   public abstract void draw();
    /**
    * Update method from the interface GameObject that is to be overridden by the subclasses
    */
-   public void update(){
-   }
+   public abstract void update();
 }
