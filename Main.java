@@ -1,19 +1,28 @@
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import java.util.*;
-import java.io.*;
+import javafx.scene.layout.StackPane;
+import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
+import javafx.scene.*;
+import javafx.scene.image.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+
+import java.io.FileNotFoundException;
+
 /**
  * <p>
  * This file acts as the main driver class that runs the game. This is the only class to have a main method
  * and controls the main game loop, calling methods from the game class and keeping the game running as long as
  * the player chooses not to exit. The player class contains state and behaviours for a player object.
- * The player object can be controled by the keyboard to perform actions such as 
+ * The player object can be controlled by the keyboard to perform actions such as
  * movement and slashing. Contains functionality for drawing the player.
  * </p>
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 2.0
+ * @version 3.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
@@ -38,22 +47,22 @@ public class Main extends Application {
     public Player player;
     /** Instance of the current game */
     public Game game;
-    /** 
-     * returns the width of the current window 
+    /**
+     * returns the width of the current window
      * @return Width of the current window in pixels
      */
     public static int getWidth() {
         return width;
     }
-    /** 
-     * returns the height of the current window 
+    /**
+     * returns the height of the current window
      * @return Height of the current window in pixels
      */
     public static int getHeight() {
         return height;
     }
-    /** 
-     * returns the dimensions of the current window as a Vector 
+    /**
+     * returns the dimensions of the current window as a Vector
      * @return Dimensions of the current window as a {@link Vector}
      */
     public static Vector getDims() {
@@ -66,7 +75,7 @@ public class Main extends Application {
      * @param window The window that the game is displayed on
      */
     @Override
-    public void start(Stage window) throws FileNotFoundException{
+    public void start(Stage window) throws FileNotFoundException {
         game = new Game(window);
         Keyboard.init(game.getScene());
         game.playGame();
@@ -78,21 +87,5 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        // Game isp = new Game();
-        //       isp.splashScreen();
-        //       while(!exited) {
-        //         int choice = isp.mainMenu();
-        //          switch(choice) {
-        //             case 1:
-        //                break;
-        //             case 2:
-        //                break;
-        //             case 3:
-        //                break;
-        //             case 4:
-        //                exited = true;
-        //                break;
-        //          }
-        //       }
     }
 }
