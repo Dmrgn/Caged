@@ -10,7 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+import javafx.scene.media.*;
+import java.io.File;
 /**
  * <p>
  * This file acts as the class that initializes and creates the different levels, menu
@@ -50,6 +51,8 @@ public class Game {
     private Group background = new Group();
     /** Game's current level*/
     private Level level;
+    /** Media player for music*/
+    private MediaPlayer mediaPlayer;
     /** Programatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -154,19 +157,16 @@ public class Game {
      * Creates and displays the splash screen to the user
      * @throws FileNotFoundException In case the files cannot be found
      */
-    public void splashScreen() throws FileNotFoundException {
-        // SplashScreen splash = new SplashScreen(window);
-        // splash.runSplashScreen();
-    }
-    /**
-     * Creates and displays the main menu to the user
-     * @return The user's selection of options from the menu
-     */
-    public int mainMenu() {
-        MainMenu menu = new MainMenu(window);
-        menu.display();
 
-        return menu.getSelection();
+
+    public void splashScreen() throws FileNotFoundException {
+        SplashScreen splash = new SplashScreen(window);
+        Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(menuTheme);
+        mediaPlayer.setVolume(0.3);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+        splash.runSplashScreen();
     }
     /**
      * Adds the specified object to the game's list of objects
@@ -195,9 +195,11 @@ public class Game {
      * the actual gameplay section of the game
      * @throws FileNotFoundException For splashScreen
      */
-    public void playGame() throws FileNotFoundException {
+    public void playGame() throws FileNotFoundException{
+        splashScreen();
         MainMenu menu = new MainMenu(window);
-        menu.display();
+        //Instructions instructions = new Instructions(window);
+        //Credits credits = new Credits(window);
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -205,27 +207,34 @@ public class Game {
                     obj.update();
                     obj.draw();
                 }
-                if (level instanceof Level1) {
-                    if (level.levelScreen == 0 && player.pos.x >= 1280) {
-                        updateLevelScreen(level, 1);
-                        createLevel(level);
-                        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                        window.setScene(scene);
-                    } else if (level.levelScreen == 0 && player.pos.y >= 720) {
-                        createLevel(level);
-                        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                        window.setScene(scene);
+                if(menu.getSelection() == 1) {
+                    if (level instanceof Level1) {
+                        if (level.levelScreen == 0 && player.pos.x >= 1280) {
+                            updateLevelScreen(level, 1);
+                            createLevel(level);
+                            player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                            window.setScene(scene);
+                        } else if (level.levelScreen == 0 && player.pos.y >= 720) {
+                            createLevel(level);
+                            player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                            window.setScene(scene);
+                        }
+                        if (level.levelScreen == 1 && player.pos.x <= 0) {
+                            updateLevelScreen(level, 0);
+                            createLevel(level);
+                            player = attachObject(new Player(1180, 250), SceneLayer.FOREGROUND);
+                            window.setScene(scene);
+                        } else if (level.levelScreen == 1 && player.pos.y >= 720) {
+                            createLevel(level);
+                            player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                            window.setScene(scene);
+                        }
                     }
-                    if (level.levelScreen == 1 && player.pos.x <= 0) {
-                        updateLevelScreen(level, 0);
-                        createLevel(level);
-                        player = attachObject(new Player(1180,250), SceneLayer.FOREGROUND);
-                        window.setScene(scene);
-                    } else if (level.levelScreen == 1 && player.pos.y >= 720) {
-                        createLevel(level);
-                        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                        window.setScene(scene);
-                    }
+                } else if (menu.getSelection() == 2) {
+                    System.out.println("Display Instructions");
+                }
+                else if(menu.getSelection() == 3) {
+                    System.out.println("Display Credits");
                 }
             }
         };
@@ -235,11 +244,12 @@ public class Game {
                 menu.checkSelections(this, at);
             }
         };
-        menuTimer.start();
 
-        // Timeline timeline = new Timeline(new KeyFrame(Duration.millis(18000), ev -> {
-        // }));
-        // timeline.play();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(18000), ev -> {
+            menu.display();
+            menuTimer.start();
+        }));
+        timeline.play();
         window.show();
     }
     /**

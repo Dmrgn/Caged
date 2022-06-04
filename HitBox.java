@@ -22,24 +22,24 @@ public class HitBox {
      */
     public static boolean areBoxesColliding(HitBox b1, HitBox b2) {
         if (b1.p1.x >= b2.p1.x - b1.getWidth() &&   // right of the left edge AND
-            b1.p1.x <= b2.p2.x &&                   // left of the right edge AND
-            b1.p1.y >= b2.p1.y - b1.getHeight() &&  // below the top AND
-            b1.p1.y <= b2.p2.y) {                   // above the bottom
-                return true;
+                b1.p1.x <= b2.p2.x &&                   // left of the right edge AND
+                b1.p1.y >= b2.p1.y - b1.getHeight() &&  // below the top AND
+                b1.p1.y <= b2.p2.y) {                   // above the bottom
+            return true;
         }
         return false;
     }
-    /** 
+    /**
      * Creates an array representing the distance of a point 
      * to each pair of adjacent sides. Ordered, Left, Top
      * Right, Bottom sides. 
      */
     public static float[] calculateDistanceToSides(HitBox b, Vector p) {
         HitBox[] sides = {
-            new HitBox(b.p1, b.p1.add(new Vector(0,b.getHeight()))), // left face
-            new HitBox(b.p1, b.p1.add(new Vector(b.getWidth(),0))),  // top face
-            new HitBox(b.p1.add(new Vector(b.getWidth(),0)), b.p2),  // right face
-            new HitBox(b.p1.add(new Vector(0,b.getHeight())), b.p2), // bottom face
+                new HitBox(b.p1, b.p1.add(new Vector(0,b.getHeight()))), // left face
+                new HitBox(b.p1, b.p1.add(new Vector(b.getWidth(),0))),  // top face
+                new HitBox(b.p1.add(new Vector(b.getWidth(),0)), b.p2),  // right face
+                new HitBox(b.p1.add(new Vector(0,b.getHeight())), b.p2), // bottom face
         };
         float[] distances = new float[4];
         for (int i = 0; i < distances.length; i++) {

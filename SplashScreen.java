@@ -51,14 +51,14 @@ public class SplashScreen {
     }
     private void importImages() throws FileNotFoundException
     {
-       logo = new Image(new FileInputStream("ISP Splash Screen Images/Logo.png"));
-       imageViewLogo = new ImageView(logo);
-       cage = new Image(new FileInputStream("ISP Splash Screen Images/Cage.png")); 
-       imageViewCage = new ImageView(cage);
-       screen1Text[0] = new Image(new FileInputStream("ISP Splash Screen Images/CompanyName.png"));
-       screen1Text[1] = new Image(new FileInputStream("ISP Splash Screen Images/Presents.png"));
-       imageViewScreen1Text[0] = new ImageView(screen1Text[0]);
-       imageViewScreen1Text[1] = new ImageView(screen1Text[1]);
+        logo = new Image(new FileInputStream("ISP Splash Screen Images/Logo.png"));
+        imageViewLogo = new ImageView(logo);
+        cage = new Image(new FileInputStream("ISP Splash Screen Images/Cage.png"));
+        imageViewCage = new ImageView(cage);
+        screen1Text[0] = new Image(new FileInputStream("ISP Splash Screen Images/CompanyName.png"));
+        screen1Text[1] = new Image(new FileInputStream("ISP Splash Screen Images/Presents.png"));
+        imageViewScreen1Text[0] = new ImageView(screen1Text[0]);
+        imageViewScreen1Text[1] = new ImageView(screen1Text[1]);
     }
     /**
      * This method gets called to display and animate the company name and logo portion of the splash screen
@@ -190,10 +190,7 @@ public class SplashScreen {
         SequentialTransition transitionParts = new SequentialTransition (new PauseTransition(Duration.millis(13000)), blackScreen, titleFade, cageFade, continueFade);
         transitionParts.play();
     }
-    /**
-     * This method is the method that is called to run the splash screen
-     *
-     */
+
     public void runSplashScreen() throws FileNotFoundException
     {
         importImages();
