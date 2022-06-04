@@ -110,7 +110,7 @@ public class MainMenu {
         Rectangle background = new Rectangle(0, 0, 1270, 720);
         background.setFill(Color.BLACK);
         Group root = new Group(background, title, newGameButtonO, instructionsButtonO, creditsButtonO, quitButtonO, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
-        Scene scene = new Scene(root, 600, 500);
+        Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
         stage.setScene(scene);
         scene.setFill(backgroundGradient);
         Keyboard.init(scene);
