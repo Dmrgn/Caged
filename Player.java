@@ -28,9 +28,9 @@ public class Player extends CollidableObject {
     /** The player's movement speed which is a constant*/
     private static final float MAX_SPEED = 2.5f;
     /** Duration of the player's dash in frames */
-    private static final float DASH_DURATION = 80;
+    private static final float DASH_DURATION = 20;
     /** The number of frames until the player can dash again */
-    private static final int DASH_COOL_DOWN = 20;
+    private static final int DASH_COOL_DOWN = 60;
     /** The player's acceleration speed which is a constant*/
     private static final float ACCELERATION = 0.10f;
     /** The player's jump height which is a constant*/
@@ -155,7 +155,7 @@ public class Player extends CollidableObject {
                 if (dashingFrames <= 0) {
                     // just began the dash
                     dashDirection = facingDirection;
-                    dashCoolDown = DASH_DURATION;
+                    dashCoolDown = DASH_COOL_DOWN;
                     hasDash = false;
                     dashingFrames = 0;
                 }
@@ -186,7 +186,6 @@ public class Player extends CollidableObject {
         }
 
         boolean jumped = false;
-
         // State independent logic
         vel = vel.add(new Vector(0, Game.GRAVITY));
 
@@ -198,26 +197,34 @@ public class Player extends CollidableObject {
             vel.y = 0;
             if (Keyboard.isKeyDown(KeyCode.W)) {
                 vel = vel.add(new Vector(0, -JUMP_HEIGHT));
+                System.out.println("inside " + frameCount + " :: " + vel.y);
                 jumped = true;
-                System.out.println(vel);
             }
+            if (frameCount % 120 == 0) {
+                System.out.println("outside " + frameCount + " :: " +vel.y);
+            }
+        }
+        if (frameCount % 120 == 0) {
+            System.out.println("more outside " + frameCount + " :: " + vel.y);
         }
         if (Game.touchingCollidable(this, upperHitBox)) {
             pos.y = pos.y + Math.abs(vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;
         }
-        frameCount++;
-        if (frameCount % 60 == 0) {
-            // System.out.println(vel);
-        }
+
+
         // Handle lateral collisions
         if (Game.touchingCollidable(this)) {
             pos.x = pos.x - (vel.x * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
-            vel.x = 0;
+            vel.x = vel.x*-0.5f;
         }
 
+        frameCount++;
+        // if (frameCount % 120 == 0) {
+        //     System.out.println(vel.y);
+        // }
         pos = pos.add(vel);
         createHitBox(pos, pos.add(HITBOX_SIZE));
 

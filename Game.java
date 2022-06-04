@@ -140,8 +140,8 @@ public class Game {
      * Creates and displays the splash screen to the user
      */
     public void splashScreen() throws FileNotFoundException {
-        SplashScreen splash = new SplashScreen(window);
-        splash.runSplashScreen();
+        // SplashScreen splash = new SplashScreen(window);
+        // splash.runSplashScreen();
     }
     /**
      * Creates and displays the main menu to the user
@@ -151,7 +151,6 @@ public class Game {
         MainMenu menu = new MainMenu(window);
         menu.display();
 
-        menu.checkSelections();
         return menu.getSelection();
     }
     /**
@@ -181,8 +180,8 @@ public class Game {
      * the actual gameplay section of the game
      */
     public void playGame() throws FileNotFoundException {
-        splashScreen();
-        //mainMenu();
+        MainMenu menu = new MainMenu(window);
+        menu.display();
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -201,10 +200,17 @@ public class Game {
                 }
             }
         };
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(18000), ev -> {
-            at.start();
-        }));
-        timeline.play();
+        AnimationTimer menuTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                menu.checkSelections(this, at);
+            }
+        };
+        menuTimer.start();
+
+        // Timeline timeline = new Timeline(new KeyFrame(Duration.millis(18000), ev -> {
+        // }));
+        // timeline.play();
         window.show();
     }
     /**

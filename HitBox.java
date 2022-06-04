@@ -44,7 +44,6 @@ public class HitBox {
         float[] distances = new float[4];
         for (int i = 0; i < distances.length; i++) {
             distances[i] = Vector.dist(Vector.lerp(sides[i].p1, sides[i].p2, 0.5f), p);
-            System.out.println(distances[i]);
         }
         return distances;
     }

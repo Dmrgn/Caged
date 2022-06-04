@@ -113,6 +113,7 @@ public class MainMenu {
         Scene scene = new Scene(root, 600, 500); 
         stage.setScene(scene);
         scene.setFill(backgroundGradient);
+        Keyboard.init(scene);
         //animate each button on rect
         //button 1
         FadeTransition newGameButtonFade = new FadeTransition(Duration.millis(2000), newGameButton);
@@ -155,8 +156,9 @@ public class MainMenu {
             quitButtonFade.play();
         }
     }
-    public void checkSelections()
+    public void checkSelections(AnimationTimer timer, AnimationTimer after)
     {
+
         Button button1 = new Button(new Vector(325, 225), new Vector(975, 285));//325, 225, 650, 60
         Button button2 = new Button(new Vector(325, 335), new Vector(975, 395));//325, 335, 650, 60
         Button button3 = new Button(new Vector(325, 445), new Vector(975, 505));//325, 445, 650, 60
@@ -171,6 +173,8 @@ public class MainMenu {
         }
         if(button1.pressed())
         {
+            timer.stop();
+            after.start();
             selection = 1;
             System.out.println("1 ");
         }

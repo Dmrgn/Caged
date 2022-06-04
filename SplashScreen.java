@@ -50,12 +50,12 @@ public class SplashScreen {
     }
     private void importImages() throws FileNotFoundException
     {
-       logo = new Image(new FileInputStream("ISP Splash Screen Images\\Logo.png"));
+       logo = new Image(new FileInputStream("ISP Splash Screen Images/Logo.png"));
        imageViewLogo = new ImageView(logo);
-       cage = new Image(new FileInputStream("ISP Splash Screen Images\\Cage.png")); 
+       cage = new Image(new FileInputStream("ISP Splash Screen Images/Cage.png")); 
        imageViewCage = new ImageView(cage);
-       screen1Text[0] = new Image(new FileInputStream("ISP Splash Screen Images\\CompanyName.png"));
-       screen1Text[1] = new Image(new FileInputStream("ISP Splash Screen Images\\Presents.png"));
+       screen1Text[0] = new Image(new FileInputStream("ISP Splash Screen Images/CompanyName.png"));
+       screen1Text[1] = new Image(new FileInputStream("ISP Splash Screen Images/Presents.png"));
        imageViewScreen1Text[0] = new ImageView(screen1Text[0]);
        imageViewScreen1Text[1] = new ImageView(screen1Text[1]);
     }
