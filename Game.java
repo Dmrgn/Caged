@@ -35,7 +35,7 @@ public class Game {
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.08f;
     /** ArrayList of gameobjects in the current scene */
-    private static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+    private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
     private Scene scene;
     /** The instance of the player */
@@ -77,7 +77,7 @@ public class Game {
         // add sceneGroup to the window and create the scene
         buildScene(sceneGroup);
         // add a player and platform to the scene
-        player = attachObject(new Player(50,Main.getHeight()-200), SceneLayer.FOREGROUND);
+        player = attachObject(new Player(50, Main.getHeight() - 200), SceneLayer.FOREGROUND);
         Level level1 = new Level1();
         createLevel(level1);
         //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
@@ -90,9 +90,9 @@ public class Game {
      * @return Whether an object is touching a collidable object
      */
     public static boolean touchingCollidable(CollidableObject object1) {
-        for (GameObject object2 : gameObjects) {
+        for (GameObject object2: gameObjects) {
             if (object2 instanceof CollidableObject && object1 != object2) {
-                if (CollidableObject.touching((CollidableObject)object2, object1)) {
+                if (CollidableObject.touching((CollidableObject) object2, object1)) {
                     return true;
                 }
             }
@@ -106,9 +106,9 @@ public class Game {
      * @return Whether the hitbox is touching a collidable
      */
     public static boolean touchingCollidable(GameObject parent, HitBox hitbox) {
-        for (GameObject obj : gameObjects) {
+        for (GameObject obj: gameObjects) {
             if (obj instanceof CollidableObject && obj != parent) {
-                if (HitBox.areBoxesColliding(((CollidableObject)obj).getHitBox(), hitbox)) {
+                if (HitBox.areBoxesColliding(((CollidableObject) obj).getHitBox(), hitbox)) {
                     return true;
                 }
             }
@@ -122,8 +122,8 @@ public class Game {
      */
     public void createLevel(Level level) {
         try {
-            ArrayList<GameObject> objects = level.getObjects();
-            for (GameObject obj : objects) {
+            ArrayList < GameObject > objects = level.getObjects();
+            for (GameObject obj: objects) {
                 attachObject(obj, SceneLayer.FOREGROUND);
             }
             this.level = level;
@@ -138,7 +138,7 @@ public class Game {
      * @param level Current level
      * @param screen Screen number to read the right file
      */
-    public void updateLevelScreen(Level level, int screen){
+    public void updateLevelScreen(Level level, int screen) {
         level.levelScreen = screen;
         foreground.getChildren().clear();
         gameObjects.clear();
@@ -196,36 +196,34 @@ public class Game {
      * @throws FileNotFoundException For splashScreen
      */
     public void playGame() throws FileNotFoundException {
+        splashScreen();
         MainMenu menu = new MainMenu(window);
-        menu.display();
+        // Instructions instructions = new Instructions(window);
+        // Credits credits = new Credits(window);
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                for (GameObject obj: gameObjects){
-                    obj.update();
-                    obj.draw();
-                }
-                if (level instanceof Level1) {
-                    if (level.levelScreen == 0 && player.pos.x >= 1280) {
-                        updateLevelScreen(level, 1);
-                        createLevel(level);
-                        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                        window.setScene(scene);
-                    } else if (level.levelScreen == 0 && player.pos.y >= 720) {
-                        createLevel(level);
-                        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
-                        window.setScene(scene);
+                //New Game
+                if (menu.getSelection() == 1) {
+                    for (GameObject obj: gameObjects) {
+                        obj.update();
+                        obj.draw();
                     }
-                    if (level.levelScreen == 1 && player.pos.x <= 0) {
+                    if (player.pos.x >= 1280) {
                         updateLevelScreen(level, 0);
-                        createLevel(level);
-                        player = attachObject(new Player(1180,250), SceneLayer.FOREGROUND);
+                        player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
                         window.setScene(scene);
-                    } else if (level.levelScreen == 1 && player.pos.y >= 720) {
+                    } else if (player.pos.y >= 720) {
                         createLevel(level);
-                        player = attachObject(new Player(250,Main.getHeight()-200), SceneLayer.FOREGROUND);
+                        player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
                         window.setScene(scene);
                     }
+                }
+                //Instructions
+                else if (menu.getSelection() == 2) {
+                    System.out.println("Display Instructions");
+                } else if (menu.getSelection() == 3) {
+                    System.out.println("Display Credits");
                 }
             }
         };
@@ -235,11 +233,12 @@ public class Game {
                 menu.checkSelections(this, at);
             }
         };
-        menuTimer.start();
 
-        // Timeline timeline = new Timeline(new KeyFrame(Duration.millis(18000), ev -> {
-        // }));
-        // timeline.play();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ev -> {
+            menu.display();
+            menuTimer.start();
+        }));
+        timeline.play();
         window.show();
     }
     /**

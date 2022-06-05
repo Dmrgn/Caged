@@ -51,7 +51,7 @@ public class LevelDataParser {
             Platform p = new Platform(textures.get("Platform"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
             levelObjects.add(p);
          } else if (data[0].equals("Enemy1")){
-
+            
          } else if (data[0].equals("Enemy2")){
 
          } else if (data[0].equals("Door")) {
