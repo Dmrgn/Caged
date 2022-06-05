@@ -169,14 +169,12 @@ public class MainMenu {
         if(button1.hovering())
         {
             //add animation to button being hovered on
-            System.out.println("Hovering on 1");
             Arrays.fill(buttonActive, false);
             buttonActive[0] = true;
         }
         if(button1.pressed())
         {
             selection = 1;
-            System.out.println("1 ");
             timer.stop();
             after.start();
         }
@@ -184,14 +182,12 @@ public class MainMenu {
         if(button2.hovering())
         {
             //add animation to button being hovered on
-            System.out.println("Hovering on 2");
             Arrays.fill(buttonActive, false);
             buttonActive[1] = true;
         }
         if(button2.pressed())
         {
             selection = 2;
-            System.out.println("2");
             timer.stop();
             after.start();
         }
@@ -199,7 +195,6 @@ public class MainMenu {
         if(button3.hovering())
         {
             //add animation to button being hovered on
-            System.out.println("Hovering on 3");
             Arrays.fill(buttonActive, false);
             buttonActive[2] = true;
 
@@ -207,7 +202,6 @@ public class MainMenu {
         if(button3.pressed())
         {
             selection = 3;
-            System.out.println("3");
             timer.stop();
             after.start();
         }
@@ -215,7 +209,6 @@ public class MainMenu {
         if(button4.hovering())
         {
             //add animation to button being hovered on
-            System.out.println("Hovering on 4");
             Arrays.fill(buttonActive, false);
             buttonActive[3] = true;
         }
@@ -223,7 +216,6 @@ public class MainMenu {
         {
             selection = 4;
             stage.close();
-            System.out.println("4");
         }
 
 

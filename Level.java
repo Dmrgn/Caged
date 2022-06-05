@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.*;
 
 import javafx.scene.*;
+import javafx.scene.image.Image;
 
 /**
  * <p>
@@ -23,7 +24,7 @@ public abstract class Level {
     /**
      * HashMap storing textures for respective objects
      */
-    protected HashMap<String, String> textures;
+    protected HashMap<String, Image> textures;
     /**
      * Node for the level
      */

@@ -22,6 +22,8 @@ public class Platform extends CollidableObject {
     private Node node;
     /** Image for the platform's texture */
     private Image image;
+    /** If this platform is flipped */
+    private boolean flipped;
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -29,11 +31,12 @@ public class Platform extends CollidableObject {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Platform(String imageFile, int x, int y) {
-        image = new Image(imageFile);
+    public Platform(Image imageFile, boolean flipped, int x, int y) {
+        this.flipped = flipped;
+        image = imageFile;
         node = new ImageView(image);
         pos = new Vector(x, y);
-        createHitBox(pos.add(new Vector(10,10)), pos.add(new Vector(120, 50)));
+        createHitBox(pos.add(new Vector(0,0)), pos.add(new Vector((float)image.getWidth(), (float)image.getHeight())));
     }
     /**
      * Getter method for the Node 

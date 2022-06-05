@@ -34,7 +34,9 @@ import java.io.File;
  */
 public class Game {
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.08f;
+    public static final float GRAVITY = 0.04f;
+    /** If we are currently debugging */
+    public static final boolean IS_DEBUG_MODE = true;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
@@ -70,20 +72,18 @@ public class Game {
         window.setTitle("Caged Inside the Mind");
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
-        window.setResizable(false);
+        window.setResizable(true);
         // render the background, then midground, then foreground first
-        //background.setViewOrder(0);
-        //midground.setViewOrder(1);
-        //foreground.setViewOrder(2);
+        background.setViewOrder(0);
+        midground.setViewOrder(1);
+        foreground.setViewOrder(2);
         // add layers to sceneGroup
         sceneGroup.getChildren().addAll(foreground, midground, background);
         // add sceneGroup to the window and create the scene
         buildScene(sceneGroup);
-        // add a player and platform to the scene
         player = attachObject(new Player(50, Main.getHeight() - 200), SceneLayer.FOREGROUND);
         Level level1 = new Level1();
         createLevel(level1);
-        //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
         // set the current scene
         window.setScene(scene);
     }
@@ -145,7 +145,6 @@ public class Game {
         level.levelScreen = screen;
         foreground.getChildren().clear();
         gameObjects.clear();
-
     }
     /**
      * Creates the two boss fights in the game which are designed to teach the
@@ -195,8 +194,9 @@ public class Game {
      * the actual gameplay section of the game
      * @throws FileNotFoundException For splashScreen
      */
-    public void playGame() throws FileNotFoundException{
-        splashScreen();
+    public void playGame() throws FileNotFoundException {
+        if (!IS_DEBUG_MODE)
+            splashScreen();
         MainMenu menu = new MainMenu(window);
         //Instructions instructions = new Instructions(window);
         //Credits credits = new Credits(window);
@@ -251,7 +251,7 @@ public class Game {
             }
         };
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(18000), ev -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(IS_DEBUG_MODE ? 10 : 18000), ev -> {
             menu.display();
             menuTimer.start();
         }));
@@ -269,6 +269,6 @@ public class Game {
      * Builds a scene with the specified group
      */
     public void buildScene(Group g) {
-        scene = new Scene(g, 1280, 720, Color.BLACK);
+        scene = new Scene(g, Main.getWidth(), Main.getHeight(), Color.BLACK);
     }
 }

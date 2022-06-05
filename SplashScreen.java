@@ -156,17 +156,7 @@ public class SplashScreen {
         //Creating a Group object
         Group root = new Group(background, title, continueText, imageViewCage);
         //Creating a scene object
-        Scene scene = new Scene(root, 1260, 680);
-      /*
-      Timer timer = new Timer();
-            TimerTask screen2 = new TimerTask() {
-                @Override
-                public void run() {
-                     stage.setScene(scene);
-                }
-            };
-            timer.schedule(screen2, 13000L);
-            */
+        Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
         RadialGradient backgroundGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop(0, Color.WHITE),
                 new Stop(1, Color.BLACK));
         scene.setFill(backgroundGradient);
@@ -193,9 +183,9 @@ public class SplashScreen {
 
     public void runSplashScreen() throws FileNotFoundException
     {
-        importImages();
-        animateCompName();
-        transition();
-        animateGameName();
+        // importImages();
+        // animateCompName();
+        // transition();
+        // animateGameName();
     }
 }
