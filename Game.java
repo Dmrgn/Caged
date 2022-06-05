@@ -198,7 +198,7 @@ public class Game {
         if (!IS_DEBUG_MODE)
             splashScreen();
         MainMenu menu = new MainMenu(window);
-        //Instructions instructions = new Instructions(window);
+        Instructions instructions = new Instructions(window);
         //Credits credits = new Credits(window);
         AnimationTimer at = new AnimationTimer() {
             @Override
@@ -238,7 +238,7 @@ public class Game {
                 }
                 //Instructions
                 else if (menu.getSelection() == 2) {
-                    System.out.println("Display Instructions");
+                    instructions.controlScreens();
                 } else if (menu.getSelection() == 3) {
                     System.out.println("Display Credits");
                 }
