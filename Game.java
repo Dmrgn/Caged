@@ -231,14 +231,8 @@ public class Game {
                         }
                     }
                 } else if (menu.getSelection() == 2) {
+                    //Instructions
                     instructions.controlScreens();
-                }
-                else if(menu.getSelection() == 3) {
-                    credits.controlScreens();
-                }
-                //Instructions
-                else if (menu.getSelection() == 2) {
-                    // instructions.controlScreens();
                 } else if (menu.getSelection() == 3) {
                     credits.controlScreens();
                 }
