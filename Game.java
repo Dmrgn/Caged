@@ -34,9 +34,7 @@ import java.io.File;
  */
 public class Game {
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.04f;
-    /** If we are currently debugging */
-    public static final boolean IS_DEBUG_MODE = true;
+    public static final float GRAVITY = 0.08f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
@@ -72,18 +70,20 @@ public class Game {
         window.setTitle("Caged Inside the Mind");
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
-        window.setResizable(true);
+        window.setResizable(false);
         // render the background, then midground, then foreground first
-        background.setViewOrder(0);
-        midground.setViewOrder(1);
-        foreground.setViewOrder(2);
+        //background.setViewOrder(0);
+        //midground.setViewOrder(1);
+        //foreground.setViewOrder(2);
         // add layers to sceneGroup
         sceneGroup.getChildren().addAll(foreground, midground, background);
         // add sceneGroup to the window and create the scene
         buildScene(sceneGroup);
+        // add a player and platform to the scene
         player = attachObject(new Player(50, Main.getHeight() - 200), SceneLayer.FOREGROUND);
         Level level1 = new Level1();
         createLevel(level1);
+        //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
         // set the current scene
         window.setScene(scene);
     }
@@ -145,6 +145,7 @@ public class Game {
         level.levelScreen = screen;
         foreground.getChildren().clear();
         gameObjects.clear();
+
     }
     /**
      * Creates the two boss fights in the game which are designed to teach the
@@ -160,11 +161,12 @@ public class Game {
 
     public void splashScreen() throws FileNotFoundException {
         SplashScreen splash = new SplashScreen(window);
+        /*
         Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(menuTheme);
         mediaPlayer.setVolume(0.3);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+        mediaPlayer.play();*/
         splash.runSplashScreen();
     }
     /**
@@ -195,19 +197,19 @@ public class Game {
      * @throws FileNotFoundException For splashScreen
      */
     public void playGame() throws FileNotFoundException {
-        if (!IS_DEBUG_MODE)
-            splashScreen();
+        splashScreen();
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
         Credits credits = new Credits(window);
+
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                for (GameObject obj: gameObjects){
+                for (GameObject obj: gameObjects) {
                     obj.update();
                     obj.draw();
                 }
-                if(menu.getSelection() == 1) {
+                if (menu.getSelection() == 1) {
                     if (level instanceof Level1) {
                         if (level.levelScreen == 0 && player.pos.x >= 1280) {
                             updateLevelScreen(level, 1);
@@ -245,7 +247,7 @@ public class Game {
             }
         };
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(IS_DEBUG_MODE ? 10 : 18000), ev -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(18000), ev -> {
             menu.display();
             menuTimer.start();
         }));
@@ -263,6 +265,6 @@ public class Game {
      * Builds a scene with the specified group
      */
     public void buildScene(Group g) {
-        scene = new Scene(g, Main.getWidth(), Main.getHeight(), Color.BLACK);
+        scene = new Scene(g, 1280, 720, Color.BLACK);
     }
 }

@@ -27,15 +27,15 @@ public class Player extends CollidableObject {
     /** The dimensions of the player's hitbox in pixels */
     private static Vector HITBOX_SIZE = new Vector(30, 30);
     /** The player's movement speed which is a constant*/
-    private static final float MAX_SPEED = 2.0f;
+    private static final float MAX_SPEED = 2.5f;
     /** Duration of the player's dash in frames */
-    private static final float DASH_DURATION = 60;
+    private static final float DASH_DURATION = 20;
     /** The number of frames until the player can dash again */
     private static final int DASH_COOL_DOWN = 60;
     /** The player's acceleration speed which is a constant*/
     private static final float ACCELERATION = 0.10f;
     /** The player's jump height which is a constant*/
-    private static final float JUMP_HEIGHT = 3.5f;
+    private static final float JUMP_HEIGHT = 5.0f;
     /** The velocity stores as a Vector */
     public Vector vel;
     /** The player's Sprite as an Image*/
@@ -124,11 +124,10 @@ public class Player extends CollidableObject {
                 }
                 break;
         }
+        System.out.println("Changing state to " + state);
         return state;
     }
-    private long frameCount = 0;
-    private long hasTouchedGroundCounter = 0;
-    private boolean hasTouchedGround = false;
+    long frameCount = 0;
     /**
      * Updates the player's position Vector based on keyboard input, implementation
      * of the method from the GameObject interface
@@ -170,7 +169,7 @@ public class Player extends CollidableObject {
             case MOVING: {
                 // State logic
                 vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
-                vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED*10)).min(new Vector(-MAX_SPEED, -MAX_SPEED*10));
+                vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED)).min(new Vector(-MAX_SPEED, -MAX_SPEED));
                 if (moveDirection != 0)
                     facingDirection = moveDirection;
 
@@ -185,50 +184,51 @@ public class Player extends CollidableObject {
             }
         }
 
-        boolean hasJumped = false;
-        if (hasTouchedGroundCounter > 5000) {
-            hasTouchedGroundCounter = 0;
-            hasTouchedGround = false;
-        }
+        boolean jumped = false;
         // State independent logic
         vel = vel.add(new Vector(0, Game.GRAVITY));
 
         // Handle vertical collisions
         if (Game.touchingCollidable(this, lowerHitBox)) {
-            hasTouchedGround = true;
             pos.y = pos.y - (vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;
             if (Keyboard.isKeyDown(KeyCode.W)) {
                 vel = vel.add(new Vector(0, -JUMP_HEIGHT));
-                hasJumped = true;
+                System.out.println("inside " + frameCount + " :: " + vel.y);
+                jumped = true;
+            }
+            if (frameCount % 120 == 0) {
+                System.out.println("outside " + frameCount + " :: " +vel.y);
             }
         }
+        if (frameCount % 120 == 0) {
+            System.out.println("more outside " + frameCount + " :: " + vel.y);
+        }
         if (Game.touchingCollidable(this, upperHitBox)) {
-            hasTouchedGround = true;
             pos.y = pos.y + Math.abs(vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;
         }
 
+
         // Handle lateral collisions
         if (Game.touchingCollidable(this)) {
-            hasTouchedGround = true;
             pos.x = pos.x - (vel.x * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.x = vel.x*-0.5f;
         }
 
         frameCount++;
-        hasTouchedGroundCounter++;
+        // if (frameCount % 120 == 0) {
+        //     System.out.println(vel.y);
+        // }
         pos = pos.add(vel);
         createHitBox(pos, pos.add(HITBOX_SIZE));
 
         // reduce velocity for next frame
-        // System.out.println("counter " + hasTouchedGround + " " + hasTouchedGroundCounter);
-        // System.out.println(this);
-        Vector diff = Vector.sub(vel, vel.mul((hasTouchedGround ? 0.9f : 0.99f)));
-        diff = diff.max(new Vector(ACCELERATION * (hasTouchedGround ? 0.9f : 0.99f), 0)).min(new Vector(-ACCELERATION * (hasTouchedGround ? 0.9f : 0.99f), 0));
+        Vector diff = Vector.sub(vel, vel.mul(0.9f));
+        diff = diff.max(new Vector(ACCELERATION * 0.9f, 0)).min(new Vector(-ACCELERATION * 0.9f, 0));
         vel = vel.sub(diff);
 
         // create hitbox for next frame

@@ -161,7 +161,6 @@ public class MainMenu {
     }
     public void checkSelections(AnimationTimer timer, AnimationTimer after)
     {
-        System.out.println("Checking");
         Button button1 = new Button(new Vector(325, 225), new Vector(975, 285));//325, 225, 650, 60
         Button button2 = new Button(new Vector(325, 335), new Vector(975, 395));//325, 335, 650, 60
         Button button3 = new Button(new Vector(325, 445), new Vector(975, 505));//325, 445, 650, 60

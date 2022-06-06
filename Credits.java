@@ -33,7 +33,7 @@ public class Credits {
      */
     public Credits(Stage window) throws FileNotFoundException
     {
-        creditScreen = new ImageView( new Image(new FileInputStream("Page Screens/CreditsScreen.png")));//add file first
+        creditScreen = new ImageView( new Image(new FileInputStream("Page Screens\\CreditsScreen.png")));//add file first
         this.window = window;
     }
     /**
