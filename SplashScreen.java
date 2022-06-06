@@ -183,9 +183,9 @@ public class SplashScreen {
 
     public void runSplashScreen() throws FileNotFoundException
     {
-        // importImages();
-        // animateCompName();
-        // transition();
-        // animateGameName();
+        importImages();
+        animateCompName();
+        transition();
+        animateGameName();
     }
 }

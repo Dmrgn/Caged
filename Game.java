@@ -36,7 +36,7 @@ public class Game {
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.04f;
     /** If we are currently debugging */
-    public static final boolean IS_DEBUG_MODE = false;
+    public static final boolean IS_DEBUG_MODE = true;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
@@ -231,10 +231,10 @@ public class Game {
                         }
                     }
                 } else if (menu.getSelection() == 2) {
-                    System.out.println("Display Instructions");
+                    instructions.controlScreens();
                 }
                 else if(menu.getSelection() == 3) {
-                    System.out.println("Display Credits");
+                    credits.controlScreens();
                 }
                 //Instructions
                 else if (menu.getSelection() == 2) {
