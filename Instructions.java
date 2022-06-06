@@ -41,8 +41,8 @@ public class Instructions
      */
    public Instructions(Stage window) throws FileNotFoundException
    {
-      instructionsP1 = new ImageView( new Image(new FileInputStream("Page Screens\\InstructionsScreen1.png")));//add file first
-      instructionsP2 = new ImageView( new Image(new FileInputStream("Page Screens\\InstructionsScreen2.png")));//add file first
+      instructionsP1 = new ImageView( new Image(new FileInputStream("Page Screens/InstructionsScreen1.png")));//add file first
+      instructionsP2 = new ImageView( new Image(new FileInputStream("Page Screens/InstructionsScreen2.png")));//add file first
       this.window = window;
       currentPage = 1;
    }

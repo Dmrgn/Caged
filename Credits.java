@@ -33,7 +33,7 @@ public class Credits {
      */
     public Credits(Stage window) throws FileNotFoundException
     {
-        creditScreen = new ImageView( new Image(new FileInputStream("Page Screens\\CreditsScreen.png")));//add file first
+        creditScreen = new ImageView( new Image(new FileInputStream("Page Screens/CreditsScreen.png")));//add file first
         this.window = window;
     }
     /**
@@ -44,12 +44,12 @@ public class Credits {
         //Setting the position of the  image:
         creditScreen.setX(0);
         creditScreen.setY(0);
-        creditScreen.setFitWidth(1266);
-        creditScreen.setFitHeight(720);
+        creditScreen.setFitWidth(Main.getWidth());
+        creditScreen.setFitHeight(Main.getHeight());
         creditScreen.setPreserveRatio(true);
         Group root = new Group(creditScreen);
         //Creating a scene object
-        Scene scene = new Scene(root, 600, 500);
+        Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
         window.setScene(scene);
         Keyboard.init(scene);
     }

@@ -36,9 +36,9 @@ public class Door extends GameObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Door(String imageFileLocked, String imageFileOpen, int x, int y){
-        imageLocked = new Image(imageFileLocked);
-        imageOpen = new Image(imageFileOpen);
+    public Door(Image imageFileLocked, Image imageFileOpen, int x, int y){
+        imageLocked = imageFileLocked;
+        imageOpen = imageFileOpen;
         node = new ImageView((isLocked) ? imageLocked : imageOpen);
         pos = new Vector(x, y);
     }

@@ -18,6 +18,8 @@ import javafx.scene.image.Image;
  * </p>
  */
 public class Platform extends CollidableObject {
+    /** If the texture for this platform should be flipped */
+    private boolean isFlipped = false;
     /** JavaFX node for the platform*/
     private Node node;
     /** Image for the platform's texture */
@@ -29,8 +31,9 @@ public class Platform extends CollidableObject {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Platform(String imageFile, int x, int y) {
-        image = new Image(imageFile);
+    public Platform(Image imageFile, boolean flipped, int x, int y) {
+        image = imageFile;
+        isFlipped = flipped;
         node = new ImageView(image);
         pos = new Vector(x, y);
         createHitBox(pos.add(new Vector(10,10)), pos.add(new Vector(120, 50)));

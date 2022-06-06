@@ -33,8 +33,8 @@ public class Sign extends GameObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Sign(String imageFile, int x, int y, String message){
-        image = new Image(imageFile);
+    public Sign(Image imageFile, int x, int y, String message){
+        image = imageFile;
         node = new ImageView(image);
         pos = new Vector(x, y);
         this.message = message;
