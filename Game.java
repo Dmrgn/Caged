@@ -36,7 +36,7 @@ public class Game {
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.04f;
     /** If we are currently debugging */
-    public static final boolean IS_DEBUG_MODE = true;
+    public static final boolean IS_DEBUG_MODE = false;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
@@ -199,7 +199,7 @@ public class Game {
             splashScreen();
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
-        //Credits credits = new Credits(window);
+        // Credits credits = new Credits(window);
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -238,7 +238,7 @@ public class Game {
                 }
                 //Instructions
                 else if (menu.getSelection() == 2) {
-                    instructions.controlScreens();
+                    // instructions.controlScreens();
                 } else if (menu.getSelection() == 3) {
                     System.out.println("Display Credits");
                 }

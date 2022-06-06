@@ -1,6 +1,7 @@
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.transform.Rotate;
 /**
  * <p>
  * This class contains data about the platforms and also will make sure that all of the platforms
@@ -35,6 +36,10 @@ public class Platform extends CollidableObject {
         this.flipped = flipped;
         image = imageFile;
         node = new ImageView(image);
+        if (flipped) {
+            node.setRotationAxis(Rotate.Y_AXIS);
+            node.setRotate(180);
+        }
         pos = new Vector(x, y);
         createHitBox(pos.add(new Vector(0,0)), pos.add(new Vector((float)image.getWidth(), (float)image.getHeight())));
     }
