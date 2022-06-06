@@ -199,7 +199,7 @@ public class Game {
             splashScreen();
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
-        // Credits credits = new Credits(window);
+        Credits credits = new Credits(window);
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -240,7 +240,7 @@ public class Game {
                 else if (menu.getSelection() == 2) {
                     // instructions.controlScreens();
                 } else if (menu.getSelection() == 3) {
-                    System.out.println("Display Credits");
+                    credits.controlScreens();
                 }
             }
         };
