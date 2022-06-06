@@ -22,7 +22,7 @@ import java.io.FileNotFoundException;
  * @since May 19th, 2022
  * <p>
  * File was created by Samuel Huang on May 19th, 2022.
- * Samuel Huang spent 2 hours on this file.
+ * Samuel Huang spent 10 minutes on this file.
  * </p>
  */
 public class Instructions
@@ -41,8 +41,8 @@ public class Instructions
      */
    public Instructions(Stage window) throws FileNotFoundException
    {
-      instructionsP1 = new ImageView( new Image(new FileInputStream("Page Screens/InstructionsScreen1.png")));//add file first
-      instructionsP2 = new ImageView( new Image(new FileInputStream("Page Screens/InstructionsScreen2.png")));//add file first
+      instructionsP1 = new ImageView( new Image(new FileInputStream("Page Screens\\InstructionsScreen1.png")));//add file first
+      instructionsP2 = new ImageView( new Image(new FileInputStream("Page Screens\\InstructionsScreen2.png")));//add file first
       this.window = window;
       currentPage = 1;
    }

@@ -1,7 +1,6 @@
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
-import javafx.scene.transform.Rotate;
 /**
  * <p>
  * This class contains data about the platforms and also will make sure that all of the platforms
@@ -23,8 +22,6 @@ public class Platform extends CollidableObject {
     private Node node;
     /** Image for the platform's texture */
     private Image image;
-    /** If this platform is flipped */
-    private boolean flipped;
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -32,16 +29,11 @@ public class Platform extends CollidableObject {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Platform(Image imageFile, boolean flipped, int x, int y) {
-        this.flipped = flipped;
-        image = imageFile;
+    public Platform(String imageFile, int x, int y) {
+        image = new Image(imageFile);
         node = new ImageView(image);
-        if (flipped) {
-            node.setRotationAxis(Rotate.Y_AXIS);
-            node.setRotate(180);
-        }
         pos = new Vector(x, y);
-        createHitBox(pos.add(new Vector(0,0)), pos.add(new Vector((float)image.getWidth(), (float)image.getHeight())));
+        createHitBox(pos.add(new Vector(10,10)), pos.add(new Vector(120, 50)));
     }
     /**
      * Getter method for the Node 

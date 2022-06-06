@@ -33,8 +33,8 @@ public class Sign extends GameObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Sign(Image imageFile, int x, int y, String message){
-        image = imageFile;
+    public Sign(String imageFile, int x, int y, String message){
+        image = new Image(imageFile);
         node = new ImageView(image);
         pos = new Vector(x, y);
         this.message = message;
@@ -50,6 +50,7 @@ public class Sign extends GameObject implements Interactable {
      * Overridden draw method from GameObject that draws the object at its position
      */
     public void draw() {
+
         node.relocate(pos.x, pos.y);
     }
     /**
@@ -65,6 +66,7 @@ public class Sign extends GameObject implements Interactable {
      * @return Whether or not the player is in range and therefore can interact with the sign
      */
     public boolean inRange(Player p){
+
         return false;
     }
 
