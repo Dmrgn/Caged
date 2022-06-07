@@ -1,2 +1,3 @@
+Background, abyss
 Platform, longFloor, false, 160, 600
 Platform, wallOutCrop, false, 100, 360

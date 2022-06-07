@@ -222,13 +222,6 @@ public class Player extends CollidableObject {
         createHitBox(pos, pos.add(HITBOX_SIZE));
     }
     /**
-     * Draws the player on the screen, implementation of the method
-     * from the GameObject interface
-     */
-    public void draw() {
-        player.relocate(pos.x, pos.y);
-    }
-    /**
      * Gets the node this player is attached to and returns it
      */
     public Node getNode() {

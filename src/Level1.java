@@ -25,7 +25,10 @@ public class Level1 extends Level {
         textures.put("DoorOpen", new Image("assets/player.png"));
         textures.put("DoorClosed", new Image("assets/player.png"));
         textures.put("Sign", new Image("assets/player.png"));
-        for (File platform : (new File("assets").listFiles())) {
+        for (File background : (new File("assets/backgrounds").listFiles())) {
+            textures.put("Background:"+background.getName().split("\\.")[0], new Image(background.getPath()));
+        }
+        for (File platform : (new File("assets/platforms").listFiles())) {
             textures.put("Platform:"+platform.getName().split("\\.")[0], new Image(platform.getPath()));
         }
         levelScreen = 0;
