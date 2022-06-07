@@ -1,0 +1,9 @@
+Platform, 160, 300
+Platform, 200, 540
+Platform, 400, 400
+Platform, 610, 280
+Platform, 400, 600
+Platform, 600, 520
+Platform, 750, 300
+Platform, 900, 200
+Platform, 1150, 310
