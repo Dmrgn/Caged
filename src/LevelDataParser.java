@@ -1,9 +1,10 @@
-import java.io.*;
-import java.util.HashMap;
-import javafx.scene.*;
 import javafx.scene.image.Image;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * <p>
