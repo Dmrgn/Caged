@@ -1,8 +1,5 @@
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
-
-import javafx.scene.image.Image;
 /**
  * <p>
  * This class creates the first level inheriting from the Level abstract class
@@ -22,13 +19,10 @@ import javafx.scene.image.Image;
 public class Level1 extends Level {
     public Level1() {
         textures = new HashMap();
-        textures.put("DoorOpen", new Image("assets/player.png"));
-        textures.put("DoorClosed", new Image("assets/player.png"));
-        textures.put("Sign", new Image("assets/player.png"));
-        File assetsFolder = new File("assets");
-        for (File platform : assetsFolder.listFiles()) {
-            textures.put("Platform:"+platform.getName().split("\\.")[0], new Image(platform.getPath()));
-        }
+        textures.put("DoorOpen", "");
+        textures.put("DoorClosed", "");
+        textures.put("Platform", "assets/platform.png");
+        textures.put("Sign", "");
         levelScreen = 0;
         files = new String[]{"Level1_1.txt", "Level1_2.txt"};
         ldp = new LevelDataParser(textures);

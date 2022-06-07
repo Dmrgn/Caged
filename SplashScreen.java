@@ -86,7 +86,7 @@ public class SplashScreen {
         //Creating a Group object
         Group root = new Group(imageViewLogo, imageViewScreen1Text[0], imageViewScreen1Text[1]);
         //Creating a scene object
-        Scene scene = new Scene(root, 600, 500);
+        Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
         RadialGradient background = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE, new Stop(0, Color.WHITE),
                 new Stop(1, Color.BLACK));
         TranslateTransition translateCompName = new TranslateTransition();
@@ -156,7 +156,7 @@ public class SplashScreen {
         //Creating a Group object
         Group root = new Group(background, title, continueText, imageViewCage);
         //Creating a scene object
-        Scene scene = new Scene(root, 1260, 680);
+        Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
       /*
       Timer timer = new Timer();
             TimerTask screen2 = new TimerTask() {

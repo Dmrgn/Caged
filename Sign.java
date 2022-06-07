@@ -20,8 +20,10 @@ import javafx.scene.image.Image;
 public class Sign extends GameObject implements Interactable {
     /** JavaFX node for the platform*/
     private Node node;
-    /** Image for the sign's locked texture */
-    private Image image;
+    /** Image for the sign's locked texture (Normal)*/
+    private Image imageNormal;
+    /** Image for the sign's locked texture (Use in range of the sign)*/
+    private Image imageUsable;
     /** The Vector for the sign's position*/
     private Vector pos;
     /** The text on the sign */
@@ -29,13 +31,14 @@ public class Sign extends GameObject implements Interactable {
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
-     * @param imageFile The file for the image of the door while locked
+     * @param image
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Sign(Image imageFile, int x, int y, String message){
-        image = imageFile;
-        node = new ImageView(image);
+    public Sign(int x, int y, String message){
+        imageNormal = new Image("assets/SignNormal.png");
+        imageUsable = new Image("assets/SignOpen.png");
+        node = new ImageView(imageNormal);
         pos = new Vector(x, y);
         this.message = message;
     }
@@ -50,14 +53,13 @@ public class Sign extends GameObject implements Interactable {
      * Overridden draw method from GameObject that draws the object at its position
      */
     public void draw() {
-
         node.relocate(pos.x, pos.y);
     }
     /**
      * Overridden update method from GameObject
      */
     public void update() {
-
+        node = new ImageView(imageUsable);
     }
 
     /**
@@ -65,8 +67,13 @@ public class Sign extends GameObject implements Interactable {
      * @param p The player
      * @return Whether or not the player is in range and therefore can interact with the sign
      */
-    public boolean inRange(Player p){
-
+    public boolean inRange(Player p) {
+        if (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 10 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 5)
+        {
+            update();
+            return true;
+        }
+        node = new ImageView(imageNormal);
         return false;
     }
 

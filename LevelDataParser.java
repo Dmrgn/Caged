@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.HashMap;
 import javafx.scene.*;
-import javafx.scene.image.Image;
-
 import java.util.ArrayList;
 
 /**
@@ -26,12 +24,12 @@ import java.util.ArrayList;
  */
 public class LevelDataParser {
    /** Textures will have set keys for specific roles but different file paths so a HashMap is used to get the texture's file path*/
-   private HashMap<String, Image> textures;
+   private HashMap<String, String> textures;
    /**
     * Constructor that initializes the textures HashMap.
     * @param textures The textures HashMap passed in by each level.
     */
-   public LevelDataParser(HashMap<String, Image> textures){
+   public LevelDataParser(HashMap<String, String> textures){
       this.textures = textures;
    }
    /**
@@ -50,7 +48,7 @@ public class LevelDataParser {
       while (line != null) {
          String[] data = line.split(", ");
          if (data[0].equals("Platform")){
-            Platform p = new Platform(textures.get("Platform:"+data[1]), Boolean.parseBoolean(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]));
+            Platform p = new Platform(textures.get("Platform"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
             levelObjects.add(p);
          } else if (data[0].equals("Enemy1")){
 
@@ -60,9 +58,10 @@ public class LevelDataParser {
             Door d = new Door(textures.get("DoorClosed"), textures.get("DoorOpen"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
             levelObjects.add(d);
          } else if (data[0].equals("Sign")) {
-            Sign s = new Sign(textures.get("DoorClosed"), Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3]);
-            levelObjects.add(s);
+            //Door s = new Door(textures.get("DoorClosed"), Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3]);
+            //levelObjects.add(s);
          } else {
+            //don't get mad at us :)
             throw new RuntimeException("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");
          }
          line = fr.readLine();

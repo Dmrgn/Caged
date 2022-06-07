@@ -36,7 +36,7 @@ public class Game {
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.08f;
     /** ArrayList of gameobjects in the current scene */
-    private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
+    private static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     /** Current scene*/
     private Scene scene;
     /** The instance of the player */
@@ -80,7 +80,7 @@ public class Game {
         // add sceneGroup to the window and create the scene
         buildScene(sceneGroup);
         // add a player and platform to the scene
-        player = attachObject(new Player(50, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+        player = attachObject(new Player(50,Main.getHeight()-200), SceneLayer.FOREGROUND);
         Level level1 = new Level1();
         createLevel(level1);
         //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
@@ -93,9 +93,9 @@ public class Game {
      * @return Whether an object is touching a collidable object
      */
     public static boolean touchingCollidable(CollidableObject object1) {
-        for (GameObject object2: gameObjects) {
+        for (GameObject object2 : gameObjects) {
             if (object2 instanceof CollidableObject && object1 != object2) {
-                if (CollidableObject.touching((CollidableObject) object2, object1)) {
+                if (CollidableObject.touching((CollidableObject)object2, object1)) {
                     return true;
                 }
             }
@@ -109,9 +109,9 @@ public class Game {
      * @return Whether the hitbox is touching a collidable
      */
     public static boolean touchingCollidable(GameObject parent, HitBox hitbox) {
-        for (GameObject obj: gameObjects) {
+        for (GameObject obj : gameObjects) {
             if (obj instanceof CollidableObject && obj != parent) {
-                if (HitBox.areBoxesColliding(((CollidableObject) obj).getHitBox(), hitbox)) {
+                if (HitBox.areBoxesColliding(((CollidableObject)obj).getHitBox(), hitbox)) {
                     return true;
                 }
             }
@@ -125,8 +125,8 @@ public class Game {
      */
     public void createLevel(Level level) {
         try {
-            ArrayList < GameObject > objects = level.getObjects();
-            for (GameObject obj: objects) {
+            ArrayList<GameObject> objects = level.getObjects();
+            for (GameObject obj : objects) {
                 attachObject(obj, SceneLayer.FOREGROUND);
             }
             this.level = level;
@@ -141,7 +141,7 @@ public class Game {
      * @param level Current level
      * @param screen Screen number to read the right file
      */
-    public void updateLevelScreen(Level level, int screen) {
+    public void updateLevelScreen(Level level, int screen){
         level.levelScreen = screen;
         foreground.getChildren().clear();
         gameObjects.clear();
@@ -196,7 +196,7 @@ public class Game {
      * the actual gameplay section of the game
      * @throws FileNotFoundException For splashScreen
      */
-    public void playGame() throws FileNotFoundException {
+    public void playGame() throws FileNotFoundException{
         splashScreen();
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
@@ -205,11 +205,11 @@ public class Game {
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                for (GameObject obj: gameObjects) {
+                for (GameObject obj: gameObjects){
                     obj.update();
                     obj.draw();
                 }
-                if (menu.getSelection() == 1) {
+                if(menu.getSelection() == 1) {
                     if (level instanceof Level1) {
                         if (level.levelScreen == 0 && player.pos.x >= 1280) {
                             updateLevelScreen(level, 1);
@@ -233,9 +233,9 @@ public class Game {
                         }
                     }
                 } else if (menu.getSelection() == 2) {
-                    //Instructions
                     instructions.controlScreens();
-                } else if (menu.getSelection() == 3) {
+                }
+                else if(menu.getSelection() == 3) {
                     credits.controlScreens();
                 }
             }

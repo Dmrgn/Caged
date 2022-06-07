@@ -44,8 +44,8 @@ public class Credits {
         //Setting the position of the  image:
         creditScreen.setX(0);
         creditScreen.setY(0);
-        creditScreen.setFitWidth(Main.getWidth());
-        creditScreen.setFitHeight(Main.getHeight());
+        creditScreen.setFitWidth(1266);
+        creditScreen.setFitHeight(720);
         creditScreen.setPreserveRatio(true);
         Group root = new Group(creditScreen);
         //Creating a scene object

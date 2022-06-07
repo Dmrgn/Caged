@@ -1,9 +1,0 @@
-Platform, rottedEdge, true, 0, 540
-Platform, rottedEdge, false, 270, 540
-Platform, platform, false, 400, 400
-Platform, platform, false, 610, 280
-Platform, platform, false, 400, 600
-Platform, platform, false, 600, 520
-Platform, platform, false, 750, 300
-Platform, platform, false, 900, 200
-Platform, platform, false, 1150, 310

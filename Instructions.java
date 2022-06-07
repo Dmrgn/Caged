@@ -62,7 +62,7 @@ public class Instructions
       instructionsP1.setPreserveRatio(true);
       Group root = new Group(instructionsP1);
       //Creating a scene object
-      Scene scene = new Scene(root, 600, 500);
+      Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
       window.setScene(scene);
       Keyboard.init(scene);
    }
@@ -81,7 +81,7 @@ public class Instructions
       instructionsP2.setPreserveRatio(true);
       Group root = new Group(instructionsP2);
       //Creating a scene object
-      Scene scene = new Scene(root, 600, 500);
+      Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
       window.setScene(scene);
       Keyboard.init(scene);
    }
