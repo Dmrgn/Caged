@@ -1,9 +1,2 @@
-Platform, platform, false, 160, 300
-Platform, platform, false, 200, 540
-Platform, platform, false, 400, 400
-Platform, platform, false, 610, 280
-Platform, platform, false, 400, 600
-Platform, platform, false, 600, 520
-Platform, platform, false, 750, 300
-Platform, platform, false, 900, 200
-Platform, platform, false, 1150, 310
+Platform, longFloor, false, 160, 600
+Platform, wallOutCrop, false, 100, 360

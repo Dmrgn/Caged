@@ -30,7 +30,7 @@ import javafx.scene.input.*;
 
 public class MainMenu {
     /** The user's selection from the menu*/
-    private int selection;
+    public int selection;
     private Stage stage;
 
     private boolean[] buttonActive = new boolean[4];

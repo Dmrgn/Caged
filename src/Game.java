@@ -33,6 +33,8 @@ import java.io.File;
  * </p>
  */
 public class Game {
+    /** If we are currently playing in debug mode */
+    public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.08f;
     /** ArrayList of gameobjects in the current scene */
@@ -197,7 +199,8 @@ public class Game {
      * @throws FileNotFoundException For splashScreen
      */
     public void playGame() throws FileNotFoundException{
-        splashScreen();
+        if (!IS_DEBUG_MODE)
+            splashScreen();
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
         Credits credits = new Credits(window);
@@ -234,8 +237,7 @@ public class Game {
                     }
                 } else if (menu.getSelection() == 2) {
                     instructions.controlScreens();
-                }
-                else if(menu.getSelection() == 3) {
+                } else if(menu.getSelection() == 3) {
                     credits.controlScreens();
                 }
             }
@@ -247,7 +249,7 @@ public class Game {
             }
         };
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(18000), ev -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(IS_DEBUG_MODE ? 10 : 18000), ev -> {
             menu.display();
             menuTimer.start();
         }));
