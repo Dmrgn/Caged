@@ -83,7 +83,7 @@ public class Game {
         // add sceneGroup to the window and create the scene
         buildScene(sceneGroup);
         // add a player and platform to the scene
-        player = attachObject(new Player(50,Main.getHeight()-200), SceneLayer.FOREGROUND);
+        player = attachObject(new Player(0,0), SceneLayer.FOREGROUND);
         Level level1 = new Level1();
         createLevel(level1);
         //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
@@ -229,6 +229,9 @@ public class Game {
             @Override
             public void handle(long l) {
                 for (GameObject obj: gameObjects){
+                    obj.clearTransformations();
+                    obj.setScale(1.5f, new Vector(0,0));
+                    obj.setTranslate(player.pos.mul(-0.5f));
                     obj.update();
                     obj.draw();
                 }

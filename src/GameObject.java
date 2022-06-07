@@ -1,4 +1,7 @@
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Translate;
 
 /**
  * <p>
@@ -18,10 +21,8 @@ import javafx.scene.Node;
  */
 public abstract class GameObject {
     public Vector pos;
-    /**
-     * Draw method that draws the object
-     */
-    public abstract void draw();
+    private float scale = 1.0f;
+    private Vector translation = new Vector(0,0);
     /**
      * Update method that updates where that object is drawn
      */
@@ -30,4 +31,42 @@ public abstract class GameObject {
      * Gets the Node representing the object
      */
     public abstract Node getNode();
+    /**
+     * Draw method that draws the object
+     */
+    public void draw() {
+        getNode().relocate((pos.x)*scale, (pos.y)*scale);
+    }
+    /**
+     * Clears all active transformations
+     */
+    public void clearTransformations() {
+        getNode().getTransforms().clear();
+    }
+    /**
+     * Scales this object around the specified origin
+     * @param scale The decimal number to set the scale to
+     * @param origin The origin for the scale transformation
+     */
+    public void setScale(float amount, Vector origin) {
+        Scale trans = new Scale();
+        scale = amount;
+        trans.setX(scale);
+        trans.setY(scale);
+        trans.setPivotX(origin.x);
+        trans.setPivotY(origin.y);
+        getNode().getTransforms().add(trans);
+    }
+    /**
+     * Translates this object around the specified origin
+     * @param Translate The decimal number to set the Translate to
+     * @param origin The origin for the Translate transformation
+     */
+    public void setTranslate(Vector amount) {
+        Translate trans = new Translate();
+        translation = amount;
+        trans.setX(translation.x);
+        trans.setY(translation.y);
+        getNode().getTransforms().add(trans);
+    }
 }

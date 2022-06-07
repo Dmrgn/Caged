@@ -50,12 +50,6 @@ public class Door extends GameObject implements Interactable {
         return node;
     }
     /**
-     * Overridden draw method from GameObject that draws the object at its position
-     */
-    public void draw() {
-        node.relocate(pos.x, pos.y);
-    }
-    /**
      * Overridden update method from GameObject
      */
     public void update() {

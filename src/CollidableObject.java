@@ -46,17 +46,4 @@ public abstract class CollidableObject extends GameObject {
     public HitBox getHitBox() {
         return hitbox;
     }
-    /**
-     * Draw method that draws the object
-     */
-    public abstract void draw();
-    /**
-     * Update method that updates where that object is drawn
-     */
-    public abstract void update();
-    /**
-     * Gets the Node representing the object
-     */
-    public abstract Node getNode();
-
 }

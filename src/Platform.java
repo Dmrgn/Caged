@@ -51,10 +51,4 @@ public class Platform extends CollidableObject {
     public void update() {
 
     }
-    /**
-     * Implementation of the draw method from GameObject that draws the object at its position
-     */
-    public void draw() {
-        node.relocate(pos.x, pos.y);
-    }
 }
