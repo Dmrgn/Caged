@@ -50,7 +50,7 @@ public class LevelDataParser {
       while (line != null) {
          String[] data = line.split(", ");
          if (data[0].equals("Platform")){
-            Platform p = new Platform(textures.get("Platform"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+            Platform p = new Platform(textures.get("Platform:"+data[1]), Boolean.parseBoolean(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]));
             levelObjects.add(p);
          } else if (data[0].equals("Enemy1")){
 
