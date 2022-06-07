@@ -173,7 +173,6 @@ public class MainMenu {
         newGameButton.setOnMousePressed(
                 e ->{
                     try {
-                        System.out.println("cool");
                         selection = 1;
                         timer.stop();
                         mainTimer.start();
