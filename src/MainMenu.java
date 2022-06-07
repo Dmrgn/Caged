@@ -34,6 +34,16 @@ public class MainMenu {
     private Stage stage;
 
     private boolean[] buttonActive = new boolean[4];
+
+    private Rectangle newGameButton;
+
+    private Rectangle instructionsButton;
+
+    private Rectangle creditsButton;
+
+    private Rectangle quitButton;
+
+    private Scene scene;
     /**
      * MainMenu constructor, initializes selection to 0 as a default
      */
@@ -50,30 +60,30 @@ public class MainMenu {
                 new Stop(1, Color.BLACK));
         //menu options
         //original with gradient
-        Rectangle newGameButtonO = new Rectangle(325, 225, 650, 60);
-        newGameButtonO.setFill(backgroundGradient);
-        newGameButtonO.setStroke(Color.WHITE);
-        Rectangle instructionsButtonO = new Rectangle(325, 335, 650, 60);
-        instructionsButtonO.setFill(backgroundGradient);
-        instructionsButtonO.setStroke(Color.WHITE);
-        Rectangle creditsButtonO = new Rectangle(325, 445, 650, 60);
-        creditsButtonO.setFill(backgroundGradient);
-        creditsButtonO.setStroke(Color.WHITE);
-        Rectangle quitButtonO = new Rectangle(325, 555, 650, 60);
-        quitButtonO.setFill(backgroundGradient);
-        quitButtonO.setStroke(Color.WHITE);
+        Rectangle newGameButton0 = new Rectangle(325, 225, 650, 60);
+        newGameButton0.setFill(backgroundGradient);
+        newGameButton0.setStroke(Color.WHITE);
+        Rectangle instructionsButton0 = new Rectangle(325, 335, 650, 60);
+        instructionsButton0.setFill(backgroundGradient);
+        instructionsButton0.setStroke(Color.WHITE);
+        Rectangle creditsButton0 = new Rectangle(325, 445, 650, 60);
+        creditsButton0.setFill(backgroundGradient);
+        creditsButton0.setStroke(Color.WHITE);
+        Rectangle quitButton0 = new Rectangle(325, 555, 650, 60);
+        quitButton0.setFill(backgroundGradient);
+        quitButton0.setStroke(Color.WHITE);
         //layered
 
-        Rectangle newGameButton = new Rectangle(325, 225, 650, 60);
+        newGameButton = new Rectangle(325, 225, 650, 60);
         newGameButton.setFill(Color.BLACK);
         newGameButton.setStroke(Color.WHITE);
-        Rectangle instructionsButton = new Rectangle(325, 335, 650, 60);
+        instructionsButton = new Rectangle(325, 335, 650, 60);
         instructionsButton.setFill(Color.BLACK);
         instructionsButton.setStroke(Color.WHITE);
-        Rectangle creditsButton = new Rectangle(325, 445, 650, 60);
+        creditsButton = new Rectangle(325, 445, 650, 60);
         creditsButton.setFill(Color.BLACK);
         creditsButton.setStroke(Color.WHITE);
-        Rectangle quitButton = new Rectangle(325, 555, 650, 60);
+        quitButton = new Rectangle(325, 555, 650, 60);
         quitButton.setFill(Color.BLACK);
         quitButton.setStroke(Color.WHITE);
         //Text
@@ -89,12 +99,14 @@ public class MainMenu {
         newGameText.setFill(Color.WHITE);
         newGameText.setX(565);
         newGameText.setY(265);
+        newGameText.setMouseTransparent(true);
         //Option 2
         Text instructionsText = new Text("2. Instructions");
         instructionsText.setFont(Font.font ("Times New Roman", 28));
         instructionsText.setFill(Color.WHITE);
         instructionsText.setX(560);
         instructionsText.setY(375);
+        instructionsText.setMouseTransparent(true);
         //Option 3
         //Option 2
         Text creditsText = new Text("3. Credits");
@@ -102,18 +114,20 @@ public class MainMenu {
         creditsText.setFill(Color.WHITE);
         creditsText.setX(585);
         creditsText.setY(485);
+        creditsText.setMouseTransparent(true);
         //Option 4
         Text quitText = new Text("4. Quit");
         quitText.setFont(Font.font ("Times New Roman", 28));
         quitText.setFill(Color.WHITE);
         quitText.setX(600);
         quitText.setY(595);
+        quitText.setMouseTransparent(true);
         //background
         Rectangle background = new Rectangle(0, 0, 1270, 720);
         background.setFill(Color.BLACK);
-        Group root = new Group(background, title, newGameButtonO, instructionsButtonO, creditsButtonO, quitButtonO, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
-        Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
-        stage.setScene(scene);
+        Group root = new Group(background, title, newGameButton0, instructionsButton0, creditsButton0, quitButton0, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
+        scene = new Scene(root, Main.getWidth(), Main.getHeight());
+        //stage.setScene(scene);
         scene.setFill(Color.BLACK);
         Keyboard.init(scene);
 
@@ -125,9 +139,7 @@ public class MainMenu {
         newGameButtonFade.setFromValue(0);
         newGameButtonFade.setToValue(1);
         //for hovering animation stopping
-        if(!buttonActive[0]) {
-            newGameButtonFade.play();
-        }
+        newGameButtonFade.play();
         //button 2
         FadeTransition instructionsButtonFade = new FadeTransition(Duration.millis(2000), instructionsButton);
         instructionsButtonFade.setCycleCount(FadeTransition.INDEFINITE);
@@ -135,9 +147,7 @@ public class MainMenu {
         instructionsButtonFade.setFromValue(0);
         instructionsButtonFade.setToValue(1);
         //for hovering animation stopping
-        if(!buttonActive[1]) {
-            instructionsButtonFade.play();
-        }
+        instructionsButtonFade.play();
         //button 3
         FadeTransition creditsButtonFade = new FadeTransition(Duration.millis(2000), creditsButton);
         creditsButtonFade.setCycleCount(FadeTransition.INDEFINITE);
@@ -145,9 +155,8 @@ public class MainMenu {
         creditsButtonFade.setFromValue(0);
         creditsButtonFade.setToValue(1);
         //for hovering animation stopping
-        if(!buttonActive[2]) {
-            creditsButtonFade.play();
-        }
+        creditsButtonFade.play();
+
         //button 4
         FadeTransition quitButtonFade = new FadeTransition(Duration.millis(2000), quitButton);
         quitButtonFade.setCycleCount(FadeTransition.INDEFINITE);
@@ -155,78 +164,58 @@ public class MainMenu {
         quitButtonFade.setFromValue(0);
         quitButtonFade.setToValue(1);
         //for hovering animation stopping
-        if(!buttonActive[3]) {
-            quitButtonFade.play();
-        }
+        quitButtonFade.play();
+
     }
-    public void checkSelections(AnimationTimer timer, AnimationTimer after)
+    public void checkMenu(AnimationTimer timer, AnimationTimer mainTimer)
     {
-        Button button1 = new Button(new Vector(325, 225), new Vector(975, 285));//325, 225, 650, 60
-        Button button2 = new Button(new Vector(325, 335), new Vector(975, 395));//325, 335, 650, 60
-        Button button3 = new Button(new Vector(325, 445), new Vector(975, 505));//325, 445, 650, 60
-        Button button4 = new Button(new Vector(325, 555), new Vector(975, 615));//325, 555, 650, 60
-        //check for button 1
-        if(button1.hovering())
-        {
-            //add animation to button being hovered on
-            System.out.println("Hovering on 1");
-            Arrays.fill(buttonActive, false);
-            buttonActive[0] = true;
-        }
-        if(button1.pressed())
-        {
-            selection = 1;
-            System.out.println("1 ");
-            timer.stop();
-            after.start();
-        }
-        //check for button 2
-        if(button2.hovering())
-        {
-            //add animation to button being hovered on
-            System.out.println("Hovering on 2");
-            Arrays.fill(buttonActive, false);
-            buttonActive[1] = true;
-        }
-        if(button2.pressed())
-        {
-            selection = 2;
-            System.out.println("2");
-            timer.stop();
-            after.start();
-        }
-        //check for button 3
-        if(button3.hovering())
-        {
-            //add animation to button being hovered on
-            System.out.println("Hovering on 3");
-            Arrays.fill(buttonActive, false);
-            buttonActive[2] = true;
+        /******** Buttons on the main menu ********/
+        newGameButton.setOnMousePressed(
+                e ->{
+                    try {
+                        System.out.println("cool");
+                        selection = 1;
+                        timer.stop();
+                        mainTimer.start();
 
-        }
-        if(button3.pressed())
-        {
-            selection = 3;
-            System.out.println("3");
-            timer.stop();
-            after.start();
-        }
-        //check for button 4
-        if(button4.hovering())
-        {
-            //add animation to button being hovered on
-            System.out.println("Hovering on 4");
-            Arrays.fill(buttonActive, false);
-            buttonActive[3] = true;
-        }
-        if(button4.pressed())
-        {
-            selection = 4;
-            stage.close();
-            System.out.println("4");
-        }
-
-
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+        );
+        instructionsButton.setOnMousePressed(
+                e ->{
+                    try {
+                        selection = 2;
+                        timer.stop();
+                        mainTimer.start();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+        );
+        creditsButton.setOnMousePressed(
+                e ->{
+                    try {
+                        selection = 3;
+                        timer.stop();
+                        mainTimer.start();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+        );
+        quitButton.setOnMousePressed(
+                e ->{
+                    try {
+                        timer.stop();
+                        mainTimer.start();
+                        stage.close();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+        );
     }
     /**
      * Getter method for the selection instance variable
@@ -235,5 +224,18 @@ public class MainMenu {
     public int getSelection() {
         //add mouse clicking functions here
         return selection;
+    }
+
+    public void setSelection(int selection)
+    {
+        this.selection = selection;
+    }
+    /**
+     * Getter method for the scene instance variable
+     * @return The game scene
+     */
+    public Scene getScene()
+    {
+        return scene;
     }
 }

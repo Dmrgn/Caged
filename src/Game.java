@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Scale;
@@ -237,7 +238,7 @@ public class Game {
      * the actual gameplay section of the game
      * @throws FileNotFoundException For splashScreen
      */
-    public void playGame() throws FileNotFoundException {
+    public void mainMenu() throws FileNotFoundException {
         Rectangle left = new Rectangle();
         left.setFill(Color.BLACK);
         Rectangle top = new Rectangle();
@@ -251,16 +252,15 @@ public class Game {
         if (!IS_DEBUG_MODE) {
             splashScreen();
         }
+
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
         Credits credits = new Credits(window);
-
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 Vector diff = cameraPos.mul(1);
                 cameraPos = player.pos.mul(-1f).add(Main.getDims().div(2)).add(new Vector(0, 50));
-                System.out.println(cameraPos.sub(diff));
                 cameraPos = Vector.lerp(diff, cameraPos, 0.1f);
                 int padding = 800;
                 for (GameObject obj: gameObjects) {
@@ -317,25 +317,60 @@ public class Game {
                     obj.update();
                     obj.draw();
                 }
-                if (menu.getSelection() == 1) {
+                if(menu.getSelection() == -1)
+                {
+                    window.setScene(menu.getScene());
+                    menu.setSelection(0);
+                }
+                else if(menu.getSelection() == 0) {
+                }
+                else if(menu.getSelection() == 1) {
                     level1();
                 } else if (menu.getSelection() == 2) {
                     instructions.controlScreens();
-                } else if (menu.getSelection() == 3) {
-                    credits.controlScreens();
+                    window.setScene(instructions.getScene());
+                    if(Keyboard.isKeyDown(KeyCode.H))
+                    {
+                        System.out.println("Works");
+                        menu.setSelection(-1);
+                    }
+                } else if(menu.getSelection() == 3) {
+                    credits.display();
+                    window.setScene(credits.getScene());
+                    if(Keyboard.isKeyDown(KeyCode.H))
+                    {
+                        System.out.println("Works");
+                        menu.setSelection(-1);
+                    }
                 }
             }
         };
         AnimationTimer menuTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                menu.checkSelections(this, at);
+                menu.checkMenu(this, at);
             }
         };
-
+        menu.display();
+        window.setScene(menu.getScene());
+        menuTimer.start();
+        System.out.println("hi");
+    }
+    /**
+     * Method that is active as long as the player is currently playing
+     * the actual gameplay section of the game
+     * @throws FileNotFoundException For splashScreen
+     */
+    public void playGame() throws FileNotFoundException{
+        if (!IS_DEBUG_MODE) {
+            splashScreen();
+        }
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(IS_DEBUG_MODE ? 10 : 18000), ev -> {
-            menu.display();
-            menuTimer.start();
+            try {
+                mainMenu();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }));
         timeline.play();
         window.show();
