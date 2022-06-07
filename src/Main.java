@@ -1,13 +1,5 @@
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.scene.layout.StackPane;
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
-import javafx.scene.*;
-import javafx.scene.image.*;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 
 import java.io.FileNotFoundException;
 
@@ -36,9 +28,9 @@ public class Main extends Application {
     /** Whether or not the player has exited the main game loop*/
     public static boolean exited = false;
     /** The width of the program window */
-    private static final int width = 1280;
+    private static int width = 1280;
     /** The height of the program window */
-    private static final int height = 720;
+    private static int height = 720;
     /** The dimensions of the program window stored as a vector */
     private static final Vector dims = new Vector(width, height);
     /** Boolean set to false when program should exit */
@@ -60,6 +52,20 @@ public class Main extends Application {
      */
     public static int getHeight() {
         return height;
+    }
+    /**
+     * returns the width of the current window
+     * @return Width of the current window in pixels
+     */
+    public static void setWidth(int newWidth) {
+        width = newWidth;
+    }
+    /**
+     * returns the height of the current window
+     * @return Height of the current window in pixels
+     */
+    public static void setHeight(int newHeight) {
+        height = newHeight;
     }
     /**
      * returns the dimensions of the current window as a Vector
