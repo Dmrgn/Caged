@@ -7,7 +7,7 @@ public class Background extends GameObject {
 
     public Background(Image image) {
         node = new ImageView(image);
-        pos = new Vector((float)-image.getWidth()/10, (float)-image.getHeight()/5);
+        pos = new Vector((float)-image.getWidth()/10, 0);
     }
 
     @Override
@@ -15,12 +15,11 @@ public class Background extends GameObject {
         
     }
 
-    @Override
-    public void draw() {
-        System.out.println("here");
-        clearTransformations();
-        node.relocate(pos.x, pos.y);
-    }
+    // @Override
+    // public void draw() {
+    //     clearTransformations();
+    //     node.relocate(pos.x, pos.y);
+    // }
 
     @Override
     public Node getNode() {

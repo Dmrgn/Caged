@@ -35,7 +35,7 @@ public class Player extends CollidableObject {
     /** The player's acceleration speed which is a constant*/
     private static final float ACCELERATION = 0.10f;
     /** The player's jump height which is a constant*/
-    private static final float JUMP_HEIGHT = 5.0f;
+    private static final float JUMP_HEIGHT = 4.0f;
     /** The velocity stores as a Vector */
     public Vector vel;
     /** The player's Sprite as an Image */
@@ -214,8 +214,8 @@ public class Player extends CollidableObject {
         createHitBox(pos, pos.add(HITBOX_SIZE));
 
         // reduce velocity for next frame
-        Vector diff = Vector.sub(vel, vel.mul((hasTouchedGround ? 0.7f : 0.99f)));
-        diff = diff.max(new Vector(ACCELERATION * (hasTouchedGround ? 0.7f : 0.99f), 0)).min(new Vector(-ACCELERATION * (hasTouchedGround ? 0.7f : 0.99f), 0));
+        Vector diff = Vector.sub(vel, vel.mul((hasTouchedGround ? 0.2f : 0.2f)));
+        diff = diff.max(new Vector(ACCELERATION * (hasTouchedGround ? 0.2f : 0.2f), 0)).min(new Vector(-ACCELERATION * (hasTouchedGround ? 0.2f : 0.2f), 0));
         vel = vel.sub(diff);
 
         // create hitbox for next frame

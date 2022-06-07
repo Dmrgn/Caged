@@ -7,7 +7,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.media.*;
@@ -33,12 +37,14 @@ import java.io.File;
  * </p>
  */
 public class Game {
+    /** Camera zoom factor */
+    private static final float ZOOM = 1.4f;
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.08f;
+    public static final float GRAVITY = 0.055f;
     /** ArrayList of gameobjects in the current scene */
-    private static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+    private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
     private Scene scene;
     /** The instance of the player */
@@ -53,6 +59,8 @@ public class Game {
     private Group background = new Group();
     /** Game's current level*/
     private Level level;
+    /** The position of the camera */
+    public static Vector cameraPos = new Vector(0,0);
     /** Media player for music*/
     private MediaPlayer mediaPlayer;
     /** Programatic representation of scene layers */
@@ -72,17 +80,23 @@ public class Game {
         window.setTitle("Caged Inside the Mind");
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
-        window.setResizable(false);
+        window.setResizable(true);
         // render the background, then midground, then foreground first
-        //background.setViewOrder(0);
-        //midground.setViewOrder(1);
-        //foreground.setViewOrder(2);
+        background.setViewOrder(0);
+        midground.setViewOrder(1);
+        foreground.setViewOrder(2);
+        w.widthProperty().addListener((obs, oldVal, newVal) -> {
+            Main.setWidth(newVal.intValue());
+        });
+        w.heightProperty().addListener((obs, oldVal, newVal) -> {
+            Main.setWidth(newVal.intValue());
+        });
         // add layers to sceneGroup
         sceneGroup.getChildren().addAll(foreground, midground, background);
         // add sceneGroup to the window and create the scene
         buildScene(sceneGroup);
         // add a player and platform to the scene
-        player = attachObject(new Player(0,0), SceneLayer.FOREGROUND);
+        player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);
         Level level1 = new Level1();
         createLevel(level1);
         //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
@@ -95,9 +109,9 @@ public class Game {
      * @return Whether an object is touching a collidable object
      */
     public static boolean touchingCollidable(CollidableObject object1) {
-        for (GameObject object2 : gameObjects) {
+        for (GameObject object2: gameObjects) {
             if (object2 instanceof CollidableObject && object1 != object2) {
-                if (CollidableObject.touching((CollidableObject)object2, object1)) {
+                if (CollidableObject.touching((CollidableObject) object2, object1)) {
                     return true;
                 }
             }
@@ -111,9 +125,9 @@ public class Game {
      * @return Whether the hitbox is touching a collidable
      */
     public static boolean touchingCollidable(GameObject parent, HitBox hitbox) {
-        for (GameObject obj : gameObjects) {
+        for (GameObject obj: gameObjects) {
             if (obj instanceof CollidableObject && obj != parent) {
-                if (HitBox.areBoxesColliding(((CollidableObject)obj).getHitBox(), hitbox)) {
+                if (HitBox.areBoxesColliding(((CollidableObject) obj).getHitBox(), hitbox)) {
                     return true;
                 }
             }
@@ -127,8 +141,8 @@ public class Game {
      */
     public void createLevel(Level level) {
         try {
-            ArrayList<GameObject> objects = level.getObjects();
-            for (GameObject obj : objects) {
+            ArrayList < GameObject > objects = level.getObjects();
+            for (GameObject obj: objects) {
                 attachObject(obj, SceneLayer.FOREGROUND);
             }
             this.level = level;
@@ -143,7 +157,7 @@ public class Game {
      * @param level Current level
      * @param screen Screen number to read the right file
      */
-    public void updateLevelScreen(Level level, int screen){
+    public void updateLevelScreen(Level level, int screen) {
         level.levelScreen = screen;
         foreground.getChildren().clear();
         gameObjects.clear();
@@ -172,15 +186,14 @@ public class Game {
         splash.runSplashScreen();
     }
 
-    public void level1()
-    {
+    public void level1() {
         if (level instanceof Level1) {
-            if (level.levelScreen == 0 && player.pos.x >= 1280) {
+            if (level.levelScreen == 0 && player.pos.x >= 4000) {
                 updateLevelScreen(level, 1);
                 createLevel(level);
                 player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
                 window.setScene(scene);
-            } else if (level.levelScreen == 0 && player.pos.y >= 720) {
+            } else if (level.levelScreen == 0 && player.pos.y >= 1500) {
                 createLevel(level);
                 player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
                 window.setScene(scene);
@@ -190,7 +203,7 @@ public class Game {
                 createLevel(level);
                 player = attachObject(new Player(1180, 250), SceneLayer.FOREGROUND);
                 window.setScene(scene);
-            } else if (level.levelScreen == 1 && player.pos.y >= 720) {
+            } else if (level.levelScreen == 1 && player.pos.y >= 1500) {
                 createLevel(level);
                 player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
                 window.setScene(scene);
@@ -224,7 +237,17 @@ public class Game {
      * the actual gameplay section of the game
      * @throws FileNotFoundException For splashScreen
      */
-    public void playGame() throws FileNotFoundException{
+    public void playGame() throws FileNotFoundException {
+        Rectangle left = new Rectangle();
+        left.setFill(Color.BLACK);
+        Rectangle top = new Rectangle();
+        top.setFill(Color.BLACK);
+        Rectangle right = new Rectangle();
+        right.setFill(Color.BLACK);
+        Rectangle bottom = new Rectangle();
+        bottom.setFill(Color.BLACK);
+        sceneGroup.getChildren().addAll(left, top, right, bottom);
+
         if (!IS_DEBUG_MODE) {
             splashScreen();
         }
@@ -235,18 +258,70 @@ public class Game {
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                for (GameObject obj: gameObjects){
+                Vector diff = cameraPos.mul(1);
+                cameraPos = player.pos.mul(-1f).add(Main.getDims().div(2)).add(new Vector(0, 50));
+                System.out.println(cameraPos.sub(diff));
+                cameraPos = Vector.lerp(diff, cameraPos, 0.1f);
+                int padding = 800;
+                for (GameObject obj: gameObjects) {
+                    if (obj instanceof Mold) {
+                        ImageView imageView = (ImageView)obj.getNode();
+                        double w = imageView.getImage().getWidth(), h = imageView.getImage().getHeight();
+                        
+                        // left curtain
+                        left.setX(obj.pos.x-padding);
+                        left.setY(obj.pos.y-padding);
+                        left.setWidth(padding);
+                        left.setHeight(h+padding*2);
+                        // top curtain
+                        top.setX(obj.pos.x-padding);
+                        top.setY(obj.pos.y-padding);
+                        top.setWidth(w+padding*2);
+                        top.setHeight(padding);
+                        // right curtain
+                        right.setX(obj.pos.x+w);
+                        right.setY(obj.pos.y-padding);
+                        right.setWidth(padding);
+                        right.setHeight(h+padding*2);
+                        // bottom curtain
+                        bottom.setX(obj.pos.x-padding);
+                        bottom.setY(obj.pos.y+h);
+                        bottom.setWidth(w+padding*2);
+                        bottom.setHeight(padding);
+
+                        left.getTransforms().clear();
+                        top.getTransforms().clear();
+                        right.getTransforms().clear();
+                        bottom.getTransforms().clear();
+
+                        Scale sca = new Scale();
+                        sca.setX(ZOOM);
+                        sca.setY(ZOOM);
+                        sca.setPivotX(Main.getDims().div(2).x);
+                        sca.setPivotY(Main.getDims().div(2).y);
+                        Translate trans = new Translate();
+                        trans.setX(cameraPos.x);
+                        trans.setY(cameraPos.y);
+                        left.getTransforms().addAll(sca, trans);
+                        top.getTransforms().addAll(sca, trans);
+                        right.getTransforms().addAll(sca, trans);
+                        bottom.getTransforms().addAll(sca, trans);
+                    }
                     obj.clearTransformations();
-                    obj.setScale(1.5f, new Vector(0,0));
-                    obj.setTranslate(player.pos.mul(-0.5f));
+                    obj.setScale(ZOOM, Main.getDims().div(2));
+                    obj.setTranslate(cameraPos);
+                    if (obj instanceof Background) {
+                        obj.clearTransformations();
+                        obj.setTranslate(cameraPos);
+                    }
                     obj.update();
                     obj.draw();
                 }
-                if(menu.getSelection() == 1) {
+                if (menu.getSelection() == 1) {
                     level1();
                 } else if (menu.getSelection() == 2) {
                     instructions.controlScreens();
-                } else if(menu.getSelection() == 3) {
+                } else if (menu.getSelection() == 3) {
                     credits.controlScreens();
                 }
             }
@@ -264,6 +339,14 @@ public class Game {
         }));
         timeline.play();
         window.show();
+    }
+    /** Converts the Vector in screen coordinates to world coordinates */
+    public static Vector toWorld(Vector v) {
+        return v.sub(cameraPos);
+    }
+    /** Converts the Vector in world coordinates to screen coordinates */
+    public static Vector toScreen(Vector v) {
+        return v.add(cameraPos);
     }
     /**
      * Returns the scene
