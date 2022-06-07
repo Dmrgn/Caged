@@ -171,6 +171,32 @@ public class Game {
         mediaPlayer.play();*/
         splash.runSplashScreen();
     }
+
+    public void level1()
+    {
+        if (level instanceof Level1) {
+            if (level.levelScreen == 0 && player.pos.x >= 1280) {
+                updateLevelScreen(level, 1);
+                createLevel(level);
+                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                window.setScene(scene);
+            } else if (level.levelScreen == 0 && player.pos.y >= 720) {
+                createLevel(level);
+                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                window.setScene(scene);
+            }
+            if (level.levelScreen == 1 && player.pos.x <= 0) {
+                updateLevelScreen(level, 0);
+                createLevel(level);
+                player = attachObject(new Player(1180, 250), SceneLayer.FOREGROUND);
+                window.setScene(scene);
+            } else if (level.levelScreen == 1 && player.pos.y >= 720) {
+                createLevel(level);
+                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                window.setScene(scene);
+            }
+        }
+    }
     /**
      * Adds the specified object to the game's list of objects
      * and attaches it to the specified {@link SceneLayer}
@@ -199,8 +225,9 @@ public class Game {
      * @throws FileNotFoundException For splashScreen
      */
     public void playGame() throws FileNotFoundException{
-        if (!IS_DEBUG_MODE)
+        if (!IS_DEBUG_MODE) {
             splashScreen();
+        }
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
         Credits credits = new Credits(window);
@@ -213,28 +240,7 @@ public class Game {
                     obj.draw();
                 }
                 if(menu.getSelection() == 1) {
-                    if (level instanceof Level1) {
-                        if (level.levelScreen == 0 && player.pos.x >= 1280) {
-                            updateLevelScreen(level, 1);
-                            createLevel(level);
-                            player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
-                            window.setScene(scene);
-                        } else if (level.levelScreen == 0 && player.pos.y >= 720) {
-                            createLevel(level);
-                            player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
-                            window.setScene(scene);
-                        }
-                        if (level.levelScreen == 1 && player.pos.x <= 0) {
-                            updateLevelScreen(level, 0);
-                            createLevel(level);
-                            player = attachObject(new Player(1180, 250), SceneLayer.FOREGROUND);
-                            window.setScene(scene);
-                        } else if (level.levelScreen == 1 && player.pos.y >= 720) {
-                            createLevel(level);
-                            player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
-                            window.setScene(scene);
-                        }
-                    }
+                    level1();
                 } else if (menu.getSelection() == 2) {
                     instructions.controlScreens();
                 } else if(menu.getSelection() == 3) {

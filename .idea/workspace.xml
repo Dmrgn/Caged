@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Button.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Button.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Credits.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Credits.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Door.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Instructions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Instructions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Level1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Level1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/MainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Platform.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LevelDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LevelDataParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User Manual.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/User Manual.txt" afterDir="false" />
-    </list>
+    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +30,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
