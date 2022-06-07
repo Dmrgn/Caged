@@ -55,17 +55,14 @@ public class Credits {
         //window.setScene(scene);
         Keyboard.init(scene);
     }
-    /**
-     * This method sends the user back to the menu screen if the key h is pressed
-     *
-     */
-    public void controlScreens() {
-        //check the keyboard
-        display();
-        if(Keyboard.isKeyDown(KeyCode.H))
-        {
-        }
-    }
+//    /**
+//     * This method sends the user back to the menu screen if the key h is pressed
+//     *
+//     */
+//    public void controlScreens() {
+//        //check the keyboard
+//        display();
+//    }
     /**
      * Getter method for the scene instance variable
      * @return The game scene

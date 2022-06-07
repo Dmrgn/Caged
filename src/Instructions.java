@@ -101,10 +101,10 @@ public class Instructions
       {
          currentPage = 1;
       }
-      else if(Keyboard.isKeyDown(KeyCode.H))
-      {
-         System.out.println("Return to menu");
-      }
+//      else if(Keyboard.isKeyDown(KeyCode.H))
+//      {
+//         System.out.println("Return to menu");
+//      }
       //displays screens
       if(currentPage == 1)
       {

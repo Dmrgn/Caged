@@ -253,7 +253,7 @@ public class Game {
                         menu.setSelection(-1);
                     }
                 } else if(menu.getSelection() == 3) {
-                    credits.controlScreens();
+                    credits.display();
                     window.setScene(credits.getScene());
                     if(Keyboard.isKeyDown(KeyCode.H))
                     {
