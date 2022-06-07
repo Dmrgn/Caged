@@ -27,7 +27,7 @@ public class Level1 extends Level {
         textures.put("Sign", new Image("assets/player.png"));
         System.out.println((new File("assets").listFiles()));
         for (File platform : (new File("assets").listFiles())) {
-            textures.put("Platform:"+platform.getName(), new Image(platform.getPath()));
+            textures.put("Platform:"+platform.getName().split("\\.")[0], new Image(platform.getPath()));
         }
         levelScreen = 0;
         files = new String[]{"Level1_1.txt", "Level1_2.txt"};

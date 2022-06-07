@@ -1,9 +1,9 @@
-Platform, 160, 400
-Platform, 200, 640
-Platform, 400, 500
-Platform, 610, 380
-Platform, 400, 700
-Platform, 600, 620
-Platform, 750, 400
-Platform, 900, 300
-Platform, 1150, 410
+Platform, platform, false, 160, 400
+Platform, platform, false, 200, 640
+Platform, platform, false, 400, 500
+Platform, platform, false, 610, 380
+Platform, platform, false, 400, 700
+Platform, platform, false, 600, 620
+Platform, platform, false, 750, 400
+Platform, platform, false, 900, 300
+Platform, platform, false, 1150, 410
