@@ -7,7 +7,7 @@ public class Background extends GameObject {
 
     public Background(Image image) {
         node = new ImageView(image);
-        pos = new Vector((float)-image.getWidth()/10, (float)-image.getHeight()/10);
+        pos = new Vector((float)-image.getWidth()/10, (float)-image.getHeight()/5);
     }
 
     @Override
