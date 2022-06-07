@@ -219,19 +219,11 @@ public class Game {
         }
         return gameObject;
     }
-    /**
-     * Method that is active as long as the player is currently playing
-     * the actual gameplay section of the game
-     * @throws FileNotFoundException For splashScreen
-     */
-    public void playGame() throws FileNotFoundException{
-        if (!IS_DEBUG_MODE) {
-            splashScreen();
-        }
+
+    public void mainMenu() throws FileNotFoundException {
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
         Credits credits = new Credits(window);
-
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -251,13 +243,27 @@ public class Game {
         AnimationTimer menuTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                menu.checkSelections(this, at);
+                menu.checkMenu(this, at);
             }
         };
-
+        menu.display();
+        menuTimer.start();
+    }
+    /**
+     * Method that is active as long as the player is currently playing
+     * the actual gameplay section of the game
+     * @throws FileNotFoundException For splashScreen
+     */
+    public void playGame() throws FileNotFoundException{
+        if (!IS_DEBUG_MODE) {
+            splashScreen();
+        }
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(IS_DEBUG_MODE ? 10 : 18000), ev -> {
-            menu.display();
-            menuTimer.start();
+            try {
+                mainMenu();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }));
         timeline.play();
         window.show();
