@@ -7,6 +7,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -231,12 +232,31 @@ public class Game {
                     obj.update();
                     obj.draw();
                 }
-                if(menu.getSelection() == 1) {
+                if(menu.getSelection() == -1)
+                {
+                    window.setScene(menu.getScene());
+                    menu.setSelection(0);
+                }
+                else if(menu.getSelection() == 0) {
+                }
+                else if(menu.getSelection() == 1) {
                     level1();
                 } else if (menu.getSelection() == 2) {
                     instructions.controlScreens();
+                    window.setScene(instructions.getScene());
+                    if(Keyboard.isKeyDown(KeyCode.H))
+                    {
+                        System.out.println("Works");
+                        menu.setSelection(-1);
+                    }
                 } else if(menu.getSelection() == 3) {
                     credits.controlScreens();
+                    window.setScene(credits.getScene());
+                    if(Keyboard.isKeyDown(KeyCode.H))
+                    {
+                        System.out.println("Works");
+                        menu.setSelection(-1);
+                    }
                 }
             }
         };
@@ -247,7 +267,9 @@ public class Game {
             }
         };
         menu.display();
+        window.setScene(menu.getScene());
         menuTimer.start();
+        System.out.println("hi");
     }
     /**
      * Method that is active as long as the player is currently playing

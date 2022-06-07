@@ -42,6 +42,8 @@ public class MainMenu {
     private Rectangle creditsButton;
 
     private Rectangle quitButton;
+
+    private Scene scene;
     /**
      * MainMenu constructor, initializes selection to 0 as a default
      */
@@ -124,8 +126,8 @@ public class MainMenu {
         Rectangle background = new Rectangle(0, 0, 1270, 720);
         background.setFill(Color.BLACK);
         Group root = new Group(background, title, newGameButton0, instructionsButton0, creditsButton0, quitButton0, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
-        Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
-        stage.setScene(scene);
+        scene = new Scene(root, Main.getWidth(), Main.getHeight());
+        //stage.setScene(scene);
         scene.setFill(Color.BLACK);
         Keyboard.init(scene);
 
@@ -222,5 +224,18 @@ public class MainMenu {
     public int getSelection() {
         //add mouse clicking functions here
         return selection;
+    }
+
+    public void setSelection(int selection)
+    {
+        this.selection = selection;
+    }
+    /**
+     * Getter method for the scene instance variable
+     * @return The game scene
+     */
+    public Scene getScene()
+    {
+        return scene;
     }
 }

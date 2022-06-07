@@ -28,6 +28,8 @@ public class Credits {
     private ImageView creditScreen;
 
     private Stage window;
+
+    private Scene scene;
     /**
      * The constructor of the Credits Class.
      */
@@ -49,8 +51,8 @@ public class Credits {
         creditScreen.setPreserveRatio(true);
         Group root = new Group(creditScreen);
         //Creating a scene object
-        Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
-        window.setScene(scene);
+        scene = new Scene(root, Main.getWidth(), Main.getHeight());
+        //window.setScene(scene);
         Keyboard.init(scene);
     }
     /**
@@ -63,5 +65,13 @@ public class Credits {
         if(Keyboard.isKeyDown(KeyCode.H))
         {
         }
+    }
+    /**
+     * Getter method for the scene instance variable
+     * @return The game scene
+     */
+    public Scene getScene()
+    {
+        return scene;
     }
 }

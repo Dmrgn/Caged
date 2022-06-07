@@ -35,7 +35,8 @@ public class Instructions
    private int currentPage;
    /** This Stage variable is used to display all things */
    private Stage window;
-   
+
+   private Scene scene;
    /**
      * The constructor of the Instructions Class.
      */
@@ -62,8 +63,8 @@ public class Instructions
       instructionsP1.setPreserveRatio(true);
       Group root = new Group(instructionsP1);
       //Creating a scene object
-      Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
-      window.setScene(scene);
+      scene = new Scene(root, Main.getWidth(), Main.getHeight());
+      //window.setScene(scene);
       Keyboard.init(scene);
    }
    /**
@@ -81,8 +82,8 @@ public class Instructions
       instructionsP2.setPreserveRatio(true);
       Group root = new Group(instructionsP2);
       //Creating a scene object
-      Scene scene = new Scene(root, Main.getWidth(), Main.getHeight());
-      window.setScene(scene);
+      scene = new Scene(root, Main.getWidth(), Main.getHeight());
+      //window.setScene(scene);
       Keyboard.init(scene);
    }
    /**
@@ -112,5 +113,13 @@ public class Instructions
       else if (currentPage == 2) {
          displayScreen2();
       }
+   }
+   /**
+    * Getter method for the scene instance variable
+    * @return The game scene
+    */
+   public Scene getScene()
+   {
+      return scene;
    }
 }
