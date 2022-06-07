@@ -62,7 +62,6 @@ public class Credits {
         display();
         if(Keyboard.isKeyDown(KeyCode.H))
         {
-            System.out.println("Return to menu");
         }
     }
 }

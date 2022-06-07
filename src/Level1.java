@@ -25,7 +25,6 @@ public class Level1 extends Level {
         textures.put("DoorOpen", new Image("assets/player.png"));
         textures.put("DoorClosed", new Image("assets/player.png"));
         textures.put("Sign", new Image("assets/player.png"));
-        System.out.println((new File("assets").listFiles()));
         for (File platform : (new File("assets").listFiles())) {
             textures.put("Platform:"+platform.getName().split("\\.")[0], new Image(platform.getPath()));
         }

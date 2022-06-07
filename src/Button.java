@@ -29,7 +29,6 @@ public class Button {
 
    public boolean pressed() {
       if (hovering() && Keyboard.isMouseClicked()) {
-         System.out.println("work?");
          return true;
       }
       return false;

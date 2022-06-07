@@ -36,7 +36,7 @@ public class Platform extends CollidableObject {
         isFlipped = flipped;
         node = new ImageView(image);
         pos = new Vector(x, y);
-        createHitBox(pos.add(new Vector(10,10)), pos.add(new Vector(120, 50)));
+        createHitBox(pos.add(new Vector(0, 0)), pos.add(new Vector((float)image.getWidth(), (float)image.getHeight())));
     }
     /**
      * Getter method for the Node 

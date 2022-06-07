@@ -124,10 +124,8 @@ public class Player extends CollidableObject {
                 }
                 break;
         }
-        System.out.println("Changing state to " + state);
         return state;
     }
-    long frameCount = 0;
     /**
      * Updates the player's position Vector based on keyboard input, implementation
      * of the method from the GameObject interface
@@ -169,7 +167,7 @@ public class Player extends CollidableObject {
             case MOVING: {
                 // State logic
                 vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
-                vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED)).min(new Vector(-MAX_SPEED, -MAX_SPEED));
+                vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED*5)).min(new Vector(-MAX_SPEED, -MAX_SPEED*5));
                 if (moveDirection != 0)
                     facingDirection = moveDirection;
 
@@ -185,33 +183,26 @@ public class Player extends CollidableObject {
         }
 
         boolean jumped = false;
+        boolean hasTouchedGround = false;
         // State independent logic
         vel = vel.add(new Vector(0, Game.GRAVITY));
 
         // Handle vertical collisions
         if (Game.touchingCollidable(this, lowerHitBox)) {
+            hasTouchedGround = true;
             pos.y = pos.y - (vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;
             if (Keyboard.isKeyDown(KeyCode.W)) {
                 vel = vel.add(new Vector(0, -JUMP_HEIGHT));
-                System.out.println("inside " + frameCount + " :: " + vel.y);
                 jumped = true;
             }
-            if (frameCount % 120 == 0) {
-                System.out.println("outside " + frameCount + " :: " +vel.y);
-            }
-        }
-        if (frameCount % 120 == 0) {
-            System.out.println("more outside " + frameCount + " :: " + vel.y);
         }
         if (Game.touchingCollidable(this, upperHitBox)) {
             pos.y = pos.y + Math.abs(vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;
         }
-
-
         // Handle lateral collisions
         if (Game.touchingCollidable(this)) {
             pos.x = pos.x - (vel.x * 1.5f);
@@ -219,16 +210,12 @@ public class Player extends CollidableObject {
             vel.x = vel.x*-0.5f;
         }
 
-        frameCount++;
-        // if (frameCount % 120 == 0) {
-        //     System.out.println(vel.y);
-        // }
         pos = pos.add(vel);
         createHitBox(pos, pos.add(HITBOX_SIZE));
 
         // reduce velocity for next frame
-        Vector diff = Vector.sub(vel, vel.mul(0.9f));
-        diff = diff.max(new Vector(ACCELERATION * 0.9f, 0)).min(new Vector(-ACCELERATION * 0.9f, 0));
+        Vector diff = Vector.sub(vel, vel.mul((hasTouchedGround ? 0.7f : 0.99f)));
+        diff = diff.max(new Vector(ACCELERATION * (hasTouchedGround ? 0.7f : 0.99f), 0)).min(new Vector(-ACCELERATION * (hasTouchedGround ? 0.7f : 0.99f), 0));
         vel = vel.sub(diff);
 
         // create hitbox for next frame
