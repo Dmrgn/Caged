@@ -1,6 +1,7 @@
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 /**
  * <p>
  * This class contains data about the interactable doors in the game
@@ -17,15 +18,13 @@ import javafx.scene.image.Image;
  * Ten minutes were spent by Ryan Atlas on June 2nd restructuring the file to work with the new GameObject
  * </p>
  */
-public class Door extends GameObject implements Interactable {
+public class Door extends CollidableObject implements Interactable {
     /** JavaFX node for the platform*/
     private Node node;
     /** Image for the door's locked texture */
     private Image imageLocked;
     /** Image for the door's locked texture */
     private Image imageOpen;
-    /** The Vector for the door's position*/
-    private Vector pos;
     /** Whether the door is locked */
     private boolean isLocked;
     /**
@@ -41,6 +40,7 @@ public class Door extends GameObject implements Interactable {
         imageOpen = imageFileOpen;
         node = new ImageView((isLocked) ? imageLocked : imageOpen);
         pos = new Vector(x, y);
+        createHitBox(pos.add(new Vector(0, 0)), pos.add(new Vector((float)imageFileLocked.getWidth(), (float)imageFileLocked.getHeight())));
     }
     /**
      * Getter method for the Node
@@ -54,6 +54,12 @@ public class Door extends GameObject implements Interactable {
      */
     public void update() {
         node = new ImageView((isLocked) ? imageLocked : imageOpen);
+        if (Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor) {
+            isLocked = false;
+            node = new ImageView((isLocked) ? imageLocked : imageOpen);
+        } else if (Keyboard.isKeyDown(KeyCode.E)){
+            display();
+        }
     }
 
     /**
@@ -62,22 +68,13 @@ public class Door extends GameObject implements Interactable {
      * @return Whether or not the player is in range and therefore can interact with the door
      */
     public boolean inRange(Player p){
-        return false;
+        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100);
     }
-    /**
-     * Opens the door
-     */
-    public void openDoor() {
-        isLocked = false;
-    }
-
     /**
      * Overridden method from Interactable, displays a message if
      * the door is locked or when the door is able to be opened
      */
     public void display(){
-        if (isLocked){
 
-        }
     }
 }

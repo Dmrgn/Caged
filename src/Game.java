@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.Group;
+import javafx.scene.*;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -64,6 +64,8 @@ public class Game {
     public static Vector cameraPos = new Vector(0,0);
     /** Media player for music*/
     private MediaPlayer mediaPlayer;
+    /** Whether the current door can be opened*/
+    public static boolean canOpenDoor;
     /** Programatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -82,10 +84,11 @@ public class Game {
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
         window.setResizable(true);
+        canOpenDoor = false;
         // render the background, then midground, then foreground first
-        background.setViewOrder(0);
-        midground.setViewOrder(1);
-        foreground.setViewOrder(2);
+//        background.setViewOrder(0);
+//        midground.setViewOrder(1);
+//        foreground.setViewOrder(2);
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
         });
@@ -267,7 +270,7 @@ public class Game {
                     if (obj instanceof Mold) {
                         ImageView imageView = (ImageView)obj.getNode();
                         double w = imageView.getImage().getWidth(), h = imageView.getImage().getHeight();
-                        
+
                         // left curtain
                         left.setX(obj.pos.x-padding);
                         left.setY(obj.pos.y-padding);

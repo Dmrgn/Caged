@@ -22,11 +22,12 @@ import javafx.scene.image.Image;
 public class Level1 extends Level {
     public Level1() {
         textures = new HashMap();
-        textures.put("DoorOpen", new Image("assets/player.png"));
-        textures.put("DoorClosed", new Image("assets/player.png"));
         textures.put("Sign", new Image("assets/player.png"));
         for (File mold : (new File("assets/molds").listFiles())) {
             textures.put("Mold:"+mold.getName().split("\\.")[0], new Image(mold.getPath()));
+        }
+        for (File door : (new File("assets/doors").listFiles())){
+            textures.put("Door:"+ door.getName().split("\\.")[0], new Image(door.getPath()));
         }
         for (File background : (new File("assets/backgrounds").listFiles())) {
             textures.put("Background:"+background.getName().split("\\.")[0], new Image(background.getPath()));

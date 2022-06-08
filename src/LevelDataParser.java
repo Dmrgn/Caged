@@ -62,8 +62,9 @@ public class LevelDataParser {
                 Background b = new Background(textures.get("Background:" + data[1]));
                 levelObjects.add(b);
             } else if (data[0].equals("Door")) {
-                Door d = new Door(textures.get("DoorClosed"), textures.get("DoorOpen"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+                Door d = new Door(textures.get("Door:doorClosed"), textures.get("Door:doorOpen"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
                 levelObjects.add(d);
+                System.out.println("DOOR");
             } else if (data[0].equals("Sign")) {
                 //Door s = new Door(textures.get("DoorClosed"), Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3]);
                 //levelObjects.add(s);
