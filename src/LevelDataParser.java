@@ -68,8 +68,8 @@ public class LevelDataParser {
                 Door d = new Door(textures.get("Door:doorClosed"), textures.get("Door:doorOpen"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
                 levelObjects.add(d);
             } else if (data[0].equals("Sign")) {
-                //Door s = new Door(textures.get("DoorClosed"), Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3]);
-                //levelObjects.add(s);
+                Sign s = new Sign(textures.get("Sign Messages:Sign1"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+                levelObjects.add(s);
             } else {
                 //don't get mad at us :)
                 throw new RuntimeException("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");

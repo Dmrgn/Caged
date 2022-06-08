@@ -48,13 +48,13 @@ public class Sign extends GameObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Sign(Image message, int x, int y, Scene scene){
+    public Sign(Image message, int x, int y/*, Scene scene*/){
         imageNormal = new Image("assets/SignNormal.png");
         //imageUsable = new Image("assets/SignOpen.png");
         node = new ImageView(imageNormal);
         pos = new Vector(x, y);
         this.message = new ImageView(message);
-        this.scene = scene;
+        //this.scene = scene;
     }
     /**
      * Class constructor that initializes variables and sets
