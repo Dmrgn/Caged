@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/assets/doors/doorClosed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/doors/doorOpen.png" afterDir="false" />
+    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Doors and stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Level1_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Level1_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Door.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Level1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Level1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/assets/ceiling1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/assets/ceiling2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/assets/longFloor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/assets/overHangWall.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/assets/pillar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/assets/underHang.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/assets/wallOutCrop.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Door.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Level1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LevelDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LevelDataParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,11 +71,19 @@
       <option name="project" value="LOCAL" />
       <updated>1654649849678</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Doors and stuff">
+      <created>1654653037951</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654653037951</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+    <MESSAGE value="Doors and stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Doors and stuff" />
   </component>
 </project>
