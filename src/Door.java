@@ -54,7 +54,7 @@ public class Door extends CollidableObject implements Interactable {
      * Overridden update method from GameObject
      */
     public void update() {
-        node = new ImageView((isLocked) ? imageLocked : imageOpen);
+//        node = new ImageView(((isLocked) ? imageLocked : imageOpen));
         if (Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor) {
             isLocked = false;
             node = new ImageView((isLocked) ? imageLocked : imageOpen);
