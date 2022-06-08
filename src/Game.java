@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.*;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -231,6 +231,7 @@ public class Game {
                 player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
                 window.setScene(scene);
             } else if (level.levelScreen == 0 && player.pos.y >= 1500) {
+                updateLevelScreen(level, 0);
                 createLevel(level);
                 player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
                 window.setScene(scene);
@@ -241,6 +242,7 @@ public class Game {
                 player = attachObject(new Player(1180, 250), SceneLayer.FOREGROUND);
                 window.setScene(scene);
             } else if (level.levelScreen == 1 && player.pos.y >= 1500) {
+                updateLevelScreen(level, 1);
                 createLevel(level);
                 player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
                 window.setScene(scene);
