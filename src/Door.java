@@ -36,6 +36,7 @@ public class Door extends CollidableObject implements Interactable {
      * @param y The y coord of the platform
      */
     public Door(Image imageFileLocked, Image imageFileOpen, int x, int y){
+        isLocked = true;
         imageLocked = imageFileLocked;
         imageOpen = imageFileOpen;
         node = new ImageView((isLocked) ? imageLocked : imageOpen);
@@ -75,6 +76,6 @@ public class Door extends CollidableObject implements Interactable {
      * the door is locked or when the door is able to be opened
      */
     public void display(){
-
+        System.out.println("Test");
     }
 }

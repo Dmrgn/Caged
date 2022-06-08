@@ -7,4 +7,4 @@ Platform, underHang, false, 434, 771
 Platform, platform, false, 1048, 928
 Platform, pillar, false, 1205, 736
 Platform, platform, false, 1170, 713
-Door, 300, 600
+Door, 700, 700
