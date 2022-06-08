@@ -88,9 +88,9 @@ public class Game {
         window.setResizable(true);
         canOpenDoor = false;
         // render the background, then midground, then foreground first
-        background.setViewOrder(0);
-        midground.setViewOrder(1);
-        foreground.setViewOrder(2);
+        //background.setViewOrder(0);
+        //midground.setViewOrder(1);
+        //foreground.setViewOrder(2);
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
         });
