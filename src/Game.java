@@ -88,9 +88,9 @@ public class Game {
         window.setResizable(true);
         canOpenDoor = false;
         // render the background, then midground, then foreground first
-        background.setViewOrder(1);
-        midground.setViewOrder(2);
-        foreground.setViewOrder(3);
+        //background.setViewOrder(1);
+        //midground.setViewOrder(2);
+        //foreground.setViewOrder(3);
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
         });
@@ -278,16 +278,16 @@ public class Game {
     public void mainMenu() throws FileNotFoundException {
         Rectangle left = new Rectangle();
         left.setFill(Color.BLACK);
-        left.setViewOrder(0);
+        //left.setViewOrder(0);
         Rectangle top = new Rectangle();
         top.setFill(Color.BLACK);
-        top.setViewOrder(0);
+        //top.setViewOrder(0);
         Rectangle right = new Rectangle();
         right.setFill(Color.BLACK);
-        right.setViewOrder(0);
+        //right.setViewOrder(0);
         Rectangle bottom = new Rectangle();
         bottom.setFill(Color.BLACK);
-        bottom.setViewOrder(0);
+        //bottom.setViewOrder(0);
         sceneGroup.getChildren().addAll(left, top, right, bottom);
 
         if (!IS_DEBUG_MODE) {
