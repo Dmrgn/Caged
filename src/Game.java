@@ -47,21 +47,23 @@ public class Game {
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
-    private Scene scene;
+    private static Scene scene;
     /** The instance of the player */
-    private GameObject player;
+    private static GameObject player;
     /** Current group of scene layers: foreground/background/midground */
     private Group sceneGroup = new Group();
     /** Individual scene layers to contain rendered objects: foreground */
-    private Group foreground = new Group();
+    private static Group foreground = new Group();
     /** Individual scene layers to contain rendered objects: midground*/
-    private Group midground = new Group();
+    private static Group midground = new Group();
     /** Individual scene layers to contain rendered objects: background */
-    private Group background = new Group();
+    private static Group background = new Group();
+    /** Array of levels in the game */
+    private static Level[] levels;
     /** Game's current level*/
-    private Level level;
+    private static Level level;
     /** The position of the camera */
-    public static Vector cameraPos = new Vector(0,0);
+    public static Vector cameraPos = new Vector(0, 0);
     /** Media player for music*/
     private MediaPlayer mediaPlayer;
     /** Whether the current door can be opened*/
@@ -73,7 +75,7 @@ public class Game {
         BACKGROUND
     }
     /** Reference to the current window object */
-    public Stage window;
+    public static Stage window;
     /**
      * Inits a game scene
      * @param w The window to use for the game
@@ -86,9 +88,9 @@ public class Game {
         window.setResizable(true);
         canOpenDoor = false;
         // render the background, then midground, then foreground first
-//        background.setViewOrder(0);
-//        midground.setViewOrder(1);
-//        foreground.setViewOrder(2);
+        background.setViewOrder(0);
+        midground.setViewOrder(1);
+        foreground.setViewOrder(2);
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
         });
@@ -101,9 +103,9 @@ public class Game {
         buildScene(sceneGroup);
         // add a player and platform to the scene
         player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);
-        Level level1 = new Level1();
-        createLevel(level1);
-        //GameObject platform = attachObject(new Platform("assets/platform.png",50,Main.getHeight()-100), SceneLayer.FOREGROUND);
+        levels = new Level[1];
+        levels[0] = new Level1();
+        createLevel(levels[0]);
         // set the current scene
         window.setScene(scene);
     }
@@ -139,17 +141,49 @@ public class Game {
         return false;
     }
     /**
+     * Navigates the player to the next level or screen
+     * @param level The level to navigate to
+     * @param screen The screen within that level to navigate to
+     */
+    public static void navigateLevel(Level level, int screen) {
+        updateLevelScreen(level, 1);
+        createLevel(level);
+        player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+        window.setScene(scene);
+    }
+    /**
+     * Returns the first instance of an object with the same class as the passed object
+     * @param obj The object with a class to specify
+     * @return The first instance of an object with the same class
+     */
+    public static GameObject firstInstanceOfClass(GameObject obj) {
+        for (GameObject child : gameObjects) {
+            if (child.getClass().equals(obj.getClass())) {
+                return child;
+            }
+        }
+        return null;
+    }
+    /**
+     * Returns the ith level from the Game class
+     * @return The ith level from the Game class
+     */
+    public static Level getLevel(int index) {
+        return levels[index];
+    }
+    /**
      * Creates and initializes the different levels of the game
      * as they are needed.
      * @param level The Level to be created
      */
-    public void createLevel(Level level) {
+    public static void createLevel(Level l) {
         try {
-            ArrayList < GameObject > objects = level.getObjects();
+            ArrayList < GameObject > objects = l.getObjects();
             for (GameObject obj: objects) {
+                System.out.println(obj.getClass().getName());
                 attachObject(obj, SceneLayer.FOREGROUND);
             }
-            this.level = level;
+            level = l;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,7 +195,7 @@ public class Game {
      * @param level Current level
      * @param screen Screen number to read the right file
      */
-    public void updateLevelScreen(Level level, int screen) {
+    public static void updateLevelScreen(Level level, int screen) {
         level.levelScreen = screen;
         foreground.getChildren().clear();
         gameObjects.clear();
@@ -181,12 +215,11 @@ public class Game {
 
     public void splashScreen() throws FileNotFoundException {
         SplashScreen splash = new SplashScreen(window);
-        /*
         Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(menuTheme);
         mediaPlayer.setVolume(0.3);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();*/
+        mediaPlayer.play();
         splash.runSplashScreen();
     }
 
@@ -223,7 +256,7 @@ public class Game {
      * @param layer The layer to add the {@link GameObject} gameObject to
      * @return The added {@link GameObject}
      */
-    public GameObject attachObject(GameObject gameObject, SceneLayer layer) {
+    public static GameObject attachObject(GameObject gameObject, SceneLayer layer) {
         gameObjects.add(gameObject);
         switch (layer) {
             case FOREGROUND:
@@ -269,29 +302,29 @@ public class Game {
                 cameraPos = Vector.lerp(diff, cameraPos, 0.1f);
                 int padding = 800;
                 for (GameObject obj: gameObjects) {
-                    if (obj instanceof Mold) {
-                        ImageView imageView = (ImageView)obj.getNode();
+                    if (obj instanceof Teleporter) {
+                        ImageView imageView = (ImageView) obj.getNode();
                         double w = imageView.getImage().getWidth(), h = imageView.getImage().getHeight();
 
                         // left curtain
-                        left.setX(obj.pos.x-padding);
-                        left.setY(obj.pos.y-padding);
+                        left.setX(obj.pos.x - padding);
+                        left.setY(obj.pos.y - padding);
                         left.setWidth(padding);
-                        left.setHeight(h+padding*2);
+                        left.setHeight(h + padding * 2);
                         // top curtain
-                        top.setX(obj.pos.x-padding);
-                        top.setY(obj.pos.y-padding);
-                        top.setWidth(w+padding*2);
+                        top.setX(obj.pos.x - padding);
+                        top.setY(obj.pos.y - padding);
+                        top.setWidth(w + padding * 2);
                         top.setHeight(padding);
                         // right curtain
-                        right.setX(obj.pos.x+w);
-                        right.setY(obj.pos.y-padding);
+                        right.setX(obj.pos.x + w);
+                        right.setY(obj.pos.y - padding);
                         right.setWidth(padding);
-                        right.setHeight(h+padding*2);
+                        right.setHeight(h + padding * 2);
                         // bottom curtain
-                        bottom.setX(obj.pos.x-padding);
-                        bottom.setY(obj.pos.y+h);
-                        bottom.setWidth(w+padding*2);
+                        bottom.setX(obj.pos.x - padding);
+                        bottom.setY(obj.pos.y + h);
+                        bottom.setWidth(w + padding * 2);
                         bottom.setHeight(padding);
 
                         left.getTransforms().clear();
@@ -322,28 +355,22 @@ public class Game {
                     obj.update();
                     obj.draw();
                 }
-                if(menu.getSelection() == -1)
-                {
+                if (menu.getSelection() == -1) {
                     window.setScene(menu.getScene());
                     menu.setSelection(0);
-                }
-                else if(menu.getSelection() == 0) {
-                }
-                else if(menu.getSelection() == 1) {
+                } else if (menu.getSelection() == 0) {} else if (menu.getSelection() == 1) {
                     level1();
                 } else if (menu.getSelection() == 2) {
                     instructions.controlScreens();
                     window.setScene(instructions.getScene());
-                    if(Keyboard.isKeyDown(KeyCode.H))
-                    {
+                    if (Keyboard.isKeyDown(KeyCode.H)) {
                         System.out.println("Works");
                         menu.setSelection(-1);
                     }
-                } else if(menu.getSelection() == 3) {
+                } else if (menu.getSelection() == 3) {
                     credits.display();
                     window.setScene(credits.getScene());
-                    if(Keyboard.isKeyDown(KeyCode.H))
-                    {
+                    if (Keyboard.isKeyDown(KeyCode.H)) {
                         System.out.println("Works");
                         menu.setSelection(-1);
                     }
@@ -366,7 +393,7 @@ public class Game {
      * the actual gameplay section of the game
      * @throws FileNotFoundException For splashScreen
      */
-    public void playGame() throws FileNotFoundException{
+    public void playGame() throws FileNotFoundException {
         if (!IS_DEBUG_MODE) {
             splashScreen();
         }
