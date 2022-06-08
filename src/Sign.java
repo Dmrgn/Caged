@@ -1,6 +1,7 @@
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 
 import java.io.FileInputStream;
 
@@ -42,7 +43,7 @@ public class Sign extends GameObject implements Interactable {
      */
     public Sign(Image message, int x, int y, Scene scene){
         imageNormal = new Image("assets/SignNormal.png");
-        imageUsable = new Image("assets/SignOpen.png");
+        //imageUsable = new Image("assets/SignOpen.png");
         node = new ImageView(imageNormal);
         pos = new Vector(x, y);
         this.message = new ImageView(message);
@@ -59,7 +60,7 @@ public class Sign extends GameObject implements Interactable {
      * Overridden update method from GameObject
      */
     public void update() {
-        node = new ImageView(imageUsable);
+        node = new ImageView(imageNormal);
     }
 
     /**
@@ -68,13 +69,7 @@ public class Sign extends GameObject implements Interactable {
      * @return Whether or not the player is in range and therefore can interact with the sign
      */
     public boolean inRange(Player p) {
-        if (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100)
-        {
-            update();
-            return true;
-        }
-        node = new ImageView(imageNormal);
-        return false;
+        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100);
     }
 
     /**
