@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
 public class Teleporter extends GameObject {
-    public static final float TELEPORT_DISTANCE = 100;
+    public static final float TELEPORT_DISTANCE = 50;
     public Level level;
     public int screen;
     ImageView node;

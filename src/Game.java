@@ -39,11 +39,11 @@ import java.io.File;
  */
 public class Game {
     /** Camera zoom factor */
-    private static final float ZOOM = 1.4f;
+    private static final float ZOOM = 1.0f;
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.055f;
+    public static final float GRAVITY = 0.02f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
@@ -308,7 +308,6 @@ public class Game {
                     if (obj instanceof Mold) {
                         ImageView imageView = (ImageView) obj.getNode();
                         double w = imageView.getImage().getWidth(), h = imageView.getImage().getHeight();
-
                         // left curtain
                         left.setX(obj.pos.x - padding);
                         left.setY(obj.pos.y - padding);
