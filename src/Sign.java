@@ -36,11 +36,15 @@ public class Sign extends GameObject implements Interactable {
 
     private int answer = 0;
 
+    private boolean questionSign = false;
+
+    private boolean answeredCorrectly;
+
     private Scene scene;
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
-     * @param image
+     * @param message the image of the message displayed when the sign is interacted with.
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
@@ -55,7 +59,7 @@ public class Sign extends GameObject implements Interactable {
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
-     * @param image
+     * @param message the image of the message displayed when the sign is interacted with.
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      * @param answer If this is a question
@@ -68,6 +72,8 @@ public class Sign extends GameObject implements Interactable {
         this.message = new ImageView(message);
         this.scene = scene;
         this.answer = answer;
+        answeredCorrectly = false;
+        questionSign = true;
     }
     /**
      * Getter method for the Node
@@ -81,6 +87,14 @@ public class Sign extends GameObject implements Interactable {
      */
     public void update() {
         node = new ImageView(imageNormal);
+        if(!questionSign)
+        {
+            display();
+        }
+        else
+        {
+            displayQuestions();
+        }
     }
 
     /**
@@ -141,16 +155,21 @@ public class Sign extends GameObject implements Interactable {
             if(userAnswer == answer && userAnswer != 0)
             {
                 //tell upward it works
+                answeredCorrectly = true;
                 userAnswer = 0;
                 keyPressed = false;
             }
             else
             {
                 //tell upward it is false;
+                answeredCorrectly = false;
                 userAnswer = 0;
                 keyPressed = false;
             }
-
         }
+    }
+    public boolean isAnsweredCorrectly()
+    {
+        return answeredCorrectly;
     }
 }
