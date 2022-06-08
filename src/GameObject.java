@@ -21,7 +21,7 @@ import javafx.scene.transform.Translate;
  */
 public abstract class GameObject {
     public Vector pos;
-    private float scale = 1.0f;
+    protected float scale = 1.0f;
     private Vector translation = new Vector(0,0);
     /**
      * Update method that updates where that object is drawn

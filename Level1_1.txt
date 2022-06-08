@@ -3,7 +3,7 @@ Mold, one, 0, 0
 Platform, longFloor, false, 140, 1000
 Platform, wallOutCrop, false, 40, 785
 Platform, platform, false, 724, 824
-Platform, underHang, false, 434, 771
+Platform, underHang, true, 434, 771
 Platform, platform, false, 1048, 928
 Platform, pillar, false, 1205, 736
 Platform, platform, false, 1170, 713

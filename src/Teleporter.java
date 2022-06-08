@@ -14,7 +14,7 @@ public class Teleporter extends GameObject {
         level = Game.getLevel(levelIndex);
         screen = screenIndex;
         pos = new Vector(x, y);
-        Image image = new Image("assets/player.png");
+        Image image = new Image(Game.IS_DEBUG_MODE ? "assets/teleporterDebug.png" : "assets/teleporter.png");
         node = new ImageView(image);
     }
 
