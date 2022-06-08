@@ -42,7 +42,7 @@ public class Sign extends GameObject implements Interactable {
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
-     * @param image
+     * @param message the image of the message displayed when the sign is interacted with.
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
@@ -57,7 +57,7 @@ public class Sign extends GameObject implements Interactable {
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
-     * @param image
+     * @param message the image of the message displayed when the sign is interacted with.
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      * @param answer If this is a question
