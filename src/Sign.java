@@ -27,7 +27,9 @@ public class Sign extends GameObject implements Interactable {
     /** The Vector for the sign's position*/
     private Vector pos;
     /** The text on the sign */
-    private String message;
+    private ImageView message;
+
+    private Scene scene;
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -35,12 +37,13 @@ public class Sign extends GameObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Sign(int x, int y, String message){
+    public Sign(Image message, int x, int y, Scene scene){
         imageNormal = new Image("assets/SignNormal.png");
         imageUsable = new Image("assets/SignOpen.png");
         node = new ImageView(imageNormal);
         pos = new Vector(x, y);
-        this.message = message;
+        this.message = new ImageView(message);
+        this.scene = scene;
     }
     /**
      * Getter method for the Node
@@ -62,7 +65,7 @@ public class Sign extends GameObject implements Interactable {
      * @return Whether or not the player is in range and therefore can interact with the sign
      */
     public boolean inRange(Player p) {
-        if (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 10 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 5)
+        if (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100)
         {
             update();
             return true;
@@ -75,6 +78,9 @@ public class Sign extends GameObject implements Interactable {
      * Displays the message on the sign
      */
     public void display(){
-
+        message.setX(100);
+        message.setY(100);
+        message.setFitHeight(600);
+        message.setFitWidth(900);
     }
 }
