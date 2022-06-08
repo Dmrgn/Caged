@@ -28,7 +28,6 @@ public class Credits {
     private ImageView creditScreen;
 
     private Stage window;
-
     private Scene scene;
     /**
      * The constructor of the Credits Class.
@@ -42,7 +41,7 @@ public class Credits {
      * This method gets called to display the credits screen
      *
      */
-    public void display() {
+    public void display()  {
         //Setting the position of the  image:
         creditScreen.setX(0);
         creditScreen.setY(0);

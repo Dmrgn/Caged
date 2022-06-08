@@ -1,6 +1,9 @@
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+
+import java.io.FileInputStream;
+
 /**
  * <p>
  * This class contains data about the interactable signs in the game that help
@@ -78,9 +81,10 @@ public class Sign extends GameObject implements Interactable {
      * Displays the message on the sign
      */
     public void display(){
-        message.setX(100);
-        message.setY(100);
-        message.setFitHeight(600);
-        message.setFitWidth(900);
+        message.setX(150);
+        message.setY(80);
+        message.setFitHeight(650);
+        message.setFitWidth(1000);
+        message.setPreserveRatio(true);
     }
 }
