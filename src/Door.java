@@ -76,6 +76,6 @@ public class Door extends CollidableObject implements Interactable {
      * the door is locked or when the door is able to be opened
      */
     public void display(){
-        System.out.println("Test");
+
     }
 }

@@ -20,13 +20,13 @@ public class Teleporter extends GameObject {
 
     @Override
     public void update() {
-        // Player player = (Player)Game.firstInstanceOfClass(new Player(0,0));
-        // if (player != null) {
-        //     System.out.println("here:" + player.pos.dist(pos));
-        //     if (player.pos.dist(pos) < 100) {
-        //         // Game.navigateLevel(level, screen);
-        //     }
-        // }
+        Player player = (Player)Game.firstInstanceOfClass(new Player(0,0));
+        if (player != null) {
+            if (player.pos.dist(pos) < 100) {
+                System.out.println("here:" + player.pos.dist(pos));
+                Game.navigateLevel(level, screen);
+            }
+        }
     }
 
     @Override

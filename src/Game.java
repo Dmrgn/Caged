@@ -88,9 +88,9 @@ public class Game {
         window.setResizable(true);
         canOpenDoor = false;
         // render the background, then midground, then foreground first
-        background.setViewOrder(0);
-        midground.setViewOrder(1);
-        foreground.setViewOrder(2);
+        background.setViewOrder(1);
+        midground.setViewOrder(2);
+        foreground.setViewOrder(3);
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
         });
@@ -180,7 +180,6 @@ public class Game {
         try {
             ArrayList < GameObject > objects = l.getObjects();
             for (GameObject obj: objects) {
-                System.out.println(obj.getClass().getName());
                 attachObject(obj, SceneLayer.FOREGROUND);
             }
             level = l;
@@ -279,12 +278,16 @@ public class Game {
     public void mainMenu() throws FileNotFoundException {
         Rectangle left = new Rectangle();
         left.setFill(Color.BLACK);
+        left.setViewOrder(0);
         Rectangle top = new Rectangle();
         top.setFill(Color.BLACK);
+        top.setViewOrder(0);
         Rectangle right = new Rectangle();
         right.setFill(Color.BLACK);
+        right.setViewOrder(0);
         Rectangle bottom = new Rectangle();
         bottom.setFill(Color.BLACK);
+        bottom.setViewOrder(0);
         sceneGroup.getChildren().addAll(left, top, right, bottom);
 
         if (!IS_DEBUG_MODE) {
@@ -300,9 +303,9 @@ public class Game {
                 Vector diff = cameraPos.mul(1);
                 cameraPos = player.pos.mul(-1f).add(Main.getDims().div(2)).add(new Vector(0, 50));
                 cameraPos = Vector.lerp(diff, cameraPos, 0.1f);
-                int padding = 800;
+                int padding = 400;
                 for (GameObject obj: gameObjects) {
-                    if (obj instanceof Teleporter) {
+                    if (obj instanceof Mold) {
                         ImageView imageView = (ImageView) obj.getNode();
                         double w = imageView.getImage().getWidth(), h = imageView.getImage().getHeight();
 
