@@ -36,6 +36,8 @@ public class Sign extends GameObject implements Interactable {
 
     private int answer = 0;
 
+    private boolean questionSign = false;
+
     private boolean answeredCorrectly;
 
     private Scene scene;
@@ -71,6 +73,7 @@ public class Sign extends GameObject implements Interactable {
         this.scene = scene;
         this.answer = answer;
         answeredCorrectly = false;
+        questionSign = true;
     }
     /**
      * Getter method for the Node
@@ -84,6 +87,14 @@ public class Sign extends GameObject implements Interactable {
      */
     public void update() {
         node = new ImageView(imageNormal);
+        if(!questionSign)
+        {
+            display();
+        }
+        else
+        {
+            displayQuestions();
+        }
     }
 
     /**
