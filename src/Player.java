@@ -96,8 +96,8 @@ public class Player extends CollidableObject {
     @Override
     public void createHitBox(Vector pos1, Vector pos2) {
         hitbox = new HitBox(pos1, pos2);
-        lowerHitBox = new HitBox(pos1.add(new Vector(2, HITBOX_SIZE.y/2)), pos2.add(new Vector(-2, 0)));
-        upperHitBox = new HitBox(pos1.add(new Vector(2, 0)), pos2.sub(new Vector(-2, HITBOX_SIZE.y/2)));
+        lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y/2)), pos2.add(new Vector(-5, 0)));
+        upperHitBox = new HitBox(pos1.add(new Vector(5, 0)), pos2.sub(new Vector(-5, HITBOX_SIZE.y/2)));
     }
     /**
      * Attempts to change the player's state to the given state
