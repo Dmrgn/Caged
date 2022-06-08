@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 import java.io.FileInputStream;
+import java.security.Key;
 
 /**
  * <p>
@@ -33,6 +34,8 @@ public class Sign extends GameObject implements Interactable {
     /** The text on the sign */
     private ImageView message;
 
+    private int answer = 0;
+
     private Scene scene;
     /**
      * Class constructor that initializes variables and sets
@@ -48,6 +51,23 @@ public class Sign extends GameObject implements Interactable {
         pos = new Vector(x, y);
         this.message = new ImageView(message);
         this.scene = scene;
+    }
+    /**
+     * Class constructor that initializes variables and sets
+     * the Node's texture to be the image specified
+     * @param image
+     * @param x The x coord of the platform
+     * @param y The y coord of the platform
+     * @param answer If this is a question
+     */
+    public Sign(Image message, int x, int y, Scene scene, int answer){
+        imageNormal = new Image("assets/SignNormal.png");
+        //imageUsable = new Image("assets/SignOpen.png");
+        node = new ImageView(imageNormal);
+        pos = new Vector(x, y);
+        this.message = new ImageView(message);
+        this.scene = scene;
+        this.answer = answer;
     }
     /**
      * Getter method for the Node
@@ -73,13 +93,64 @@ public class Sign extends GameObject implements Interactable {
     }
 
     /**
-     * Displays the message on the sign
+     * Displays the message on the sign for information signs
      */
     public void display(){
-        message.setX(150);
-        message.setY(80);
-        message.setFitHeight(650);
-        message.setFitWidth(1000);
-        message.setPreserveRatio(true);
+        if(Keyboard.isKeyDown(KeyCode.E)) {
+            message.setX(150);
+            message.setY(80);
+            message.setFitHeight(650);
+            message.setFitWidth(1000);
+            message.setPreserveRatio(true);
+        }
+    }
+    /**
+     * Displays the message on the sign for question signs
+     */
+    public void displayQuestions()
+    {
+        int userAnswer = 0;
+        boolean keyPressed = false;
+        if(Keyboard.isKeyDown(KeyCode.E))
+        {
+            keyPressed = true;
+        }
+        if(keyPressed) {
+            message.setX(150);
+            message.setY(80);
+            message.setFitHeight(650);
+            message.setFitWidth(1000);
+            message.setPreserveRatio(true);
+            if(Keyboard.isKeyDown(KeyCode.DIGIT1))
+            {
+                userAnswer = 1;
+            }
+            else if(Keyboard.isKeyDown(KeyCode.DIGIT2))
+            {
+                userAnswer = 2;
+            }
+            else if(Keyboard.isKeyDown(KeyCode.DIGIT3))
+            {
+                userAnswer = 3;
+            }
+            else if(Keyboard.isKeyDown(KeyCode.DIGIT4))
+            {
+                userAnswer = 4;
+            }
+
+            if(userAnswer == answer && userAnswer != 0)
+            {
+                //tell upward it works
+                userAnswer = 0;
+                keyPressed = false;
+            }
+            else
+            {
+                //tell upward it is false;
+                userAnswer = 0;
+                keyPressed = false;
+            }
+
+        }
     }
 }
