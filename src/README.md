@@ -18,8 +18,24 @@ to navigate to either the instructions, main game, credits or to exit. The instr
 in-depth instructions on how to play the game. Inside the game, you can control the player with W, A, D and
 SHIFT. As the game does platforming in a side-scrolling manner, D moves the player right across the screen,
 A moves the player left and W jumps. SHIFT functions as the player's dash, which also deals damage to enemies
-and bosses and allows for greater mobility. Remembering information and advice given by the brother and by
-signs in-game will be important for progressing. And remember, above all, never give up hope!
+and bosses and allows for greater mobility. E is used to interact with objects in game, including signs, doors
+and the sentimental items used to open doors. Different screens within levels can be acessed by reaching
+certain points and getting teleported into the next screen, though each level requires the player to open and go
+through a door. In the instructions and credits screens, H is used to close those screens and return to the menu. 
+H is also used to close signs in game. The number keys 1, 2, 3, and 4 are used to answer the questions displayed on question 
+signs, which test the player's knowledge. Collecting items in game and passing the quiz signs are required to move 
+on to the next level. Some levels (2 and 3) will also require the player to defeat a boss to move on. Remembering 
+information and advice given by the brother and by signs in-game will be important for progressing. And remember, 
+above all, never give up hope!
+
+Story Summary
+
+The game takes place inside the mind of a troubled 13 year old who feels "caged inside their own mind" as they
+struggle with depression. Throughout the course of the game, the player, playing as the last bit of the 13 year old's
+hope, learns and answers questions on depression, fights off intrusive thoughts in the form of enemies, receives advice
+from the 13 year old's older brother and collects sentimental items. Level 1 focuses more on education, level 2 focuses more
+on blocking out intrusive thoughts and quizzing and level 3 focuses more escaping the mind so that the 13 year old can finally
+seek the help they need. 
 
 Troubleshooting
 
