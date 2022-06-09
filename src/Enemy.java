@@ -15,6 +15,7 @@ public class Enemy extends CollidableObject {
     public Node enemy;
     /** The enemy's current hp*/
     private int hp;
+    private boolean killed;
     /** The dimensions of the enemy's hitbox in pixels */
     private static final Vector HITBOX_SIZE = new Vector(30, 30);
     /** The enemy's movement speed which is a constant*/
@@ -31,8 +32,25 @@ public class Enemy extends CollidableObject {
     }
     /** Current state of the enemy */
     private EnemyState state;
-
+    public boolean inRange(Player p){
+        return (Math.abs(p.getNode().getLayoutX() - enemy.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - enemy.getLayoutY()) < 100);
+    }
     public void update(){
+        if (!killed){
+            switch (state){
+                case IDLE:
+                   if (inRange((Player) Game.player)) {
+
+                   }
+                   break;
+                case HOSTILE:
+                    break;
+                case DAMAGED:
+                    break;
+            }
+        } else {
+            enemy.setVisible(false);
+        }
     }
     public Node getNode() {
         return enemy;
@@ -41,6 +59,7 @@ public class Enemy extends CollidableObject {
         this.pos = new Vector(x, y);
         vel = new Vector(0, 0);
         hp = 100;
+        killed = false;
         state = EnemyState.IDLE;
         createHitBox(pos, pos.add(HITBOX_SIZE));
         moveDirection = 0;
