@@ -39,11 +39,11 @@ import java.io.File;
  */
 public class Game {
     /** Camera zoom factor */
-    private static final float ZOOM = 1.0f;
+    public static final float ZOOM = 1.5f;
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.02f;
+    public static final float GRAVITY = 0.055f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
@@ -145,10 +145,17 @@ public class Game {
      * @param level The level to navigate to
      * @param screen The screen within that level to navigate to
      */
-    public static void navigateLevel(Level level, int screen) {
-        updateLevelScreen(level, 1);
+    public static void navigateLevel(Level level, int screen, int teleporterLocationIndex) {
+        System.out.println(screen);
+        updateLevelScreen(level, screen);
         createLevel(level);
-        player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+        ArrayList<TeleportLocation> locations = new ArrayList<TeleportLocation>();
+        for (GameObject obj : gameObjects) {
+            if (obj instanceof TeleportLocation)
+                locations.add((TeleportLocation)obj);
+        }
+        TeleportLocation loc = locations.get(teleporterLocationIndex);
+        player = attachObject(new Player(loc.pos.x, loc.pos.y), SceneLayer.FOREGROUND);
         window.setScene(scene);
     }
     /**
@@ -223,29 +230,9 @@ public class Game {
     }
 
     public void level1() {
-        if (level instanceof Level1) {
-            if (level.levelScreen == 0 && player.pos.x >= 4000) {
-                updateLevelScreen(level, 1);
-                createLevel(level);
-                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
-                window.setScene(scene);
-            } else if (level.levelScreen == 0 && player.pos.y >= 1500) {
-                updateLevelScreen(level, 0);
-                createLevel(level);
-                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
-                window.setScene(scene);
-            }
-            if (level.levelScreen == 1 && player.pos.x <= 0) {
-                updateLevelScreen(level, 0);
-                createLevel(level);
-                player = attachObject(new Player(1180, 250), SceneLayer.FOREGROUND);
-                window.setScene(scene);
-            } else if (level.levelScreen == 1 && player.pos.y >= 1500) {
-                updateLevelScreen(level, 1);
-                createLevel(level);
-                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
-                window.setScene(scene);
-            }
+        if (player.pos.y >= 1500) {
+            System.out.println("here");
+            navigateLevel(level, level.levelScreen, 0);
         }
     }
     /**
@@ -276,19 +263,6 @@ public class Game {
      * @throws FileNotFoundException For splashScreen
      */
     public void mainMenu() throws FileNotFoundException {
-        Rectangle left = new Rectangle();
-        left.setFill(Color.BLACK);
-        //left.setViewOrder(0);
-        Rectangle top = new Rectangle();
-        top.setFill(Color.BLACK);
-        //top.setViewOrder(0);
-        Rectangle right = new Rectangle();
-        right.setFill(Color.BLACK);
-        //right.setViewOrder(0);
-        Rectangle bottom = new Rectangle();
-        bottom.setFill(Color.BLACK);
-        //bottom.setViewOrder(0);
-        sceneGroup.getChildren().addAll(left, top, right, bottom);
 
         if (!IS_DEBUG_MODE) {
             splashScreen();
@@ -300,67 +274,28 @@ public class Game {
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                Vector diff = cameraPos.mul(1);
-                cameraPos = player.pos.mul(-1f).add(Main.getDims().div(2)).add(new Vector(0, 50));
-                cameraPos = Vector.lerp(diff, cameraPos, 0.1f);
-                int padding = 400;
-                for (GameObject obj: gameObjects) {
-                    if (obj instanceof Mold) {
-                        ImageView imageView = (ImageView) obj.getNode();
-                        double w = imageView.getImage().getWidth(), h = imageView.getImage().getHeight();
-                        // left curtain
-                        left.setX(obj.pos.x - padding);
-                        left.setY(obj.pos.y - padding);
-                        left.setWidth(padding);
-                        left.setHeight(h + padding * 2);
-                        // top curtain
-                        top.setX(obj.pos.x - padding);
-                        top.setY(obj.pos.y - padding);
-                        top.setWidth(w + padding * 2);
-                        top.setHeight(padding);
-                        // right curtain
-                        right.setX(obj.pos.x + w);
-                        right.setY(obj.pos.y - padding);
-                        right.setWidth(padding);
-                        right.setHeight(h + padding * 2);
-                        // bottom curtain
-                        bottom.setX(obj.pos.x - padding);
-                        bottom.setY(obj.pos.y + h);
-                        bottom.setWidth(w + padding * 2);
-                        bottom.setHeight(padding);
-
-                        left.getTransforms().clear();
-                        top.getTransforms().clear();
-                        right.getTransforms().clear();
-                        bottom.getTransforms().clear();
-
-                        Scale sca = new Scale();
-                        sca.setX(ZOOM);
-                        sca.setY(ZOOM);
-                        sca.setPivotX(Main.getDims().div(2).x);
-                        sca.setPivotY(Main.getDims().div(2).y);
-                        Translate trans = new Translate();
-                        trans.setX(cameraPos.x);
-                        trans.setY(cameraPos.y);
-                        left.getTransforms().addAll(sca, trans);
-                        top.getTransforms().addAll(sca, trans);
-                        right.getTransforms().addAll(sca, trans);
-                        bottom.getTransforms().addAll(sca, trans);
-                    }
-                    obj.clearTransformations();
-                    obj.setScale(ZOOM, Main.getDims().div(2));
-                    obj.setTranslate(cameraPos);
-                    if (obj instanceof Background) {
-                        obj.clearTransformations();
-                        obj.setTranslate(cameraPos);
-                    }
-                    obj.update();
-                    obj.draw();
-                }
                 if (menu.getSelection() == -1) {
                     window.setScene(menu.getScene());
                     menu.setSelection(0);
-                } else if (menu.getSelection() == 0) {} else if (menu.getSelection() == 1) {
+                } else if (menu.getSelection() == 0) {
+                } else if (menu.getSelection() == 1) {
+                    Vector diff = cameraPos.mul(1);
+                    cameraPos = player.pos.mul(-1f).add(Main.getDims().div(2)).add(new Vector(0, 50));
+                    cameraPos = Vector.lerp(diff, cameraPos, 0.1f);
+                    for (int i = 0 ; i < gameObjects.size(); i++) {
+                        GameObject obj = gameObjects.get(i);
+                        obj.clearTransformations();
+                        obj.setScale(ZOOM, Main.getDims().div(2));
+                        obj.setTranslate(cameraPos);
+                        if (obj instanceof Background) {
+                            obj.clearTransformations();
+                            obj.setTranslate(cameraPos);
+                        }
+                        obj.update();
+                        if (gameObjects.size() == 0)
+                            break;
+                        obj.draw();
+                    }
                     level1();
                 } else if (menu.getSelection() == 2) {
                     instructions.controlScreens();
