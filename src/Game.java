@@ -49,7 +49,7 @@ public class Game {
     /** Current scene*/
     private static Scene scene;
     /** The instance of the player */
-    private static GameObject player;
+    public static GameObject player;
     /** Current group of scene layers: foreground/background/midground */
     private Group sceneGroup = new Group();
     /** Individual scene layers to contain rendered objects: foreground */

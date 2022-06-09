@@ -30,8 +30,10 @@ public class Sign extends GameObject implements Interactable {
     /** Image for the sign's locked texture (Use in range of the sign)*/
     private Image imageUsable;
     /** The text on the sign */
-    private ImageView message;
-
+    private Image message;
+    private Vector normal;
+    private boolean highlighted;
+    private boolean accessing;
     private int answer = 0;
 
     private boolean questionSign;
@@ -48,10 +50,13 @@ public class Sign extends GameObject implements Interactable {
     public Sign(Image message, int x, int y){
         imageNormal = new Image("assets/SignNormal.png");
         imageUsable = new Image("assets/SignOpen.png");
-        this.message = new ImageView(message);
+        this.message = message;
         node = new ImageView(imageNormal);
         pos = new Vector(x, y);
+        normal = new Vector(x, y);
         questionSign = false;
+        highlighted = false;
+        accessing = false;
     }
     /**
      * Class constructor that initializes variables and sets
@@ -66,10 +71,13 @@ public class Sign extends GameObject implements Interactable {
         imageUsable = new Image("assets/SignOpen.png");
         node = new ImageView(imageNormal);
         pos = new Vector(x, y);
-        this.message = new ImageView(message);
+        normal = new Vector(x, y);
+        this.message = message;
         this.answer = answer;
         answeredCorrectly = false;
         questionSign = true;
+        accessing = false;
+        highlighted = false;
     }
     /**
      * Getter method for the Node
@@ -82,12 +90,24 @@ public class Sign extends GameObject implements Interactable {
      * Overridden update method from GameObject
      */
     public void update() {
-        if(!questionSign)
-        {
+
+        if(!questionSign) {
+            if (!highlighted && inRange((Player)Game.player)) {
+                ((ImageView)node).setImage(imageUsable);
+                highlighted = true;
+            } else if (highlighted && !inRange((Player)Game.player)){
+                ((ImageView)node).setImage(imageNormal);
+                highlighted = false;
+            }
             display();
+            if (accessing) {
+                ((ImageView)node).setImage(message);
+                pos = Game.toWorld(new Vector(160, 20));
+            } else {
+                pos = normal;
+            }
         }
-        else
-        {
+        else {
             displayQuestions();
         }
     }
@@ -105,12 +125,16 @@ public class Sign extends GameObject implements Interactable {
      * Displays the message on the sign for information signs
      */
     public void display(){
-        if(Keyboard.isKeyDown(KeyCode.E)) {
-            message.setX(150);
-            message.setY(80);
-            message.setFitHeight(650);
-            message.setFitWidth(1000);
-            message.setPreserveRatio(true);
+        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E)) {
+                accessing = true;
+
+//                ((ImageView)node).setX(150);
+//                ((ImageView)node).setY(80);
+//                ((ImageView)node).setFitHeight(650);
+//                ((ImageView)node).setFitWidth(1000);
+//                ((ImageView)node).setPreserveRatio(true);
+        } else if(Keyboard.isKeyDown(KeyCode.H)){
+            accessing = false;
         }
     }
     /**
@@ -125,11 +149,12 @@ public class Sign extends GameObject implements Interactable {
             keyPressed = true;
         }
         if(keyPressed) {
-            message.setX(150);
-            message.setY(80);
-            message.setFitHeight(650);
-            message.setFitWidth(1000);
-            message.setPreserveRatio(true);
+            ((ImageView)node).setImage(message);
+            ((ImageView)node).setX(150);
+            ((ImageView)node).setY(80);
+            ((ImageView)node).setFitHeight(650);
+            ((ImageView)node).setFitWidth(1000);
+            ((ImageView)node).setPreserveRatio(true);
             if(Keyboard.isKeyDown(KeyCode.DIGIT1))
             {
                 userAnswer = 1;
