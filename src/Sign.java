@@ -122,7 +122,7 @@ public class Sign extends GameObject implements Interactable {
                 highlighted = false;
             }
             display();
-            if (accessing) {
+            if (accessing && !answeredCorrectly) {
                 ((ImageView)node).setImage(message);
                 displayQuestions();
                 pos = Game.toWorld(new Vector(160, 20));
@@ -195,6 +195,8 @@ public class Sign extends GameObject implements Interactable {
             accessing = false;
             System.out.println(userAnswer);
             System.out.println(answeredCorrectly);
+            answered = false;
+            userAnswer = 0;
         }
     }
     public boolean isAnsweredCorrectly()
