@@ -120,7 +120,7 @@ public class Sign extends GameObject implements Interactable {
      * @return Whether or not the player is in range and therefore can interact with the sign
      */
     public boolean inRange(Player p) {
-        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100);
+        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 100 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100);
     }
 
     /**
@@ -145,50 +145,42 @@ public class Sign extends GameObject implements Interactable {
     public void displayQuestions()
     {
         int userAnswer = 0;
-        boolean keyPressed = false;
-        if(Keyboard.isKeyDown(KeyCode.E))
+        ((ImageView)node).setImage(message);
+        ((ImageView)node).setX(150);
+        ((ImageView)node).setY(80);
+        ((ImageView)node).setFitHeight(650);
+        ((ImageView)node).setFitWidth(1000);
+        ((ImageView)node).setPreserveRatio(true);
+        if(Keyboard.isKeyDown(KeyCode.DIGIT1))
         {
-            keyPressed = true;
+            userAnswer = 1;
         }
-        if(keyPressed) {
-            ((ImageView)node).setImage(message);
-            ((ImageView)node).setX(150);
-            ((ImageView)node).setY(80);
-            ((ImageView)node).setFitHeight(650);
-            ((ImageView)node).setFitWidth(1000);
-            ((ImageView)node).setPreserveRatio(true);
-            if(Keyboard.isKeyDown(KeyCode.DIGIT1))
-            {
-                userAnswer = 1;
-            }
-            else if(Keyboard.isKeyDown(KeyCode.DIGIT2))
-            {
-                userAnswer = 2;
-            }
-            else if(Keyboard.isKeyDown(KeyCode.DIGIT3))
-            {
-                userAnswer = 3;
-            }
-            else if(Keyboard.isKeyDown(KeyCode.DIGIT4))
-            {
-                userAnswer = 4;
-            }
+        else if(Keyboard.isKeyDown(KeyCode.DIGIT2))
+        {
+            userAnswer = 2;
+        }
+        else if(Keyboard.isKeyDown(KeyCode.DIGIT3))
+        {
+            userAnswer = 3;
+        }
+        else if(Keyboard.isKeyDown(KeyCode.DIGIT4))
+        {
+            userAnswer = 4;
+        }
 
-            if(userAnswer == answer && userAnswer != 0)
-            {
-                //tell upward it works
-                answeredCorrectly = true;
-                userAnswer = 0;
-                keyPressed = false;
-            }
-            else
-            {
-                //tell upward it is false;
-                answeredCorrectly = false;
-                userAnswer = 0;
-                keyPressed = false;
-            }
+        if(userAnswer == answer && userAnswer != 0)
+        {
+            //tell upward it works
+            answeredCorrectly = true;
+            userAnswer = 0;
         }
+        else
+        {
+            //tell upward it is false;
+            answeredCorrectly = false;
+            userAnswer = 0;
+        }
+        System.out.println(userAnswer);
     }
     public boolean isAnsweredCorrectly()
     {
