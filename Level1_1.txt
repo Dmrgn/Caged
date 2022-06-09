@@ -1,4 +1,6 @@
+Background, abyss
 Mold, one, 0, 0
+TeleportLocation, 270, 290, 0
 Platform, longFloor, false, 140, 1000
 Platform, wallOutCrop, false, 40, 785
 Platform, platform, false, 724, 824
@@ -17,7 +19,13 @@ Platform, fallFloor, false, 1240, 1013
 Platform, ledgeCrossSection1, false, 1485, 768
 Platform, ledgeCrossSection2, false, 1540, 844
 Platform, doorLeft, false, 1660, 890
-Teleporter, 1695, 991, 0, 1
+Teleporter, 1675, 991, 0, 1, 0
+TeleportLocation, 1605, 980, 1
+Platform, rightFloor, false, 1620, 842
+Platform, rightBottom, false, 1807, 795
+Platform, rightTop, false, 1797, 764
+Teleporter, 1689, 817, 0, 1, 1
+TeleportLocation, 1749, 800, 2
 Sign, Sign1, false, 730, 940
 Sign, Sign2, false, 1075, 862
 Sign, Sign3, false, 1200, 645
