@@ -29,8 +29,6 @@ public class Sign extends GameObject implements Interactable {
     private Image imageNormal;
     /** Image for the sign's locked texture (Use in range of the sign)*/
     private Image imageUsable;
-    /** The Vector for the sign's position*/
-    private Vector pos;
     /** The text on the sign */
     private ImageView message;
 
@@ -63,7 +61,7 @@ public class Sign extends GameObject implements Interactable {
      * @param y The y coord of the platform
      * @param answer If this is a question
      */
-    public Sign(Image message, int x, int y, Scene scene, int answer){
+    public Sign(Image message, int x, int y, int answer){
         imageNormal = new Image("assets/SignNormal.png");
         imageUsable = new Image("assets/SignOpen.png");
         node = new ImageView(imageNormal);

@@ -18,3 +18,4 @@ Platform, ledgeCrossSection1, false, 1485, 768
 Platform, ledgeCrossSection2, false, 1540, 844
 Platform, doorLeft, false, 1660, 890
 Teleporter, 1695, 991, 0, 1
+Sign, Sign1, false, 730, 940

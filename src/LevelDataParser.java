@@ -68,7 +68,12 @@ public class LevelDataParser {
                 Door d = new Door(textures.get("Door:doorClosed"), textures.get("Door:doorOpen"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
                 levelObjects.add(d);
             } else if (data[0].equals("Sign")) {
-                Sign s = new Sign(textures.get("Sign Messages:Sign1"), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+                Sign s;
+                if (!Boolean.parseBoolean(data[2])) {
+                    s = new Sign(textures.get("Sign:" + data[1]), Integer.parseInt(data[3]), Integer.parseInt(data[4]));
+                } else {
+                    s = new Sign(textures.get("Sign:" + data[1]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5]));
+                }
                 levelObjects.add(s);
             } else {
                 //don't get mad at us :)
