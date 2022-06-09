@@ -36,11 +36,10 @@ public class Sign extends GameObject implements Interactable {
 
     private int answer = 0;
 
-    private boolean questionSign = false;
+    private boolean questionSign;
 
     private boolean answeredCorrectly;
 
-    private Scene scene;
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -48,13 +47,13 @@ public class Sign extends GameObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Sign(Image message, int x, int y/*, Scene scene*/){
+    public Sign(Image message, int x, int y){
         imageNormal = new Image("assets/SignNormal.png");
-        //imageUsable = new Image("assets/SignOpen.png");
+        imageUsable = new Image("assets/SignOpen.png");
+        this.message = new ImageView(message);
         node = new ImageView(imageNormal);
         pos = new Vector(x, y);
-        this.message = new ImageView(message);
-        //this.scene = scene;
+        questionSign = false;
     }
     /**
      * Class constructor that initializes variables and sets
@@ -66,11 +65,10 @@ public class Sign extends GameObject implements Interactable {
      */
     public Sign(Image message, int x, int y, Scene scene, int answer){
         imageNormal = new Image("assets/SignNormal.png");
-        //imageUsable = new Image("assets/SignOpen.png");
+        imageUsable = new Image("assets/SignOpen.png");
         node = new ImageView(imageNormal);
         pos = new Vector(x, y);
         this.message = new ImageView(message);
-        this.scene = scene;
         this.answer = answer;
         answeredCorrectly = false;
         questionSign = true;
@@ -86,7 +84,6 @@ public class Sign extends GameObject implements Interactable {
      * Overridden update method from GameObject
      */
     public void update() {
-        node = new ImageView(imageNormal);
         if(!questionSign)
         {
             display();
