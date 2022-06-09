@@ -34,8 +34,9 @@ public class Sign extends GameObject implements Interactable {
     private Vector normal;
     private boolean highlighted;
     private boolean accessing;
+    private boolean answered;
     private int answer = 0;
-
+    private int userAnswer;
     private boolean questionSign;
 
     private boolean answeredCorrectly;
@@ -55,6 +56,7 @@ public class Sign extends GameObject implements Interactable {
         pos = new Vector(x, y);
         normal = new Vector(x, y);
         questionSign = false;
+        answered = false;
         highlighted = false;
         accessing = false;
     }
@@ -78,6 +80,8 @@ public class Sign extends GameObject implements Interactable {
         questionSign = true;
         accessing = false;
         highlighted = false;
+        userAnswer = 0;
+        answered = false;
     }
     /**
      * Getter method for the Node
@@ -110,7 +114,23 @@ public class Sign extends GameObject implements Interactable {
             }
         }
         else {
-            displayQuestions();
+            if (!highlighted && inRange((Player)Game.player)) {
+                ((ImageView)node).setImage(imageUsable);
+                highlighted = true;
+            } else if (highlighted && !inRange((Player)Game.player)){
+                ((ImageView)node).setImage(imageNormal);
+                highlighted = false;
+            }
+            display();
+            if (accessing) {
+                ((ImageView)node).setImage(message);
+                displayQuestions();
+                pos = Game.toWorld(new Vector(160, 20));
+                Game.player.getNode().setVisible(false);
+            } else {
+                pos = normal;
+                Game.player.getNode().setVisible(true);
+            }
         }
     }
 
@@ -142,45 +162,40 @@ public class Sign extends GameObject implements Interactable {
     /**
      * Displays the message on the sign for question signs
      */
-    public void displayQuestions()
-    {
-        int userAnswer = 0;
-        ((ImageView)node).setImage(message);
-        ((ImageView)node).setX(150);
-        ((ImageView)node).setY(80);
-        ((ImageView)node).setFitHeight(650);
-        ((ImageView)node).setFitWidth(1000);
-        ((ImageView)node).setPreserveRatio(true);
-        if(Keyboard.isKeyDown(KeyCode.DIGIT1))
-        {
-            userAnswer = 1;
+    public void displayQuestions() {
+//        ((ImageView)node).setImage(message);
+//        ((ImageView)node).setX(150);
+//        ((ImageView)node).setY(80);
+//        ((ImageView)node).setFitHeight(650);
+//        ((ImageView)node).setFitWidth(1000);
+//        ((ImageView)node).setPreserveRatio(true);
+        if (!answered) {
+            if (Keyboard.isKeyDown(KeyCode.DIGIT1)) {
+                userAnswer = 1;
+                answered = true;
+            } else if (Keyboard.isKeyDown(KeyCode.DIGIT2)) {
+                userAnswer = 2;
+                answered = true;
+            } else if (Keyboard.isKeyDown(KeyCode.DIGIT3)) {
+                userAnswer = 3;
+                answered = true;
+            } else if (Keyboard.isKeyDown(KeyCode.DIGIT4)) {
+                userAnswer = 4;
+                answered = true;
+            }
         }
-        else if(Keyboard.isKeyDown(KeyCode.DIGIT2))
-        {
-            userAnswer = 2;
+        if (answered) {
+            if (userAnswer == answer && userAnswer != 0) {
+                //tell upward it works
+                answeredCorrectly = true;
+            } else {
+                //tell upward it is false;
+                answeredCorrectly = false;
+            }
+            accessing = false;
+            System.out.println(userAnswer);
+            System.out.println(answeredCorrectly);
         }
-        else if(Keyboard.isKeyDown(KeyCode.DIGIT3))
-        {
-            userAnswer = 3;
-        }
-        else if(Keyboard.isKeyDown(KeyCode.DIGIT4))
-        {
-            userAnswer = 4;
-        }
-
-        if(userAnswer == answer && userAnswer != 0)
-        {
-            //tell upward it works
-            answeredCorrectly = true;
-            userAnswer = 0;
-        }
-        else
-        {
-            //tell upward it is false;
-            answeredCorrectly = false;
-            userAnswer = 0;
-        }
-        System.out.println(userAnswer);
     }
     public boolean isAnsweredCorrectly()
     {
