@@ -279,11 +279,6 @@ public class Game {
      * @throws FileNotFoundException For splashScreen
      */
     public void mainMenu() throws FileNotFoundException {
-
-        if (!IS_DEBUG_MODE) {
-            splashScreen();
-        }
-
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
         Credits credits = new Credits(window);
