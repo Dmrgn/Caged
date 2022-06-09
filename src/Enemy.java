@@ -53,4 +53,25 @@ public class Enemy extends CollidableObject {
         lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y/2)), pos2.add(new Vector(-5, 0)));
         upperHitBox = new HitBox(pos1.add(new Vector(5, 0)), pos2.sub(new Vector(-5, HITBOX_SIZE.y/2)));
     }
+    private EnemyState requestStateChange(EnemyState newState) {
+        switch (state) {
+            case IDLE:
+                return state = newState;
+            case HOSTILE:
+                switch (newState) {
+                    case IDLE:
+                        return state = EnemyState.IDLE;
+                    case DAMAGED:
+                        return state = EnemyState.DAMAGED;
+                }
+                break;
+            case DAMAGED:
+                switch (newState) {
+                    case IDLE:
+                        return state = EnemyState.IDLE;
+                }
+                break;
+        }
+        return state;
+    }
 }
