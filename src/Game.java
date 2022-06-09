@@ -49,7 +49,7 @@ public class Game {
     /** Current scene*/
     private static Scene scene;
     /** The instance of the player */
-    private static GameObject player;
+    public static GameObject player;
     /** Current group of scene layers: foreground/background/midground */
     private Group sceneGroup = new Group();
     /** Individual scene layers to contain rendered objects: foreground */
@@ -103,8 +103,9 @@ public class Game {
         buildScene(sceneGroup);
         // add a player and platform to the scene
         player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);
-        levels = new Level[1];
+        levels = new Level[2];
         levels[0] = new Level1();
+        levels[1] = new Level2();
         createLevel(levels[0]);
         // set the current scene
         window.setScene(scene);
@@ -181,7 +182,7 @@ public class Game {
     /**
      * Creates and initializes the different levels of the game
      * as they are needed.
-     * @param level The Level to be created
+     * @param l The Level to be created
      */
     public static void createLevel(Level l) {
         try {
@@ -233,6 +234,21 @@ public class Game {
         if (player.pos.y >= 1500) {
             System.out.println("here");
             navigateLevel(level, level.levelScreen, 0);
+        }
+    }
+    public void level2() {
+        if (level instanceof Level2) {
+            if (level.levelScreen == 0 && player.pos.x >= 4000) {
+                updateLevelScreen(level, 1);
+                createLevel(level);
+                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                window.setScene(scene);
+            } else if (level.levelScreen == 0 && player.pos.y >= 1500) {
+                updateLevelScreen(level, 0);
+                createLevel(level);
+                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                window.setScene(scene);
+            }
         }
     }
     /**

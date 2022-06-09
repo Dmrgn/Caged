@@ -29,18 +29,18 @@ public class Sign extends GameObject implements Interactable {
     private Image imageNormal;
     /** Image for the sign's locked texture (Use in range of the sign)*/
     private Image imageUsable;
-    /** The Vector for the sign's position*/
-    private Vector pos;
     /** The text on the sign */
-    private ImageView message;
-
+    private Image message;
+    private Vector normal;
+    private boolean highlighted;
+    private boolean accessing;
+    private boolean answered;
     private int answer = 0;
-
-    private boolean questionSign = false;
+    private int userAnswer;
+    private boolean questionSign;
 
     private boolean answeredCorrectly;
 
-    private Scene scene;
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -48,13 +48,17 @@ public class Sign extends GameObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Sign(Image message, int x, int y, Scene scene){
+    public Sign(Image message, int x, int y){
         imageNormal = new Image("assets/SignNormal.png");
-        //imageUsable = new Image("assets/SignOpen.png");
+        imageUsable = new Image("assets/SignOpen.png");
+        this.message = message;
         node = new ImageView(imageNormal);
         pos = new Vector(x, y);
-        this.message = new ImageView(message);
-        this.scene = scene;
+        normal = new Vector(x, y);
+        questionSign = false;
+        answered = false;
+        highlighted = false;
+        accessing = false;
     }
     /**
      * Class constructor that initializes variables and sets
@@ -64,16 +68,20 @@ public class Sign extends GameObject implements Interactable {
      * @param y The y coord of the platform
      * @param answer If this is a question
      */
-    public Sign(Image message, int x, int y, Scene scene, int answer){
+    public Sign(Image message, int x, int y, int answer){
         imageNormal = new Image("assets/SignNormal.png");
-        //imageUsable = new Image("assets/SignOpen.png");
+        imageUsable = new Image("assets/SignOpen.png");
         node = new ImageView(imageNormal);
         pos = new Vector(x, y);
-        this.message = new ImageView(message);
-        this.scene = scene;
+        normal = new Vector(x, y);
+        this.message = message;
         this.answer = answer;
         answeredCorrectly = false;
         questionSign = true;
+        accessing = false;
+        highlighted = false;
+        userAnswer = 0;
+        answered = false;
     }
     /**
      * Getter method for the Node
@@ -86,14 +94,43 @@ public class Sign extends GameObject implements Interactable {
      * Overridden update method from GameObject
      */
     public void update() {
-        node = new ImageView(imageNormal);
-        if(!questionSign)
-        {
+
+        if(!questionSign) {
+            if (!highlighted && inRange((Player)Game.player)) {
+                ((ImageView)node).setImage(imageUsable);
+                highlighted = true;
+            } else if (highlighted && !inRange((Player)Game.player)){
+                ((ImageView)node).setImage(imageNormal);
+                highlighted = false;
+            }
             display();
+            if (accessing) {
+                ((ImageView)node).setImage(message);
+                pos = Game.toWorld(new Vector(160, 20));
+                Game.player.getNode().setVisible(false);
+            } else {
+                pos = normal;
+                Game.player.getNode().setVisible(true);
+            }
         }
-        else
-        {
-            displayQuestions();
+        else {
+            if (!highlighted && inRange((Player)Game.player)) {
+                ((ImageView)node).setImage(imageUsable);
+                highlighted = true;
+            } else if (highlighted && !inRange((Player)Game.player)){
+                ((ImageView)node).setImage(imageNormal);
+                highlighted = false;
+            }
+            display();
+            if (accessing && !answeredCorrectly) {
+                ((ImageView)node).setImage(message);
+                displayQuestions();
+                pos = Game.toWorld(new Vector(160, 20));
+                Game.player.getNode().setVisible(false);
+            } else {
+                pos = normal;
+                Game.player.getNode().setVisible(true);
+            }
         }
     }
 
@@ -103,69 +140,63 @@ public class Sign extends GameObject implements Interactable {
      * @return Whether or not the player is in range and therefore can interact with the sign
      */
     public boolean inRange(Player p) {
-        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100);
+        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 100 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100);
     }
 
     /**
      * Displays the message on the sign for information signs
      */
     public void display(){
-        if(Keyboard.isKeyDown(KeyCode.E)) {
-            message.setX(150);
-            message.setY(80);
-            message.setFitHeight(650);
-            message.setFitWidth(1000);
-            message.setPreserveRatio(true);
+        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E)) {
+                accessing = true;
+
+//                ((ImageView)node).setX(150);
+//                ((ImageView)node).setY(80);
+//                ((ImageView)node).setFitHeight(650);
+//                ((ImageView)node).setFitWidth(1000);
+//                ((ImageView)node).setPreserveRatio(true);
+        } else if(Keyboard.isKeyDown(KeyCode.H)){
+            accessing = false;
         }
     }
     /**
      * Displays the message on the sign for question signs
      */
-    public void displayQuestions()
-    {
-        int userAnswer = 0;
-        boolean keyPressed = false;
-        if(Keyboard.isKeyDown(KeyCode.E))
-        {
-            keyPressed = true;
-        }
-        if(keyPressed) {
-            message.setX(150);
-            message.setY(80);
-            message.setFitHeight(650);
-            message.setFitWidth(1000);
-            message.setPreserveRatio(true);
-            if(Keyboard.isKeyDown(KeyCode.DIGIT1))
-            {
+    public void displayQuestions() {
+//        ((ImageView)node).setImage(message);
+//        ((ImageView)node).setX(150);
+//        ((ImageView)node).setY(80);
+//        ((ImageView)node).setFitHeight(650);
+//        ((ImageView)node).setFitWidth(1000);
+//        ((ImageView)node).setPreserveRatio(true);
+        if (!answered) {
+            if (Keyboard.isKeyDown(KeyCode.DIGIT1)) {
                 userAnswer = 1;
-            }
-            else if(Keyboard.isKeyDown(KeyCode.DIGIT2))
-            {
+                answered = true;
+            } else if (Keyboard.isKeyDown(KeyCode.DIGIT2)) {
                 userAnswer = 2;
-            }
-            else if(Keyboard.isKeyDown(KeyCode.DIGIT3))
-            {
+                answered = true;
+            } else if (Keyboard.isKeyDown(KeyCode.DIGIT3)) {
                 userAnswer = 3;
-            }
-            else if(Keyboard.isKeyDown(KeyCode.DIGIT4))
-            {
+                answered = true;
+            } else if (Keyboard.isKeyDown(KeyCode.DIGIT4)) {
                 userAnswer = 4;
+                answered = true;
             }
-
-            if(userAnswer == answer && userAnswer != 0)
-            {
+        }
+        if (answered) {
+            if (userAnswer == answer && userAnswer != 0) {
                 //tell upward it works
                 answeredCorrectly = true;
-                userAnswer = 0;
-                keyPressed = false;
-            }
-            else
-            {
+            } else {
                 //tell upward it is false;
                 answeredCorrectly = false;
-                userAnswer = 0;
-                keyPressed = false;
             }
+            accessing = false;
+            System.out.println(userAnswer);
+            System.out.println(answeredCorrectly);
+            answered = false;
+            userAnswer = 0;
         }
     }
     public boolean isAnsweredCorrectly()
