@@ -9,7 +9,7 @@ Platform, platform, false, 400, 700
 Platform, platform, false, 600, 620
 Platform, platform, false, 750, 400
 Platform, platform, false, 900, 300
-Teleporter, 1210, 380, 0, 0, 2
+Teleporter, 1210, 380, 0, 2, 2
 TeleportLocation, 1130, 380, 1
 Platform, platform, false, 1150, 410
 Sign, QuesSign1, true, 430, 635, 2

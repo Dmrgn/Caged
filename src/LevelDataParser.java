@@ -55,6 +55,9 @@ public class LevelDataParser {
                 levelObjects.add(p);
             } else if (data[0].equals("Enemy1")) {
 
+            } else if (data[0].equals("Spike")) {
+                Spike s = new Spike(Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]));
+                levelObjects.add(s);
             } else if (data[0].equals("Mold")) {
                 Mold m = new Mold(textures.get("Mold:"+data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]));
                 levelObjects.add(m);

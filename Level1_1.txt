@@ -32,3 +32,5 @@ Sign, Sign3, false, 1200, 645
 Sign, Sign4, false, 1410, 950
 Sign, Sign5, false, 1830, 700
 Key, heartout, heart, 1485, 660
+Spike, 1470, 505, 1360
+Platform, invisible, false, 1435, 513
