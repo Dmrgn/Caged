@@ -10,6 +10,11 @@ thoughts personified as enemies and bosses to reach the end and have the main ch
 You, as the player, play as the last vestiges of the main character's hope and receive advice from the 
 main character's older brother as you progress throughout the game. For more information about
 our development process, check out our blog at https://sites.google.com/student.tdsb.on.ca/coffeesoftware-blog/home
+The game is designed to address depression in teenagers and our main focus will be to make the game as symbolically 
+rich and entertaining as possible along with providing fact-based advice about dealing with depression to the player. 
+We do not want to further any misconceptions that may exist but instead provide education based on our research for 
+how to cope with depression.
+
 
 How to play
 
@@ -39,21 +44,18 @@ seek the help they need.
 
 Troubleshooting
 
-The game should be completely uncrashable unless there is an issue with reading the level data files
-in which case the program will throw a runtime error and you will be prompted to redownload the level
-data files, which can be found in our GitHub repository at https://github.com/Dmrgn/Caged
-If you are running the executable file, there should be no issues whatsoever as the level data files
-should be included in the executable. If you have any issues, email any of the developers at
-either ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca or samuel.huang4@student.tdsb.on.ca
+The game should be completely uncrashable unless the level data files have been tampered with (the files
+are supposed to be read-only so the user should not be able to modify them) in which case the program will 
+throw a runtime error and you will be prompted to redownload the level data files, which can be found in our 
+GitHub repository at https://github.com/Dmrgn/Caged If you are running the executable file, there should be no 
+issues whatsoever as the level data files should be included in the executable. If you have any issues, email 
+any of the developers at either ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca or samuel.huang4@student.tdsb.on.ca
 
 Possible Glitches
 
 The game, despite our best efforts, contains some bugs still that may affect gameplay but not crash
-the program or softlock the game. These are: potential issues with wall collision (the player may be able
-to fall through the floor next to a wall if they are moving too much. At worst, this simply causes the player
-to fall through the level and respawn back at the beginning), extraneous red rectangles (red rectangles occasionally
-appear near menu buttons for no particular reason), platform edge collision occasionally being sticky and blocking the player
-and menu button visuals being off on re-entry (returning to the menu occasionally results in half of each button not flashing). 
-Please report any new glitches to any of the developers at ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca or 
-samuel.huang4@student.tdsb.on.ca. Although this is a class assignment, we do care about the game for its own sake and may issue 
-fixes in the future.
+the program or softlock the game. These are: extraneous red rectangles (red rectangles occasionally
+appear near menu buttons for no particular reason), and menu button visuals being off on re-entry (returning to 
+the menu occasionally results in half of each button not flashing). Please report any new glitches to any of the 
+developers at ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca or samuel.huang4@student.tdsb.on.ca. 
+Although this is a class assignment, we do care about the game for its own sake and may issue fixes in the future.
