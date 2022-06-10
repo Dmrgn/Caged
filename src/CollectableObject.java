@@ -39,14 +39,15 @@ public class CollectableObject extends GameObject implements Interactable
     }
 
     public void update() {
+        //node = new ImageView(objectOut);
         if(inRange((Player)Game.player)) {
-            node = new ImageView((appear) ? objectIn : emptyImage);
+            ((ImageView)node).setImage((appear) ? objectIn : emptyImage);
         }
         else if(!inRange((Player)Game.player))
         {
-            node = new ImageView((appear) ? objectOut : emptyImage);
+            ((ImageView)node).setImage((appear) ? objectOut : emptyImage);
         }
-        if(Keyboard.isKeyDown(KeyCode.E))
+        if(inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E))
         {
             //make a boolean true signalling that the object is found.
             Game.objectFound = true;
