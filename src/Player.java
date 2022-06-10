@@ -95,7 +95,7 @@ public class Player extends CollidableObject {
     }
     @Override
     public void createHitBox(Vector pos1, Vector pos2) {
-        hitbox = new HitBox(pos1, pos2);
+        hitbox = new HitBox(pos1.add(new Vector(0, 5)), pos2.sub(new Vector(0,5)));
         lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y/2)), pos2.add(new Vector(-5, 0)));
         upperHitBox = new HitBox(pos1.add(new Vector(5, 0)), pos2.sub(new Vector(5, HITBOX_SIZE.y/2)));
     }
@@ -187,8 +187,10 @@ public class Player extends CollidableObject {
         // State independent logic
         vel = vel.add(new Vector(0, Game.GRAVITY));
 
+        boolean collided = true;
         // Handle vertical collisions
         if (Game.touchingCollidable(this, lowerHitBox)) {
+            // collided = true;
             hasTouchedGround = true;
             pos.y = pos.y - (vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
@@ -199,12 +201,13 @@ public class Player extends CollidableObject {
             }
         }
         if (Game.touchingCollidable(this, upperHitBox)) {
+            // collided = true;
             pos.y = pos.y + Math.abs(vel.y * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.y = 0;
         }
         // Handle lateral collisions
-        if (Game.touchingCollidable(this)) {
+        if (Game.touchingCollidable(this) && collided) {
             pos.x = pos.x - (vel.x * 1.5f);
             createHitBox(pos, pos.add(HITBOX_SIZE));
             vel.x = vel.x*-0.5f;

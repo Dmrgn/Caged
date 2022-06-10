@@ -33,3 +33,4 @@ Sign, Sign4, false, 1410, 950
 Sign, Sign5, false, 1830, 700
 Key, heartout, heart, 1485, 660
 Platform, spike, false, 1470, 643
+Teleporter, 645, 743, 1, 0, 0

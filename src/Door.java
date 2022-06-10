@@ -54,12 +54,14 @@ public class Door extends CollidableObject implements Interactable {
      * Overridden update method from GameObject
      */
     public void update() {
-//        node = new ImageView(((isLocked) ? imageLocked : imageOpen));
         if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor) {
             isLocked = false;
             ((ImageView)node).setImage(imageOpen);
+            createHitBox(new Vector(0,0), new Vector(0,0));
         } else if (inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){
             display();
+        } else if (!isLocked){
+            ((ImageView)node).setImage(imageOpen);
         } else {
             ((ImageView)node).setImage(imageLocked);
         }
@@ -71,7 +73,7 @@ public class Door extends CollidableObject implements Interactable {
      * @return Whether or not the player is in range and therefore can interact with the door
      */
     public boolean inRange(Player p){
-        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100);
+        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 200);
     }
     /**
      * Overridden method from Interactable, displays a message if

@@ -60,6 +60,7 @@ public class CollectableObject extends GameObject implements Interactable {
                 //make a boolean true signalling that the object is found.
                 node.setVisible(false);
                 Game.objectFound = true;
+                Game.canOpenDoor = true;
             }
         } else {
             node.setVisible(false);

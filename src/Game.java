@@ -150,7 +150,6 @@ public class Game {
      * @param screen The screen within that level to navigate to
      */
     public static void navigateLevel(Level level, int screen, int teleporterLocationIndex) {
-        System.out.println(screen);
         updateLevelScreen(level, screen);
         createLevel(level);
         ArrayList<TeleportLocation> locations = new ArrayList<TeleportLocation>();

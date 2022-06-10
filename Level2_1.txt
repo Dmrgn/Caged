@@ -1,5 +1,6 @@
 Background, abyss
 Mold, one, 0, 0
+TeleportLocation, 270, 290, 0
 Platform, rottedPlatform, false, 1050, 1050
 Platform, rottedLongFloor, false, 40, 1125
 Platform, rottedPlatform, false, 724, 824
