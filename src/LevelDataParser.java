@@ -78,6 +78,9 @@ public class LevelDataParser {
                     s = new Sign(textures.get("Sign:" + data[1]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5]));
                 }
                 levelObjects.add(s);
+            } else if (data[0].equals("Key")) {
+                CollectableObject c = new CollectableObject(textures.get("Key:"+data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]));
+                levelObjects.add(c);
             } else {
                 //don't get mad at us :)
                 throw new RuntimeException("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");
