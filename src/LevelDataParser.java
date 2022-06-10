@@ -79,7 +79,7 @@ public class LevelDataParser {
                 }
                 levelObjects.add(s);
             } else if (data[0].equals("Key")) {
-                CollectableObject c = new CollectableObject(textures.get("Key:"+data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]));
+                CollectableObject c = new CollectableObject(textures.get("Key:"+data[1]), textures.get("Key:"+data[2]),Integer.parseInt(data[3]), Integer.parseInt(data[4]));
                 levelObjects.add(c);
             } else {
                 //don't get mad at us :)
