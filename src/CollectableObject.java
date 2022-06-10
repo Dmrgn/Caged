@@ -25,8 +25,8 @@ public class CollectableObject extends GameObject implements Interactable
     private Image objectOut;
 
     private Image objectIn;
+    private boolean highlighted;
 
-    private Image emptyImage;
 
     public CollectableObject(Image objectOutRange, Image objectInRange, int x, int y)
     {
@@ -34,25 +34,27 @@ public class CollectableObject extends GameObject implements Interactable
         objectIn = objectInRange;
         pos = new Vector(x, y);
         node = new ImageView(objectOut);
-        emptyImage = new Image("assets/teleporter.png");
+        highlighted = false;
         appear = true;
     }
 
     public void update() {
-        ((ImageView)node).setImage((appear) ? objectIn : emptyImage);
-        if(inRange((Player)Game.player)) {
-            ((ImageView)node).setImage((appear) ? objectIn : emptyImage);
-        }
-        else if(!inRange((Player)Game.player))
-        {
-            ((ImageView)node).setImage((appear) ? objectOut : emptyImage);
-            System.out.println("Activate");
-        }
-        if(inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E))
-        {
-            //make a boolean true signalling that the object is found.
-            Game.objectFound = true;
-            appear = false;
+        if (!Game.objectFound) {
+            if (!highlighted && inRange((Player) Game.player)) {
+                ((ImageView) node).setImage(objectIn);
+                highlighted = true;
+            } else if (highlighted && !inRange((Player) Game.player)) {
+                ((ImageView) node).setImage(objectOut);
+                highlighted = false;
+            }
+            if (inRange((Player) Game.player) && Keyboard.isKeyDown(KeyCode.E)) {
+                //make a boolean true signalling that the object is found.
+                node.setVisible(false);
+                Game.objectFound = true;
+                appear = false;
+            }
+        } else {
+            node.setVisible(false);
         }
     }
 
