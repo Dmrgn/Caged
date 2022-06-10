@@ -94,9 +94,6 @@ public class Game {
         objectFound = false;
         questionsCorrect = 0;
         // render the background, then midground, then foreground first
-        //background.setViewOrder(1);
-        //midground.setViewOrder(2);
-        //foreground.setViewOrder(3);
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
         });
@@ -238,7 +235,6 @@ public class Game {
 
     public void level1() {
         if (player.pos.y >= 1500) {
-            System.out.println("here");
             navigateLevel(level, level.levelScreen, 0);
         }
     }
@@ -340,7 +336,6 @@ public class Game {
         menu.display();
         window.setScene(menu.getScene());
         menuTimer.start();
-        System.out.println("hi");
     }
     /**
      * Method that is active as long as the player is currently playing

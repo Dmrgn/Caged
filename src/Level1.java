@@ -36,7 +36,6 @@ public class Level1 extends Level {
             textures.put("Platform:"+platform.getName().split("\\.")[0], new Image(platform.getPath()));
         }
         for (File sign : (new File("assets/signs").listFiles())) {
-            System.out.println(sign.getPath());
             textures.put("Sign:"+sign.getName().split("\\.")[0], new Image(sign.getPath()));
         }
         for (File key : (new File("assets/keys").listFiles())){

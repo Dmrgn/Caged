@@ -54,23 +54,7 @@ public class Mold extends GameObject {
 
     @Override
     public void draw() {
-        left.getTransforms().clear();
-        top.getTransforms().clear();
-        right.getTransforms().clear();
-        bottom.getTransforms().clear();
 
-        Scale sca = new Scale();
-        sca.setX(Game.ZOOM);
-        sca.setY(Game.ZOOM);
-        sca.setPivotX(Main.getDims().div(2).x);
-        sca.setPivotY(Main.getDims().div(2).y);
-        Translate trans = new Translate();
-        trans.setX(Game.cameraPos.x);
-        trans.setY(Game.cameraPos.y);
-        left.getTransforms().addAll(sca, trans);
-        top.getTransforms().addAll(sca, trans);
-        right.getTransforms().addAll(sca, trans);
-        bottom.getTransforms().addAll(sca, trans);
     }
 
     @Override
