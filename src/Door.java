@@ -28,6 +28,12 @@ public class Door extends CollidableObject implements Interactable {
     /** Whether the door is locked */
     private boolean isLocked;
 
+    private Image doorMessage;
+
+    private Vector normalPos;
+
+    private boolean accessing;
+
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -42,7 +48,10 @@ public class Door extends CollidableObject implements Interactable {
         imageOpen = imageFileOpen;
         node = new ImageView((isLocked) ? imageLocked : imageOpen);
         pos = new Vector(x, y);
+        normalPos = new Vector(x, y);
+        doorMessage = new Image("assets/doors/DoorSignLvl1.png");
         createHitBox(pos.add(new Vector(0, 0)), pos.add(new Vector((float)imageFileLocked.getWidth(), (float)imageFileLocked.getHeight())));
+        accessing = false;
     }
     /**
      * Getter method for the Node
@@ -59,14 +68,19 @@ public class Door extends CollidableObject implements Interactable {
             isLocked = false;
             ((ImageView)node).setImage(imageOpen);
             createHitBox(new Vector(0,0), new Vector(0,0));
-        } else if (inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){
-            if(!Keyboard.isKeyUp(KeyCode.E)) {
-                display();
-            }
         } else if (!isLocked){
             ((ImageView)node).setImage(imageOpen);
         } else {
             ((ImageView)node).setImage(imageLocked);
+        }
+        if (isLocked && inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){
+            accessing = true;
+        } else if(isLocked && Keyboard.isKeyUp(KeyCode.E))
+        {
+            accessing = false;
+        }
+        if(isLocked) {
+            display();
         }
     }
 
@@ -83,6 +97,16 @@ public class Door extends CollidableObject implements Interactable {
      * the door is locked or when the door is able to be opened
      */
     public void display(){
-
+        if(accessing) {
+            ((ImageView) node).setImage(doorMessage);
+            pos = Game.toWorld(new Vector(325, 175));
+            Game.player.getNode().setVisible(false);
+        }
+        else
+        {
+            ((ImageView)node).setImage(imageLocked);
+            pos = normalPos;
+            Game.player.getNode().setVisible(true);
+        }
     }
 }
