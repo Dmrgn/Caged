@@ -1,11 +1,10 @@
 Background, abyss
-Mold, one, 0, 0
-TeleportLocation, 270, 290, 0
-Platform, rottedPlatform, false, 1050, 1050
-Platform, rottedLongFloor, false, 40, 1125
-Platform, rottedPlatform, false, 724, 824
-Platform, rottedShortFloor, false, 434, 771
-Platform, rottedPlatform, false, 1048, 928
-Platform, rottedShortWall, false, 1205, 736
-Platform, rottedPlatform, false, 1170, 713
-Door, 603, 662
+Mold, two, 0, 0
+TeleportLocation, 700, 800, 0
+Platform, rottedLongFloor, false, 656, 1007
+Platform, rottedTShapeBottom, false, 1564, 936
+Platform, rottedTShapeTop, false, 1586, 890
+Platform, rottedShortFloor, false, 1653, 1004
+Platform, rottedShortFloor, false, 380, 1014
+Platform, rottedShortFloor, false, 440, 1014
+Platform, rightFloor, false, 116, 1017
