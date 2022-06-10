@@ -27,6 +27,7 @@ public class Door extends CollidableObject implements Interactable {
     private Image imageOpen;
     /** Whether the door is locked */
     private boolean isLocked;
+
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -59,7 +60,9 @@ public class Door extends CollidableObject implements Interactable {
             ((ImageView)node).setImage(imageOpen);
             createHitBox(new Vector(0,0), new Vector(0,0));
         } else if (inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){
-            display();
+            if(!Keyboard.isKeyUp(KeyCode.E)) {
+                display();
+            }
         } else if (!isLocked){
             ((ImageView)node).setImage(imageOpen);
         } else {
