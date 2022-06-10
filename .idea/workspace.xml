@@ -33,13 +33,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/signs" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SamuelH\Documents\ICS 12\ISP\Caged\src\assets\signs" />
       <recent name="C:\Users\huang\Documents\Samuel ICS12\ISP 12\Caged\assets\signs" />
       <recent name="C:\Users\huang\Documents\Samuel ICS12\ISP 12\Caged\src\assets\keys" />
       <recent name="C:\Users\huang\Documents\Samuel ICS12\ISP 12\Caged\src\assets" />
       <recent name="C:\Users\ryatl\IdeaProjects\Caged\assets\doors" />
-      <recent name="C:\Users\ryatl\IdeaProjects\Caged\out\production\JavaISP\assets\doors" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ryatl\IdeaProjects\Caged\assets" />
