@@ -43,7 +43,7 @@ public class Game {
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.055f;
+    public static final float GRAVITY = 0.01f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
@@ -107,8 +107,8 @@ public class Game {
         // add a player and platform to the scene
         player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);
         levels = new Level[2];
-        levels[0] = new Level1();
-        levels[1] = new Level2();
+        levels[1] = new Level1();
+        levels[0] = new Level2();
         createLevel(levels[0]);
         // set the current scene
         window.setScene(scene);
