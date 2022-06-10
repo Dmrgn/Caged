@@ -30,6 +30,7 @@ Key, heartout, heart, 1510, 660
 Spike, 1470, 505, 1360
 Platform, invisible, false, 1435, 513
 Door, DoorSignLvl1, 603, 662
+Teleporter, 645, 743, 1, 0, 0
 Sign, Sign1, false, 730, 940, 0
 Sign, Sign2, false, 1410, 950, 1
 Sign, Sign4, false, 1830, 700, 3
