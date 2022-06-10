@@ -39,13 +39,14 @@ public class CollectableObject extends GameObject implements Interactable
     }
 
     public void update() {
-        //node = new ImageView(objectOut);
+        ((ImageView)node).setImage((appear) ? objectIn : emptyImage);
         if(inRange((Player)Game.player)) {
             ((ImageView)node).setImage((appear) ? objectIn : emptyImage);
         }
         else if(!inRange((Player)Game.player))
         {
             ((ImageView)node).setImage((appear) ? objectOut : emptyImage);
+            System.out.println("Activate");
         }
         if(inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E))
         {

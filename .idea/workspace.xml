@@ -4,12 +4,7 @@
     <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Doors and stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Level1_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Level1_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$SceneLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$SceneLayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/CollectableObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/CollectableObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CollectableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollectableObject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
