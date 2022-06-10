@@ -193,6 +193,7 @@ public class Sign extends GameObject implements Interactable {
             if (userAnswer == answer && userAnswer != 0) {
                 //tell upward it works
                 answeredCorrectly = true;
+                Game.questionsCorrect++;
             } else {
                 //tell upward it is false;
                 answeredCorrectly = false;
