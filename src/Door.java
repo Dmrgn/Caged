@@ -42,14 +42,14 @@ public class Door extends CollidableObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Door(Image imageFileLocked, Image imageFileOpen, int x, int y){
+    public Door(Image imageFileLocked, Image imageFileOpen, Image doorInfo, int x, int y){
         isLocked = true;
         imageLocked = imageFileLocked;
         imageOpen = imageFileOpen;
         node = new ImageView((isLocked) ? imageLocked : imageOpen);
         pos = new Vector(x, y);
         normalPos = new Vector(x, y);
-        doorMessage = new Image("assets/doors/DoorSignLvl1.png");
+        doorMessage = doorInfo;
         createHitBox(pos.add(new Vector(0, 0)), pos.add(new Vector((float)imageFileLocked.getWidth(), (float)imageFileLocked.getHeight())));
         accessing = false;
     }
