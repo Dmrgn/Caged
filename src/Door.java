@@ -102,13 +102,13 @@ public class Door extends CollidableObject implements Interactable {
         if(accessing) {
             ((ImageView) node).setImage(doorMessage);
             pos = Game.toWorld(new Vector(325, 175));
-            Game.player.getNode().setOpacity(0.0);
+            Game.player.getNode().setVisible(false);
         }
         else
         {
             ((ImageView)node).setImage(imageLocked);
             pos = normalPos;
-            Game.player.getNode().setOpacity(1.0);
+            Game.player.getNode().setVisible(true);
         }
     }
 }

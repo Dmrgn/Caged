@@ -117,8 +117,8 @@ public class Sign extends GameObject implements Interactable {
             if (accessing) {
                 ((ImageView)node).setImage(message);
                 pos = Game.toWorld(new Vector(325, 175));
-                //Game.player.getNode().setVisible(false);
-                Game.player.getNode().setOpacity(0.0);
+                Game.player.getNode().setVisible(false);
+                //Game.player.getNode().setOpacity(0.0);
             } else if (!highlighted){
                 ((ImageView)node).setImage(imageNormal);
                 pos = normal;
@@ -126,7 +126,7 @@ public class Sign extends GameObject implements Interactable {
             } else {
                 ((ImageView)node).setImage(imageUsable);
                 pos = normal;
-                //.player.getNode().setVisible(true);
+                Game.player.getNode().setVisible(true);
             }
         }
         else {
