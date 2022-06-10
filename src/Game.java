@@ -70,6 +70,8 @@ public class Game {
     public static boolean canOpenDoor;
     /** Whether the object in the current level is picked up by the user*/
     public static boolean objectFound;
+    /** Whether the all questions are answered correctly*/
+    public static int questionsCorrect;
     /** Programatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -90,6 +92,7 @@ public class Game {
         window.setResizable(true);
         canOpenDoor = false;
         objectFound = false;
+        questionsCorrect = 0;
         // render the background, then midground, then foreground first
         //background.setViewOrder(1);
         //midground.setViewOrder(2);
