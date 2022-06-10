@@ -75,9 +75,11 @@ public class Door extends CollidableObject implements Interactable {
         }
         if (isLocked && inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){
             accessing = true;
+            Player.playerMoving = false;
         } else if(isLocked && Keyboard.isKeyUp(KeyCode.E))
         {
             accessing = false;
+            Player.playerMoving = true;
         }
         if(isLocked) {
             display();

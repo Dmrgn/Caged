@@ -112,6 +112,7 @@ public class Game {
         levels[0] = new Level1();
         levels[1] = new Level2();
         createLevel(levels[0]);
+        Player.playerMoving = true;
         // set the current scene
         window.setScene(scene);
     }

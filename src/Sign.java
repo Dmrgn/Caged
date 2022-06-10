@@ -164,6 +164,7 @@ public class Sign extends GameObject implements Interactable {
     public void display(){
         if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E)) {
                 accessing = true;
+                Player.playerMoving = false;
                 Game.signsRead[signNum] = true;
 //                ((ImageView)node).setX(150);
 //                ((ImageView)node).setY(80);
@@ -175,6 +176,7 @@ public class Sign extends GameObject implements Interactable {
         else if(Keyboard.isKeyUp(KeyCode.E))
         {
             accessing = false;
+            Player.playerMoving = true;
         }
     }
     /**

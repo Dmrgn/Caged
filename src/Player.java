@@ -64,6 +64,8 @@ public class Player extends CollidableObject {
     private HitBox lowerHitBox;
     /** The top hitbox of the player */
     private HitBox upperHitBox;
+
+    public static boolean playerMoving;
     /** Possible player states */
     private enum PlayerState {
         IDLE,
@@ -131,98 +133,101 @@ public class Player extends CollidableObject {
      * of the method from the GameObject interface
      */
     public void update() {
-        // handle lateral movement keyboard input
-        if (Keyboard.isKeyDown(KeyCode.D))
-            moveDirection = 1;
-        else if (Keyboard.isKeyDown(KeyCode.A))
-            moveDirection = -1;
-        else
-            moveDirection = 0;
-        dashingFrames -= 0.3;
-        // handle logic based on player state
-        switch (state) {
-            case IDLE: {
-                // State logic
-                // Handle exiting this state
-                if (moveDirection != 0) requestStateChange(PlayerState.MOVING);
-                break;
-            }
-            case DASHING: {
-                // State Logic
-                if (dashingFrames <= 0) {
-                    // just began the dash
-                    dashDirection = facingDirection;
-                    dashCoolDown = DASH_COOL_DOWN;
-                    hasDash = false;
-                    dashingFrames = 0;
+        if(playerMoving) {
+            // handle lateral movement keyboard input
+            if (Keyboard.isKeyDown(KeyCode.D))
+                moveDirection = 1;
+            else if (Keyboard.isKeyDown(KeyCode.A))
+                moveDirection = -1;
+            else
+                moveDirection = 0;
+            dashingFrames -= 0.3;
+            // handle logic based on player state
+            switch (state) {
+                case IDLE: {
+                    // State logic
+                    // Handle exiting this state
+                    if (moveDirection != 0) requestStateChange(PlayerState.MOVING);
+                    break;
                 }
+                case DASHING: {
+                    // State Logic
+                    if (dashingFrames <= 0) {
+                        // just began the dash
+                        dashDirection = facingDirection;
+                        dashCoolDown = DASH_COOL_DOWN;
+                        hasDash = false;
+                        dashingFrames = 0;
+                    }
 
-                vel = new Vector(dashDirection * 5, vel.y * 0.8f);
+                    vel = new Vector(dashDirection * 5, vel.y * 0.8f);
 
-                // Handle exiting this state
-                dashingFrames += 2;
-                if (dashingFrames > DASH_DURATION) requestStateChange(PlayerState.IDLE);
-                break;
+                    // Handle exiting this state
+                    dashingFrames += 2;
+                    if (dashingFrames > DASH_DURATION) requestStateChange(PlayerState.IDLE);
+                    break;
+                }
+                case MOVING: {
+                    // State logic
+                    vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
+                    vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED * 5)).min(new Vector(-MAX_SPEED, -MAX_SPEED * 5));
+                    if (moveDirection != 0)
+                        facingDirection = moveDirection;
+
+                    // Handle exiting this state
+                    if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
+                    if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashingFrames <= 0 && moveDirection != 0)
+                        requestStateChange(PlayerState.DASHING);
+                    break;
+                }
+                case DAMAGED: {
+
+                    break;
+                }
             }
-            case MOVING: {
-                // State logic
-                vel = vel.add(new Vector(moveDirection, 0).mul(ACCELERATION));
-                vel = vel.max(new Vector(MAX_SPEED, MAX_SPEED*5)).min(new Vector(-MAX_SPEED, -MAX_SPEED*5));
-                if (moveDirection != 0)
-                    facingDirection = moveDirection;
 
-                // Handle exiting this state
-                if (moveDirection == 0) requestStateChange(PlayerState.IDLE);
-                if (Keyboard.isKeyDown(KeyCode.SHIFT) && dashingFrames <= 0 && moveDirection != 0) requestStateChange(PlayerState.DASHING);
-                break;
+            boolean jumped = false;
+            boolean hasTouchedGround = false;
+            // State independent logic
+            vel = vel.add(new Vector(0, Game.GRAVITY));
+
+            boolean collided = true;
+            // Handle vertical collisions
+            if (Game.touchingCollidable(this, lowerHitBox)) {
+                // collided = true;
+                hasTouchedGround = true;
+                pos.y = pos.y - (vel.y * 1.5f);
+                createHitBox(pos, pos.add(HITBOX_SIZE));
+                vel.y = 0;
+                if (Keyboard.isKeyDown(KeyCode.W)) {
+                    vel = vel.add(new Vector(0, -JUMP_HEIGHT));
+                    jumped = true;
+                }
             }
-            case DAMAGED: {
-
-                break;
+            if (Game.touchingCollidable(this, upperHitBox)) {
+                // collided = true;
+                pos.y = pos.y + Math.abs(vel.y * 1.5f);
+                createHitBox(pos, pos.add(HITBOX_SIZE));
+                vel.y = 0;
             }
-        }
+            // Handle lateral collisions
+            if (Game.touchingCollidable(this) && collided) {
+                pos.x = pos.x - (vel.x * 1.5f);
+                createHitBox(pos, pos.add(HITBOX_SIZE));
+                vel.x = vel.x * -0.5f;
+            }
 
-        boolean jumped = false;
-        boolean hasTouchedGround = false;
-        // State independent logic
-        vel = vel.add(new Vector(0, Game.GRAVITY));
-
-        boolean collided = true;
-        // Handle vertical collisions
-        if (Game.touchingCollidable(this, lowerHitBox)) {
-            // collided = true;
-            hasTouchedGround = true;
-            pos.y = pos.y - (vel.y * 1.5f);
+            pos = pos.add(vel);
             createHitBox(pos, pos.add(HITBOX_SIZE));
-            vel.y = 0;
-            if (Keyboard.isKeyDown(KeyCode.W)) {
-                vel = vel.add(new Vector(0, -JUMP_HEIGHT));
-                jumped = true;
-            }
-        }
-        if (Game.touchingCollidable(this, upperHitBox)) {
-            // collided = true;
-            pos.y = pos.y + Math.abs(vel.y * 1.5f);
+
+            // reduce velocity for next frame
+            Vector diff = Vector.sub(vel, vel.mul((hasTouchedGround ? 0.2f : 0.2f)));
+            diff = diff.max(new Vector(ACCELERATION * (hasTouchedGround ? 0.2f : 0.2f), 0)).min(new Vector(-ACCELERATION * (hasTouchedGround ? 0.2f : 0.2f), 0));
+            vel = vel.sub(diff);
+
+            // create hitbox for next frame
             createHitBox(pos, pos.add(HITBOX_SIZE));
-            vel.y = 0;
         }
-        // Handle lateral collisions
-        if (Game.touchingCollidable(this) && collided) {
-            pos.x = pos.x - (vel.x * 1.5f);
-            createHitBox(pos, pos.add(HITBOX_SIZE));
-            vel.x = vel.x*-0.5f;
-        }
-
-        pos = pos.add(vel);
-        createHitBox(pos, pos.add(HITBOX_SIZE));
-
-        // reduce velocity for next frame
-        Vector diff = Vector.sub(vel, vel.mul((hasTouchedGround ? 0.2f : 0.2f)));
-        diff = diff.max(new Vector(ACCELERATION * (hasTouchedGround ? 0.2f : 0.2f), 0)).min(new Vector(-ACCELERATION * (hasTouchedGround ? 0.2f : 0.2f), 0));
-        vel = vel.sub(diff);
-
-        // create hitbox for next frame
-        createHitBox(pos, pos.add(HITBOX_SIZE));
     }
     /**
      * Gets the node this player is attached to and returns it
