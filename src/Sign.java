@@ -12,6 +12,8 @@ import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.security.Key;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * <p>
@@ -45,8 +47,6 @@ public class Sign extends GameObject implements Interactable {
     private int answer = 0;
     private int userAnswer;
     private boolean questionSign;
-
-    private int counter = 0;
     private boolean answeredCorrectly;
 
     /**
@@ -145,11 +145,6 @@ public class Sign extends GameObject implements Interactable {
                 Game.player.getNode().setVisible(true);
             }
         }
-        if(counter < 1000) {
-            messageBox(answeredCorrectly);
-        }
-        counter++;
-        System.out.println(counter);
     }
 
     /**
@@ -173,7 +168,10 @@ public class Sign extends GameObject implements Interactable {
 //                ((ImageView)node).setFitHeight(650);
 //                ((ImageView)node).setFitWidth(1000);
 //                ((ImageView)node).setPreserveRatio(true);
-        } else if(Keyboard.isKeyDown(KeyCode.H)){
+        }
+
+        else if(Keyboard.isKeyUp(KeyCode.E))
+        {
             accessing = false;
         }
     }
@@ -227,6 +225,15 @@ public class Sign extends GameObject implements Interactable {
         Image correctBox = new Image("assets/signs/Correct.png");
         if(correct) {
             ((ImageView)node).setImage(correctBox);
+            Timer myTimer = new Timer();
+            myTimer.schedule(new TimerTask()
+            {
+                @Override
+                public void run()
+                {
+                    node.setVisible(false);
+                }
+                }, 1500);
         }
         else {
 
