@@ -42,7 +42,7 @@ public class Level1 extends Level {
             textures.put("Key:"+key.getName().split("\\.")[0], new Image(key.getPath()));
         }
         levelScreen = 0;
-        files = new String[]{"Level1_1.txt", "Level1_2.txt"};
+        files = new String[]{"Level1_1.txt", "Level1_2.txt", "Level1_3.txt"};
         ldp = new LevelDataParser(textures);
     }
     public ArrayList<GameObject> getObjects () throws IOException {
