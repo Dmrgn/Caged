@@ -48,6 +48,7 @@ public class Sign extends GameObject implements Interactable {
     private int userAnswer;
     private boolean questionSign;
     private boolean answeredCorrectly;
+    private int signNum;
 
     /**
      * Class constructor that initializes variables and sets
@@ -56,7 +57,7 @@ public class Sign extends GameObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Sign(Image message, int x, int y){
+    public Sign(Image message, int x, int y, int signNum){
         imageNormal = new Image("assets/SignNormal.png");
         imageUsable = new Image("assets/SignOpen.png");
         this.message = message;
@@ -67,6 +68,7 @@ public class Sign extends GameObject implements Interactable {
         answered = false;
         highlighted = false;
         accessing = false;
+        this.signNum = signNum;
     }
     /**
      * Class constructor that initializes variables and sets
@@ -76,7 +78,7 @@ public class Sign extends GameObject implements Interactable {
      * @param y The y coord of the platform
      * @param answer If this is a question
      */
-    public Sign(Image message, int x, int y, int answer){
+    public Sign(Image message, int x, int y, int answer, boolean question){
         imageNormal = new Image("assets/SignNormal.png");
         imageUsable = new Image("assets/SignOpen.png");
         node = new ImageView(imageNormal);
@@ -162,7 +164,7 @@ public class Sign extends GameObject implements Interactable {
     public void display(){
         if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E)) {
                 accessing = true;
-
+                Game.signsRead[signNum] = true;
 //                ((ImageView)node).setX(150);
 //                ((ImageView)node).setY(80);
 //                ((ImageView)node).setFitHeight(650);
