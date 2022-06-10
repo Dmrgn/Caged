@@ -72,6 +72,7 @@ public class Game {
     public static boolean objectFound;
     /** Whether the all questions are answered correctly*/
     public static int questionsCorrect;
+    public static boolean[] signsRead;
     /** Programatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -93,6 +94,7 @@ public class Game {
         canOpenDoor = false;
         objectFound = false;
         questionsCorrect = 0;
+        signsRead = new boolean[4];
         // render the background, then midground, then foreground first
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
