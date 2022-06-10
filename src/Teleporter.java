@@ -3,7 +3,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Teleporter extends GameObject {
-    public static final float TELEPORT_DISTANCE = 50;
+    public static final float TELEPORT_DISTANCE = 30;
     public Level level;
     public int teleporterLocationIndex;
     public int screen;
@@ -20,11 +20,10 @@ public class Teleporter extends GameObject {
 
     @Override
     public void update() {
-        Player player = (Player)Game.firstInstanceOfClass(new Player(0,0));
+        Player player = (Player)Game.firstInstanceOfClass(new Player(0, 0));
         if (player != null) {
-            if (player.pos.dist(pos) < TELEPORT_DISTANCE) {
-                System.out.println("player:" + player.pos);
-                System.out.println("teleporter:" + pos);
+            Vector playerBoxDims = player.getHitBox().p2.sub(player.getHitBox().p1);
+            if (player.pos.add(playerBoxDims.div(2)).dist(pos) < TELEPORT_DISTANCE) {
                 Game.navigateLevel(level, screen, teleporterLocationIndex);
             }
         }
