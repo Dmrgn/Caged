@@ -15,3 +15,16 @@ Platform, bigDoor, false, 0, 900
 Platform, rottedShortFloor, false, 339, 439
 Platform, rottedShortFloor, false, 389, 439
 Platform, rottedClimber, false, 1823, 772
+Platform, platformWithBump, false, 345, 288
+Platform, platformBump, false, 392, 352
+Platform, rottedTopPlatformEdge, false, 1191, 453
+Platform, rottedTopOverHang, false, 0, 4
+Platform, bigWallRight, false, 14, 162
+Platform, rottedSquare, false, 600, 373
+Platform, rottedWallRightHorn, false, 1337, 451
+Platform, thinBoiFloor, false, 841, 582
+Platform, bigSlabMissingRightFoot, false, 1078, 393
+Platform, rottedSlab, false, 916, 301
+Platform, rottedRightTopWall, false, 1889, 250
+Platform, rottedRightBottomWall, false, 1855, 699
+Platform, rightJumper, false, 1437, 612
