@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Doors and stuff">
+      <change afterPath="$PROJECT_DIR$/assets/signs/Correct.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/CollectableObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/CollectableObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Level1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Level1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Mold.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Mold.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Teleporter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Teleporter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Spike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spike.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

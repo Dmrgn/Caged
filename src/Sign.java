@@ -1,7 +1,14 @@
+import javafx.animation.PauseTransition;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.security.Key;
@@ -39,6 +46,7 @@ public class Sign extends GameObject implements Interactable {
     private int userAnswer;
     private boolean questionSign;
 
+    private int counter = 0;
     private boolean answeredCorrectly;
 
     /**
@@ -137,6 +145,11 @@ public class Sign extends GameObject implements Interactable {
                 Game.player.getNode().setVisible(true);
             }
         }
+        if(counter < 1000) {
+            messageBox(answeredCorrectly);
+        }
+        counter++;
+        System.out.println(counter);
     }
 
     /**
@@ -203,10 +216,20 @@ public class Sign extends GameObject implements Interactable {
             System.out.println(answeredCorrectly);
             answered = false;
             userAnswer = 0;
+
         }
     }
-    public boolean isAnsweredCorrectly()
+    /**
+     * Displays whether or not the user got the answer correct
+     */
+    public void messageBox(boolean correct)
     {
-        return answeredCorrectly;
+        Image correctBox = new Image("assets/signs/Correct.png");
+        if(correct) {
+            ((ImageView)node).setImage(correctBox);
+        }
+        else {
+
+        }
     }
 }

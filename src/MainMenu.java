@@ -125,6 +125,7 @@ public class MainMenu {
         //background
         Rectangle background = new Rectangle(0, 0, 1270, 720);
         background.setFill(Color.BLACK);
+
         Group root = new Group(background, title, newGameButton0, instructionsButton0, creditsButton0, quitButton0, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
         scene = new Scene(root, Main.getWidth(), Main.getHeight());
         //stage.setScene(scene);
@@ -165,7 +166,6 @@ public class MainMenu {
         quitButtonFade.setToValue(1);
         //for hovering animation stopping
         quitButtonFade.play();
-
     }
     public void checkMenu(AnimationTimer timer, AnimationTimer mainTimer)
     {
@@ -216,6 +216,7 @@ public class MainMenu {
                 }
         );
     }
+
     /**
      * Getter method for the selection instance variable
      * @return The user's selection
