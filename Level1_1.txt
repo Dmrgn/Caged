@@ -26,9 +26,9 @@ Platform, rightBottom, false, 1807, 795
 Platform, rightTop, false, 1797, 764
 Teleporter, 1689, 817, 0, 1, 1
 TeleportLocation, 1749, 800, 2
-Sign, Sign1, false, 730, 940
-Sign, Sign2, false, 1410, 950
-Sign, Sign3, false, 1830, 700
+Sign, Sign1, false, 730, 940, 0
+Sign, Sign2, false, 1410, 950, 1
+Sign, Sign4, false, 1830, 700, 3
 Key, heartout, heart, 1485, 660
 Spike, 1470, 505, 1360
 Platform, invisible, false, 1435, 513

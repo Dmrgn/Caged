@@ -76,9 +76,9 @@ public class LevelDataParser {
             } else if (data[0].equals("Sign")) {
                 Sign s;
                 if (!Boolean.parseBoolean(data[2])) {
-                    s = new Sign(textures.get("Sign:" + data[1]), Integer.parseInt(data[3]), Integer.parseInt(data[4]));
-                } else {
                     s = new Sign(textures.get("Sign:" + data[1]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5]));
+                } else {
+                    s = new Sign(textures.get("Sign:" + data[1]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5]), true);
                 }
                 levelObjects.add(s);
             } else if (data[0].equals("Key")) {
