@@ -155,7 +155,7 @@ public class Sign extends GameObject implements Interactable {
      * @return Whether or not the player is in range and therefore can interact with the sign
      */
     public boolean inRange(Player p) {
-        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 100 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 100);
+        return (Math.abs(p.getNode().getLayoutX() - normal.x) < 100 && Math.abs(p.getNode().getLayoutY() - normal.y) < 100);
     }
 
     /**
