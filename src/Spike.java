@@ -3,8 +3,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Spike extends CollidableObject {
+    private static final int RANGE = 50;
     private static final float SPEED = 5;
-    private static final int RANGE = 50; 
     Vector startingPos;
     int activationX;
     int state = 0;

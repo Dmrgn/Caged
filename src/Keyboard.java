@@ -42,6 +42,11 @@ public class Keyboard {
             return true;
         return false;
     }
+    public static boolean isKeyUp(KeyCode code) {
+        if (!keysDown.contains(code))
+            return true;
+        return false;
+    }
     /**
      * Gets whether the mouse is being clicked
      * @return Is the mouse being clicked?
