@@ -22,26 +22,34 @@ public class CollectableObject extends GameObject implements Interactable
 
     private Node node;
     private boolean appear;
-    private Image object;
+    private Image objectOut;
+
+    private Image objectIn;
 
     private Image emptyImage;
 
-    public CollectableObject(Image objectImage, int x, int y)
+    public CollectableObject(Image objectOutRange, Image objectInRange, int x, int y)
     {
-        object = objectImage;
-
+        objectOut = objectOutRange;
+        objectIn = objectInRange;
         pos = new Vector(x, y);
-        node = new ImageView(object);
-        //emptyImage = new Image("assets/");
+        node = new ImageView(objectOut);
+        emptyImage = new Image("assets/teleporter.png");
         appear = true;
     }
 
     public void update() {
-
-        node = new ImageView((appear) ? object : emptyImage);
+        if(inRange((Player)Game.player)) {
+            node = new ImageView((appear) ? objectIn : emptyImage);
+        }
+        else if(!inRange((Player)Game.player))
+        {
+            node = new ImageView((appear) ? objectOut : emptyImage);
+        }
         if(Keyboard.isKeyDown(KeyCode.E))
         {
             //make a boolean true signalling that the object is found.
+            Game.objectFound = true;
             appear = false;
         }
     }
