@@ -55,11 +55,13 @@ public class Door extends CollidableObject implements Interactable {
      */
     public void update() {
 //        node = new ImageView(((isLocked) ? imageLocked : imageOpen));
-        if (Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor) {
+        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor) {
             isLocked = false;
-            node = new ImageView((isLocked) ? imageLocked : imageOpen);
-        } else if (Keyboard.isKeyDown(KeyCode.E)){
+            ((ImageView)node).setImage(imageOpen);
+        } else if (inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){
             display();
+        } else {
+            ((ImageView)node).setImage(imageLocked);
         }
     }
 

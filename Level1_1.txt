@@ -32,3 +32,4 @@ Sign, Sign3, false, 1200, 645
 Sign, Sign4, false, 1410, 950
 Sign, Sign5, false, 1830, 700
 Sign, QuesSign1, true, 500, 940, 2
+Key, heartout, heart, 1485, 660

@@ -68,6 +68,8 @@ public class Game {
     private MediaPlayer mediaPlayer;
     /** Whether the current door can be opened*/
     public static boolean canOpenDoor;
+    /** Whether the object in the current level is picked up by the user*/
+    public static boolean objectFound;
     /** Programatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -87,6 +89,7 @@ public class Game {
         window.setMinHeight(Main.getHeight());
         window.setResizable(true);
         canOpenDoor = false;
+        objectFound = false;
         // render the background, then midground, then foreground first
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
@@ -275,11 +278,6 @@ public class Game {
      * @throws FileNotFoundException For splashScreen
      */
     public void mainMenu() throws FileNotFoundException {
-
-        if (!IS_DEBUG_MODE) {
-            splashScreen();
-        }
-
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
         Credits credits = new Credits(window);

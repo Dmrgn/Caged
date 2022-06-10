@@ -19,7 +19,7 @@ in-depth instructions on how to play the game. Inside the game, you can control 
 SHIFT. As the game does platforming in a side-scrolling manner, D moves the player right across the screen,
 A moves the player left and W jumps. SHIFT functions as the player's dash, which also deals damage to enemies
 and bosses and allows for greater mobility. E is used to interact with objects in game, including signs, doors
-and the sentimental items used to open doors. Different screens within levels can be acessed by reaching
+and the sentimental items used to open doors. Different screens within levels can be accessed by reaching
 certain points and getting teleported into the next screen, though each level requires the player to open and go
 through a door. In the instructions and credits screens, H is used to close those screens and return to the menu. 
 H is also used to close signs in game. The number keys 1, 2, 3, and 4 are used to answer the questions displayed on question 
@@ -52,7 +52,8 @@ The game, despite our best efforts, contains some bugs still that may affect gam
 the program or softlock the game. These are: potential issues with wall collision (the player may be able
 to fall through the floor next to a wall if they are moving too much. At worst, this simply causes the player
 to fall through the level and respawn back at the beginning), extraneous red rectangles (red rectangles occasionally
-appear near menu buttons for no particular reason) and menu button visuals being off on re-entry (returning
-to the menu occasionally results in half of each button not flashing). Please report any new glitches to any
-of the developers at ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca or samuel.huang4@student.tdsb.on.ca.
-Although this is a class assignment, we do care about the game for its own sake and may issue fixes in the future.
+appear near menu buttons for no particular reason), platform edge collision occasionally being sticky and blocking the player
+and menu button visuals being off on re-entry (returning to the menu occasionally results in half of each button not flashing). 
+Please report any new glitches to any of the developers at ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca or 
+samuel.huang4@student.tdsb.on.ca. Although this is a class assignment, we do care about the game for its own sake and may issue 
+fixes in the future.
