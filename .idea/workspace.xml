@@ -6,22 +6,30 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Comments">
-      <change beforePath="$PROJECT_DIR$/src/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BrotherTips.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrotherTips.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CollectableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollectableObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CollidableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollidableObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Credits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Credits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExitScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExitScreen.java" afterDir="false" />
+    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Level num">
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/BrotherTips.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/BrotherTips.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Button.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Button.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/CollectableObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/CollectableObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Credits.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Credits.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Door.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Enemy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Enemy$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Enemy$EnemyState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Enemy$EnemyState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Enemy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/ExitScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/ExitScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$SceneLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$SceneLayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/HitBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/HitBox.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Instructions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Instructions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Keyboard$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Keyboard$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Keyboard$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Keyboard$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Keyboard$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Keyboard$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Keyboard$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Keyboard$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Keyboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Keyboard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HitBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HitBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interactable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interactable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Keyboard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +135,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654908487225</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Comments">
+      <created>1654908963156</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1654908963156</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Level num">
+      <created>1654909133979</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1654909133979</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +168,7 @@
     <MESSAGE value="Changes" />
     <MESSAGE value="Doors and stuff" />
     <MESSAGE value="Comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comments" />
+    <MESSAGE value="Level num" />
+    <option name="LAST_COMMIT_MESSAGE" value="Level num" />
   </component>
 </project>

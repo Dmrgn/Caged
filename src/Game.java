@@ -203,7 +203,7 @@ public class Game {
                 attachObject(obj, SceneLayer.FOREGROUND);
             }
             level = l;
-            if (l instanceof Level){
+            if (l instanceof Level1){
                 levelNum = 1;
             } else if (l instanceof Level2){
                 levelNum = 2;
