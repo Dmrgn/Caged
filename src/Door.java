@@ -122,7 +122,7 @@ public class Door extends CollidableObject implements Interactable {
             off = true;
         }
         if(displayTips && !off) {
-            ((ImageView) node).setImage(new Image("assets/BrotherTips Screens/BrotherTips1.png"));
+            ((ImageView) node).setImage(new Image("assets/BrotherTips Screens/BrotherTips2.png"));
             pos = Game.toWorld(new Vector(25, 20));
             Game.player.getNode().setVisible(false);
             Player.playerMoving = false;
