@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 4.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
@@ -50,7 +50,4 @@ public class BrotherTips {
     {
         return scene;
     }
-
-
-
 }

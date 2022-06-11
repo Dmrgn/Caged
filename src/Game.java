@@ -26,7 +26,7 @@ import java.io.File;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 4.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 18th, 2022
  * <p>
@@ -35,6 +35,9 @@ import java.io.File;
  * 2 hours were spent by Daniel Morgan May 30th-June 3rd fixing collision and physics
  * 2 hours were by Ryan Atlas June 1st-3rd working on moving between screens and creating levels
  * 30 minutes were spent by Samuel Huang on June 3rd working on the animation timeline and splash screen/menu methods
+ * 2 hours were spent by Ryan Atlas June 6-10th adjusted how levels are drawn, Level1 and Level2 methods which have were adjusted many times
+ * 2 hours were spent by Samuel Huang on June 6-10th modifying code to make interaction work correctly
+ * 3 hours were spent by Daniel Morgan June 6-10th making the camera, toScreen, toWorld and navigateLevelScreen methods
  * </p>
  */
 public class Game {
@@ -73,7 +76,7 @@ public class Game {
     /** Whether the all questions are answered correctly*/
     public static int questionsCorrect;
     public static boolean[] signsRead;
-    /** Programatic representation of scene layers */
+    /** Programmatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
         MIDGROUND,
@@ -223,8 +226,6 @@ public class Game {
      * Creates and displays the splash screen to the user
      * @throws FileNotFoundException In case the files cannot be found
      */
-
-
     public void splashScreen() throws FileNotFoundException {
         SplashScreen splash = new SplashScreen(window);
         Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
@@ -235,11 +236,18 @@ public class Game {
         splash.runSplashScreen();
     }
 
+    /**
+     * Method to control level 1
+     */
     public void level1() {
         if (player.pos.y >= 1500) {
             navigateLevel(level, level.levelScreen, 0);
         }
     }
+
+    /**
+     * Method to control level 2
+     */
     public void level2() {
         if (level instanceof Level2) {
             if (level.levelScreen == 0 && player.pos.x >= 4000) {
@@ -358,11 +366,19 @@ public class Game {
         timeline.play();
         window.show();
     }
-    /** Converts the Vector in screen coordinates to world coordinates */
+    /**
+     * Converts the Vector in screen coordinates to world coordinates
+     * @param v The vector to transform
+     * @return Transformed vector
+     */
     public static Vector toWorld(Vector v) {
         return v.sub(cameraPos);
     }
-    /** Converts the Vector in world coordinates to screen coordinates */
+    /**
+     * Converts the Vector in world coordinates to screen coordinates
+     * @param v The vector to transform
+     * @return Transformed vector
+     */
     public static Vector toScreen(Vector v) {
         return v.add(cameraPos);
     }
@@ -375,6 +391,7 @@ public class Game {
     }
     /**
      * Builds a scene with the specified group
+     * @param g The group to be added to the scene
      */
     public void buildScene(Group g) {
         scene = new Scene(g, 1280, 720, Color.BLACK);

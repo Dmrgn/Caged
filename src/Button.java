@@ -17,7 +17,6 @@ public class Button {
    public Vector p1;
    /** Vector for bottom corner*/
    public Vector p2;
-
    /**
     * Constructor to initialize the vectors
     * @param p1 First vector
@@ -27,7 +26,6 @@ public class Button {
       this.p1 = p1;
       this.p2 = p2;
    }
-
    /**
     * Check if the mouse if hovering above the button
     * @return Whether the mouse is between those coordinates
@@ -38,7 +36,6 @@ public class Button {
       }
       return false;
    }
-
    /**
     * Check whether mouse is pressing the button
     * @return If the button is clicked

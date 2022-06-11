@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 4.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
@@ -15,8 +15,7 @@ import javafx.scene.image.Image;
  * Samuel Huang spent 10 minutes on this file.
  * </p>
  */
-public class ExitScreen
-{
+public class ExitScreen{
    /** This Image variable stores the exit page. */
    private Image exitPage;
    /**
@@ -30,16 +29,14 @@ public class ExitScreen
      * This method gets called to display the exit screen
      *
      */
-   public void display()
-   {
+   public void display() {
    
    }
    /**
      * This method makes the user leave the game
      *
      */
-   public void leave()
-   {
+   public void leave() {
    
    }
 }
