@@ -173,13 +173,6 @@ public class Game {
         }
         TeleportLocation loc = locations.get(teleporterLocationIndex);
         player = attachObject(new Player(loc.pos.x, loc.pos.y), SceneLayer.FOREGROUND);
-        if(levelNum == 2)
-        {
-            BrotherTips tips = new BrotherTips("BrotherTips Screens/BrotherTips1.png");
-            tips.display();
-            scene = tips.getScene();
-
-        }
         window.setScene(scene);
     }
     /**
