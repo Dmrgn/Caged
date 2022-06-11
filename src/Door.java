@@ -9,7 +9,7 @@ import javafx.scene.input.KeyCode;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 4.0
+ * @version 5.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 27th, 2022
  * <p>
@@ -114,8 +114,10 @@ public class Door extends CollidableObject implements Interactable {
             Game.player.getNode().setVisible(true);
         }
     }
-    public void displayBrotherTips()
-    {
+    /**
+     * Method to display a brother tip when going through doors
+     */
+    public void displayBrotherTips() {
         if(Keyboard.isKeyDown(KeyCode.H))
         {
             displayTips = false;

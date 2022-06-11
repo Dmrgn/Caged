@@ -23,7 +23,7 @@ import java.util.TimerTask;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 5.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 27th, 2022
  * <p>
@@ -40,16 +40,24 @@ public class Sign extends GameObject implements Interactable {
     private Image imageUsable;
     /** The text on the sign */
     private Image message;
+    /** Normal position of the sign*/
     private Vector normal;
+    /** Whether the sign is highlighted*/
     private boolean highlighted;
+    /**Whether the player is accessing the sign*/
     private boolean accessing;
+    /** Whether the sign has been answered*/
     private boolean answered;
+    /** Correct answer*/
     private int answer = 0;
+    /** User's answer*/
     private int userAnswer;
+    /** Whether the sign is question sign*/
     private boolean questionSign;
+    /** Whether the sign has been answered correctly*/
     private boolean answeredCorrectly;
+    /** Sign number */
     private int signNum;
-
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -104,7 +112,6 @@ public class Sign extends GameObject implements Interactable {
      * Overridden update method from GameObject
      */
     public void update() {
-
         if(!questionSign) {
             if (!highlighted && (Vector.dist(Game.player.pos, this.pos) < 100)) {
                 ((ImageView)node).setImage(imageUsable);
@@ -150,10 +157,14 @@ public class Sign extends GameObject implements Interactable {
         }
     }
 
+    /**
+     * Whether the player is in range
+     * @param player Current player
+     * @return True if in range
+     */
     public boolean inRange(Player player) {
         return (Vector.dist(Game.player.pos, this.pos) < 100);
     }
-
     /**
      * Displays the message on the sign for information signs
      */
@@ -174,12 +185,6 @@ public class Sign extends GameObject implements Interactable {
      * Displays the message on the sign for question signs
      */
     public void displayQuestions() {
-//        ((ImageView)node).setImage(message);
-//        ((ImageView)node).setX(150);
-//        ((ImageView)node).setY(80);
-//        ((ImageView)node).setFitHeight(650);
-//        ((ImageView)node).setFitWidth(1000);
-//        ((ImageView)node).setPreserveRatio(true);
         if (!answered) {
             if (Keyboard.isKeyDown(KeyCode.DIGIT1)) {
                 userAnswer = 1;
@@ -215,8 +220,7 @@ public class Sign extends GameObject implements Interactable {
     /**
      * Displays whether or not the user got the answer correct
      */
-    public void messageBox(boolean correct)
-    {
+    public void messageBox(boolean correct) {
         Image correctBox = new Image("assets/signs/Correct.png");
         if(correct) {
             ((ImageView)node).setImage(correctBox);

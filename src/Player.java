@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCode;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 5.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
@@ -64,6 +64,7 @@ public class Player extends CollidableObject {
     private HitBox lowerHitBox;
     /** The top hitbox of the player */
     private HitBox upperHitBox;
+    /** Player's healthbar*/
     public Healthbar hpBar;
     public static boolean playerMoving;
     /** Possible player states */
@@ -96,6 +97,11 @@ public class Player extends CollidableObject {
         player = new ImageView(sprite);
         hpBar = new Healthbar(hp);
     }
+    /**
+     * Method to create hitbox from 2 vectors
+     * @param pos1 Top left corner
+     * @param pos2 Bottom right corner
+     */
     @Override
     public void createHitBox(Vector pos1, Vector pos2) {
         hitbox = new HitBox(pos1.add(new Vector(0, 5)), pos2.sub(new Vector(0,5)));

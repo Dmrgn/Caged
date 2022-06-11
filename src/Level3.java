@@ -18,6 +18,9 @@ import javafx.scene.image.Image;
  * </p>
  */
 public class Level3 extends Level {
+    /**
+     * Level3 class constructor that initializes variables, images and reads level data
+     */
     public Level3() {
         textures = new HashMap();
         textures.put("Sign", new Image("assets/player.png"));
@@ -37,6 +40,11 @@ public class Level3 extends Level {
         files = new String[]{"Level3_1.txt"};
         ldp = new LevelDataParser(textures);
     }
+    /**
+     * GetObjects method from Level
+     * @return ArrayList of all gameObjects
+     * @throws IOException LevelDataParser throws an IOException
+     */
     public ArrayList<GameObject> getObjects () throws IOException {
         return ldp.readFile(files[levelScreen]);
     }

@@ -1,7 +1,21 @@
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+/**
+ * <p>
+ * This class contains code for the Teleporters which switch between
+ * screens and levels/
+ * </p>
+ *
+ * <h2>ICS 4U0 with Krasteva, V.</h2>
+ *
+ * @version 5.0
+ * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+ * @since June 6th, 2022
+ * <p>
+ * File was created by Daniel Morgan on June 6th. 20 minutes were spent
+ * </p>
+ */
 public class Teleporter extends GameObject {
     public static final float TELEPORT_DISTANCE = 30;
     public Level level;

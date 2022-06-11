@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 5.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
@@ -20,6 +20,9 @@ import javafx.scene.image.Image;
  * </p>
  */
 public class Level1 extends Level {
+    /**
+     * Level1 class constructor that initializes images and reads files
+     */
     public Level1() {
         textures = new HashMap();
         textures.put("Sign", new Image("assets/player.png"));
@@ -45,6 +48,11 @@ public class Level1 extends Level {
         files = new String[]{"Level1_1.txt", "Level1_2.txt", "Level1_3.txt"};
         ldp = new LevelDataParser(textures);
     }
+    /**
+     * GetObjects method from Level
+     * @return ArrayList of all gameObjects
+     * @throws IOException LevelDataParser throws an IOException
+     */
     public ArrayList<GameObject> getObjects () throws IOException {
         return ldp.readFile(files[levelScreen]);
     }
@@ -55,12 +63,9 @@ public class Level1 extends Level {
     /**
      * Updates the level's background and state
      */
-    public void update() {
-
-    }
+    public void update() {}
     /**
      * Draws the level's background and assets
      */
-    public void draw() {
-    }
+    public void draw() {}
 }

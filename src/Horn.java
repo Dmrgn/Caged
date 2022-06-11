@@ -2,6 +2,20 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * <p>
+ * Class for horns that spawn enemies
+ * </p>
+ *
+ * <h2>ICS 4U0 with Krasteva, V.</h2>
+ *
+ * @version 5.0
+ * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+ * @since June 9th, 2022
+ * <p>
+ * 20 minutes were spent by Daniel Morgan on this file June 9-10th
+ * </p>
+ */
 public class Horn extends CollidableObject {
     private static final int SPAWN_RATE = 90;
     int direction;

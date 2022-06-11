@@ -6,11 +6,38 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Level num">
-      <change afterPath="$PROJECT_DIR$/src/assets/finalBoss.png" afterDir="false" />
+    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Level3 class added (boss sprites added as well)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/assets/signs/QuesSign1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/assets/signs/QuesSign1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Background.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BrotherTips.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrotherTips.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CollectableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollectableObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CollidableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollidableObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Credits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Credits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExitScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Healthbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Healthbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HitBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HitBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Horn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Horn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interactable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interactable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Keyboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Level3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LevelDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LevelDataParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Spike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spike.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SplashScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SplashScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,18 +73,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ryatl\IdeaProjects\Caged\src\assets" />
       <recent name="C:\Users\SamuelH\Documents\ICS 12\ISP\Caged\src\assets\signs" />
       <recent name="C:\Users\huang\Documents\Samuel ICS12\ISP 12\Caged\assets\signs" />
       <recent name="C:\Users\huang\Documents\Samuel ICS12\ISP 12\Caged\src\assets\keys" />
       <recent name="C:\Users\huang\Documents\Samuel ICS12\ISP 12\Caged\src\assets" />
-      <recent name="C:\Users\ryatl\IdeaProjects\Caged\assets\doors" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ryatl\IdeaProjects\Caged\src" />
@@ -152,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654909133979</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Level3 class added (boss sprites added as well)">
+      <created>1654981452153</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1654981452153</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,6 +206,8 @@
     <MESSAGE value="Doors and stuff" />
     <MESSAGE value="Comments" />
     <MESSAGE value="Level num" />
-    <option name="LAST_COMMIT_MESSAGE" value="Level num" />
+    <MESSAGE value="Level3 class added" />
+    <MESSAGE value="Level3 class added (boss sprites added as well)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Level3 class added (boss sprites added as well)" />
   </component>
 </project>

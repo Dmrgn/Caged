@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 5.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
@@ -33,25 +33,14 @@ public abstract class Level {
      * Level screen number to keep track of which screen the player is on in the level
      */
     public int levelScreen;
+    /** File array for reading level data*/
     protected String[] files;
+    /** LevelDataParser for reading level data*/
     protected LevelDataParser ldp;
-    /**
-     * Controls adding the player to that level
-     */
-    public void enter(Player player) {
-    }
-
-    /**
-     * Controls removing the player from that level
-     */
-    public void exit(Player player) {
-    }
-
     /**
      * Abstract method for playing in that level and loading assets
      */
     public abstract void play();
-
     /**
      * Draw method that is to be overridden by the subclasses
      */
