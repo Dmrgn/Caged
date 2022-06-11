@@ -13,7 +13,7 @@ import javafx.scene.input.*;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 4.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
@@ -42,6 +42,11 @@ public class Keyboard {
             return true;
         return false;
     }
+    /**
+     * Checks if key is currently up
+     * @param code KeyCode from JavaFX
+     * @return Whether it is
+     */
     public static boolean isKeyUp(KeyCode code) {
         if (!keysDown.contains(code))
             return true;

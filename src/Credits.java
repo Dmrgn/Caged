@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 4.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
@@ -26,11 +26,14 @@ import java.io.FileNotFoundException;
 public class Credits {
     /** This ImageView variable stores the credits page. */
     private ImageView creditScreen;
-
+    /** Current window */
     private Stage window;
+    /** Current scene */
     private Scene scene;
     /**
      * The constructor of the Credits Class.
+     * @param window Window to display screen to
+     * @throws FileNotFoundException In case file cannot be found it must be thrown (should never occur)
      */
     public Credits(Stage window) throws FileNotFoundException
     {
@@ -54,14 +57,6 @@ public class Credits {
         //window.setScene(scene);
         Keyboard.init(scene);
     }
-//    /**
-//     * This method sends the user back to the menu screen if the key h is pressed
-//     *
-//     */
-//    public void controlScreens() {
-//        //check the keyboard
-//        display();
-//    }
     /**
      * Getter method for the scene instance variable
      * @return The game scene

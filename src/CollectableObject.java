@@ -27,7 +27,6 @@ public class CollectableObject extends GameObject implements Interactable {
     private Image objectIn;
     /** Whether the object should be highlighted*/
     private boolean highlighted;
-
     /**
      * Initializes variables and stores the position in the GameObject's
      * pos vector
@@ -43,7 +42,6 @@ public class CollectableObject extends GameObject implements Interactable {
         node = new ImageView(objectOut);
         highlighted = false;
     }
-
     /**
      * Updates the item every frame
      */
@@ -73,7 +71,6 @@ public class CollectableObject extends GameObject implements Interactable {
     public Node getNode() {
         return node;
     }
-
     /**
      * Checks whether the player is in range to pick up the object
      * @param p The player

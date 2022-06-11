@@ -5,7 +5,7 @@
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 4.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 28th, 2022
  * <p>
@@ -13,6 +13,8 @@
  * </p>
  */
 public class HitBox {
+    /** Vectors for corners */
+     public Vector p1, p2;
     /**
      * Uses point rectangle collision to determine if two 
      * hitboxes are overlapping.
@@ -47,7 +49,12 @@ public class HitBox {
         }
         return distances;
     }
-    public Vector p1, p2;
+
+    /**
+     * Hitbox constructor
+     * @param p1 Top left corner
+     * @param p2 Bottom right corner
+     */
     public HitBox(Vector p1, Vector p2) {
         this.p1 = p1;
         this.p2 = p2;

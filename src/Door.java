@@ -9,7 +9,7 @@ import javafx.scene.input.KeyCode;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 4.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 27th, 2022
  * <p>
@@ -27,13 +27,12 @@ public class Door extends CollidableObject implements Interactable {
     private Image imageOpen;
     /** Whether the door is locked */
     private boolean isLocked;
-
+    /** Image for the door's message */
     private Image doorMessage;
-
+    /** Vector for the normal position of the door */
     private Vector normalPos;
-
+    /** Whether the door is being accessed */
     private boolean accessing;
-
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -76,8 +75,7 @@ public class Door extends CollidableObject implements Interactable {
         if (isLocked && inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){
             accessing = true;
             Player.playerMoving = false;
-        } else if(isLocked && Keyboard.isKeyUp(KeyCode.E))
-        {
+        } else if(isLocked && Keyboard.isKeyUp(KeyCode.E)) {
             accessing = false;
             Player.playerMoving = true;
         }
@@ -85,7 +83,6 @@ public class Door extends CollidableObject implements Interactable {
             display();
         }
     }
-
     /**
      * Method to check whether the player is in range of the object
      * @param p The player
@@ -104,8 +101,7 @@ public class Door extends CollidableObject implements Interactable {
             pos = Game.toWorld(new Vector(325, 175));
             Game.player.getNode().setVisible(false);
         }
-        else
-        {
+        else {
             ((ImageView)node).setImage(imageLocked);
             pos = normalPos;
             Game.player.getNode().setVisible(true);

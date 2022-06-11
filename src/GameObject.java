@@ -11,7 +11,7 @@ import javafx.scene.transform.Translate;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 4.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
@@ -20,8 +20,11 @@ import javafx.scene.transform.Translate;
  * </p>
  */
 public abstract class GameObject {
+    /** Position vector */
     public Vector pos;
+    /** Scale for the object */
     protected float scale = 1.0f;
+    /** Vector for translation */
     private Vector translation = new Vector(0,0);
     /**
      * Update method that updates where that object is drawn

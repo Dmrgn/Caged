@@ -1,5 +1,19 @@
 import javafx.scene.image.*;
 import javafx.scene.*;
+/**
+ * <p>
+ * This class contains the frameworks for the enemies in the game.
+ * </p>
+ *
+ * <h2>ICS 4U0 with Krasteva, V.</h2>
+ *
+ * @version 5.0
+ * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+ * @since June 6th, 2022
+ * <p>
+ * File was created by Ryan Atlas on June 6th. He spent 1.5 hours creating the frame for this class
+ * </p>
+ */
 public class Enemy extends CollidableObject {
     /** Whether the enemy is grounded or not */
     private boolean isGrounded;
@@ -15,6 +29,7 @@ public class Enemy extends CollidableObject {
     public Node enemy;
     /** The enemy's current hp*/
     private int hp;
+    /** Is the enemy killed? */
     private boolean killed;
     /** The dimensions of the enemy's hitbox in pixels */
     private static final Vector HITBOX_SIZE = new Vector(30, 30);
@@ -35,6 +50,9 @@ public class Enemy extends CollidableObject {
     public boolean inRange(Player p){
         return (Math.abs(p.getNode().getLayoutX() - enemy.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - enemy.getLayoutY()) < 100);
     }
+    /**
+     * Update method to update the enemy's position and state
+     */
     public void update(){
         if (!killed){
             switch (state){
@@ -52,9 +70,20 @@ public class Enemy extends CollidableObject {
             enemy.setVisible(false);
         }
     }
+
+    /**
+     * Getter for the node
+     * @return The node
+     */
     public Node getNode() {
         return enemy;
     }
+
+    /**
+     * Enemy class constructor to initialize variables
+     * @param x X-coord
+     * @param y Y-coord
+     */
     public Enemy(float x, float y) {
         this.pos = new Vector(x, y);
         vel = new Vector(0, 0);
@@ -66,12 +95,24 @@ public class Enemy extends CollidableObject {
         sprite = new Image("assets/player.png");
         enemy = new ImageView(sprite);
     }
+
+    /**
+     * Creates the enemy's hitbox
+     * @param pos1 Top left corner
+     * @param pos2 Bottom right corner
+     */
     @Override
     public void createHitBox(Vector pos1, Vector pos2) {
         hitbox = new HitBox(pos1, pos2);
-        lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y/2)), pos2.add(new Vector(-5, 0)));
-        upperHitBox = new HitBox(pos1.add(new Vector(5, 0)), pos2.sub(new Vector(-5, HITBOX_SIZE.y/2)));
+        lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y / 2)), pos2.add(new Vector(-5, 0)));
+        upperHitBox = new HitBox(pos1.add(new Vector(5, 0)), pos2.sub(new Vector(-5, HITBOX_SIZE.y / 2)));
     }
+
+    /**
+     * Method to ensure all changes between states are valid
+     * @param newState State to change to
+     * @return The updated state
+     */
     private EnemyState requestStateChange(EnemyState newState) {
         switch (state) {
             case IDLE:
