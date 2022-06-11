@@ -136,7 +136,7 @@ public class Player extends CollidableObject {
         return state;
     }
     /**
-     * Damage this enemy with the specified amount
+     * Damage this player with the specified amount
      * @return If damaging was successful
      */
     public boolean damage(int amount, Vector location) {
@@ -145,6 +145,13 @@ public class Player extends CollidableObject {
         if (result)
             vel = location.sub(pos).mul(-0.04f);
         return result;
+    }
+    /**
+     * Heal this player with the specified amount
+     */
+    public void heal(int amount) {
+        hp += amount;
+        hp = Math.min(hp, 100);
     }
     /**
      * Returns whether the current state is damagable or not
