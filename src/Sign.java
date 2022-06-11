@@ -151,7 +151,7 @@ public class Sign extends GameObject implements Interactable {
     }
 
     public boolean inRange(Player player) {
-        return false;
+        return (Vector.dist(Game.player.pos, this.pos) < 100);
     }
 
     /**
