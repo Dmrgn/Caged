@@ -11,36 +11,7 @@
       <change beforePath="$PROJECT_DIR$/Level2_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Level2_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Sign$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Sign$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Background.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BrotherTips.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrotherTips.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CollectableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollectableObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CollidableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollidableObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Credits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Credits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExitScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Healthbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Healthbar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HitBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HitBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Horn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Horn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interactable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interactable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Keyboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Level1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Level2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Level3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LevelDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LevelDataParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mold.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Spike.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spike.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SplashScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SplashScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
