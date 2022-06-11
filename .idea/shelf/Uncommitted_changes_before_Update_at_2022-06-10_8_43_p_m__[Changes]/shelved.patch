@@ -1,0 +1,839 @@
+Index: src/Enemy.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.scene.image.*;\r\nimport javafx.scene.*;\r\npublic class Enemy extends CollidableObject {\r\n    /** Whether the enemy is grounded or not */\r\n    private boolean isGrounded;\r\n    /** The bottom hitbox of the enemy */\r\n    private HitBox lowerHitBox;\r\n    /** The top hitbox of the enemy */\r\n    private HitBox upperHitBox;\r\n    /** Possible enemy states */\r\n    public Vector vel;\r\n    /** The enemy's Sprite as an Image */\r\n    public Image sprite;\r\n    /** The Node that is added to the scene and whose movement is updated */\r\n    public Node enemy;\r\n    /** The enemy's current hp*/\r\n    private int hp;\r\n    private boolean killed;\r\n    /** The dimensions of the enemy's hitbox in pixels */\r\n    private static final Vector HITBOX_SIZE = new Vector(30, 30);\r\n    /** The enemy's movement speed which is a constant*/\r\n    private static final float MAX_SPEED = 2.5f;\r\n    /** The enemies's acceleration speed which is a constant*/\r\n    private static final float ACCELERATION = 0.10f;\r\n    /** The direction the enemy is moving (1 right -1 left 0 idle) */\r\n    private int moveDirection;\r\n    /** EnemyState represented in code*/\r\n    private enum EnemyState {\r\n        IDLE,\r\n        HOSTILE,\r\n        DAMAGED\r\n    }\r\n    /** Current state of the enemy */\r\n    private EnemyState state;\r\n    public boolean inRange(Player p){\r\n        return (Math.abs(p.getNode().getLayoutX() - enemy.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - enemy.getLayoutY()) < 100);\r\n    }\r\n    public void update(){\r\n        if (!killed){\r\n            switch (state){\r\n                case IDLE:\r\n                   if (inRange((Player) Game.player)) {\r\n\r\n                   }\r\n                   break;\r\n                case HOSTILE:\r\n                    break;\r\n                case DAMAGED:\r\n                    break;\r\n            }\r\n        } else {\r\n            enemy.setVisible(false);\r\n        }\r\n    }\r\n    public Node getNode() {\r\n        return enemy;\r\n    }\r\n    public Enemy(float x, float y) {\r\n        this.pos = new Vector(x, y);\r\n        vel = new Vector(0, 0);\r\n        hp = 100;\r\n        killed = false;\r\n        state = EnemyState.IDLE;\r\n        createHitBox(pos, pos.add(HITBOX_SIZE));\r\n        moveDirection = 0;\r\n        sprite = new Image(\"assets/player.png\");\r\n        enemy = new ImageView(sprite);\r\n    }\r\n    @Override\r\n    public void createHitBox(Vector pos1, Vector pos2) {\r\n        hitbox = new HitBox(pos1, pos2);\r\n        lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y/2)), pos2.add(new Vector(-5, 0)));\r\n        upperHitBox = new HitBox(pos1.add(new Vector(5, 0)), pos2.sub(new Vector(-5, HITBOX_SIZE.y/2)));\r\n    }\r\n    private EnemyState requestStateChange(EnemyState newState) {\r\n        switch (state) {\r\n            case IDLE:\r\n                return state = newState;\r\n            case HOSTILE:\r\n                switch (newState) {\r\n                    case IDLE:\r\n                        return state = EnemyState.IDLE;\r\n                    case DAMAGED:\r\n                        return state = EnemyState.DAMAGED;\r\n                }\r\n                break;\r\n            case DAMAGED:\r\n                switch (newState) {\r\n                    case IDLE:\r\n                        return state = EnemyState.IDLE;\r\n                }\r\n                break;\r\n        }\r\n        return state;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Enemy.java b/src/Enemy.java
+--- a/src/Enemy.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Enemy.java	(date 1654906092869)
+@@ -1,5 +1,19 @@
+ import javafx.scene.image.*;
+ import javafx.scene.*;
++/**
++ * <p>
++ * This class contains the frameworks for the enemies in the game.
++ * </p>
++ *
++ * <h2>ICS 4U0 with Krasteva, V.</h2>
++ *
++ * @version 5.0
++ * @author Ryan Atlas, Samuel Huang and Daniel Morgan
++ * @since June 6th, 2022
++ * <p>
++ * File was created by Ryan Atlas on June 6th. He spent 1.5 hours creating the frame for this class
++ * </p>
++ */
+ public class Enemy extends CollidableObject {
+     /** Whether the enemy is grounded or not */
+     private boolean isGrounded;
+@@ -15,6 +29,7 @@
+     public Node enemy;
+     /** The enemy's current hp*/
+     private int hp;
++    /** Is the enemy killed? */
+     private boolean killed;
+     /** The dimensions of the enemy's hitbox in pixels */
+     private static final Vector HITBOX_SIZE = new Vector(30, 30);
+@@ -35,6 +50,9 @@
+     public boolean inRange(Player p){
+         return (Math.abs(p.getNode().getLayoutX() - enemy.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - enemy.getLayoutY()) < 100);
+     }
++    /**
++     * Update method to update the enemy's position and state
++     */
+     public void update(){
+         if (!killed){
+             switch (state){
+@@ -52,9 +70,20 @@
+             enemy.setVisible(false);
+         }
+     }
++
++    /**
++     * Getter for the node
++     * @return The node
++     */
+     public Node getNode() {
+         return enemy;
+     }
++
++    /**
++     * Enemy class constructor to initialize variables
++     * @param x X-coord
++     * @param y Y-coord
++     */
+     public Enemy(float x, float y) {
+         this.pos = new Vector(x, y);
+         vel = new Vector(0, 0);
+@@ -66,12 +95,24 @@
+         sprite = new Image("assets/player.png");
+         enemy = new ImageView(sprite);
+     }
++
++    /**
++     * Creates the enemy's hitbox
++     * @param pos1 Top left corner
++     * @param pos2 Bottom right corner
++     */
+     @Override
+     public void createHitBox(Vector pos1, Vector pos2) {
+         hitbox = new HitBox(pos1, pos2);
+-        lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y/2)), pos2.add(new Vector(-5, 0)));
+-        upperHitBox = new HitBox(pos1.add(new Vector(5, 0)), pos2.sub(new Vector(-5, HITBOX_SIZE.y/2)));
++        lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y / 2)), pos2.add(new Vector(-5, 0)));
++        upperHitBox = new HitBox(pos1.add(new Vector(5, 0)), pos2.sub(new Vector(-5, HITBOX_SIZE.y / 2)));
+     }
++
++    /**
++     * Method to ensure all changes between states are valid
++     * @param newState State to change to
++     * @return The updated state
++     */
+     private EnemyState requestStateChange(EnemyState newState) {
+         switch (state) {
+             case IDLE:
+Index: src/HitBox.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/**\r\n * <p>\r\n * Helper class for handling collision detection\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 28th, 2022\r\n * <p>\r\n * 30 minutes were spent on this file by Daniel Morgan on May 28th 2022\r\n * </p>\r\n */\r\npublic class HitBox {\r\n    /**\r\n     * Uses point rectangle collision to determine if two \r\n     * hitboxes are overlapping.\r\n     * @param b1 The first {@link HitBox} to check against\r\n     * @param b2 The second {@link HitBox} to check against\r\n     * @return true if the two hitboxes are overlapping otherwise false\r\n     */\r\n    public static boolean areBoxesColliding(HitBox b1, HitBox b2) {\r\n        if (b1.p1.x >= b2.p1.x - b1.getWidth() &&   // right of the left edge AND\r\n                b1.p1.x <= b2.p2.x &&                   // left of the right edge AND\r\n                b1.p1.y >= b2.p1.y - b1.getHeight() &&  // below the top AND\r\n                b1.p1.y <= b2.p2.y) {                   // above the bottom\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n    /**\r\n     * Creates an array representing the distance of a point \r\n     * to each pair of adjacent sides. Ordered, Left, Top\r\n     * Right, Bottom sides. \r\n     */\r\n    public static float[] calculateDistanceToSides(HitBox b, Vector p) {\r\n        HitBox[] sides = {\r\n                new HitBox(b.p1, b.p1.add(new Vector(0,b.getHeight()))), // left face\r\n                new HitBox(b.p1, b.p1.add(new Vector(b.getWidth(),0))),  // top face\r\n                new HitBox(b.p1.add(new Vector(b.getWidth(),0)), b.p2),  // right face\r\n                new HitBox(b.p1.add(new Vector(0,b.getHeight())), b.p2), // bottom face\r\n        };\r\n        float[] distances = new float[4];\r\n        for (int i = 0; i < distances.length; i++) {\r\n            distances[i] = Vector.dist(Vector.lerp(sides[i].p1, sides[i].p2, 0.5f), p);\r\n        }\r\n        return distances;\r\n    }\r\n    public Vector p1, p2;\r\n    public HitBox(Vector p1, Vector p2) {\r\n        this.p1 = p1;\r\n        this.p2 = p2;\r\n    }\r\n    /** Instance implementation of {@link #areBoxesColliding(HitBox, HitBox)} */\r\n    public boolean isCollidingWith(HitBox b1) {\r\n        return areBoxesColliding(b1, this);\r\n    }\r\n    /**\r\n     * Returns the width of this hitbox\r\n     * @return the width of this hitbox\r\n     */\r\n    public float getWidth() {\r\n        return Math.abs(p2.x-p1.x);\r\n    }\r\n    /**\r\n     * Returns the height of this hitbox\r\n     * @return the height of this hitbox\r\n     */\r\n    public float getHeight() {\r\n        return Math.abs(p2.y-p1.y);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/HitBox.java b/src/HitBox.java
+--- a/src/HitBox.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/HitBox.java	(date 1654907315096)
+@@ -5,7 +5,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 28th, 2022
+  * <p>
+@@ -13,6 +13,8 @@
+  * </p>
+  */
+ public class HitBox {
++    /** Vectors for corners */
++     public Vector p1, p2;
+     /**
+      * Uses point rectangle collision to determine if two 
+      * hitboxes are overlapping.
+@@ -47,7 +49,12 @@
+         }
+         return distances;
+     }
+-    public Vector p1, p2;
++
++    /**
++     * Hitbox constructor
++     * @param p1 Top left corner
++     * @param p2 Bottom right corner
++     */
+     public HitBox(Vector p1, Vector p2) {
+         this.p1 = p1;
+         this.p2 = p2;
+Index: src/Credits.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.scene.Group;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.input.KeyCode;\r\nimport javafx.stage.Stage;\r\n\r\nimport java.io.FileInputStream;\r\nimport java.io.FileNotFoundException;\r\n\r\n/**\r\n * <p>\r\n * This class contains code for the Credits Screen\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 19th, 2022\r\n * <p>\r\n * File was created by Samuel Huang on May 19th, 2022.\r\n * Samuel Huang spent 30 minutes on this file.\r\n * </p>\r\n */\r\npublic class Credits {\r\n    /** This ImageView variable stores the credits page. */\r\n    private ImageView creditScreen;\r\n\r\n    private Stage window;\r\n    private Scene scene;\r\n    /**\r\n     * The constructor of the Credits Class.\r\n     */\r\n    public Credits(Stage window) throws FileNotFoundException\r\n    {\r\n        creditScreen = new ImageView( new Image(new FileInputStream(\"Page Screens/CreditsScreen.png\")));//add file first\r\n        this.window = window;\r\n    }\r\n    /**\r\n     * This method gets called to display the credits screen\r\n     *\r\n     */\r\n    public void display()  {\r\n        //Setting the position of the  image:\r\n        creditScreen.setX(0);\r\n        creditScreen.setY(0);\r\n        creditScreen.setFitWidth(1266);\r\n        creditScreen.setFitHeight(720);\r\n        creditScreen.setPreserveRatio(true);\r\n        Group root = new Group(creditScreen);\r\n        //Creating a scene object\r\n        scene = new Scene(root, Main.getWidth(), Main.getHeight());\r\n        //window.setScene(scene);\r\n        Keyboard.init(scene);\r\n    }\r\n//    /**\r\n//     * This method sends the user back to the menu screen if the key h is pressed\r\n//     *\r\n//     */\r\n//    public void controlScreens() {\r\n//        //check the keyboard\r\n//        display();\r\n//    }\r\n    /**\r\n     * Getter method for the scene instance variable\r\n     * @return The game scene\r\n     */\r\n    public Scene getScene()\r\n    {\r\n        return scene;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Credits.java b/src/Credits.java
+--- a/src/Credits.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Credits.java	(date 1654905403432)
+@@ -15,7 +15,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 19th, 2022
+  * <p>
+@@ -26,11 +26,14 @@
+ public class Credits {
+     /** This ImageView variable stores the credits page. */
+     private ImageView creditScreen;
+-
++    /** Current window */
+     private Stage window;
++    /** Current scene */
+     private Scene scene;
+     /**
+      * The constructor of the Credits Class.
++     * @param window Window to display screen to
++     * @throws FileNotFoundException In case file cannot be found it must be thrown (should never occur)
+      */
+     public Credits(Stage window) throws FileNotFoundException
+     {
+@@ -54,14 +57,6 @@
+         //window.setScene(scene);
+         Keyboard.init(scene);
+     }
+-//    /**
+-//     * This method sends the user back to the menu screen if the key h is pressed
+-//     *
+-//     */
+-//    public void controlScreens() {
+-//        //check the keyboard
+-//        display();
+-//    }
+     /**
+      * Getter method for the scene instance variable
+      * @return The game scene
+Index: src/Instructions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.scene.Group;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.image.*;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.input.KeyCode;\r\nimport javafx.scene.paint.Color;\r\nimport javafx.scene.shape.Rectangle;\r\nimport javafx.stage.Stage;\r\n\r\nimport java.awt.*;\r\nimport java.io.FileInputStream;\r\nimport java.io.FileNotFoundException;\r\n/**\r\n * <p>\r\n * This class contains code for the Instructions Screen\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 19th, 2022\r\n * <p>\r\n * File was created by Samuel Huang on May 19th, 2022.\r\n * Samuel Huang spent 10 minutes on this file.\r\n * </p>\r\n */\r\npublic class Instructions\r\n{\r\n   /** This ImageView variable stores the first instructions page. */\r\n   private ImageView instructionsP1;\r\n   /** This ImageView variable stores the second instructions page. */\r\n   private ImageView instructionsP2;\r\n   /** This int variable keeps track of the current page the user is reading */\r\n   private int currentPage;\r\n   /** This Stage variable is used to display all things */\r\n   private Stage window;\r\n\r\n   private Scene scene;\r\n   /**\r\n     * The constructor of the Instructions Class.\r\n     */\r\n   public Instructions(Stage window) throws FileNotFoundException\r\n   {\r\n      instructionsP1 = new ImageView( new Image(new FileInputStream(\"Page Screens/InstructionsScreen1.png\")));//add file first\r\n      instructionsP2 = new ImageView( new Image(new FileInputStream(\"Page Screens/InstructionsScreen2.png\")));//add file first\r\n      this.window = window;\r\n      currentPage = 1;\r\n   }\r\n   \r\n   /**\r\n     * This method gets called to display the first instructions screen\r\n     *\r\n     */\r\n   public void displayScreen1()\r\n   {\r\n      currentPage = 1;\r\n      //Setting the position of the  image:\r\n      instructionsP1.setX(0);\r\n      instructionsP1.setY(0);\r\n      instructionsP1.setFitWidth(1266);\r\n      instructionsP1.setFitHeight(720);\r\n      instructionsP1.setPreserveRatio(true);\r\n      Group root = new Group(instructionsP1);\r\n      //Creating a scene object\r\n      scene = new Scene(root, Main.getWidth(), Main.getHeight());\r\n      //window.setScene(scene);\r\n      Keyboard.init(scene);\r\n   }\r\n   /**\r\n     * This method gets called to display the second instructions screen\r\n     *\r\n     */\r\n   public void displayScreen2()\r\n   {\r\n      currentPage = 2;\r\n      //Setting the position of the  image:\r\n      instructionsP2.setX(0);\r\n      instructionsP2.setY(0);\r\n      instructionsP2.setFitWidth(1266);\r\n      instructionsP2.setFitHeight(720);\r\n      instructionsP2.setPreserveRatio(true);\r\n      Group root = new Group(instructionsP2);\r\n      //Creating a scene object\r\n      scene = new Scene(root, Main.getWidth(), Main.getHeight());\r\n      //window.setScene(scene);\r\n      Keyboard.init(scene);\r\n   }\r\n   /**\r\n     * This method swaps between different screens\r\n     *\r\n     */\r\n   public void controlScreens()\r\n   {\r\n      //check the keyboard\r\n      if(Keyboard.isKeyDown(KeyCode.C))\r\n      {\r\n         currentPage = 2;\r\n      }\r\n      else if(Keyboard.isKeyDown(KeyCode.I))\r\n      {\r\n         currentPage = 1;\r\n      }\r\n//      else if(Keyboard.isKeyDown(KeyCode.H))\r\n//      {\r\n//         System.out.println(\"Return to menu\");\r\n//      }\r\n      //displays screens\r\n      if(currentPage == 1)\r\n      {\r\n         displayScreen1();\r\n      }\r\n      else if (currentPage == 2) {\r\n         displayScreen2();\r\n      }\r\n   }\r\n   /**\r\n    * Getter method for the scene instance variable\r\n    * @return The game scene\r\n    */\r\n   public Scene getScene()\r\n   {\r\n      return scene;\r\n   }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Instructions.java b/src/Instructions.java
+--- a/src/Instructions.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Instructions.java	(date 1654907543754)
+@@ -17,7 +17,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 19th, 2022
+  * <p>
+@@ -25,8 +25,7 @@
+  * Samuel Huang spent 10 minutes on this file.
+  * </p>
+  */
+-public class Instructions
+-{
++public class Instructions {
+    /** This ImageView variable stores the first instructions page. */
+    private ImageView instructionsP1;
+    /** This ImageView variable stores the second instructions page. */
+@@ -35,25 +34,22 @@
+    private int currentPage;
+    /** This Stage variable is used to display all things */
+    private Stage window;
+-
++   /** Current scene */
+    private Scene scene;
+    /**
+      * The constructor of the Instructions Class.
+      */
+-   public Instructions(Stage window) throws FileNotFoundException
+-   {
++   public Instructions(Stage window) throws FileNotFoundException {
+       instructionsP1 = new ImageView( new Image(new FileInputStream("Page Screens/InstructionsScreen1.png")));//add file first
+       instructionsP2 = new ImageView( new Image(new FileInputStream("Page Screens/InstructionsScreen2.png")));//add file first
+       this.window = window;
+       currentPage = 1;
+    }
+-   
+    /**
+      * This method gets called to display the first instructions screen
+      *
+      */
+-   public void displayScreen1()
+-   {
++   public void displayScreen1() {
+       currentPage = 1;
+       //Setting the position of the  image:
+       instructionsP1.setX(0);
+@@ -71,8 +67,7 @@
+      * This method gets called to display the second instructions screen
+      *
+      */
+-   public void displayScreen2()
+-   {
++   public void displayScreen2() {
+       currentPage = 2;
+       //Setting the position of the  image:
+       instructionsP2.setX(0);
+@@ -90,24 +85,16 @@
+      * This method swaps between different screens
+      *
+      */
+-   public void controlScreens()
+-   {
++   public void controlScreens() {
+       //check the keyboard
+-      if(Keyboard.isKeyDown(KeyCode.C))
+-      {
++      if(Keyboard.isKeyDown(KeyCode.C)) {
+          currentPage = 2;
+       }
+-      else if(Keyboard.isKeyDown(KeyCode.I))
+-      {
++      else if(Keyboard.isKeyDown(KeyCode.I)) {
+          currentPage = 1;
+       }
+-//      else if(Keyboard.isKeyDown(KeyCode.H))
+-//      {
+-//         System.out.println("Return to menu");
+-//      }
+       //displays screens
+-      if(currentPage == 1)
+-      {
++      if(currentPage == 1) {
+          displayScreen1();
+       }
+       else if (currentPage == 2) {
+Index: src/ExitScreen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.scene.image.Image;\r\n\r\n/**\r\n * <p>\r\n * This class contains code for the Exit Screen\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 19th, 2022\r\n * <p>\r\n * File was created by Samuel Huang on May 19th, 2022.\r\n * Samuel Huang spent 10 minutes on this file.\r\n * </p>\r\n */\r\npublic class ExitScreen\r\n{\r\n   /** This Image variable stores the exit page. */\r\n   private Image exitPage;\r\n   /**\r\n     * The constructor of the ExitScreen Class.\r\n     */\r\n   public ExitScreen(Image page)\r\n   {\r\n      exitPage = page;\r\n   }\r\n   /**\r\n     * This method gets called to display the exit screen\r\n     *\r\n     */\r\n   public void display()\r\n   {\r\n   \r\n   }\r\n   /**\r\n     * This method makes the user leave the game\r\n     *\r\n     */\r\n   public void leave()\r\n   {\r\n   \r\n   }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ExitScreen.java b/src/ExitScreen.java
+--- a/src/ExitScreen.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/ExitScreen.java	(date 1654906092880)
+@@ -7,7 +7,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 19th, 2022
+  * <p>
+@@ -15,8 +15,7 @@
+  * Samuel Huang spent 10 minutes on this file.
+  * </p>
+  */
+-public class ExitScreen
+-{
++public class ExitScreen{
+    /** This Image variable stores the exit page. */
+    private Image exitPage;
+    /**
+@@ -30,16 +29,14 @@
+      * This method gets called to display the exit screen
+      *
+      */
+-   public void display()
+-   {
++   public void display() {
+    
+    }
+    /**
+      * This method makes the user leave the game
+      *
+      */
+-   public void leave()
+-   {
++   public void leave() {
+    
+    }
+ }
+Index: src/Keyboard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.ArrayList;\r\n\r\nimport javafx.event.*;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.input.KeyCode;\r\nimport javafx.scene.input.KeyEvent;\r\nimport javafx.scene.input.*;\r\n/**\r\n * <p>\r\n * This class creates an abstraction for dealing with the user's keyboard input.\r\n * It keeps track of the keys the user currently has pressed.\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 17th, 2022\r\n * <p>\r\n * File was created by Daniel Morgan on may 17th, 2022.\r\n * Daniel Morgan spent 1 hours on May 17th.\r\n * Daniel Morgan spent 30 minutes on May 27th updating for JavaFX.\r\n * Ryan Atlas spent 20 minutes on May 30th adding mouse input\r\n * </p>\r\n */\r\npublic class Keyboard {\r\n    /** All keys currently being pressed down*/\r\n    private static ArrayList<KeyCode> keysDown = new ArrayList<KeyCode>();\r\n    /** Is the mouse being clicked currently*/\r\n    private static boolean mouseClicked = false;\r\n    /** Mouse x coord*/\r\n    private static double mouseX;\r\n    /** Mouse y coord*/\r\n    private static double mouseY;\r\n    /**\r\n     * Checks whether a key is currently down\r\n     * @param code KeyCode for key\r\n     * @return Whether it is down\r\n     */\r\n    public static boolean isKeyDown(KeyCode code) {\r\n        if (keysDown.contains(code))\r\n            return true;\r\n        return false;\r\n    }\r\n    public static boolean isKeyUp(KeyCode code) {\r\n        if (!keysDown.contains(code))\r\n            return true;\r\n        return false;\r\n    }\r\n    /**\r\n     * Gets whether the mouse is being clicked\r\n     * @return Is the mouse being clicked?\r\n     */\r\n    public static boolean isMouseClicked(){\r\n        return mouseClicked;\r\n    }\r\n    /**\r\n     * Gets the coordinates of the mouse\r\n     * @return The x and y coordinates as indices 0 and 1 in an array respectively\r\n     */\r\n    public static Vector mouseCoords(){\r\n        return new Vector((float)mouseX, (float)mouseY);\r\n    }\r\n    /**\r\n     * Initialize a keyboard listener to detect keys being pressed\r\n     * @param scene Current scene\r\n     */\r\n    public static void init(Scene scene) {\r\n        scene.setOnKeyPressed(new EventHandler < KeyEvent > () {\r\n            @Override\r\n            public void handle(KeyEvent e) {\r\n                if (!keysDown.contains(e.getCode())) {\r\n                    keysDown.add(e.getCode());\r\n                }\r\n            }\r\n        });\r\n        scene.setOnKeyReleased(new EventHandler < KeyEvent > () {\r\n            @Override\r\n            public void handle(KeyEvent e) {\r\n                keysDown.remove(e.getCode());\r\n            }\r\n        });\r\n        scene.setOnMousePressed(new EventHandler <MouseEvent>() {\r\n            @Override\r\n            public void handle(MouseEvent e) {\r\n                System.out.println(\"mouse: \" + Game.toWorld(Keyboard.mouseCoords()));\r\n                mouseClicked = true;\r\n                mouseX = e.getSceneX();\r\n                mouseY = e.getSceneY();\r\n            }\r\n        });\r\n        scene.setOnMouseReleased(new EventHandler <MouseEvent>() {\r\n            @Override\r\n            public void handle(MouseEvent e){\r\n                mouseClicked = false;\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Keyboard.java b/src/Keyboard.java
+--- a/src/Keyboard.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Keyboard.java	(date 1654908189862)
+@@ -13,7 +13,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 17th, 2022
+  * <p>
+@@ -42,6 +42,11 @@
+             return true;
+         return false;
+     }
++    /**
++     * Checks if key is currently up
++     * @param code KeyCode from JavaFX
++     * @return Whether it is
++     */
+     public static boolean isKeyUp(KeyCode code) {
+         if (!keysDown.contains(code))
+             return true;
+Index: src/GameObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.geometry.Point2D;\r\nimport javafx.scene.Node;\r\nimport javafx.scene.transform.Scale;\r\nimport javafx.scene.transform.Translate;\r\n\r\n/**\r\n * <p>\r\n * This interface is used so that all game objects can appear on the screen\r\n * properly and be updated when needed.\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 17th, 2022\r\n * <p>\r\n * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.\r\n * Ten minutes were spent by Ryan Atlas on June 1st restructuring it to be an abstract class with the pos variable\r\n * </p>\r\n */\r\npublic abstract class GameObject {\r\n    public Vector pos;\r\n    protected float scale = 1.0f;\r\n    private Vector translation = new Vector(0,0);\r\n    /**\r\n     * Update method that updates where that object is drawn\r\n     */\r\n    public abstract void update();\r\n    /**\r\n     * Gets the Node representing the object\r\n     */\r\n    public abstract Node getNode();\r\n    /**\r\n     * Draw method that draws the object\r\n     */\r\n    public void draw() {\r\n        getNode().relocate((pos.x)*scale, (pos.y)*scale);\r\n    }\r\n    /**\r\n     * Clears all active transformations\r\n     */\r\n    public void clearTransformations() {\r\n        getNode().getTransforms().clear();\r\n    }\r\n    /**\r\n     * Scales this object around the specified origin\r\n     * @param scale The decimal number to set the scale to\r\n     * @param origin The origin for the scale transformation\r\n     */\r\n    public void setScale(float amount, Vector origin) {\r\n        Scale trans = new Scale();\r\n        scale = amount;\r\n        trans.setX(scale);\r\n        trans.setY(scale);\r\n        trans.setPivotX(origin.x);\r\n        trans.setPivotY(origin.y);\r\n        getNode().getTransforms().add(trans);\r\n    }\r\n    /**\r\n     * Translates this object around the specified origin\r\n     * @param Translate The decimal number to set the Translate to\r\n     * @param origin The origin for the Translate transformation\r\n     */\r\n    public void setTranslate(Vector amount) {\r\n        Translate trans = new Translate();\r\n        translation = amount;\r\n        trans.setX(translation.x);\r\n        trans.setY(translation.y);\r\n        getNode().getTransforms().add(trans);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GameObject.java b/src/GameObject.java
+--- a/src/GameObject.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/GameObject.java	(date 1654906092888)
+@@ -11,7 +11,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 17th, 2022
+  * <p>
+@@ -20,8 +20,11 @@
+  * </p>
+  */
+ public abstract class GameObject {
++    /** Position vector */
+     public Vector pos;
++    /** Scale for the object */
+     protected float scale = 1.0f;
++    /** Vector for translation */
+     private Vector translation = new Vector(0,0);
+     /**
+      * Update method that updates where that object is drawn
+Index: src/Interactable.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/**\r\n * <p>\r\n * This interface is used for interactable objects like doors and signs\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 27th, 2022\r\n * <p>\r\n * File was created by Ryan Atlas on May 27th, 2022. Comments and methods were added \r\n * </p>\r\n */\r\npublic interface Interactable {\r\n   /**\r\n   * Checks whether the player is close enough to the object to interact with it\r\n   * @param p The player\r\n   * @return A boolean on whether the player is in range\r\n   */\r\n   public boolean inRange(Player p);\r\n   /**\r\n   * Method to display a message to the player when they are interacting with it\r\n   */\r\n   public void display();\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Interactable.java b/src/Interactable.java
+--- a/src/Interactable.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Interactable.java	(date 1654907543744)
+@@ -5,7 +5,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 27th, 2022
+  * <p>
+Index: src/Door.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.scene.*;\r\nimport javafx.scene.image.*;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.input.KeyCode;\r\n/**\r\n * <p>\r\n * This class contains data about the interactable doors in the game\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 27th, 2022\r\n * <p>\r\n * File was created by Ryan Atlas on May 27th, 2022. 20 minutes spent. Comments were added, variables created,\r\n * the constructor was made and the getNode(), draw(), inRange(), display(), openDoor() and update() methods were added\r\n * Ten minutes were spent by Ryan Atlas on June 2nd restructuring the file to work with the new GameObject\r\n * </p>\r\n */\r\npublic class Door extends CollidableObject implements Interactable {\r\n    /** JavaFX node for the platform*/\r\n    private Node node;\r\n    /** Image for the door's locked texture */\r\n    private Image imageLocked;\r\n    /** Image for the door's locked texture */\r\n    private Image imageOpen;\r\n    /** Whether the door is locked */\r\n    private boolean isLocked;\r\n\r\n    private Image doorMessage;\r\n\r\n    private Vector normalPos;\r\n\r\n    private boolean accessing;\r\n\r\n    /**\r\n     * Class constructor that initializes variables and sets\r\n     * the Node's texture to be the image specified\r\n     * @param imageFileLocked The file for the image of the door while locked\r\n     * @param imageFileOpen  The file for the image of the door while open\r\n     * @param x The x coord of the platform\r\n     * @param y The y coord of the platform\r\n     */\r\n    public Door(Image imageFileLocked, Image imageFileOpen, Image doorInfo, int x, int y){\r\n        isLocked = true;\r\n        imageLocked = imageFileLocked;\r\n        imageOpen = imageFileOpen;\r\n        node = new ImageView((isLocked) ? imageLocked : imageOpen);\r\n        pos = new Vector(x, y);\r\n        normalPos = new Vector(x, y);\r\n        doorMessage = doorInfo;\r\n        createHitBox(pos.add(new Vector(0, 0)), pos.add(new Vector((float)imageFileLocked.getWidth(), (float)imageFileLocked.getHeight())));\r\n        accessing = false;\r\n    }\r\n    /**\r\n     * Getter method for the Node\r\n     * @return The Node\r\n     */\r\n    public Node getNode() {\r\n        return node;\r\n    }\r\n    /**\r\n     * Overridden update method from GameObject\r\n     */\r\n    public void update() {\r\n        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor && Game.signsRead[0] && Game.signsRead[1] && Game.signsRead[2] && Game.signsRead[3]) {\r\n            isLocked = false;\r\n            ((ImageView)node).setImage(imageOpen);\r\n            createHitBox(new Vector(0,0), new Vector(0,0));\r\n        } else if (!isLocked){\r\n            ((ImageView)node).setImage(imageOpen);\r\n        } else {\r\n            ((ImageView)node).setImage(imageLocked);\r\n        }\r\n        if (isLocked && inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){\r\n            accessing = true;\r\n            Player.playerMoving = false;\r\n        } else if(isLocked && Keyboard.isKeyUp(KeyCode.E))\r\n        {\r\n            accessing = false;\r\n            Player.playerMoving = true;\r\n        }\r\n        if(isLocked) {\r\n            display();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Method to check whether the player is in range of the object\r\n     * @param p The player\r\n     * @return Whether or not the player is in range and therefore can interact with the door\r\n     */\r\n    public boolean inRange(Player p){\r\n        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 200);\r\n    }\r\n    /**\r\n     * Overridden method from Interactable, displays a message if\r\n     * the door is locked or when the door is able to be opened\r\n     */\r\n    public void display(){\r\n        if(accessing) {\r\n            ((ImageView) node).setImage(doorMessage);\r\n            pos = Game.toWorld(new Vector(325, 175));\r\n            Game.player.getNode().setVisible(false);\r\n        }\r\n        else\r\n        {\r\n            ((ImageView)node).setImage(imageLocked);\r\n            pos = normalPos;\r\n            Game.player.getNode().setVisible(true);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Door.java b/src/Door.java
+--- a/src/Door.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Door.java	(date 1654905766417)
+@@ -9,7 +9,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 27th, 2022
+  * <p>
+@@ -27,13 +27,12 @@
+     private Image imageOpen;
+     /** Whether the door is locked */
+     private boolean isLocked;
+-
++    /** Image for the door's message */
+     private Image doorMessage;
+-
++    /** Vector for the normal position of the door */
+     private Vector normalPos;
+-
++    /** Whether the door is being accessed */
+     private boolean accessing;
+-
+     /**
+      * Class constructor that initializes variables and sets
+      * the Node's texture to be the image specified
+@@ -76,8 +75,7 @@
+         if (isLocked && inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){
+             accessing = true;
+             Player.playerMoving = false;
+-        } else if(isLocked && Keyboard.isKeyUp(KeyCode.E))
+-        {
++        } else if(isLocked && Keyboard.isKeyUp(KeyCode.E)) {
+             accessing = false;
+             Player.playerMoving = true;
+         }
+@@ -85,7 +83,6 @@
+             display();
+         }
+     }
+-
+     /**
+      * Method to check whether the player is in range of the object
+      * @param p The player
+@@ -104,8 +101,7 @@
+             pos = Game.toWorld(new Vector(325, 175));
+             Game.player.getNode().setVisible(false);
+         }
+-        else
+-        {
++        else {
+             ((ImageView)node).setImage(imageLocked);
+             pos = normalPos;
+             Game.player.getNode().setVisible(true);
+Index: src/Game.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.io.FileNotFoundException;\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\n\r\nimport javafx.animation.AnimationTimer;\r\nimport javafx.animation.KeyFrame;\r\nimport javafx.animation.Timeline;\r\nimport javafx.scene.Group;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.input.KeyCode;\r\nimport javafx.scene.paint.Color;\r\nimport javafx.scene.shape.Rectangle;\r\nimport javafx.scene.transform.Scale;\r\nimport javafx.scene.transform.Translate;\r\nimport javafx.stage.Stage;\r\nimport javafx.util.Duration;\r\nimport javafx.scene.media.*;\r\nimport java.io.File;\r\n/**\r\n * <p>\r\n * This file acts as the class that initializes and creates the different levels, menu\r\n * splash screen and bosses in the game. It essentially ties every other class together\r\n * so that the driver can work more cleanly.\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 18th, 2022\r\n * <p>\r\n * Ten minutes were spent by Ryan Atlas on this file on May 18th, 2022.\r\n * 2 hours were spent by Daniel Morgan on this file over May 27th and 28th, 2022.\r\n * 2 hours were spent by Daniel Morgan May 30th-June 3rd fixing collision and physics\r\n * 2 hours were by Ryan Atlas June 1st-3rd working on moving between screens and creating levels\r\n * 30 minutes were spent by Samuel Huang on June 3rd working on the animation timeline and splash screen/menu methods\r\n * </p>\r\n */\r\npublic class Game {\r\n    /** Camera zoom factor */\r\n    public static final float ZOOM = 1.0f;\r\n    /** If we are currently playing in debug mode */\r\n    public static final boolean IS_DEBUG_MODE = true;\r\n    /** Gravity applied to all moveable objects */\r\n    public static final float GRAVITY = 0.055f;\r\n    /** ArrayList of gameobjects in the current scene */\r\n    private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();\r\n    /** Current scene*/\r\n    private static Scene scene;\r\n    /** The instance of the player */\r\n    public static GameObject player;\r\n    /** Current group of scene layers: foreground/background/midground */\r\n    private Group sceneGroup = new Group();\r\n    /** Individual scene layers to contain rendered objects: foreground */\r\n    private static Group foreground = new Group();\r\n    /** Individual scene layers to contain rendered objects: midground*/\r\n    private static Group midground = new Group();\r\n    /** Individual scene layers to contain rendered objects: background */\r\n    private static Group background = new Group();\r\n    /** Array of levels in the game */\r\n    private static Level[] levels;\r\n    /** Game's current level*/\r\n    private static Level level;\r\n    /** The position of the camera */\r\n    public static Vector cameraPos = new Vector(0, 0);\r\n    /** Media player for music*/\r\n    private MediaPlayer mediaPlayer;\r\n    /** Whether the current door can be opened*/\r\n    public static boolean canOpenDoor;\r\n    /** Whether the object in the current level is picked up by the user*/\r\n    public static boolean objectFound;\r\n    /** Whether the all questions are answered correctly*/\r\n    public static int questionsCorrect;\r\n    public static boolean[] signsRead;\r\n    /** Programatic representation of scene layers */\r\n    public static enum SceneLayer {\r\n        FOREGROUND,\r\n        MIDGROUND,\r\n        BACKGROUND\r\n    }\r\n    /** Reference to the current window object */\r\n    public static Stage window;\r\n    /**\r\n     * Inits a game scene\r\n     * @param w The window to use for the game\r\n     */\r\n    public Game(Stage w) {\r\n        window = w;\r\n        window.setTitle(\"Caged Inside the Mind\");\r\n        window.setMinWidth(Main.getWidth());\r\n        window.setMinHeight(Main.getHeight());\r\n        window.setResizable(true);\r\n        canOpenDoor = false;\r\n        objectFound = false;\r\n        questionsCorrect = 0;\r\n        signsRead = new boolean[4];\r\n        // render the background, then midground, then foreground first\r\n        w.widthProperty().addListener((obs, oldVal, newVal) -> {\r\n            Main.setWidth(newVal.intValue());\r\n        });\r\n        w.heightProperty().addListener((obs, oldVal, newVal) -> {\r\n            Main.setWidth(newVal.intValue());\r\n        });\r\n        // add layers to sceneGroup\r\n        sceneGroup.getChildren().addAll(foreground, midground, background);\r\n        // add sceneGroup to the window and create the scene\r\n        buildScene(sceneGroup);\r\n        // add a player and platform to the scene\r\n        player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);\r\n        levels = new Level[2];\r\n        levels[1] = new Level1();\r\n        levels[0] = new Level2();\r\n        createLevel(levels[0]);\r\n        Player.playerMoving = true;\r\n        // set the current scene\r\n        window.setScene(scene);\r\n    }\r\n    /**\r\n     * Tests if the passed object is touching any collidable objects in the scene\r\n     * @param object1 The object being passed in to see if it is colliding\r\n     * @return Whether an object is touching a collidable object\r\n     */\r\n    public static boolean touchingCollidable(CollidableObject object1) {\r\n        for (GameObject object2: gameObjects) {\r\n            if (object2 instanceof CollidableObject && object1 != object2) {\r\n                if (CollidableObject.touching((CollidableObject) object2, object1)) {\r\n                    return true;\r\n                }\r\n            }\r\n        };\r\n        return false;\r\n    }\r\n    /**\r\n     * Tests if the passed hitbox is touching any collidable objects in the scene\r\n     * @param parent Original object being checked\r\n     * @param hitbox Hitbox being checked\r\n     * @return Whether the hitbox is touching a collidable\r\n     */\r\n    public static boolean touchingCollidable(GameObject parent, HitBox hitbox) {\r\n        for (GameObject obj: gameObjects) {\r\n            if (obj instanceof CollidableObject && obj != parent) {\r\n                if (HitBox.areBoxesColliding(((CollidableObject) obj).getHitBox(), hitbox)) {\r\n                    return true;\r\n                }\r\n            }\r\n        };\r\n        return false;\r\n    }\r\n    /**\r\n     * Navigates the player to the next level or screen\r\n     * @param level The level to navigate to\r\n     * @param screen The screen within that level to navigate to\r\n     */\r\n    public static void navigateLevel(Level level, int screen, int teleporterLocationIndex) {\r\n        updateLevelScreen(level, screen);\r\n        createLevel(level);\r\n        ArrayList<TeleportLocation> locations = new ArrayList<TeleportLocation>();\r\n        for (GameObject obj : gameObjects) {\r\n            if (obj instanceof TeleportLocation)\r\n                locations.add((TeleportLocation)obj);\r\n        }\r\n        TeleportLocation loc = locations.get(teleporterLocationIndex);\r\n        player = attachObject(new Player(loc.pos.x, loc.pos.y), SceneLayer.FOREGROUND);\r\n        window.setScene(scene);\r\n    }\r\n    /**\r\n     * Returns the first instance of an object with the same class as the passed object\r\n     * @param obj The object with a class to specify\r\n     * @return The first instance of an object with the same class\r\n     */\r\n    public static GameObject firstInstanceOfClass(GameObject obj) {\r\n        for (GameObject child : gameObjects) {\r\n            if (child.getClass().equals(obj.getClass())) {\r\n                return child;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n    /**\r\n     * Returns the ith level from the Game class\r\n     * @return The ith level from the Game class\r\n     */\r\n    public static Level getLevel(int index) {\r\n        return levels[index];\r\n    }\r\n    /**\r\n     * Creates and initializes the different levels of the game\r\n     * as they are needed.\r\n     * @param l The Level to be created\r\n     */\r\n    public static void createLevel(Level l) {\r\n        try {\r\n            ArrayList < GameObject > objects = l.getObjects();\r\n            for (GameObject obj: objects) {\r\n                attachObject(obj, SceneLayer.FOREGROUND);\r\n            }\r\n            level = l;\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Reads the file at the index of the files array in the Level class and loads all the new\r\n     * GameObjects while clearing old ones\r\n     * @param level Current level\r\n     * @param screen Screen number to read the right file\r\n     */\r\n    public static void updateLevelScreen(Level level, int screen) {\r\n        level.levelScreen = screen;\r\n        foreground.getChildren().clear();\r\n        gameObjects.clear();\r\n\r\n    }\r\n    /**\r\n     * Creates the two boss fights in the game which are designed to teach the\r\n     * player to never give up, even when all hope seems lost\r\n     * @param boss The boss whose fight is being created\r\n     */\r\n    public void createBossfight(Boss boss) {}\r\n    /**\r\n     * Creates and displays the splash screen to the user\r\n     * @throws FileNotFoundException In case the files cannot be found\r\n     */\r\n\r\n\r\n    public void splashScreen() throws FileNotFoundException {\r\n        SplashScreen splash = new SplashScreen(window);\r\n        Media menuTheme = new Media(new File(\"Caged Main Theme.mp3\").toURI().toString());\r\n        mediaPlayer = new MediaPlayer(menuTheme);\r\n        mediaPlayer.setVolume(0.3);\r\n        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);\r\n        mediaPlayer.play();\r\n        splash.runSplashScreen();\r\n    }\r\n\r\n    public void level1() {\r\n        if (player.pos.y >= 1500) {\r\n            navigateLevel(level, level.levelScreen, 0);\r\n        }\r\n    }\r\n    public void level2() {\r\n        if (level instanceof Level2) {\r\n            if (level.levelScreen == 0 && player.pos.x >= 4000) {\r\n                updateLevelScreen(level, 1);\r\n                createLevel(level);\r\n                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);\r\n                window.setScene(scene);\r\n            } else if (level.levelScreen == 0 && player.pos.y >= 1500) {\r\n                updateLevelScreen(level, 0);\r\n                createLevel(level);\r\n                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);\r\n                window.setScene(scene);\r\n            }\r\n        }\r\n    }\r\n    /**\r\n     * Adds the specified object to the game's list of objects\r\n     * and attaches it to the specified {@link SceneLayer}\r\n     * @param gameObject The GameObject to add to the scene\r\n     * @param layer The layer to add the {@link GameObject} gameObject to\r\n     * @return The added {@link GameObject}\r\n     */\r\n    public static GameObject attachObject(GameObject gameObject, SceneLayer layer) {\r\n        gameObjects.add(gameObject);\r\n        switch (layer) {\r\n            case FOREGROUND:\r\n                foreground.getChildren().add(gameObject.getNode());\r\n                break;\r\n            case MIDGROUND:\r\n                midground.getChildren().add(gameObject.getNode());\r\n                break;\r\n            case BACKGROUND:\r\n                background.getChildren().add(gameObject.getNode());\r\n                break;\r\n        }\r\n        return gameObject;\r\n    }\r\n    /**\r\n     * Method that is active as long as the player is currently playing\r\n     * the actual gameplay section of the game\r\n     * @throws FileNotFoundException For splashScreen\r\n     */\r\n    public void mainMenu() throws FileNotFoundException {\r\n        MainMenu menu = new MainMenu(window);\r\n        Instructions instructions = new Instructions(window);\r\n        Credits credits = new Credits(window);\r\n        AnimationTimer at = new AnimationTimer() {\r\n            @Override\r\n            public void handle(long l) {\r\n                if (menu.getSelection() == -1) {\r\n                    window.setScene(menu.getScene());\r\n                    menu.setSelection(0);\r\n                } else if (menu.getSelection() == 0) {\r\n                } else if (menu.getSelection() == 1) {\r\n                    Vector diff = cameraPos.mul(1);\r\n                    cameraPos = player.pos.mul(-1f).add(Main.getDims().div(2)).add(new Vector(0, 50));\r\n                    cameraPos = Vector.lerp(diff, cameraPos, 0.1f);\r\n                    for (int i = 0 ; i < gameObjects.size(); i++) {\r\n                        GameObject obj = gameObjects.get(i);\r\n                        obj.clearTransformations();\r\n                        obj.setScale(ZOOM, Main.getDims().div(2));\r\n                        obj.setTranslate(cameraPos);\r\n                        if (obj instanceof Background) {\r\n                            obj.clearTransformations();\r\n                            obj.setTranslate(cameraPos);\r\n                        }\r\n                        obj.update();\r\n                        if (gameObjects.size() == 0)\r\n                            break;\r\n                        obj.draw();\r\n                    }\r\n                    level1();\r\n                } else if (menu.getSelection() == 2) {\r\n                    instructions.controlScreens();\r\n                    window.setScene(instructions.getScene());\r\n                    if (Keyboard.isKeyDown(KeyCode.H)) {\r\n                        System.out.println(\"Works\");\r\n                        menu.setSelection(-1);\r\n                    }\r\n                } else if (menu.getSelection() == 3) {\r\n                    credits.display();\r\n                    window.setScene(credits.getScene());\r\n                    if (Keyboard.isKeyDown(KeyCode.H)) {\r\n                        System.out.println(\"Works\");\r\n                        menu.setSelection(-1);\r\n                    }\r\n                }\r\n            }\r\n        };\r\n        AnimationTimer menuTimer = new AnimationTimer() {\r\n            @Override\r\n            public void handle(long now) {\r\n                menu.checkMenu(this, at);\r\n            }\r\n        };\r\n        menu.display();\r\n        window.setScene(menu.getScene());\r\n        menuTimer.start();\r\n    }\r\n    /**\r\n     * Method that is active as long as the player is currently playing\r\n     * the actual gameplay section of the game\r\n     * @throws FileNotFoundException For splashScreen\r\n     */\r\n    public void playGame() throws FileNotFoundException {\r\n        if (!IS_DEBUG_MODE) {\r\n            splashScreen();\r\n        }\r\n        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(IS_DEBUG_MODE ? 10 : 18000), ev -> {\r\n            try {\r\n                mainMenu();\r\n            } catch (FileNotFoundException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }));\r\n        timeline.play();\r\n        window.show();\r\n    }\r\n    /** Converts the Vector in screen coordinates to world coordinates */\r\n    public static Vector toWorld(Vector v) {\r\n        return v.sub(cameraPos);\r\n    }\r\n    /** Converts the Vector in world coordinates to screen coordinates */\r\n    public static Vector toScreen(Vector v) {\r\n        return v.add(cameraPos);\r\n    }\r\n    /**\r\n     * Returns the scene\r\n     * @return The current scene\r\n     */\r\n    public Scene getScene() {\r\n        return scene;\r\n    }\r\n    /**\r\n     * Builds a scene with the specified group\r\n     */\r\n    public void buildScene(Group g) {\r\n        scene = new Scene(g, 1280, 720, Color.BLACK);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Game.java	(date 1654907070172)
+@@ -26,7 +26,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 18th, 2022
+  * <p>
+@@ -35,6 +35,9 @@
+  * 2 hours were spent by Daniel Morgan May 30th-June 3rd fixing collision and physics
+  * 2 hours were by Ryan Atlas June 1st-3rd working on moving between screens and creating levels
+  * 30 minutes were spent by Samuel Huang on June 3rd working on the animation timeline and splash screen/menu methods
++ * 2 hours were spent by Ryan Atlas June 6-10th adjusted how levels are drawn, Level1 and Level2 methods which have were adjusted many times
++ * 2 hours were spent by Samuel Huang on June 6-10th modifying code to make interaction work correctly
++ * 3 hours were spent by Daniel Morgan June 6-10th making the camera, toScreen, toWorld and navigateLevelScreen methods
+  * </p>
+  */
+ public class Game {
+@@ -73,7 +76,7 @@
+     /** Whether the all questions are answered correctly*/
+     public static int questionsCorrect;
+     public static boolean[] signsRead;
+-    /** Programatic representation of scene layers */
++    /** Programmatic representation of scene layers */
+     public static enum SceneLayer {
+         FOREGROUND,
+         MIDGROUND,
+@@ -109,8 +112,8 @@
+         // add a player and platform to the scene
+         player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);
+         levels = new Level[2];
+-        levels[1] = new Level1();
+-        levels[0] = new Level2();
++        levels[0] = new Level1();
++        levels[1] = new Level2();
+         createLevel(levels[0]);
+         Player.playerMoving = true;
+         // set the current scene
+@@ -223,8 +226,6 @@
+      * Creates and displays the splash screen to the user
+      * @throws FileNotFoundException In case the files cannot be found
+      */
+-
+-
+     public void splashScreen() throws FileNotFoundException {
+         SplashScreen splash = new SplashScreen(window);
+         Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
+@@ -235,11 +236,18 @@
+         splash.runSplashScreen();
+     }
+ 
++    /**
++     * Method to control level 1
++     */
+     public void level1() {
+         if (player.pos.y >= 1500) {
+             navigateLevel(level, level.levelScreen, 0);
+         }
+     }
++
++    /**
++     * Method to control level 2
++     */
+     public void level2() {
+         if (level instanceof Level2) {
+             if (level.levelScreen == 0 && player.pos.x >= 4000) {
+@@ -358,11 +366,19 @@
+         timeline.play();
+         window.show();
+     }
+-    /** Converts the Vector in screen coordinates to world coordinates */
++    /**
++     * Converts the Vector in screen coordinates to world coordinates
++     * @param v The vector to transform
++     * @return Transformed vector
++     */
+     public static Vector toWorld(Vector v) {
+         return v.sub(cameraPos);
+     }
+-    /** Converts the Vector in world coordinates to screen coordinates */
++    /**
++     * Converts the Vector in world coordinates to screen coordinates
++     * @param v The vector to transform
++     * @return Transformed vector
++     */
+     public static Vector toScreen(Vector v) {
+         return v.add(cameraPos);
+     }
+@@ -375,6 +391,7 @@
+     }
+     /**
+      * Builds a scene with the specified group
++     * @param g The group to be added to the scene
+      */
+     public void buildScene(Group g) {
+         scene = new Scene(g, 1280, 720, Color.BLACK);
+Index: src/CollectableObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.scene.*;\r\nimport javafx.scene.image.*;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.input.KeyCode;\r\n/**\r\n * <p>\r\n * This class contains data about the objects in the game that the\r\n * user has to collect\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 4.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since June 9th, 2022\r\n * <p>\r\n * File was created by Samuel Huang on June 9th, 2022. 30 minutes were spent\r\n * Ryan Atlas spent 20 minutes on June 9th adjusted the update() method\r\n * </p>\r\n */\r\npublic class CollectableObject extends GameObject implements Interactable {\r\n    /** Object's node*/\r\n    private Node node;\r\n    /** Object's image when not in range*/\r\n    private Image objectOut;\r\n    /** Object's image in range*/\r\n    private Image objectIn;\r\n    /** Whether the object should be highlighted*/\r\n    private boolean highlighted;\r\n\r\n    /**\r\n     * Initializes variables and stores the position in the GameObject's\r\n     * pos vector\r\n     * @param objectOutRange Image\r\n     * @param objectInRange Image\r\n     * @param x X pos\r\n     * @param y Y pos\r\n     */\r\n    public CollectableObject(Image objectOutRange, Image objectInRange, int x, int y) {\r\n        objectOut = objectOutRange;\r\n        objectIn = objectInRange;\r\n        pos = new Vector(x, y);\r\n        node = new ImageView(objectOut);\r\n        highlighted = false;\r\n    }\r\n\r\n    /**\r\n     * Updates the item every frame\r\n     */\r\n    public void update() {\r\n        if (!Game.objectFound) {\r\n            if (!highlighted && inRange((Player) Game.player)) {\r\n                ((ImageView) node).setImage(objectIn);\r\n                highlighted = true;\r\n            } else if (highlighted && !inRange((Player) Game.player)) {\r\n                ((ImageView) node).setImage(objectOut);\r\n                highlighted = false;\r\n            }\r\n            if (inRange((Player) Game.player) && Keyboard.isKeyDown(KeyCode.E)) {\r\n                //make a boolean true signalling that the object is found.\r\n                node.setVisible(false);\r\n                Game.objectFound = true;\r\n                Game.canOpenDoor = true;\r\n            }\r\n        } else {\r\n            node.setVisible(false);\r\n        }\r\n    }\r\n    /**\r\n     * Getter for node\r\n     * @return The node\r\n     */\r\n    public Node getNode() {\r\n        return node;\r\n    }\r\n\r\n    /**\r\n     * Checks whether the player is in range to pick up the object\r\n     * @param p The player\r\n     * @return Whether they are in range\r\n     */\r\n    public boolean inRange(Player p) {\r\n        return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 75 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 75);\r\n    }\r\n    /**\r\n     * Display method\r\n     */\r\n    public void display() {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/CollectableObject.java b/src/CollectableObject.java
+--- a/src/CollectableObject.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/CollectableObject.java	(date 1654905403411)
+@@ -27,7 +27,6 @@
+     private Image objectIn;
+     /** Whether the object should be highlighted*/
+     private boolean highlighted;
+-
+     /**
+      * Initializes variables and stores the position in the GameObject's
+      * pos vector
+@@ -43,7 +42,6 @@
+         node = new ImageView(objectOut);
+         highlighted = false;
+     }
+-
+     /**
+      * Updates the item every frame
+      */
+@@ -73,7 +71,6 @@
+     public Node getNode() {
+         return node;
+     }
+-
+     /**
+      * Checks whether the player is in range to pick up the object
+      * @param p The player
+@@ -83,9 +80,7 @@
+         return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 75 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 75);
+     }
+     /**
+-     * Display method
++     * Display method from Interactable. CollectableObject is Interacteble but doesn't need it. Still must be present
+      */
+-    public void display() {
+-
+-    }
++    public void display() {}
+ }
+Index: src/CollidableObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.scene.*;\r\n/**\r\n * <p>\r\n * This class provides an interface for easily interacting with collision\r\n * classes. It also provides a wrapper for to points\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 2.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 27th, 2022\r\n * <p>\r\n * File was created by Daniel Morgan on May 28th, 2022. 30 minutes were spent by Daniel Morgan.\r\n * </p>\r\n */\r\npublic abstract class CollidableObject extends GameObject {\r\n    /**\r\n     * Tests if the two passed collidable objects are touching\r\n     * @param o1 The first object to test against\r\n     * @param o2 The second object to test against\r\n     * @return If the two objects are touching\r\n     */\r\n    public static boolean touching(CollidableObject o1, CollidableObject o2) {\r\n        return HitBox.areBoxesColliding(o1.hitbox, o2.hitbox);\r\n    }\r\n    /**\r\n     * The hitbox of this object\r\n     */\r\n    protected HitBox hitbox = new HitBox(new Vector(0, 0), new Vector(0, 0));\r\n    /**\r\n     * Creates a new {@link HitBox} starting at corner {@link Vector} p1 and going\r\n     * to corner {@link Vector} p2. Assigns the created {@link HitBox} to this\r\n     * object.\r\n     * @param p1 Top left corner of the {@link HitBox} to be created\r\n     * @param p2 Bottom right corner of the {@link HitBox} to be created\r\n     */\r\n    protected void createHitBox(Vector p1, Vector p2) {\r\n        hitbox.p1 = p1;\r\n        hitbox.p2 = p2;\r\n    }\r\n    /**\r\n     * Returns the hitbox of this object\r\n     * @return The hitbox of this object\r\n     */\r\n    public HitBox getHitBox() {\r\n        return hitbox;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/CollidableObject.java b/src/CollidableObject.java
+--- a/src/CollidableObject.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/CollidableObject.java	(date 1654905403426)
+@@ -7,7 +7,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 2.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 27th, 2022
+  * <p>
+Index: src/Button.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/**\r\n * <p>\r\n * Button class that creates the pressing ability on any rectangle. \r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 4.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since June 1st, 2022\r\n * <p>\r\n * 30 minutes were spent on this file by Samuel Huang on June 1st 2022\r\n * </p>\r\n */\r\npublic class Button {\r\n   /** Vector for top corner*/\r\n   public Vector p1;\r\n   /** Vector for bottom corner*/\r\n   public Vector p2;\r\n\r\n   /**\r\n    * Constructor to initialize the vectors\r\n    * @param p1 First vector\r\n    * @param p2 Second vector\r\n    */\r\n   public Button(Vector p1, Vector p2) {\r\n      this.p1 = p1;\r\n      this.p2 = p2;\r\n   }\r\n\r\n   /**\r\n    * Check if the mouse if hovering above the button\r\n    * @return Whether the mouse is between those coordinates\r\n    */\r\n   public boolean hovering() {\r\n      if (Keyboard.mouseCoords().x >= p1.x && Keyboard.mouseCoords().x <= p2.x && Keyboard.mouseCoords().y >= p1.y && Keyboard.mouseCoords().y <= p2.y) {\r\n         return true;\r\n      }\r\n      return false;\r\n   }\r\n\r\n   /**\r\n    * Check whether mouse is pressing the button\r\n    * @return If the button is clicked\r\n    */\r\n   public boolean pressed() {\r\n      if (hovering() && Keyboard.isMouseClicked()) {\r\n         return true;\r\n      }\r\n      return false;\r\n   }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Button.java b/src/Button.java
+--- a/src/Button.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Button.java	(date 1654905403385)
+@@ -17,7 +17,6 @@
+    public Vector p1;
+    /** Vector for bottom corner*/
+    public Vector p2;
+-
+    /**
+     * Constructor to initialize the vectors
+     * @param p1 First vector
+@@ -27,7 +26,6 @@
+       this.p1 = p1;
+       this.p2 = p2;
+    }
+-
+    /**
+     * Check if the mouse if hovering above the button
+     * @return Whether the mouse is between those coordinates
+@@ -38,7 +36,6 @@
+       }
+       return false;
+    }
+-
+    /**
+     * Check whether mouse is pressing the button
+     * @return If the button is clicked
+@@ -49,5 +46,4 @@
+       }
+       return false;
+    }
+-
+ }
+\ No newline at end of file
+Index: src/BrotherTips.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.scene.image.Image;\r\n\r\n/**\r\n * <p>\r\n * This class contains code for the BrotherTips Transition Screen\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 19th, 2022\r\n * <p>\r\n * File was created by Samuel Huang on May 19th, 2022.\r\n * Samuel Huang spent 10 minutes on this file.\r\n * </p>\r\n */\r\npublic class BrotherTips {\r\n    /** This Image variable stores the current Transition page. */\r\n    private Image screen;\r\n    /**\r\n     * The constructor of the BrotherTips Class.\r\n     * @param page is used to take in the current Image used for the certain transition\r\n     */\r\n    public BrotherTips(Image page) {\r\n        screen = page;\r\n    }\r\n    /**\r\n     * This method gets called to display the tips screen\r\n     *\r\n     */\r\n    public void display() {\r\n\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/BrotherTips.java b/src/BrotherTips.java
+--- a/src/BrotherTips.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/BrotherTips.java	(date 1654905403376)
+@@ -7,7 +7,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 19th, 2022
+  * <p>
+@@ -32,6 +32,4 @@
+     public void display() {
+ 
+     }
+-
+-
+ }
+\ No newline at end of file
+Index: src/Boss.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/**\r\n * <p>\r\n * This class acts as a generic template for the two bosses in the game\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 3.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since May 19th, 2022\r\n * <p>\r\n * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.\r\n * Ten minutes were spent by Ryan Atlas on June 2nd restructuring the file to work with the new GameObject\r\n * </p>\r\n */\r\npublic abstract class Boss extends GameObject {\r\n   /** The boss's hp*/\r\n   protected int hp;\r\n   /**\r\n   * Boss class constructor to be used by subclasses in their constructors\r\n   */\r\n   public Boss (int hp) {\r\n      this.hp = hp;\r\n   }\r\n   /**\r\n   * Draw method from the interface GameObject that is to be overridden by the subclasses\r\n   */\r\n   public abstract void draw();\r\n   /**\r\n   * Update method from the interface GameObject that is to be overridden by the subclasses\r\n   */\r\n   public abstract void update();\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Boss.java b/src/Boss.java
+--- a/src/Boss.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Boss.java	(date 1654905403441)
+@@ -5,7 +5,7 @@
+  *
+  * <h2>ICS 4U0 with Krasteva, V.</h2>
+  *
+- * @version 3.0
++ * @version 4.0
+  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+  * @since May 19th, 2022
+  * <p>
+Index: src/Background.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javafx.scene.Node;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.image.ImageView;\r\n\r\n/**\r\n * <p>\r\n * This class is used for the game backgrounds\r\n * </p>\r\n *\r\n * <h2>ICS 4U0 with Krasteva, V.</h2>\r\n *\r\n * @version 4.0\r\n * @author Ryan Atlas, Samuel Huang and Daniel Morgan\r\n * @since June 8th, 2022\r\n * <p>\r\n * File was created by Daniel Morgan on June 8th, 20 minutes were spent.\r\n * </p>\r\n */\r\npublic class Background extends GameObject {\r\n    /** Node for the background*/\r\n    private ImageView node;\r\n\r\n    /**\r\n     * Constructor. Initializes variables\r\n     * @param image Image for the background\r\n     */\r\n    public Background(Image image) {\r\n        node = new ImageView(image);\r\n        pos = new Vector((float)-image.getWidth()/10, 0);\r\n    }\r\n\r\n    /**\r\n     * Overridden update method from game that all GameObjects need. Background doesn't\r\n     * change but still needs this method.\r\n     */\r\n    @Override\r\n    public void update() {\r\n        \r\n    }\r\n\r\n    /**\r\n     * Getter for node\r\n     * @return The node\r\n     */\r\n    @Override\r\n    public Node getNode() {\r\n        return node;\r\n    }\r\n    \r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Background.java b/src/Background.java
+--- a/src/Background.java	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/src/Background.java	(date 1654905403419)
+@@ -19,7 +19,6 @@
+ public class Background extends GameObject {
+     /** Node for the background*/
+     private ImageView node;
+-
+     /**
+      * Constructor. Initializes variables
+      * @param image Image for the background
+@@ -28,16 +27,12 @@
+         node = new ImageView(image);
+         pos = new Vector((float)-image.getWidth()/10, 0);
+     }
+-
+     /**
+      * Overridden update method from game that all GameObjects need. Background doesn't
+      * change but still needs this method.
+      */
+     @Override
+-    public void update() {
+-        
+-    }
+-
++    public void update() {}
+     /**
+      * Getter for node
+      * @return The node
+@@ -46,5 +41,4 @@
+     public Node getNode() {
+         return node;
+     }
+-    
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"Caged\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"553fe913-e55d-42c6-b39e-685a80365174\" name=\"Changes\" comment=\"Doors and stuff\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/Door.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Door.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Sign.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Sign.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2ACtVqyUIfoTeN7chST7m68l7tw\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Artifacts\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\SamuelH\\Documents\\ICS 12\\ISP\\Caged\\src\\assets\\signs\" />\r\n      <recent name=\"C:\\Users\\huang\\Documents\\Samuel ICS12\\ISP 12\\Caged\\assets\\signs\" />\r\n      <recent name=\"C:\\Users\\huang\\Documents\\Samuel ICS12\\ISP 12\\Caged\\src\\assets\\keys\" />\r\n      <recent name=\"C:\\Users\\huang\\Documents\\Samuel ICS12\\ISP 12\\Caged\\src\\assets\" />\r\n      <recent name=\"C:\\Users\\ryatl\\IdeaProjects\\Caged\\assets\\doors\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\ryatl\\IdeaProjects\\Caged\\assets\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"corretto-1.8\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"JavaISP\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"553fe913-e55d-42c6-b39e-685a80365174\" name=\"Changes\" comment=\"\" />\r\n      <created>1654525427639</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1654525427639</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Changes\">\r\n      <created>1654649849678</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1654649849678</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Doors and stuff\">\r\n      <created>1654653037951</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1654653037951</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Changes\" />\r\n    <MESSAGE value=\"Doors and stuff\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Doors and stuff\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d7832dfe9dd28be6002c6f929b0adf5354e1ec1c)
++++ b/.idea/workspace.xml	(date 1654907544176)
+@@ -7,8 +7,40 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Doors and stuff">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Background.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Background.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Button.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Button.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/CollectableObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/CollectableObject.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Credits.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Credits.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Door.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Enemy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Enemy$1.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Enemy$EnemyState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Enemy$EnemyState.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Enemy.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/ExitScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/ExitScreen.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$SceneLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$SceneLayer.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/GameObject.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/HitBox.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/HitBox.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Player.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Background.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boss.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/BrotherTips.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrotherTips.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Button.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/CollectableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollectableObject.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/CollidableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollidableObject.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Credits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Credits.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Door.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sign.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/ExitScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExitScreen.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/HitBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HitBox.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Interactable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interactable.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Keyboard.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -106,6 +138,7 @@
+         </entry>
+       </map>
+     </option>
++    <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Changes" />
