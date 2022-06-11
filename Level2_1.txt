@@ -28,3 +28,6 @@ Platform, rottedSlab, false, 916, 301
 Platform, rottedRightTopWall, false, 1889, 250
 Platform, rottedRightBottomWall, false, 1855, 699
 Platform, rightJumper, false, 1437, 612
+Platform, rottedPlatform, false, 1670, 500
+Platform, rottedPlatform, false, 1670, 500
+Platform, rottedClimber, false, 904, 445
