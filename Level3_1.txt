@@ -1,0 +1,3 @@
+Background, abyss
+Mold, two, 0, 0
+TeleportLocation, 186, 973, 0
