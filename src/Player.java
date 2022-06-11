@@ -24,6 +24,8 @@ import javafx.scene.input.KeyCode;
  */
 
 public class Player extends CollidableObject {
+    /** How long the player is unable to move after being damaged */
+    private static final int DAMAGE_STUDDER_DURATION = 60;
     /** The dimensions of the player's hitbox in pixels */
     private static Vector HITBOX_SIZE = new Vector(30, 30);
     /** The player's movement speed which is a constant*/
@@ -113,8 +115,6 @@ public class Player extends CollidableObject {
                 switch (newState) {
                     case IDLE:
                         return state = PlayerState.IDLE;
-                    case DAMAGED:
-                        return state = PlayerState.DAMAGED;
                 }
                 break;
             case MOVING:
@@ -129,9 +129,28 @@ public class Player extends CollidableObject {
         return state;
     }
     /**
+     * Damage this enemy with the specified amount
+     * @return If damaging was successful
+     */
+    public boolean damage(int amount, Vector location) {
+        hp -= amount;
+        boolean result = requestStateChange(PlayerState.DAMAGED) == PlayerState.DAMAGED;
+        if (result)
+            vel = location.sub(pos).mul(-0.04f);
+        return result;
+    }
+    /**
+     * Returns whether the current state is damagable or not
+     * @return boolean whether the current state is damagable or not
+     */
+    public boolean isDamagableState() {
+        return (state != PlayerState.DASHING);
+    }
+    /**
      * Updates the player's position Vector based on keyboard input, implementation
      * of the method from the GameObject interface
      */
+    private long damagedFrames = 0;
     public void update() {
         if(playerMoving) {
             // handle lateral movement keyboard input
@@ -181,7 +200,14 @@ public class Player extends CollidableObject {
                     break;
                 }
                 case DAMAGED: {
-
+                    // handle state logic
+                    damagedFrames++;
+                    // Handle exiting this state
+                    if (damagedFrames > DAMAGE_STUDDER_DURATION) {
+                        requestStateChange(PlayerState.IDLE);
+                        if (hp <= 0)
+                            Game.navigateLevel(Game.getLevel(Game.levelNum), Game.getLevel(Game.levelNum).levelScreen, 0);
+                    }
                     break;
                 }
             }

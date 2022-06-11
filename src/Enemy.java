@@ -15,12 +15,10 @@ import javafx.scene.*;
  * </p>
  */
 public class Enemy extends CollidableObject {
+    private static final int DAMAGE_STUDDER_DURATION = 120;
+    private static final int AGRO_RANGE = 200;
     /** Whether the enemy is grounded or not */
     private boolean isGrounded;
-    /** The bottom hitbox of the enemy */
-    private HitBox lowerHitBox;
-    /** The top hitbox of the enemy */
-    private HitBox upperHitBox;
     /** Possible enemy states */
     public Vector vel;
     /** The enemy's Sprite as an Image */
@@ -32,11 +30,11 @@ public class Enemy extends CollidableObject {
     /** Is the enemy killed? */
     private boolean killed;
     /** The dimensions of the enemy's hitbox in pixels */
-    private static final Vector HITBOX_SIZE = new Vector(30, 30);
+    private static final Vector HITBOX_SIZE = new Vector(20, 28);
     /** The enemy's movement speed which is a constant*/
     private static final float MAX_SPEED = 2.5f;
     /** The enemies's acceleration speed which is a constant*/
-    private static final float ACCELERATION = 0.10f;
+    private static final float ACCELERATION = 0.01f;
     /** The direction the enemy is moving (1 right -1 left 0 idle) */
     private int moveDirection;
     /** EnemyState represented in code*/
@@ -48,28 +46,80 @@ public class Enemy extends CollidableObject {
     /** Current state of the enemy */
     private EnemyState state;
     /** If the player is in agro range */
-    public boolean inRange(Player p){
-        return (Math.abs(p.getNode().getLayoutX() - enemy.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - enemy.getLayoutY()) < 100);
+    public boolean inRange(Player p) {
+        return (Vector.dist(this.pos, p.pos) < AGRO_RANGE);
+    }
+    /**
+     * Damage this enemy with the specified amount
+     * @return If damaging was successful
+     */
+    public boolean damage(int amount, Vector location) {
+        hp -= amount;
+        invinsibleFrames = 20;
+        boolean result = requestStateChange(EnemyState.DAMAGED) == EnemyState.DAMAGED;
+        if (result)
+            vel = location.sub(pos).mul(-0.1f);
+        return result;
     }
     /**
      * Update method to update the enemy's position and state
      */
-    public void update(){
-        if (!killed){
-            switch (state){
-                case IDLE:
-                   if (inRange((Player) Game.player)) {
-
-                   }
-                   break;
-                case HOSTILE:
-                    break;
-                case DAMAGED:
-                    break;
-            }
-        } else {
+    private long damagedFrames = 0;
+    private long invinsibleFrames = 0;
+    public void update() {
+        if (killed) {
             enemy.setVisible(false);
+            return;
         }
+        switch (state) {
+            case IDLE:
+                // handle state logic
+
+                // Handle exiting this state
+                if (inRange((Player) Game.player)) {
+                    System.out.println("agro");
+                    requestStateChange(EnemyState.HOSTILE);
+                }
+                break;
+            case HOSTILE:
+                // handle state logic
+                vel = vel.add(Game.player.pos.sub(pos).toUnit().mul(ACCELERATION));
+                // Handle exiting this state
+                if (!inRange((Player) Game.player)) {
+                    requestStateChange(EnemyState.IDLE);
+                }
+                break;
+            case DAMAGED:
+                // handle state logic
+                damagedFrames++;
+                // Handle exiting this state
+                if (damagedFrames > DAMAGE_STUDDER_DURATION) {
+                    if (hp <= 0)
+                        killed = true;
+                    damagedFrames = 0;
+                    requestStateChange(EnemyState.IDLE);
+                }
+                break;
+        }
+        // global logic
+
+        // touching player
+        if (HitBox.areBoxesColliding(hitbox, ((Player)Game.player).getHitBox())) {
+            if (((Player)Game.player).isDamagableState()) { // if damaging was sucessful
+                ((Player)Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
+                vel = vel.add(Vector.sub(pos, Game.player.pos).mul(0.1f)); // bounce away from player
+            } else if(invinsibleFrames == 0) {
+                damage(100, Game.player.pos);
+            }
+        }
+        if (invinsibleFrames > 0) invinsibleFrames--;
+
+        // add position
+        pos = pos.add(vel);
+        createHitBox(pos, pos.add(HITBOX_SIZE));
+
+        // reduce velocity for next frame
+        vel = vel.mul(0.99f);
     }
 
     /**
@@ -93,20 +143,8 @@ public class Enemy extends CollidableObject {
         state = EnemyState.IDLE;
         createHitBox(pos, pos.add(HITBOX_SIZE));
         moveDirection = 0;
-        sprite = new Image("assets/player.png");
+        sprite = new Image("assets/enemys/enemyIdle.png");
         enemy = new ImageView(sprite);
-    }
-
-    /**
-     * Creates the enemy's hitbox
-     * @param pos1 Top left corner
-     * @param pos2 Bottom right corner
-     */
-    @Override
-    public void createHitBox(Vector pos1, Vector pos2) {
-        hitbox = new HitBox(pos1, pos2);
-        lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y / 2)), pos2.add(new Vector(-5, 0)));
-        upperHitBox = new HitBox(pos1.add(new Vector(5, 0)), pos2.sub(new Vector(-5, HITBOX_SIZE.y / 2)));
     }
 
     /**

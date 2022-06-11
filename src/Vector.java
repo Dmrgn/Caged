@@ -90,6 +90,22 @@ public class Vector {
     static public Vector min(Vector v1, Vector min) {
         return new Vector(v1.x < min.x ? min.x : v1.x, v1.y < min.y ? min.y : v1.y);
     }
+    /**
+     * Returns a unit vector pointing in the same direction as the passed vector
+     * @param v The vector to convert to a unit vector
+     * @return a unit vector pointing in the same direction as the passed vector
+     */
+    static public Vector toUnit(Vector v) {
+        return v.div(Vector.norm(v));
+    }
+    /**
+     * Returns the normal of the passed vector
+     * @param v The vector calculate the normal of
+     * @return The normal of the passed vector
+     */
+    static public float norm(Vector v) {
+        return Vector.dist(new Vector(0, 0), v);
+    }
     
     /**
      * Returns the distance between {@link Vector} v1 and {@link Vector} v2 as a float
@@ -155,5 +171,13 @@ public class Vector {
     /** Instance implementation of {@link #dist(Vector, Vector)} */
     public float dist(Vector v1) {
         return dist(this, v1);
+    }
+    /** Instance implementation of {@link #toUnit(Vector)} */
+    public Vector toUnit() {
+        return Vector.toUnit(this);
+    }
+    /** Instance implementation of {@link #norm(Vector)} */
+    public float norm() {
+        return Vector.norm(this);
     }
 }

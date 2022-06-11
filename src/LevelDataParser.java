@@ -53,8 +53,9 @@ public class LevelDataParser {
             if (data[0].equals("Platform")) {
                 Platform p = new Platform(textures.get("Platform:" + data[1]), Boolean.parseBoolean(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]));
                 levelObjects.add(p);
-            } else if (data[0].equals("Enemy1")) {
-
+            } else if (data[0].equals("Enemy")) {
+                Enemy e = new Enemy(Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+                levelObjects.add(e);
             } else if (data[0].equals("Spike")) {
                 Spike s = new Spike(Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]));
                 levelObjects.add(s);
