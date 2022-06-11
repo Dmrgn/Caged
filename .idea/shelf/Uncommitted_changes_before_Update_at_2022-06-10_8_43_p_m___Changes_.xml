@@ -1,0 +1,89 @@
+<changelist name="Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]" date="1654908192541" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2022-06-10 8:43 p.m. [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/ExitScreen.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/ExitScreen.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/ExitScreen.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Background.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Background.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Background.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Game$3.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Game$3.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Game$3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Game$2.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Game$2.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Game$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Enemy$1.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Enemy$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Enemy$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Game.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Game.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Game.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Game$1.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Game$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Game$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Credits.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Credits.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Credits.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Game$SceneLayer.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Game$SceneLayer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Game$SceneLayer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/HitBox.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/HitBox.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/HitBox.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/GameObject.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/GameObject.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/GameObject.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Button.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Button.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Button.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/CollectableObject.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/CollectableObject.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/CollectableObject.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Player.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Player.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Player.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Door.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Door.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Door.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Enemy$EnemyState.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Enemy$EnemyState.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Enemy$EnemyState.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/JavaISP/Enemy.class" />
+    <option name="AFTER_PATH" value="out/production/JavaISP/Enemy.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-06-10_8_43_p_m__[Changes]/Enemy.class" />
+  </binary>
+</changelist>
