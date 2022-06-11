@@ -75,7 +75,10 @@ public class Game {
     public static boolean objectFound;
     /** Whether the all questions are answered correctly*/
     public static int questionsCorrect;
+    /** Array of signs and whether each is read */
     public static boolean[] signsRead;
+    /** Level number */
+    public static int levelNum;
     /** Programmatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -114,6 +117,7 @@ public class Game {
         levels = new Level[2];
         levels[0] = new Level1();
         levels[1] = new Level2();
+        levelNum = 1;
         createLevel(levels[0]);
         Player.playerMoving = true;
         // set the current scene
@@ -199,6 +203,13 @@ public class Game {
                 attachObject(obj, SceneLayer.FOREGROUND);
             }
             level = l;
+            if (l instanceof Level){
+                levelNum = 1;
+            } else if (l instanceof Level2){
+                levelNum = 2;
+            } else {
+                levelNum = 3;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
