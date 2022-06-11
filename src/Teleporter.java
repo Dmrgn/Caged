@@ -17,12 +17,24 @@ import javafx.scene.image.ImageView;
  * </p>
  */
 public class Teleporter extends GameObject {
+    /** Teleport distance constant*/
     public static final float TELEPORT_DISTANCE = 30;
+    /** Current level*/
     public Level level;
+    /** Location index*/
     public int teleporterLocationIndex;
+    /** Current screen*/
     public int screen;
+    /** Node*/
     ImageView node;
-
+    /**
+     * Teleporter constructor
+     * @param x X-coord
+     * @param y Y-coord
+     * @param levelIndex Level index
+     * @param screenIndex Screen index
+     * @param teleporterLocationIndex Location index
+     */
     public Teleporter(int x, int y, int levelIndex, int screenIndex, int teleporterLocationIndex) {
         level = Game.getLevel(levelIndex);
         screen = screenIndex;
@@ -31,7 +43,9 @@ public class Teleporter extends GameObject {
         Image image = new Image(Game.IS_DEBUG_MODE ? "assets/teleporterDebug.png" : "assets/teleporter.png");
         node = new ImageView(image);
     }
-
+    /**
+     * Update method to refresh the teleporter
+     */
     @Override
     public void update() {
         Player player = (Player)Game.firstInstanceOfClass(new Player(0, 0));
@@ -42,7 +56,10 @@ public class Teleporter extends GameObject {
             }
         }
     }
-
+    /**
+     * Getter for node
+     * @return The current node
+     */
     @Override
     public Node getNode() {
         return node;
