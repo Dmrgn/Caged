@@ -42,7 +42,7 @@ import java.io.File;
  */
 public class Game {
     /** Camera zoom factor */
-    public static final float ZOOM = 1.0f;
+    public static final float ZOOM = 1.5f;
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */

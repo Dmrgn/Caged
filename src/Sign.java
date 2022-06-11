@@ -106,10 +106,10 @@ public class Sign extends GameObject implements Interactable {
     public void update() {
 
         if(!questionSign) {
-            if (!highlighted && inRange((Player)Game.player)) {
+            if (!highlighted && (Vector.dist(Game.player.pos, this.pos) < 100)) {
                 ((ImageView)node).setImage(imageUsable);
                 highlighted = true;
-            } else if (highlighted && !inRange((Player)Game.player)){
+            } else if (highlighted && !(Vector.dist(Game.player.pos, this.pos) < 100)){
                 ((ImageView)node).setImage(imageNormal);
                 highlighted = false;
             }
@@ -130,10 +130,10 @@ public class Sign extends GameObject implements Interactable {
             }
         }
         else {
-            if (!highlighted && inRange((Player)Game.player)) {
+            if (!highlighted && (Vector.dist(Game.player.pos, this.pos) < 100)) {
                 ((ImageView)node).setImage(imageUsable);
                 highlighted = true;
-            } else if (highlighted && !inRange((Player)Game.player)){
+            } else if (highlighted && !(Vector.dist(Game.player.pos, this.pos) < 100)){
                 ((ImageView)node).setImage(imageNormal);
                 highlighted = false;
             }
@@ -150,20 +150,15 @@ public class Sign extends GameObject implements Interactable {
         }
     }
 
-    /**
-     * Method to check whether the player is in range of the object
-     * @param p The player
-     * @return Whether or not the player is in range and therefore can interact with the sign
-     */
-    public boolean inRange(Player p) {
-        return (Math.abs(p.getNode().getLayoutX() - normal.x) < 100 && Math.abs(p.getNode().getLayoutY() - normal.y) < 100);
+    public boolean inRange(Player player) {
+        return (Vector.dist(Game.player.pos, this.pos) < 100);
     }
 
     /**
      * Displays the message on the sign for information signs
      */
     public void display(){
-        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E)) {
+        if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E)) {
                 accessing = true;
                 Player.playerMoving = false;
                 Game.signsRead[signNum] = true;
