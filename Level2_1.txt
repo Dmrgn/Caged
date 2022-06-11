@@ -32,3 +32,4 @@ Platform, rottedPlatform, false, 1670, 500
 Platform, rottedPlatform, false, 1670, 500
 Platform, rottedPlatform, false, 1540, 640
 Platform, rottedClimber, false, 904, 445
+Sign, QuesSign1, true, 800, 930, 2
