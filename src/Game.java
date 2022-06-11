@@ -173,6 +173,7 @@ public class Game {
         }
         TeleportLocation loc = locations.get(teleporterLocationIndex);
         player = attachObject(new Player(loc.pos.x, loc.pos.y), SceneLayer.FOREGROUND);
+        attachObject(((Player)player).hpBar, SceneLayer.FOREGROUND);
         window.setScene(scene);
     }
     /**
@@ -243,11 +244,11 @@ public class Game {
      */
     public void splashScreen() throws FileNotFoundException {
         SplashScreen splash = new SplashScreen(window);
-        Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
-        mediaPlayer = new MediaPlayer(menuTheme);
-        mediaPlayer.setVolume(0.3);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+//        Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
+//        mediaPlayer = new MediaPlayer(menuTheme);
+//        mediaPlayer.setVolume(0.3);
+//        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+//        mediaPlayer.play();
         splash.runSplashScreen();
     }
 
@@ -269,11 +270,13 @@ public class Game {
                 updateLevelScreen(level, 1);
                 createLevel(level);
                 player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                attachObject(((Player)player).hpBar, SceneLayer.FOREGROUND);
                 window.setScene(scene);
             } else if (level.levelScreen == 0 && player.pos.y >= 1500) {
                 updateLevelScreen(level, 0);
                 createLevel(level);
                 player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
+                attachObject(((Player)player).hpBar, SceneLayer.FOREGROUND);
                 window.setScene(scene);
             }
         }

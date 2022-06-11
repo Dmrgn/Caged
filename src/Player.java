@@ -43,7 +43,7 @@ public class Player extends CollidableObject {
     /** The Node that is added to the scene and whose movement is updated */
     public Node player;
     /** The player's current hp*/
-    private int hp;
+    public int hp;
     /** The number of frames the player has been dashing for */
     private float dashingFrames = 0;
     /** The number of frames the player has been dashing for */
@@ -64,7 +64,7 @@ public class Player extends CollidableObject {
     private HitBox lowerHitBox;
     /** The top hitbox of the player */
     private HitBox upperHitBox;
-
+    public Healthbar hpBar;
     public static boolean playerMoving;
     /** Possible player states */
     private enum PlayerState {
@@ -94,6 +94,7 @@ public class Player extends CollidableObject {
         moveDirection = 0;
         sprite = new Image("assets/player.png");
         player = new ImageView(sprite);
+        hpBar = new Healthbar(hp);
     }
     @Override
     public void createHitBox(Vector pos1, Vector pos2) {
@@ -133,6 +134,7 @@ public class Player extends CollidableObject {
      * of the method from the GameObject interface
      */
     public void update() {
+        hpBar.update();
         if(playerMoving) {
             // handle lateral movement keyboard input
             if (Keyboard.isKeyDown(KeyCode.D))
