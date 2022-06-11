@@ -46,7 +46,7 @@ public class Game {
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.055f;
+    public static final float GRAVITY = 0.01f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
@@ -119,8 +119,8 @@ public class Game {
         // add a player and platform to the scene
         player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);
         levels = new Level[2];
-        levels[0] = new Level1();
-        levels[1] = new Level2();
+        levels[1] = new Level1();
+        levels[0] = new Level2();
         levelNum = 1;
         createLevel(levels[0]);
         Player.playerMoving = true;
@@ -173,13 +173,13 @@ public class Game {
         }
         TeleportLocation loc = locations.get(teleporterLocationIndex);
         player = attachObject(new Player(loc.pos.x, loc.pos.y), SceneLayer.FOREGROUND);
-        if(levelNum == 2)
-        {
-            BrotherTips tips = new BrotherTips("BrotherTips Screens/BrotherTips1.png");
-            tips.display();
-            scene = tips.getScene();
+        // if(levelNum == 2)
+        // {
+        //     BrotherTips tips = new BrotherTips("BrotherTips Screens/BrotherTips1.png");
+        //     tips.display();
+        //     scene = tips.getScene();
 
-        }
+        // }
         window.setScene(scene);
     }
     /**
@@ -214,12 +214,14 @@ public class Game {
                 attachObject(obj, SceneLayer.FOREGROUND);
             }
             level = l;
+            System.out.println("here");
+            if (levelNum == 2) {
+                levelNum = 69000;
+            }
             if (l instanceof Level1){
                 levelNum = 1;
             } else if (l instanceof Level2){
                 levelNum = 2;
-            } else {
-                levelNum = 3;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -342,6 +344,9 @@ public class Game {
                         obj.draw();
                     }
                     level1();
+                    if (levelNum == 69000) {
+                        menu.setSelection(-1);
+                    }
                 } else if (menu.getSelection() == 2) {
                     instructions.controlScreens();
                     window.setScene(instructions.getScene());

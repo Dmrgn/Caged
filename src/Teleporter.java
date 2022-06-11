@@ -24,7 +24,11 @@ public class Teleporter extends GameObject {
         if (player != null) {
             Vector playerBoxDims = player.getHitBox().p2.sub(player.getHitBox().p1);
             if (player.pos.add(playerBoxDims.div(2)).dist(pos) < TELEPORT_DISTANCE) {
-                Game.navigateLevel(level, screen, teleporterLocationIndex);
+                if (Game.levelNum == 2) {
+                    Game.levelNum = 69000;
+                } else {
+                    Game.navigateLevel(level, screen, teleporterLocationIndex);
+                }
             }
         }
     }
