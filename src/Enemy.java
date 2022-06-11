@@ -69,6 +69,7 @@ public class Enemy extends CollidableObject {
     public void update() {
         if (killed) {
             enemy.setVisible(false);
+            createHitBox(new Vector(0,0), new Vector(0,0));
             return;
         }
         switch (state) {
@@ -109,6 +110,7 @@ public class Enemy extends CollidableObject {
                 ((Player)Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
                 vel = vel.add(Vector.sub(pos, Game.player.pos).mul(0.1f)); // bounce away from player
             } else if(invinsibleFrames == 0) {
+                ((Player)Game.player).heal(20);
                 damage(100, Game.player.pos);
             }
         }
