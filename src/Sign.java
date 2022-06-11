@@ -162,11 +162,6 @@ public class Sign extends GameObject implements Interactable {
                 accessing = true;
                 Player.playerMoving = false;
                 Game.signsRead[signNum] = true;
-//                ((ImageView)node).setX(150);
-//                ((ImageView)node).setY(80);
-//                ((ImageView)node).setFitHeight(650);
-//                ((ImageView)node).setFitWidth(1000);
-//                ((ImageView)node).setPreserveRatio(true);
         }
 
         else if(Keyboard.isKeyUp(KeyCode.E))
