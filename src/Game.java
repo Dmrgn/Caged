@@ -79,6 +79,9 @@ public class Game {
     public static boolean[] signsRead;
     /** Level number */
     public static int levelNum;
+
+    /** Whether or not current screen is brother screen */
+    private static boolean onBrotherScreen;
     /** Programmatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -101,6 +104,7 @@ public class Game {
         objectFound = false;
         questionsCorrect = 0;
         signsRead = new boolean[4];
+        onBrotherScreen = false;
         // render the background, then midground, then foreground first
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
@@ -169,6 +173,13 @@ public class Game {
         }
         TeleportLocation loc = locations.get(teleporterLocationIndex);
         player = attachObject(new Player(loc.pos.x, loc.pos.y), SceneLayer.FOREGROUND);
+        if(levelNum == 2)
+        {
+            BrotherTips tips = new BrotherTips("BrotherTips Screens/BrotherTips1.png");
+            tips.display();
+            scene = tips.getScene();
+
+        }
         window.setScene(scene);
     }
     /**

@@ -27,8 +27,8 @@ public class BrotherTips {
      * The constructor of the BrotherTips Class.
      * @param page is used to take in the current Image used for the certain transition
      */
-    public BrotherTips(Image page) {
-        screen = new ImageView(page);
+    public BrotherTips(String page) {
+        screen = new ImageView(new Image(page));
     }
     /**
      * This method gets called to display the tips screen
