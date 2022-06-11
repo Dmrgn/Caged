@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCode;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 5.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
@@ -45,7 +45,7 @@ public class Player extends CollidableObject {
     /** The Node that is added to the scene and whose movement is updated */
     public Node player;
     /** The player's current hp*/
-    private int hp;
+    public int hp;
     /** The number of frames the player has been dashing for */
     private float dashingFrames = 0;
     /** The number of frames the player has been dashing for */
@@ -66,7 +66,8 @@ public class Player extends CollidableObject {
     private HitBox lowerHitBox;
     /** The top hitbox of the player */
     private HitBox upperHitBox;
-
+    /** Player's healthbar*/
+    public Healthbar hpBar;
     public static boolean playerMoving;
     /** Possible player states */
     private enum PlayerState {
@@ -96,7 +97,13 @@ public class Player extends CollidableObject {
         moveDirection = 0;
         sprite = new Image("assets/player.png");
         player = new ImageView(sprite);
+        hpBar = new Healthbar(hp);
     }
+    /**
+     * Method to create hitbox from 2 vectors
+     * @param pos1 Top left corner
+     * @param pos2 Bottom right corner
+     */
     @Override
     public void createHitBox(Vector pos1, Vector pos2) {
         hitbox = new HitBox(pos1.add(new Vector(0, 5)), pos2.sub(new Vector(0,5)));
@@ -152,6 +159,7 @@ public class Player extends CollidableObject {
      */
     private long damagedFrames = 0;
     public void update() {
+        hpBar.update();
         if(playerMoving) {
             // handle lateral movement keyboard input
             if (Keyboard.isKeyDown(KeyCode.D))

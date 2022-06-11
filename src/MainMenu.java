@@ -19,7 +19,7 @@ import javafx.scene.input.*;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 1.0
+ * @version 5.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 17th, 2022
  * <p>
@@ -31,18 +31,19 @@ import javafx.scene.input.*;
 public class MainMenu {
     /** The user's selection from the menu*/
     public int selection;
+    /** Current stage*/
     private Stage stage;
-
+    /** Whether buttons are active*/
     private boolean[] buttonActive = new boolean[4];
-
+    /** Button to start a new game*/
     private Rectangle newGameButton;
-
+    /** Button to go to instructions screen*/
     private Rectangle instructionsButton;
-
+    /** Button to go to credits screen*/
     private Rectangle creditsButton;
-
+    /** Button to quit*/
     private Rectangle quitButton;
-
+    /** Current scene*/
     private Scene scene;
     /**
      * MainMenu constructor, initializes selection to 0 as a default
@@ -167,6 +168,11 @@ public class MainMenu {
         //for hovering animation stopping
         quitButtonFade.play();
     }
+    /**
+     * Animates the main menu
+     * @param timer Timer for buttons
+     * @param mainTimer Timer for main game loop
+     */
     public void checkMenu(AnimationTimer timer, AnimationTimer mainTimer)
     {
         /******** Buttons on the main menu ********/
@@ -216,7 +222,6 @@ public class MainMenu {
                 }
         );
     }
-
     /**
      * Getter method for the selection instance variable
      * @return The user's selection
@@ -225,7 +230,6 @@ public class MainMenu {
         //add mouse clicking functions here
         return selection;
     }
-
     public void setSelection(int selection)
     {
         this.selection = selection;

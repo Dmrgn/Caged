@@ -17,7 +17,7 @@ import javafx.scene.shape.*;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 3.0
+ * @version 5.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
@@ -27,18 +27,21 @@ import javafx.scene.shape.*;
  * </p>
  */
 public class SplashScreen {
-
+    /** Current stage*/
     private final Stage stage;
     /** This Image variable stores the logo image. */
     private Image logo;
+    /** ImageView for logo*/
     private ImageView imageViewLogo;
     /** This Image array variable stores all the text images for the Logo Page Animation. */
     private Image[] screen1Text;
+    /** ImageView array for text*/
     private ImageView[] imageViewScreen1Text;
     /** This Image variable stores the logo image. */
     private Image cage;
+    /** ImageView for the cage*/
     private ImageView imageViewCage;
-
+    /** Is the animation done?*/
     private boolean done = false;
     /**
      * The constructor of the Splash Screen Class.
@@ -49,6 +52,11 @@ public class SplashScreen {
         screen1Text = new Image[2];
         imageViewScreen1Text = new ImageView[2];
     }
+
+    /**
+     * Imports the image
+     * @throws FileNotFoundException In case files cannot be found
+     */
     private void importImages() throws FileNotFoundException
     {
         logo = new Image(new FileInputStream("ISP Splash Screen Images/Logo.png"));
@@ -62,7 +70,7 @@ public class SplashScreen {
     }
     /**
      * This method gets called to display and animate the company name and logo portion of the splash screen
-     *
+     * @throws FileNotFoundException In case images cannot be found
      */
     public void animateCompName() throws FileNotFoundException {
         //Setting the position of the image LOGO:
@@ -113,7 +121,7 @@ public class SplashScreen {
 
     /**
      * This method gets called to display and animate the transition animation from the company name to the logo.
-     *
+     * @throws FileNotFoundException
      */
     public void transition() throws FileNotFoundException{
         //Fade out everything
@@ -129,7 +137,7 @@ public class SplashScreen {
     }
     /**
      * This method gets called to display and animate the game name of the splash screen
-     *
+     * @throws FileNotFoundException In case image files cannot be found
      */
     public void animateGameName() throws FileNotFoundException {
         //Text 1
@@ -191,6 +199,10 @@ public class SplashScreen {
         transitionParts.play();
     }
 
+    /**
+     * Method to run splash screen
+     * @throws FileNotFoundException In case images cannot be found
+     */
     public void runSplashScreen() throws FileNotFoundException
     {
         importImages();

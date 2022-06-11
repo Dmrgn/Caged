@@ -2,6 +2,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
+
+import java.security.Key;
+
 
 /**
  * <p>
@@ -10,7 +15,7 @@ import javafx.scene.image.ImageView;
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
  *
- * @version 4.0
+ * @version 5.0
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
@@ -23,12 +28,16 @@ public class BrotherTips {
     private ImageView screen;
 
     private Scene scene;
+
+    private boolean start;
+
     /**
      * The constructor of the BrotherTips Class.
      * @param page is used to take in the current Image used for the certain transition
      */
-    public BrotherTips(String page) {
-        screen = new ImageView(new Image(page));
+    public BrotherTips() {
+        screen = new ImageView(new Image("assets/BrotherTips Screens/BrotherTips1.png"));
+        start = false;
     }
     /**
      * This method gets called to display the tips screen
@@ -45,9 +54,18 @@ public class BrotherTips {
         //Creating a scene object
         scene = new Scene(root, Main.getWidth(), Main.getHeight());
         Keyboard.init(scene);
+        if(Keyboard.isKeyDown(KeyCode.H))
+        {
+            start = true;
+        }
     }
     public Scene getScene()
     {
         return scene;
+    }
+
+    public boolean isStart()
+    {
+        return start;
     }
 }
