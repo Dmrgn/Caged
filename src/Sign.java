@@ -167,7 +167,7 @@ public class Sign extends GameObject implements Interactable {
         return (Vector.dist(Game.player.pos, this.pos) < 100);
     }
     /**
-     * Displays the message on the sign for information signs
+     * Displays the message on the sign for information signs (Level 1)
      */
     public void display(){
         if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E)) {
@@ -182,6 +182,9 @@ public class Sign extends GameObject implements Interactable {
             Player.playerMoving = true;
         }
     }
+    /**
+     * Displays the message on the sign for question signs (Level 2)
+     */
     public void displayQuestions()
     {
         if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E) && !answeredCorrectly) {
