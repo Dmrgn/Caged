@@ -12,10 +12,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaISP.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Level2_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Level2_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BrotherTips Screens/BrotherTips1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BrotherTips Screens/BrotherTips2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BrotherTips Screens/BrotherTips3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level1_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Level1_3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Door.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Door.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +93,11 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/JavaISP.jar" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JAR Application.JavaISP.jar" />
+      <item itemvalue="JAR Application.JavaISP.jar (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.JavaISP.jar (1)" />

@@ -33,6 +33,9 @@ public class Door extends CollidableObject implements Interactable {
     private Vector normalPos;
     /** Whether the door is being accessed */
     private boolean accessing;
+
+    private boolean displayTips = false;
+    private boolean off = false;
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -67,8 +70,9 @@ public class Door extends CollidableObject implements Interactable {
             isLocked = false;
             ((ImageView)node).setImage(imageOpen);
             createHitBox(new Vector(0,0), new Vector(0,0));
-        } else if (!isLocked){
+        } else if (!isLocked && !displayTips){
             ((ImageView)node).setImage(imageOpen);
+            displayTips = true;
         } else {
             ((ImageView)node).setImage(imageLocked);
         }
@@ -81,6 +85,9 @@ public class Door extends CollidableObject implements Interactable {
         }
         if(isLocked) {
             display();
+        }
+        else {
+            displayBrotherTips();
         }
     }
     /**
@@ -107,4 +114,25 @@ public class Door extends CollidableObject implements Interactable {
             Game.player.getNode().setVisible(true);
         }
     }
+    public void displayBrotherTips()
+    {
+        if(Keyboard.isKeyDown(KeyCode.H))
+        {
+            displayTips = false;
+            off = true;
+        }
+        if(displayTips && !off) {
+            ((ImageView) node).setImage(new Image("assets/BrotherTips Screens/BrotherTips1.png"));
+            pos = Game.toWorld(new Vector(50, 20));
+            Game.player.getNode().setVisible(false);
+            Player.playerMoving = false;
+        }
+        else {
+            ((ImageView)node).setImage(imageOpen);
+            pos = normalPos;
+            Game.player.getNode().setVisible(true);
+            Player.playerMoving = true;
+        }
+    }
+
 }
