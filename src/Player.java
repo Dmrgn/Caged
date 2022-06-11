@@ -151,7 +151,7 @@ public class Player extends CollidableObject {
      */
     public void heal(int amount) {
         hp += amount;
-        hp = Math.max(hp, 100);
+        hp = Math.min(hp, 100);
     }
     /**
      * Returns whether the current state is damagable or not
