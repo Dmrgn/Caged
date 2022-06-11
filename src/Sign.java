@@ -150,10 +150,10 @@ public class Sign extends GameObject implements Interactable {
                 checkQuestions();
                 pos = Game.toWorld(new Vector(20, 20));
                 //player position -
-                Game.player.getNode().setVisible(false);
+//                Game.player.getNode().setVisible(false);
             } else {
                 pos = normal;
-                Game.player.getNode().setVisible(true);
+//                Game.player.getNode().setVisible(true);
             }
         }
     }
@@ -190,6 +190,7 @@ public class Sign extends GameObject implements Interactable {
         if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E) && !answeredCorrectly) {
             accessing = true;
             Player.playerMoving = false;
+            Game.player.getNode().setVisible(false);
         }
 //        else if(Keyboard.isKeyDown(KeyCode.H) && accessing)
 //        {
@@ -230,6 +231,7 @@ public class Sign extends GameObject implements Interactable {
             System.out.println(answeredCorrectly);
             answered = false;
             userAnswer = 0;
+            Game.player.getNode().setVisible(true);
             Player.playerMoving = true;
 
         }
