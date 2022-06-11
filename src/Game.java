@@ -312,6 +312,7 @@ public class Game {
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
         Credits credits = new Credits(window);
+        BrotherTips tips = new BrotherTips();
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -320,24 +321,30 @@ public class Game {
                     menu.setSelection(0);
                 } else if (menu.getSelection() == 0) {
                 } else if (menu.getSelection() == 1) {
-                    Vector diff = cameraPos.mul(1);
-                    cameraPos = player.pos.mul(-1f).add(Main.getDims().div(2)).add(new Vector(0, 50));
-                    cameraPos = Vector.lerp(diff, cameraPos, 0.1f);
-                    for (int i = 0 ; i < gameObjects.size(); i++) {
-                        GameObject obj = gameObjects.get(i);
-                        obj.clearTransformations();
-                        obj.setScale(ZOOM, Main.getDims().div(2));
-                        obj.setTranslate(cameraPos);
-                        if (obj instanceof Background) {
+                    if(tips.isStart()) {
+                        Vector diff = cameraPos.mul(1);
+                        cameraPos = player.pos.mul(-1f).add(Main.getDims().div(2)).add(new Vector(0, 50));
+                        cameraPos = Vector.lerp(diff, cameraPos, 0.1f);
+                        for (int i = 0; i < gameObjects.size(); i++) {
+                            GameObject obj = gameObjects.get(i);
                             obj.clearTransformations();
+                            obj.setScale(ZOOM, Main.getDims().div(2));
                             obj.setTranslate(cameraPos);
+                            if (obj instanceof Background) {
+                                obj.clearTransformations();
+                                obj.setTranslate(cameraPos);
+                            }
+                            obj.update();
+                            if (gameObjects.size() == 0)
+                                break;
+                            obj.draw();
                         }
-                        obj.update();
-                        if (gameObjects.size() == 0)
-                            break;
-                        obj.draw();
+                        level1();
                     }
-                    level1();
+                    else {
+                        tips.display();
+                        window.setScene(tips.getScene());
+                    }
                 } else if (menu.getSelection() == 2) {
                     instructions.controlScreens();
                     window.setScene(instructions.getScene());
