@@ -144,15 +144,16 @@ public class Sign extends GameObject implements Interactable {
                 ((ImageView)node).setImage(imageNormal);
                 highlighted = false;
             }
-            display();
+            displayQuestions();
             if (accessing && !answeredCorrectly) {
                 ((ImageView)node).setImage(message);
-                displayQuestions();
-                pos = Game.toWorld(new Vector(160, 20));
-                //Game.player.getNode().setVisible(false);
+                checkQuestions();
+                pos = Game.toWorld(new Vector(20, 20));
+                //player position -
+                Game.player.getNode().setVisible(false);
             } else {
                 pos = normal;
-                //Game.player.getNode().setVisible(true);
+                Game.player.getNode().setVisible(true);
             }
         }
     }
@@ -166,7 +167,7 @@ public class Sign extends GameObject implements Interactable {
         return (Vector.dist(Game.player.pos, this.pos) < 100);
     }
     /**
-     * Displays the message on the sign for information signs
+     * Displays the message on the sign for information signs (Level 1)
      */
     public void display(){
         if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E)) {
@@ -182,9 +183,24 @@ public class Sign extends GameObject implements Interactable {
         }
     }
     /**
+     * Displays the message on the sign for question signs (Level 2)
+     */
+    public void displayQuestions()
+    {
+        if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E) && !answeredCorrectly) {
+            accessing = true;
+            Player.playerMoving = false;
+        }
+//        else if(Keyboard.isKeyDown(KeyCode.H) && accessing)
+//        {
+//            accessing = false;
+//            Player.playerMoving = true;
+//        }
+    }
+    /**
      * Displays the message on the sign for question signs
      */
-    public void displayQuestions() {
+    public void checkQuestions() {
         if (!answered) {
             if (Keyboard.isKeyDown(KeyCode.DIGIT1)) {
                 userAnswer = 1;
@@ -214,6 +230,7 @@ public class Sign extends GameObject implements Interactable {
             System.out.println(answeredCorrectly);
             answered = false;
             userAnswer = 0;
+            Player.playerMoving = true;
 
         }
     }

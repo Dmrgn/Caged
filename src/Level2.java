@@ -36,6 +36,9 @@ public class Level2 extends Level {
         for (File platform : (new File("assets/platforms").listFiles())) {
             textures.put("Platform:"+platform.getName().split("\\.")[0], new Image(platform.getPath()));
         }
+        for (File sign : (new File("assets/signs").listFiles())) {
+            textures.put("Sign:"+sign.getName().split("\\.")[0], new Image(sign.getPath()));
+        }
         levelScreen = 0;
         files = new String[]{"Level2_1.txt"};
         ldp = new LevelDataParser(textures);
