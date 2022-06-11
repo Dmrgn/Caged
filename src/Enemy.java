@@ -47,6 +47,7 @@ public class Enemy extends CollidableObject {
     }
     /** Current state of the enemy */
     private EnemyState state;
+    /** If the player is in agro range */
     public boolean inRange(Player p){
         return (Math.abs(p.getNode().getLayoutX() - enemy.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - enemy.getLayoutY()) < 100);
     }
