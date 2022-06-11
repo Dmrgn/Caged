@@ -1,4 +1,7 @@
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * <p>
@@ -17,21 +20,37 @@ import javafx.scene.image.Image;
  */
 public class BrotherTips {
     /** This Image variable stores the current Transition page. */
-    private Image screen;
+    private ImageView screen;
+
+    private Scene scene;
     /**
      * The constructor of the BrotherTips Class.
      * @param page is used to take in the current Image used for the certain transition
      */
     public BrotherTips(Image page) {
-        screen = page;
+        screen = new ImageView(page);
     }
     /**
      * This method gets called to display the tips screen
      *
      */
     public void display() {
-
+        //Setting the position of the  image:
+        screen.setX(0);
+        screen.setY(0);
+        screen.setFitWidth(1266);
+        screen.setFitHeight(720);
+        screen.setPreserveRatio(true);
+        Group root = new Group(screen);
+        //Creating a scene object
+        scene = new Scene(root, Main.getWidth(), Main.getHeight());
+        Keyboard.init(scene);
     }
+    public Scene getScene()
+    {
+        return scene;
+    }
+
 
 
 }
