@@ -27,6 +27,7 @@ public class Level1 extends Level {
         textures = new HashMap();
         textures.put("Sign", new Image("assets/player.png"));
         textures.put("FinalBoss", new Image("assets/finalBoss.png"));
+        textures.put("Boss1", new Image("assets/boss1.png"));
         for (File mold : (new File("assets/molds").listFiles())) {
             textures.put("Mold:"+mold.getName().split("\\.")[0], new Image(mold.getPath()));
         }

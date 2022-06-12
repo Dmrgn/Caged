@@ -28,7 +28,7 @@ TeleportLocation, 1749, 800, 2
 Key, heartout, heart, 1510, 660
 Spike, 1470, 505, 1360
 Platform, invisible, false, 1435, 513
-Door, DoorSignLvl1, BrotherTips2, 603, 662, false
+Door, doorClosed, doorOpen, DoorSignLvl1, BrotherTips2, 603, 662, false
 Teleporter, 645, 743, 1, 0, 0
 Sign, Sign1, false, 730, 940, 0
 Sign, Sign2, false, 1410, 950, 1

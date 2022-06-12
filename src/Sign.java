@@ -236,20 +236,22 @@ public class Sign extends GameObject implements Interactable {
         if (answered) {
             if (userAnswer == answer && userAnswer != 0) {
                 //tell upward it works
-                answeredCorrectly = true;
-                Game.questionsCorrect++;
-                System.out.println(Game.questionsCorrect);
+//                answeredCorrectly = true;
+//                Game.questionsCorrect++;
+//                System.out.println(Game.questionsCorrect);
+                messageBox(true);
             } else {
                 //tell upward it is false;
-                answeredCorrectly = false;
+                //answeredCorrectly = false;
+                messageBox(false);
             }
-            accessing = false;
-            System.out.println(userAnswer);
-            System.out.println(answeredCorrectly);
-            answered = false;
-            userAnswer = 0;
-            Game.player.getNode().setVisible(true);
-            Player.playerMoving = true;
+//            accessing = false;
+//            System.out.println(userAnswer);
+//            System.out.println(answeredCorrectly);
+//            answered = false;
+//            userAnswer = 0;
+//            Game.player.getNode().setVisible(true);
+//            Player.playerMoving = true;
 
         }
     }
@@ -258,20 +260,41 @@ public class Sign extends GameObject implements Interactable {
      */
     public void messageBox(boolean correct) {
         Image correctBox = new Image("assets/signs/Correct.png");
-        if(correct) {
+        Image incorrectBox = new Image("assets/signs/Incorrect.png");
+        if(correct)
+        {
             ((ImageView)node).setImage(correctBox);
-            Timer myTimer = new Timer();
-            myTimer.schedule(new TimerTask()
-            {
-                @Override
-                public void run()
-                {
-                    node.setVisible(false);
-                }
-                }, 1500);
-        }
-        else {
 
         }
+        else
+        {
+            ((ImageView)node).setImage(incorrectBox);
+        }
+        if(Keyboard.isKeyDown(KeyCode.H) && correct)
+        {
+            answeredCorrectly = true;
+            Game.questionsCorrect++;
+            System.out.println(Game.questionsCorrect);
+            accessing = false;
+            System.out.println(userAnswer);
+            System.out.println(answeredCorrectly);
+            answered = false;
+            userAnswer = 0;
+            Game.player.getNode().setVisible(true);
+            Player.playerMoving = true;
+        }
+        if(Keyboard.isKeyDown(KeyCode.H) && !correct)
+        {
+            answeredCorrectly = false;
+            System.out.println(Game.questionsCorrect);
+            accessing = false;
+            System.out.println(userAnswer);
+            System.out.println(answeredCorrectly);
+            answered = false;
+            userAnswer = 0;
+            Game.player.getNode().setVisible(true);
+            Player.playerMoving = true;
+        }
+
     }
 }
