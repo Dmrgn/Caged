@@ -91,6 +91,7 @@ public class Door extends CollidableObject implements Interactable {
         } else if(isLocked && Keyboard.isKeyDown(KeyCode.H) && lvl2) {
             accessing = false;
             Player.playerMoving = true;
+            Game.player.getNode().setVisible(true);
         }
         if(isLocked) {
             display();
@@ -129,10 +130,14 @@ public class Door extends CollidableObject implements Interactable {
             pos = Game.toWorld(new Vector(325, 175));
             Game.player.getNode().setVisible(false);
         }
-        else {
+        else if(!accessing && !lvl2){
             ((ImageView)node).setImage(imageLocked);
             pos = normalPos;
             Game.player.getNode().setVisible(true);
+        }
+        else {
+            ((ImageView)node).setImage(imageLocked);
+            pos = normalPos;
         }
     }
     /**
