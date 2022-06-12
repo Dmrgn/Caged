@@ -34,7 +34,3 @@ Sign, Sign1, false, 730, 940, 0
 Sign, Sign2, false, 1410, 950, 1
 Sign, Sign4, false, 1830, 700, 3
 Enemy, 724, 904
-Enemy, 794, 837
-Enemy, 923, 906
-Enemy, 1082, 812
-Enemy, 849, 715

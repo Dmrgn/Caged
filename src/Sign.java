@@ -149,6 +149,19 @@ public class Sign extends GameObject implements Interactable {
         }
     }
 
+    @Override
+    public void draw() {
+        clearTransformations();
+        if (accessing && !answeredCorrectly) {
+            setTranslate(Game.toWorld(new Vector(0,0)).mul(-1));
+            getNode().relocate((pos.x), (pos.y));
+        } else {
+            setScale(Game.ZOOM, Main.getDims().div(2));
+            setTranslate(Game.cameraPos);
+            getNode().relocate((pos.x)*Game.ZOOM, (pos.y)*Game.ZOOM);
+        }
+    }
+
     /**
      * Whether the player is in range
      * @param player Current player
