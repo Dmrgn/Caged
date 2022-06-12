@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
  * Ten minutes were spent by Ryan Atlas on June 2nd restructuring the file to work with the new GameObject
+ * 30 minutes were spent by Ryan Atlas on June 12th adding new methods and variables
  * </p>
  */
 public abstract class Boss extends CollidableObject {
@@ -96,6 +97,12 @@ public abstract class Boss extends CollidableObject {
       }
       return state;
    }
+   /**
+    * Method called when damaged
+    * @param amount Amount of damage
+    * @param location Location
+    * @return Whether the state was changed to damaged
+    */
    public boolean damage(int amount, Vector location) {
       hp -= amount;
       invincibleFrames = 20;

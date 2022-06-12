@@ -1,22 +1,52 @@
 import javafx.scene.*;
 import javafx.scene.image.*;
-
+/**
+ * <p>
+ * This class is used for the final boss.
+ * </p>
+ *
+ * <h2>ICS 4U0 with Krasteva, V.</h2>
+ *
+ * @version 5.0
+ * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+ * @since June 12th, 2022
+ * <p>
+ * File was created by Ryan Atlas on June 12th, 30 minutes were spent
+ * </p>
+ */
 public class FinalBoss extends Boss {
+    /**
+     * Constructor that initializes variables
+     * @param x Starting x position
+     * @param y Starting y position
+     * @param HITBOX_SIZE Hitbox size
+     */
     public FinalBoss(float x, float y, Vector HITBOX_SIZE){
         super(200, x, y, HITBOX_SIZE);
         sprite = new Image("assets/finalBoss.png");
         boss = new ImageView(sprite);
     }
+
+    /**
+     * Draw method
+     */
     @Override
     public void draw() {
 
     }
 
+    /**
+     * Getter for node
+     * @return The node
+     */
     @Override
     public Node getNode() {
         return boss;
     }
 
+    /**
+     * Update method controls boss' behaviour, movement, states and health
+     */
     @Override
     public void update() {
         if (killed) {
