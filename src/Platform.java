@@ -1,8 +1,6 @@
-import javafx.scene.*;
-import javafx.scene.image.*;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Translate;
+import javafx.scene.image.ImageView;
 /**
  * <p>
  * This class contains data about the platforms and also will make sure that all of the platforms

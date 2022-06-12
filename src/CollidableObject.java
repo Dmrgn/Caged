@@ -1,4 +1,3 @@
-import javafx.scene.*;
 /**
  * <p>
  * This class provides an interface for easily interacting with collision
