@@ -15,15 +15,18 @@ import javafx.scene.image.*;
  * </p>
  */
 public class FinalBoss extends Boss {
+    /** Node for boss to be displayed*/
+    private Node boss;
     /**
      * Constructor that initializes variables
      * @param x Starting x position
      * @param y Starting y position
      * @param HITBOX_SIZE Hitbox size
      */
-    public FinalBoss(float x, float y, Vector HITBOX_SIZE){
+    public FinalBoss(float x, float y, Vector HITBOX_SIZE, Image image){
         super(200, x, y, HITBOX_SIZE);
-        sprite = new Image("assets/finalBoss.png");
+        sprite = image;
+        createHitBox(pos, pos.add(HITBOX_SIZE));
         boss = new ImageView(sprite);
     }
 
@@ -33,15 +36,6 @@ public class FinalBoss extends Boss {
     @Override
     public void draw() {
 
-    }
-
-    /**
-     * Getter for node
-     * @return The node
-     */
-    @Override
-    public Node getNode() {
-        return boss;
     }
 
     /**
@@ -79,7 +73,6 @@ public class FinalBoss extends Boss {
                 break;
         }
         // global logic
-
         // touching player
         if (HitBox.areBoxesColliding(hitbox, ((Player)Game.player).getHitBox())) {
             if (((Player)Game.player).isDamagableState()) { // if damaging was successful
@@ -96,5 +89,13 @@ public class FinalBoss extends Boss {
         createHitBox(pos, pos.add(HITBOX_SIZE));
         // reduce velocity for next frame
         vel = vel.mul(0.99f);
+    }
+    /**
+     * Getter for node
+     * @return The node
+     */
+    @Override
+    public Node getNode() {
+        return boss;
     }
 }

@@ -6,8 +6,21 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Enemy no longer in front of sign">
+    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Boss in LevelDataParser">
+      <change afterPath="$PROJECT_DIR$/assets/boss1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/finalBoss.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level1_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Level1_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Boss$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Boss$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Boss$BossState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Boss$BossState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Boss.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Boss.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Level1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Level1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FinalBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FinalBoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LevelDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LevelDataParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,18 +57,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ryatl\IdeaProjects\Caged\assets" />
       <recent name="C:\Users\ryatl\IdeaProjects\Caged\src\assets" />
       <recent name="C:\Users\SamuelH\Documents\ICS 12\ISP\Caged\src\assets\signs" />
       <recent name="C:\Users\huang\Documents\Samuel ICS12\ISP 12\Caged\assets\signs" />
       <recent name="C:\Users\huang\Documents\Samuel ICS12\ISP 12\Caged\src\assets\keys" />
-      <recent name="C:\Users\huang\Documents\Samuel ICS12\ISP 12\Caged\src\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ryatl\IdeaProjects\Caged\src" />
@@ -171,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655064475753</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Boss in LevelDataParser">
+      <created>1655065577014</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1655065577014</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -195,7 +215,8 @@
     <MESSAGE value="Level3 class added (boss sprites added as well)" />
     <MESSAGE value="Boss comments" />
     <MESSAGE value="Enemy no longer in front of sign" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enemy no longer in front of sign" />
+    <MESSAGE value="Boss in LevelDataParser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Boss in LevelDataParser" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

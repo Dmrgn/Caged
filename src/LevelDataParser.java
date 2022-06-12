@@ -89,7 +89,7 @@ public class LevelDataParser {
                 if (data[1].equals("Boss1")){
 
                 } else {
-                    Boss b = new FinalBoss(Integer.parseInt(data[2]), Integer.parseInt(data[3]), new Vector(32, 32));
+                    FinalBoss b = new FinalBoss(Integer.parseInt(data[2]), Integer.parseInt(data[3]), new Vector(32, 32), textures.get("FinalBoss"));
                     levelObjects.add(b);
                 }
             } else {
