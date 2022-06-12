@@ -40,11 +40,11 @@ import javafx.util.Duration;
  */
 public class Game {
     /** Camera zoom factor */
-    public static final float ZOOM = 1.5f;
+    public static final float ZOOM = 1.0f;
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.055f;
+    public static final float GRAVITY = 0.015f;
     /** ArrayList of gameobjects in the current scene */
     private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
     /** Current scene*/
@@ -263,35 +263,6 @@ public class Game {
     }
 
     /**
-     * Method to control level 1
-     */
-    public void level1() {
-        if (player.pos.y >= 1500) {
-            navigateLevel(level, level.levelScreen, 0);
-        }
-    }
-
-    /**
-     * Method to control level 2
-     */
-    public void level2() {
-        if (level instanceof Level2) {
-            if (level.levelScreen == 0 && player.pos.x >= 4000) {
-                updateLevelScreen(level, 1);
-                createLevel(level);
-                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
-                attachObject(((Player)player).hpBar, SceneLayer.FOREGROUND);
-                window.setScene(scene);
-            } else if (level.levelScreen == 0 && player.pos.y >= 1500) {
-                updateLevelScreen(level, 0);
-                createLevel(level);
-                player = attachObject(new Player(250, Main.getHeight() - 200), SceneLayer.FOREGROUND);
-                attachObject(((Player)player).hpBar, SceneLayer.FOREGROUND);
-                window.setScene(scene);
-            }
-        }
-    }
-    /**
      * Adds the specified object to the game's list of objects
      * and attaches it to the specified {@link SceneLayer}
      * @param gameObject The GameObject to add to the scene
@@ -348,7 +319,15 @@ public class Game {
                                 break;
                             obj.draw();
                         }
-                        level1();
+                        if (levelNum == 3) {
+                            if (player.pos.y >= 3000) {
+                                navigateLevel(level, level.levelScreen, 0);
+                            }
+                        } else {
+                            if (player.pos.y >= 1500) {
+                                navigateLevel(level, level.levelScreen, 0);
+                            }
+                        }
                     }
                     else {
                         tips.display();

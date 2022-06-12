@@ -78,7 +78,7 @@ public class Mold extends GameObject {
      */
     @Override
     public void draw() {
-
+        
     }
     /**
      * Getter for node
