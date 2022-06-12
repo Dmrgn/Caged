@@ -85,6 +85,13 @@ public class LevelDataParser {
             } else if (data[0].equals("Key")) {
                 CollectableObject c = new CollectableObject(textures.get("Key:" + data[1]), textures.get("Key:" + data[2]),Integer.parseInt(data[3]), Integer.parseInt(data[4]));
                 levelObjects.add(c);
+            } else if (data[0].equals("Boss")) {
+                if (data[1].equals("Boss1")){
+
+                } else {
+                    Boss b = new FinalBoss(Integer.parseInt(data[2]), Integer.parseInt(data[3]), new Vector(32, 32));
+                    levelObjects.add(b);
+                }
             } else {
                 //don't get mad at us :)
                 throw new RuntimeException("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");

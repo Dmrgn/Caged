@@ -12,6 +12,8 @@
       <change beforePath="$PROJECT_DIR$/Level1_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Level1_3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Level2_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Level2_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Door.java" afterDir="false" />
+    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Enemy no longer in front of sign">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LevelDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LevelDataParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655063848949</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Enemy no longer in front of sign">
+      <created>1655064475753</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1655064475753</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,7 +199,8 @@
     <MESSAGE value="Level3 class added" />
     <MESSAGE value="Level3 class added (boss sprites added as well)" />
     <MESSAGE value="Boss comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Boss comments" />
+    <MESSAGE value="Enemy no longer in front of sign" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enemy no longer in front of sign" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
