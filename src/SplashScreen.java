@@ -1,15 +1,26 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.io.*;
-import java.util.*;
-import javafx.scene.paint.*;
-import javafx.scene.text.*;
-import javafx.animation.*;
-import javafx.util.*;
-import javafx.scene.shape.*;
+import javafx.util.Duration;
 /**
  * <p>
  * This class contains code for the SplashScreen
