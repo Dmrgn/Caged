@@ -72,7 +72,7 @@ public class LevelDataParser {
                 TeleportLocation t = new TeleportLocation(Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]));
                 levelObjects.add(t);
             } else if (data[0].equals("Door")) {
-                Door d = new Door(textures.get("Door:doorClosed"), textures.get("Door:doorOpen"), textures.get("Door:"+data[1]), textures.get("Door:" + data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Boolean.parseBoolean(data[5]));
+                Door d = new Door(textures.get("Door:"+data[1]), textures.get("Door:"+data[2]), textures.get("Door:"+data[3]), textures.get("Door:" + data[4]), Integer.parseInt(data[5]), Integer.parseInt(data[6]), Boolean.parseBoolean(data[7]));
                 levelObjects.add(d);
             } else if (data[0].equals("Sign")) {
                 Sign s;

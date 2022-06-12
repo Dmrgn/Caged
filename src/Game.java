@@ -44,7 +44,7 @@ public class Game {
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.015f;
+    public static final float GRAVITY = 0.055f;
     /** ArrayList of gameobjects in the current scene */
     public static ArrayList <GameObject> gameObjects = new ArrayList <> ();
     /** Current scene*/
