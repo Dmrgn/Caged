@@ -2,10 +2,9 @@ import javafx.scene.*;
 import javafx.scene.image.*;
 
 public class FinalBoss extends Boss {
-    private Node node;
-    private Image sprite;
-    public FinalBoss(){
-        super(200);
+    public FinalBoss(float x, float y, Vector HITBOX_SIZE){
+        super(200, x, y, HITBOX_SIZE);
+
     }
     @Override
     public void draw() {
@@ -14,7 +13,7 @@ public class FinalBoss extends Boss {
 
     @Override
     public Node getNode() {
-        return node;
+        return boss;
     }
 
     @Override
