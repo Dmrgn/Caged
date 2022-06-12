@@ -211,15 +211,6 @@ public class Game {
                 levelNum = 2;
                 //reset some game object variables
                 Game.questionsCorrect = 0;
-                //Game.questionsCorrect = 5;
-            } else if (l instanceof Level2){
-                levelNum = 2;
-                //reset some game object variables
-                //Game.questionsCorrect = 5;
-            } else if (l instanceof Level2){
-                levelNum = 2;
-                //reset some game object variables
-                //Game.questionsCorrect = 0;
                 canOpenDoor = false;
                 objectFound = false;
             } else {

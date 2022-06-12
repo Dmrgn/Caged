@@ -114,7 +114,7 @@ public class Sign extends GameObject implements Interactable {
             display();
             if (accessing) {
                 ((ImageView)node).setImage(message);
-                pos = Game.toWorld(new Vector(325, 175));
+                pos = Game.toWorld(new Vector(20, 20));
                 Game.player.getNode().setVisible(false);
                 //Game.player.getNode().setOpacity(0.0);
             } else if (!highlighted){
@@ -226,6 +226,7 @@ public class Sign extends GameObject implements Interactable {
                 //tell upward it works
                 answeredCorrectly = true;
                 Game.questionsCorrect++;
+                System.out.println(Game.questionsCorrect);
             } else {
                 //tell upward it is false;
                 answeredCorrectly = false;
