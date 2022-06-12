@@ -40,7 +40,7 @@ import javafx.util.Duration;
  */
 public class Game {
     /** Camera zoom factor */
-    public static final float ZOOM = 1.0f;
+    public static final float ZOOM = 1.5f;
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
@@ -114,8 +114,8 @@ public class Game {
         // add a player and platform to the scene
         player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);
         levels = new Level[3];
-        levels[0] = new Level1();
-        levels[1] = new Level2();
+        levels[1] = new Level1();
+        levels[0] = new Level2();
         levels[2] = new Level3();
         levelNum = 1;
         createLevel(levels[0]);
