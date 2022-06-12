@@ -80,8 +80,6 @@ public class Game {
     /** Level number */
     public static int levelNum;
 
-    /** Whether or not current screen is brother screen */
-    private static boolean onBrotherScreen;
     /** Programmatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -104,7 +102,6 @@ public class Game {
         objectFound = false;
         questionsCorrect = 0;
         signsRead = new boolean[4];
-        onBrotherScreen = false;
         // render the background, then midground, then foreground first
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
@@ -212,6 +209,9 @@ public class Game {
                 levelNum = 1;
             } else if (l instanceof Level2){
                 levelNum = 2;
+                //reset some game object variables
+                canOpenDoor = false;
+                objectFound = false;
             } else {
                 levelNum = 3;
             }

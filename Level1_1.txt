@@ -25,11 +25,10 @@ Platform, rightBottom, false, 1807, 795
 Platform, rightTop, false, 1797, 764
 Teleporter, 1689, 817, 0, 1, 1
 TeleportLocation, 1749, 800, 2
-Door, DoorSignLvl1, 603, 662
 Key, heartout, heart, 1510, 660
 Spike, 1470, 505, 1360
 Platform, invisible, false, 1435, 513
-Door, DoorSignLvl1, 603, 662
+Door, DoorSignLvl1, BrotherTips2, 603, 662
 Teleporter, 645, 743, 1, 0, 0
 Sign, Sign1, false, 730, 940, 0
 Sign, Sign2, false, 1410, 950, 1

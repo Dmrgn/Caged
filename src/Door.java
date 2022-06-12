@@ -25,6 +25,8 @@ public class Door extends CollidableObject implements Interactable {
     private Image imageLocked;
     /** Image for the door's locked texture */
     private Image imageOpen;
+    /** Image for the brother tips after opening the door texture */
+    private Image brotherTip;
     /** Whether the door is locked */
     private boolean isLocked;
     /** Image for the door's message */
@@ -44,10 +46,11 @@ public class Door extends CollidableObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Door(Image imageFileLocked, Image imageFileOpen, Image doorInfo, int x, int y){
+    public Door(Image imageFileLocked, Image imageFileOpen, Image doorInfo, Image brotherTip, int x, int y){
         isLocked = true;
         imageLocked = imageFileLocked;
         imageOpen = imageFileOpen;
+        this.brotherTip = brotherTip;
         node = new ImageView((isLocked) ? imageLocked : imageOpen);
         pos = new Vector(x, y);
         normalPos = new Vector(x, y);
@@ -124,7 +127,7 @@ public class Door extends CollidableObject implements Interactable {
             off = true;
         }
         if(displayTips && !off) {
-            ((ImageView) node).setImage(new Image("assets/BrotherTips Screens/BrotherTips2.png"));
+            ((ImageView) node).setImage(brotherTip);
             pos = Game.toWorld(new Vector(25, 20));
             Game.player.getNode().setVisible(false);
             Player.playerMoving = false;

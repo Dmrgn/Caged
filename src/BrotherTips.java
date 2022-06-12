@@ -36,7 +36,7 @@ public class BrotherTips {
      * @param page is used to take in the current Image used for the certain transition
      */
     public BrotherTips() {
-        screen = new ImageView(new Image("assets/BrotherTips Screens/BrotherTips1.png"));
+        screen = new ImageView(new Image("assets/doors/BrotherTips1.png"));
         start = false;
     }
     /**
