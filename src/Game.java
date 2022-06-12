@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 /**
@@ -37,7 +40,7 @@ import javafx.util.Duration;
  */
 public class Game {
     /** Camera zoom factor */
-    public static final float ZOOM = 1.0f;
+    public static final float ZOOM = 1.5f;
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
@@ -392,7 +395,22 @@ public class Game {
      * @return Transformed vector
      */
     public static Vector toWorld(Vector v) {
-        return v.sub(cameraPos);
+        Point2D p = new Point2D(0, 0);
+        try {
+            Scale scale = new Scale();
+            scale.setPivotX(Main.getWidth()/2);
+            scale.setPivotY(Main.getHeight()/2);
+            scale.setX(ZOOM);
+            scale.setY(ZOOM);
+            p = scale.inverseTransform(new Point2D(v.x, v.y));
+            Translate trans = new Translate();
+            trans.setX(cameraPos.x);
+            trans.setY(cameraPos.y);
+            p = trans.inverseTransform(p);
+        } catch (Exception e) {
+            System.out.println("Cant invert transform.");
+        }
+        return new Vector((float)p.getX(), (float)p.getY());
     }
     /**
      * Converts the Vector in world coordinates to screen coordinates
@@ -400,7 +418,23 @@ public class Game {
      * @return Transformed vector
      */
     public static Vector toScreen(Vector v) {
-        return v.add(cameraPos);
+        Point2D p = new Point2D(0, 0);
+        try {
+            Scale scale = new Scale();
+            scale.setPivotX(Main.getWidth()/2);
+            scale.setPivotY(Main.getHeight()/2);
+            scale.setX(ZOOM);
+            scale.setY(ZOOM);
+            p = scale.transform(new Point2D(v.x, v.y));
+            Translate trans = new Translate();
+            trans.setX(cameraPos.x);
+            trans.setY(cameraPos.y);
+            p = trans.transform(p);
+
+        } catch (Exception e) {
+            System.out.println("Cant invert transform.");
+        }
+        return new Vector((float)p.getX(), (float)p.getY());
     }
     /**
      * Returns the scene
