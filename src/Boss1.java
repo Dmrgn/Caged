@@ -2,7 +2,7 @@ import javafx.scene.*;
 import javafx.scene.image.*;
 /**
  * <p>
- * This class is used for the final boss.
+ * This class is used for the first boss.
  * </p>
  *
  * <h2>ICS 4U0 with Krasteva, V.</h2>
@@ -14,7 +14,7 @@ import javafx.scene.image.*;
  * File was created by Ryan Atlas on June 12th, 30 minutes were spent
  * </p>
  */
-public class FinalBoss extends Boss {
+public class Boss1 extends Boss {
     /** Node for boss to be displayed*/
     private Node boss;
     /**
@@ -23,8 +23,8 @@ public class FinalBoss extends Boss {
      * @param y Starting y position
      * @param HITBOX_SIZE Hitbox size
      */
-    public FinalBoss(float x, float y, Vector HITBOX_SIZE, Image image){
-        super(200, x, y, HITBOX_SIZE);
+    public Boss1(float x, float y, Vector HITBOX_SIZE, Image image){
+        super(150, x, y, HITBOX_SIZE);
         sprite = image;
         createHitBox(pos, pos.add(HITBOX_SIZE));
         boss = new ImageView(sprite);
@@ -53,7 +53,7 @@ public class FinalBoss extends Boss {
                 // handle state logic
 
                 // Handle exiting this state
-                    requestStateChange(BossState.HOSTILE);
+                requestStateChange(BossState.HOSTILE);
                 break;
             case HOSTILE:
                 // handle state logic

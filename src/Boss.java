@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
  * Ten minutes were spent by Ryan Atlas on June 2nd restructuring the file to work with the new GameObject
+ * 30 minutes were spent by Ryan Atlas on June 12th adding new methods and variables
  * </p>
  */
 public abstract class Boss extends CollidableObject {
@@ -23,8 +24,6 @@ public abstract class Boss extends CollidableObject {
    public Vector vel;
    /** The enemy's Sprite as an Image */
    public Image sprite;
-   /** The Node that is added to the scene and whose movement is updated */
-   public Node boss;
    /** Is the boss killed? */
    protected boolean killed;
    /** The boss's movement speed which is a constant*/
@@ -41,8 +40,7 @@ public abstract class Boss extends CollidableObject {
    protected long damagedFrames = 0;
    /** Frames boss has been invincible */
    protected long invincibleFrames = 0;
-   /** EnemyState represented in code*/
-
+   /** BossState represented in code*/
    protected enum BossState {
       IDLE,
       HOSTILE,
@@ -62,10 +60,6 @@ public abstract class Boss extends CollidableObject {
       state = BossState.HOSTILE;
       this.HITBOX_SIZE = HITBOX_SIZE;
    }
-   /**
-   * Draw method from the interface GameObject that is to be overridden by the subclasses
-   */
-   public abstract void draw();
    /**
    * Update method from the interface GameObject that is to be overridden by the subclasses
    */
@@ -96,6 +90,12 @@ public abstract class Boss extends CollidableObject {
       }
       return state;
    }
+   /**
+    * Method called when damaged
+    * @param amount Amount of damage
+    * @param location Location
+    * @return Whether the state was changed to damaged
+    */
    public boolean damage(int amount, Vector location) {
       hp -= amount;
       invincibleFrames = 20;
@@ -104,4 +104,5 @@ public abstract class Boss extends CollidableObject {
          vel = location.sub(pos).mul(-0.1f);
       return result;
    }
+
 }

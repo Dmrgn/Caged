@@ -72,7 +72,7 @@ public class LevelDataParser {
                 TeleportLocation t = new TeleportLocation(Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]));
                 levelObjects.add(t);
             } else if (data[0].equals("Door")) {
-                Door d = new Door(textures.get("Door:doorClosed"), textures.get("Door:doorOpen"), textures.get("Door:"+data[1]), textures.get("Door:" + data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]));
+                Door d = new Door(textures.get("Door:doorClosed"), textures.get("Door:doorOpen"), textures.get("Door:"+data[1]), textures.get("Door:" + data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Boolean.parseBoolean(data[5]));
                 levelObjects.add(d);
             } else if (data[0].equals("Sign")) {
                 Sign s;
@@ -85,6 +85,13 @@ public class LevelDataParser {
             } else if (data[0].equals("Key")) {
                 CollectableObject c = new CollectableObject(textures.get("Key:" + data[1]), textures.get("Key:" + data[2]),Integer.parseInt(data[3]), Integer.parseInt(data[4]));
                 levelObjects.add(c);
+            } else if (data[0].equals("Boss")) {
+                if (data[1].equals("Boss1")){
+
+                } else {
+                    FinalBoss b = new FinalBoss(Integer.parseInt(data[2]), Integer.parseInt(data[3]), new Vector(32, 32), textures.get("FinalBoss"));
+                    levelObjects.add(b);
+                }
             } else {
                 //don't get mad at us :)
                 throw new RuntimeException("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");

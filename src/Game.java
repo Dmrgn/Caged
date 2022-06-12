@@ -46,7 +46,7 @@ public class Game {
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.015f;
     /** ArrayList of gameobjects in the current scene */
-    private static ArrayList < GameObject > gameObjects = new ArrayList < GameObject > ();
+    public static ArrayList <GameObject> gameObjects = new ArrayList <> ();
     /** Current scene*/
     private static Scene scene;
     /** The instance of the player */
@@ -95,7 +95,7 @@ public class Game {
         window.setTitle("Caged Inside the Mind");
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
-        window.setResizable(true);
+        window.setResizable(false);
         canOpenDoor = false;
         objectFound = false;
         questionsCorrect = 0;
@@ -160,8 +160,12 @@ public class Game {
      * @param screen The screen within that level to navigate to
      */
     public static void navigateLevel(Level level, int screen, int teleporterLocationIndex) {
+        int temp = levelNum;
         updateLevelScreen(level, screen);
         createLevel(level);
+        if (temp != levelNum){
+            canOpenDoor = false;
+        }
         ArrayList<TeleportLocation> locations = new ArrayList<TeleportLocation>();
         for (GameObject obj : gameObjects) {
             if (obj instanceof TeleportLocation)
@@ -211,15 +215,6 @@ public class Game {
                 levelNum = 2;
                 //reset some game object variables
                 Game.questionsCorrect = 0;
-                //Game.questionsCorrect = 5;
-            } else if (l instanceof Level2){
-                levelNum = 2;
-                //reset some game object variables
-                //Game.questionsCorrect = 5;
-            } else if (l instanceof Level2){
-                levelNum = 2;
-                //reset some game object variables
-                //Game.questionsCorrect = 0;
                 canOpenDoor = false;
                 objectFound = false;
             } else {

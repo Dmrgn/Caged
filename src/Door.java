@@ -38,6 +38,8 @@ public class Door extends CollidableObject implements Interactable {
 
     private boolean displayTips = false;
     private boolean off = false;
+
+    private boolean lvl2;
     /**
      * Class constructor that initializes variables and sets
      * the Node's texture to be the image specified
@@ -46,7 +48,7 @@ public class Door extends CollidableObject implements Interactable {
      * @param x The x coord of the platform
      * @param y The y coord of the platform
      */
-    public Door(Image imageFileLocked, Image imageFileOpen, Image doorInfo, Image brotherTip, int x, int y){
+    public Door(Image imageFileLocked, Image imageFileOpen, Image doorInfo, Image brotherTip, int x, int y, boolean lvl2){
         isLocked = true;
         imageLocked = imageFileLocked;
         imageOpen = imageFileOpen;
@@ -57,6 +59,7 @@ public class Door extends CollidableObject implements Interactable {
         doorMessage = doorInfo;
         createHitBox(pos.add(new Vector(0, 0)), pos.add(new Vector((float)imageFileLocked.getWidth(), (float)imageFileLocked.getHeight())));
         accessing = false;
+        this.lvl2 = lvl2;
     }
     /**
      * Getter method for the Node
@@ -82,9 +85,13 @@ public class Door extends CollidableObject implements Interactable {
         if (isLocked && inRange((Player)Game.player)&&Keyboard.isKeyDown(KeyCode.E)){
             accessing = true;
             Player.playerMoving = false;
-        } else if(isLocked && Keyboard.isKeyUp(KeyCode.E)) {
+        } else if(isLocked && Keyboard.isKeyUp(KeyCode.E) && !lvl2) {
             accessing = false;
             Player.playerMoving = true;
+        } else if(isLocked && Keyboard.isKeyDown(KeyCode.H) && lvl2) {
+            accessing = false;
+            Player.playerMoving = true;
+            Game.player.getNode().setVisible(true);
         }
         if(isLocked) {
             display();
@@ -123,10 +130,14 @@ public class Door extends CollidableObject implements Interactable {
             pos = Game.toWorld(new Vector(325, 175));
             Game.player.getNode().setVisible(false);
         }
-        else {
+        else if(!accessing && !lvl2){
             ((ImageView)node).setImage(imageLocked);
             pos = normalPos;
             Game.player.getNode().setVisible(true);
+        }
+        else {
+            ((ImageView)node).setImage(imageLocked);
+            pos = normalPos;
         }
     }
     /**
