@@ -46,7 +46,7 @@ public class Game {
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.055f;
     /** ArrayList of gameobjects in the current scene */
-    private static ArrayList <GameObject> gameObjects = new ArrayList <> ();
+    public static ArrayList <GameObject> gameObjects = new ArrayList <> ();
     /** Current scene*/
     private static Scene scene;
     /** The instance of the player */
