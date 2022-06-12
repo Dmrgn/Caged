@@ -39,3 +39,11 @@ Sign, QuesSign2, true, 1730, 940, 4
 Sign, QuesSign3, true, 1700, 435, 1
 Sign, QuesSign4, true, 1095, 325, 3
 Sign, QuesSign5, true, 395, 225, 4
+Enemy, 950, 940
+Enemy, 1280, 930
+Enemy, 1900, 840
+Enemy, 1580, 340
+Enemy, 1203, 250
+Enemy, 600, 310
+Enemy, 330, 400
+Enemy, 1500, 610
