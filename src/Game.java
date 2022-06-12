@@ -114,9 +114,9 @@ public class Game {
         // add a player and platform to the scene
         player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);
         levels = new Level[3];
-        levels[2] = new Level1();
+        levels[0] = new Level1();
         levels[1] = new Level2();
-        levels[0] = new Level3();
+        levels[2] = new Level3();
         levelNum = 1;
         createLevel(levels[0]);
         Player.playerMoving = true;
