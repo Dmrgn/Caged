@@ -110,9 +110,10 @@ public class Game {
         buildScene(sceneGroup);
         // add a player and platform to the scene
         player = attachObject(new Player(-1000, 0), SceneLayer.FOREGROUND);
-        levels = new Level[2];
+        levels = new Level[3];
         levels[0] = new Level1();
         levels[1] = new Level2();
+        levels[2] = new Level3();
         levelNum = 1;
         createLevel(levels[0]);
         Player.playerMoving = true;
@@ -314,7 +315,6 @@ public class Game {
                 if (menu.getSelection() == -1) {
                     window.setScene(menu.getScene());
                     menu.setSelection(0);
-                } else if (menu.getSelection() == 0) {
                 } else if (menu.getSelection() == 1) {
                     if(tips.isStart()) {
                         Vector diff = cameraPos.mul(1);
