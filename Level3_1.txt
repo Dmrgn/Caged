@@ -1,3 +1,4 @@
 Background, abyss
 Mold, two, 0, 0
 TeleportLocation, 186, 973, 0
+Platform, platform, false, 190, 1020
