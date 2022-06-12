@@ -69,7 +69,7 @@ public class Door extends CollidableObject implements Interactable {
      * Overridden update method from GameObject
      */
     public void update() {
-        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor && Game.signsRead[0] && Game.signsRead[1] && Game.signsRead[2] && Game.signsRead[3]) {
+        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor && Game.signsRead[0] && Game.signsRead[1] && Game.signsRead[2] && Game.signsRead[3] && Game.questionsCorrect >= 5) {
             isLocked = false;
             ((ImageView)node).setImage(imageOpen);
             createHitBox(new Vector(0,0), new Vector(0,0));
