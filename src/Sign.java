@@ -264,7 +264,6 @@ public class Sign extends GameObject implements Interactable {
         if(correct)
         {
             ((ImageView)node).setImage(correctBox);
-
         }
         else
         {
