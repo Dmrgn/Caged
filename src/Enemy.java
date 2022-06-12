@@ -15,8 +15,9 @@ import javafx.scene.*;
  * </p>
  */
 public class Enemy extends CollidableObject {
-    private static final int DAMAGE_STUDDER_DURATION = 120;
-    private static final int AGRO_RANGE = 200;
+    private static final int DAMAGE_STUTTER_DURATION = 120;
+    /** Range where the enemies will aggro*/
+    private static final int AGGRO_RANGE = 200;
     /** Whether the enemy is grounded or not */
     private boolean isGrounded;
     /** Possible enemy states */
@@ -37,6 +38,10 @@ public class Enemy extends CollidableObject {
     private static final float ACCELERATION = 0.01f;
     /** The direction the enemy is moving (1 right -1 left 0 idle) */
     private int moveDirection;
+    /** Frames enemy has been damaged*/
+    private long damagedFrames = 0;
+    /** Frames enemy has been invincible */
+    private long invincibleFrames = 0;
     /** EnemyState represented in code*/
     private enum EnemyState {
         IDLE,
@@ -47,7 +52,7 @@ public class Enemy extends CollidableObject {
     private EnemyState state;
     /** If the player is in agro range */
     public boolean inRange(Player p) {
-        return (Vector.dist(this.pos, p.pos) < AGRO_RANGE);
+        return (Vector.dist(this.pos, p.pos) < AGGRO_RANGE);
     }
     /**
      * Damage this enemy with the specified amount
@@ -55,7 +60,7 @@ public class Enemy extends CollidableObject {
      */
     public boolean damage(int amount, Vector location) {
         hp -= amount;
-        invinsibleFrames = 20;
+        invincibleFrames = 20;
         boolean result = requestStateChange(EnemyState.DAMAGED) == EnemyState.DAMAGED;
         if (result)
             vel = location.sub(pos).mul(-0.1f);
@@ -64,8 +69,6 @@ public class Enemy extends CollidableObject {
     /**
      * Update method to update the enemy's position and state
      */
-    private long damagedFrames = 0;
-    private long invinsibleFrames = 0;
     public void update() {
         if (killed) {
             enemy.setVisible(false);
@@ -94,7 +97,7 @@ public class Enemy extends CollidableObject {
                 // handle state logic
                 damagedFrames++;
                 // Handle exiting this state
-                if (damagedFrames > DAMAGE_STUDDER_DURATION) {
+                if (damagedFrames > DAMAGE_STUTTER_DURATION) {
                     if (hp <= 0)
                         killed = true;
                     damagedFrames = 0;
@@ -109,12 +112,12 @@ public class Enemy extends CollidableObject {
             if (((Player)Game.player).isDamagableState()) { // if damaging was sucessful
                 ((Player)Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
                 vel = vel.add(Vector.sub(pos, Game.player.pos).mul(0.1f)); // bounce away from player
-            } else if(invinsibleFrames == 0) {
+            } else if(invincibleFrames == 0) {
                 ((Player)Game.player).heal(20);
                 damage(100, Game.player.pos);
             }
         }
-        if (invinsibleFrames > 0) invinsibleFrames--;
+        if (invincibleFrames > 0) invincibleFrames--;
 
         // add position
         pos = pos.add(vel);
