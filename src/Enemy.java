@@ -15,6 +15,7 @@ import javafx.scene.*;
  * </p>
  */
 public class Enemy extends CollidableObject {
+    /** Duration of a damage stutter */
     private static final int DAMAGE_STUTTER_DURATION = 120;
     /** Range where the enemies will aggro*/
     private static final int AGGRO_RANGE = 200;

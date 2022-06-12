@@ -31,6 +31,8 @@ public abstract class Boss extends CollidableObject {
    protected static final float MAX_SPEED = 2.5f;
    /** The boss's acceleration speed which is a constant*/
    protected static final float ACCELERATION = 0.01f;
+   /** Duration of a damage stutter */
+   protected static final int DAMAGE_STUTTER_DURATION = 120;
    /** Hitbox size */
    protected final Vector HITBOX_SIZE;
    /** The direction the boss is moving (1 right -1 left 0 idle) */
@@ -73,7 +75,7 @@ public abstract class Boss extends CollidableObject {
     * @param newState State to change to
     * @return The updated state
     */
-   private BossState requestStateChange(BossState newState) {
+   protected BossState requestStateChange(BossState newState) {
       switch (state) {
          case IDLE:
             return state = newState;
@@ -93,5 +95,13 @@ public abstract class Boss extends CollidableObject {
             break;
       }
       return state;
+   }
+   public boolean damage(int amount, Vector location) {
+      hp -= amount;
+      invincibleFrames = 20;
+      boolean result = requestStateChange(BossState.DAMAGED) == BossState.DAMAGED;
+      if (result)
+         vel = location.sub(pos).mul(-0.1f);
+      return result;
    }
 }
