@@ -226,6 +226,7 @@ public class Sign extends GameObject implements Interactable {
                 //tell upward it works
                 answeredCorrectly = true;
                 Game.questionsCorrect++;
+                System.out.println(Game.questionsCorrect);
             } else {
                 //tell upward it is false;
                 answeredCorrectly = false;
