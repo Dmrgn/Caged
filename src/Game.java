@@ -160,8 +160,12 @@ public class Game {
      * @param screen The screen within that level to navigate to
      */
     public static void navigateLevel(Level level, int screen, int teleporterLocationIndex) {
+        int temp = levelNum;
         updateLevelScreen(level, screen);
         createLevel(level);
+        if (temp != levelNum){
+            canOpenDoor = false;
+        }
         ArrayList<TeleportLocation> locations = new ArrayList<TeleportLocation>();
         for (GameObject obj : gameObjects) {
             if (obj instanceof TeleportLocation)
