@@ -18,6 +18,11 @@
       <change beforePath="$PROJECT_DIR$/assets/signs/Sign3.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/signs/Sign3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/signs/Sign4.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/signs/Sign4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Door.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Credits.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Credits.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Door.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Enemy$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Enemy$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Enemy$EnemyState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Enemy$EnemyState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Enemy.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$3.class" afterDir="false" />
@@ -36,6 +41,9 @@
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boss.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FinalBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FinalBoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
