@@ -32,6 +32,9 @@ Platform, rottedPlatform, false, 1670, 500
 Platform, rottedPlatform, false, 1670, 500
 Platform, rottedPlatform, false, 1540, 640
 Platform, rottedClimber, false, 904, 445
+Key, heartout, heart, 945, 530
 Sign, QuesSign1, true, 800, 940, 2
-Sign, QuesSign2, true, 1250, 380, 4
+Sign, QuesSign2, true, 1730, 930, 4
+Sign, QuesSign3, true, 1700, 435, 1
+Sign, QuesSign4, true, 1095, 325, 3
 Sign, QuesSign5, true, 395, 225, 4

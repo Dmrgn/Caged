@@ -29,6 +29,6 @@ Key, heartout, heart, 1510, 660
 Platform, spike, false, 1470, 643
 Teleporter, 645, 743, 1, 0, 0
 Sign, Sign1, false, 730, 940, 0
-Door, DoorSignLvl1, 603, 662
+Door, DoorSignLvl1, BrotherTips2, 603, 662
 Sign, Sign2, false, 1410, 950, 1
 Sign, Sign4, false, 1830, 700, 3
