@@ -261,13 +261,13 @@ public class Sign extends GameObject implements Interactable {
     public void messageBox(boolean correct) {
         Image correctBox = new Image("assets/signs/Correct.png");
         Image incorrectBox = new Image("assets/signs/Incorrect.png");
-        if(correct) {
+        if(correct)
+        {
             ((ImageView)node).setImage(correctBox);
-            pos = Game.toWorld(new Vector(500, 800));
         }
-        else {
+        else
+        {
             ((ImageView)node).setImage(incorrectBox);
-            pos = Game.toWorld(new Vector(500, 800));
         }
         if(Keyboard.isKeyDown(KeyCode.H) && correct)
         {
@@ -279,7 +279,6 @@ public class Sign extends GameObject implements Interactable {
             System.out.println(answeredCorrectly);
             answered = false;
             userAnswer = 0;
-            pos = normal;
             Game.player.getNode().setVisible(true);
             Player.playerMoving = true;
         }
@@ -292,7 +291,6 @@ public class Sign extends GameObject implements Interactable {
             System.out.println(answeredCorrectly);
             answered = false;
             userAnswer = 0;
-            pos = normal;
             Game.player.getNode().setVisible(true);
             Player.playerMoving = true;
         }
