@@ -61,10 +61,6 @@ public abstract class Boss extends CollidableObject {
       this.HITBOX_SIZE = HITBOX_SIZE;
    }
    /**
-   * Update method from the interface GameObject that is to be overridden by the subclasses
-   */
-   public abstract void update();
-   /**
     * Method to ensure all changes between states are valid
     * @param newState State to change to
     * @return The updated state

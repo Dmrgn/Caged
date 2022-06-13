@@ -29,19 +29,9 @@ public class Boss1 extends Boss {
         createHitBox(pos, pos.add(HITBOX_SIZE));
         boss = new ImageView(sprite);
     }
-
-    /**
-     * Draw method
-     */
-    @Override
-    public void draw() {
-
-    }
-
     /**
      * Update method controls boss' behaviour, movement, states and health
      */
-    @Override
     public void update() {
         if (killed) {
             boss.setVisible(false);
@@ -94,7 +84,6 @@ public class Boss1 extends Boss {
      * Getter for node
      * @return The node
      */
-    @Override
     public Node getNode() {
         return boss;
     }

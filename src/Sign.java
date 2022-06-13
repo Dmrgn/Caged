@@ -150,12 +150,27 @@ public class Sign extends GameObject implements Interactable {
             displayQuestions();
             if (accessing && !answeredCorrectly) {
                 ((ImageView)node).setImage(message);
+                Enemy.canMove = false;
+                for (GameObject obj : Game.gameObjects){
+                    if (obj instanceof Enemy){
+                        obj.getNode().setVisible(false);
+                        //System.out.println("test 1");
+                    }
+                }
                 checkQuestions();
                 pos = Game.toWorld(new Vector(20, 20));
+
                 //player position -
 //                Game.player.getNode().setVisible(false);
             } else {
                 pos = normal;
+                Enemy.canMove = true;
+                for (GameObject obj : Game.gameObjects){
+                    if (obj instanceof Enemy){
+                        obj.getNode().setVisible(true);
+                        //System.out.println("test 2");
+                    }
+                }
 //                Game.player.getNode().setVisible(true);
             }
         }
@@ -188,6 +203,13 @@ public class Sign extends GameObject implements Interactable {
     public void display(){
         if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E)) {
                 accessing = true;
+                Enemy.canMove = false;
+                for (GameObject obj : Game.gameObjects){
+                    if (obj instanceof Enemy){
+                    //System.out.println("test 3");
+                        obj.getNode().setVisible(false);
+                    }
+                }
                 Player.playerMoving = false;
                 Game.signsRead[signNum] = true;
         }
@@ -196,6 +218,13 @@ public class Sign extends GameObject implements Interactable {
         {
             accessing = false;
             Player.playerMoving = true;
+            Enemy.canMove = true;
+            for (GameObject obj : Game.gameObjects){
+                if (obj instanceof Enemy){
+                    //System.out.println("test 4");
+                    obj.getNode().setVisible(true);
+                }
+            }
         }
     }
     /**
@@ -207,6 +236,7 @@ public class Sign extends GameObject implements Interactable {
             accessing = true;
             Player.playerMoving = false;
             Game.player.getNode().setVisible(false);
+
         }
 //        else if(Keyboard.isKeyDown(KeyCode.H) && accessing)
 //        {

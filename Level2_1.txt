@@ -47,3 +47,4 @@ Enemy, 1203, 250
 Enemy, 600, 310
 Enemy, 330, 400
 Enemy, 1500, 610
+Boss, Boss1, 265, 905
