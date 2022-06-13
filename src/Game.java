@@ -40,11 +40,11 @@ import javafx.util.Duration;
  */
 public class Game {
     /** Camera zoom factor */
-    public static final float ZOOM = 1.5f;
+    public static final float ZOOM = 0.8f;
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.055f;
+    public static final float GRAVITY = 0.025f;
     /** ArrayList of gameobjects in the current scene */
     public static ArrayList <GameObject> gameObjects = new ArrayList <> ();
     /** Current scene*/
@@ -75,6 +75,12 @@ public class Game {
     public static int questionsCorrect;
     /** Array of signs and whether each is read */
     public static boolean[] signsRead;
+    /** Array of boolean check if the object task is complete for that stage */
+    public static boolean[] stageObjectTask;
+    /** Array of boolean check if the riddle task is complete for that stage */
+    public static boolean[] stageRiddleTask;
+    /** Array of boolean check if the main  task is complete for that stage */
+    public static boolean[] stageMainTask;
     /** Level number */
     public static int levelNum;
 
@@ -100,6 +106,9 @@ public class Game {
         objectFound = false;
         questionsCorrect = 0;
         signsRead = new boolean[4];
+        stageObjectTask = new boolean[3];
+        stageRiddleTask = new boolean[3];
+        stageMainTask = new boolean[3];
         // render the background, then midground, then foreground first
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
@@ -118,7 +127,7 @@ public class Game {
         levels[1] = new Level2();
         levels[2] = new Level3();
         levelNum = 1;
-        createLevel(levels[1]);
+        createLevel(levels[2]);
         Player.playerMoving = true;
         // set the current scene
         window.setScene(scene);
