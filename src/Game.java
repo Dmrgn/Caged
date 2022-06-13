@@ -40,11 +40,11 @@ import javafx.util.Duration;
  */
 public class Game {
     /** Camera zoom factor */
-    public static final float ZOOM = 0.8f;
+    public static final float ZOOM = 1.5f;
     /** If we are currently playing in debug mode */
     public static final boolean IS_DEBUG_MODE = true;
     /** Gravity applied to all moveable objects */
-    public static final float GRAVITY = 0.025f;
+    public static final float GRAVITY = 0.055f;
     /** ArrayList of gameobjects in the current scene */
     public static ArrayList <GameObject> gameObjects = new ArrayList <> ();
     /** Current scene*/
@@ -107,6 +107,7 @@ public class Game {
         questionsCorrect = 0;
         signsRead = new boolean[4];
         stageObjectTask = new boolean[3];
+        stageObjectTask[0] = true;
         stageRiddleTask = new boolean[3];
         stageMainTask = new boolean[3];
         // render the background, then midground, then foreground first

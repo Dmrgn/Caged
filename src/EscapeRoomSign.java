@@ -7,18 +7,16 @@ public class EscapeRoomSign extends GameObject implements Interactable{
 
     /** JavaFX node for the platform*/
     private Node node;
-    /** Image for the sign's locked texture (Normal)*/
-    private Image imageNormal;
     /** The text on the sign */
     private Image message;
+    /** The blank image for the location of the sign */
+    private Image blankImage;
     /** Normal position of the sign*/
     private Vector normal;
     /** Correct answer*/
     private int answer = 0;
     /** User's answer*/
     private int userAnswer;
-    /** Whether the sign is highlighted*/
-    private boolean highlighted;
     /**Whether the player is accessing the sign*/
     private boolean accessing;
     /** Whether the sign has been answered correctly*/
@@ -27,52 +25,55 @@ public class EscapeRoomSign extends GameObject implements Interactable{
     private boolean answered;
     /** Whether the sign is a riddle sign*/
     private boolean riddle;
+    /** What stage the signs are in*/
+    private int level;
 
-    public EscapeRoomSign(Image message, int x, int y, int answer, boolean riddle)
+    public EscapeRoomSign(Image message, int x, int y, int answer, int level, boolean riddle)
     {
-        imageNormal = new Image("assets/SignNormal.png");
         this.message = message;
-        node = new ImageView(imageNormal);
+        blankImage = new Image("assets/teleporter.png");
+        node = new ImageView(blankImage);
         pos = new Vector(x, y);
         normal = new Vector(x, y);
         this.answer = answer;
-        highlighted = false;
         accessing = false;
         answeredCorrectly = false;
         userAnswer = 0;
         answered = false;
         this.riddle = riddle;
+        this.level = level;
     }
     /**
      * Overridden update method from GameObject
      */
     public void update() {
-        if (!highlighted && (Vector.dist(Game.player.pos, this.pos) < 100)) {
-            ((ImageView)node).setImage(imageNormal);
-            highlighted = true;
-        } else if (highlighted && !(Vector.dist(Game.player.pos, this.pos) < 100)){
-            ((ImageView)node).setImage(imageNormal);
-            highlighted = false;
+        if(riddle && Game.stageObjectTask[level]) {
+            display();
+            if (accessing && !answeredCorrectly) {
+                ((ImageView) node).setImage(message);
+                checkQuestions();
+                pos = Game.toWorld(new Vector(20, 20));
+            } else {
+                ((ImageView) node).setImage(blankImage);
+                pos = normal;
+            }
         }
-        display();
-        if (accessing && !answeredCorrectly) {
-            ((ImageView)node).setImage(message);
-            Enemy.canMove = false;
-            for (GameObject obj : Game.gameObjects){
-                if (obj instanceof Enemy){
-                    obj.getNode().setVisible(false);
-                }
+        else if(!riddle && Game.stageObjectTask[level] && Game.stageRiddleTask[level])
+        {
+            display();
+            if (accessing && !answeredCorrectly) {
+                ((ImageView) node).setImage(message);
+                checkQuestions();
+                pos = Game.toWorld(new Vector(20, 20));
+            } else {
+                ((ImageView) node).setImage(blankImage);
+                pos = normal;
             }
-            checkQuestions();
-            pos = Game.toWorld(new Vector(20, 20));
-        } else {
+        }
+        else
+        {
+            ((ImageView) node).setImage(blankImage);
             pos = normal;
-            Enemy.canMove = true;
-            for (GameObject obj : Game.gameObjects){
-                if (obj instanceof Enemy){
-                    obj.getNode().setVisible(true);
-                }
-            }
         }
     }
     /**
@@ -86,13 +87,25 @@ public class EscapeRoomSign extends GameObject implements Interactable{
     @Override
     public void draw() {
         clearTransformations();
-        if (accessing && !answeredCorrectly) {
-            setTranslate(Game.toWorld(new Vector(0,0)).mul(-1));
-            getNode().relocate((pos.x), (pos.y));
-        } else {
-            setScale(Game.ZOOM, Main.getDims().div(2));
-            setTranslate(Game.cameraPos);
-            getNode().relocate((pos.x)*Game.ZOOM, (pos.y)*Game.ZOOM);
+        if(riddle && Game.stageObjectTask[level]) {
+            if (accessing && !answeredCorrectly) {
+                setTranslate(Game.toWorld(new Vector(0, 0)).mul(-1));
+                getNode().relocate((pos.x), (pos.y));
+            } else {
+                setScale(Game.ZOOM, Main.getDims().div(2));
+                setTranslate(Game.cameraPos);
+                getNode().relocate((pos.x) * Game.ZOOM, (pos.y) * Game.ZOOM);
+            }
+        }
+        else if(!riddle && Game.stageObjectTask[level] && Game.stageRiddleTask[level]) {
+            if (accessing && !answeredCorrectly) {
+                setTranslate(Game.toWorld(new Vector(0, 0)).mul(-1));
+                getNode().relocate((pos.x), (pos.y));
+            } else {
+                setScale(Game.ZOOM, Main.getDims().div(2));
+                setTranslate(Game.cameraPos);
+                getNode().relocate((pos.x) * Game.ZOOM, (pos.y) * Game.ZOOM);
+            }
         }
     }
     /**
@@ -174,6 +187,14 @@ public class EscapeRoomSign extends GameObject implements Interactable{
         if(Keyboard.isKeyDown(KeyCode.H) && correct)
         {
             answeredCorrectly = true;
+            if(riddle)
+            {
+                Game.stageRiddleTask[level] = true;
+            }
+            else
+            {
+                Game.stageMainTask[level] = true;
+            }
             accessing = false;
             answered = false;
             userAnswer = 0;
