@@ -6,17 +6,16 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Boss in LevelDataParser changes">
+    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Temporary changes. Committing so I don't lose them">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Level2_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Level2_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Boss$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Boss$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Boss.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Boss.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Boss1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boss1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FinalBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FinalBoss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Boss1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Boss1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Boss1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Boss1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/LevelDataParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655067042275</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Temporary changes. Committing so I don't lose them">
+      <created>1655151698588</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1655151698588</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -219,7 +225,8 @@
     <MESSAGE value="Enemy no longer in front of sign" />
     <MESSAGE value="Boss in LevelDataParser" />
     <MESSAGE value="Boss in LevelDataParser changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Boss in LevelDataParser changes" />
+    <MESSAGE value="Temporary changes. Committing so I don't lose them" />
+    <option name="LAST_COMMIT_MESSAGE" value="Temporary changes. Committing so I don't lose them" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

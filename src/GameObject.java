@@ -48,7 +48,7 @@ public abstract class GameObject {
     }
     /**
      * Scales this object around the specified origin
-     * @param scale The decimal number to set the scale to
+     * @param amount decimal number to set the scale to
      * @param origin The origin for the scale transformation
      */
     public void setScale(float amount, Vector origin) {
@@ -62,8 +62,7 @@ public abstract class GameObject {
     }
     /**
      * Translates this object around the specified origin
-     * @param Translate The decimal number to set the Translate to
-     * @param origin The origin for the Translate transformation
+     * @param amount Amount to be translated by stored in a Vector
      */
     public void setTranslate(Vector amount) {
         Translate trans = new Translate();
