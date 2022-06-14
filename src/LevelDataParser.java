@@ -93,10 +93,12 @@ public class LevelDataParser {
                     FinalBoss b = new FinalBoss(Integer.parseInt(data[2]), Integer.parseInt(data[3]), new Vector(32, 32), textures.get("FinalBoss"));
                     levelObjects.add(b);
                 }
-            } else if(data[0].equals("EscapeRoomClues"))
-            {
+            } else if(data[0].equals("EscapeRoomClues")) {
                 EscapeRoomSign e = new EscapeRoomSign(textures.get("EscapeRoomClues:" + data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5]), Boolean.parseBoolean(data[6]));
                 levelObjects.add(e);
+            } else if(data[0].equals("EscapeRoomCage")) {
+                EscapeCage c = new EscapeCage(textures.get("EscapeRoomClues:" + data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5]));
+                levelObjects.add(c);
             } else {
                 //don't get mad at us :)
                 throw new RuntimeException("Error parsing level data. Please redownload the level data files and ensure the data is not corrupted.");

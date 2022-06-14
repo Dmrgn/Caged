@@ -2,7 +2,22 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-
+/**
+ * <p>
+ * This class contains data about the interactable signs in the game that help
+ * teach and quiz the player
+ * </p>
+ *
+ * <h2>ICS 4U0 with Krasteva, V.</h2>
+ *
+ * @version 5.0
+ * @author Ryan Atlas, Samuel Huang and Daniel Morgan
+ * @since June 13th, 2022
+ * <p>
+ * File was created by Samuel Huang June 13th, 2022. 1 hour 30 minutes spent. Comments were added, variables created,
+ * the constructor was made and the getNode(), draw(), inRange(), display() and update() methods were added
+ * </p>
+ */
 public class EscapeRoomSign extends GameObject implements Interactable{
 
     /** JavaFX node for the platform*/
