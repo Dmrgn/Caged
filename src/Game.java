@@ -108,6 +108,8 @@ public class Game {
         signsRead = new boolean[4];
         stageObjectTask = new boolean[3];
         stageObjectTask[0] = true;
+        stageObjectTask[1] = true;
+        stageObjectTask[2] = true;
         stageRiddleTask = new boolean[3];
         stageMainTask = new boolean[3];
         // render the background, then midground, then foreground first
