@@ -68,10 +68,10 @@ public class Boss1 extends Boss {
         if (HitBox.areBoxesColliding(hitbox, ((Player)Game.player).getHitBox())) {
             if (((Player)Game.player).isDamagableState()) { // if damaging was successful
                 ((Player)Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
-                vel = vel.add(Vector.sub(pos, Game.player.pos).mul(0.1f)); // bounce away from player
+                vel = vel.add(Vector.sub(pos, Game.player.pos).mul(0.01f)); // bounce away from player
             } else if(invincibleFrames == 0) {
                 ((Player)Game.player).heal(20);
-                damage(100, Game.player.pos);
+                damage(20, Game.player.pos);
             }
         }
         if (invincibleFrames > 0) invincibleFrames--;

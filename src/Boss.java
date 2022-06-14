@@ -97,7 +97,7 @@ public abstract class Boss extends CollidableObject {
       invincibleFrames = 20;
       boolean result = requestStateChange(BossState.DAMAGED) == BossState.DAMAGED;
       if (result)
-         vel = location.sub(pos).mul(-0.1f);
+         vel = location.sub(pos).mul(-0.01f);
       return result;
    }
 

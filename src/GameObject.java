@@ -38,7 +38,6 @@ public abstract class GameObject {
      * Draw method that draws the object
      */
     public void draw() {
-        System.out.println(this);
         getNode().relocate((pos.x)*scale, (pos.y)*scale);
     }
     /**
