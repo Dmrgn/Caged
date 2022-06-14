@@ -15,6 +15,12 @@ import javafx.scene.image.*;
  * </p>
  */
 public class FinalBoss extends Boss {
+    /** The boss's acceleration speed which is a constant*/
+    protected static final float ACCELERATION = 0.1f;
+    /** how high the boss can jump */
+    private static final int JUMP_HEIGHT = 20;
+    /** The bottom hitbox of the player */
+    private HitBox lowerHitBox;
     /** Node for boss to be displayed*/
     private Node boss;
     /**
@@ -23,11 +29,21 @@ public class FinalBoss extends Boss {
      * @param y Starting y position
      * @param HITBOX_SIZE Hitbox size
      */
-    public FinalBoss(float x, float y, Vector HITBOX_SIZE, Image image){
+    public FinalBoss(float x, float y, Vector HITBOX_SIZE, Image image) {
         super(200, x, y, HITBOX_SIZE);
         sprite = image;
         createHitBox(pos, pos.add(HITBOX_SIZE));
         boss = new ImageView(sprite);
+    }
+    /**
+     * Method to create hitbox from 2 vectors
+     * @param pos1 Top left corner
+     * @param pos2 Bottom right corner
+     */
+    @Override
+    public void createHitBox(Vector pos1, Vector pos2) {
+        hitbox = new HitBox(pos1.add(new Vector(0, 5)), pos2.sub(new Vector(0, 5)));
+        lowerHitBox = new HitBox(pos1.add(new Vector(5, HITBOX_SIZE.y / 2)), pos2.add(new Vector(-5, 0)));
     }
 
     /**
@@ -36,7 +52,7 @@ public class FinalBoss extends Boss {
     public void update() {
         if (killed) {
             boss.setVisible(false);
-            createHitBox(new Vector(0,0), new Vector(0,0));
+            createHitBox(new Vector(0, 0), new Vector(0, 0));
             return;
         }
         switch (state) {
@@ -44,11 +60,11 @@ public class FinalBoss extends Boss {
                 // handle state logic
 
                 // Handle exiting this state
-                    requestStateChange(BossState.HOSTILE);
+                requestStateChange(BossState.HOSTILE);
                 break;
             case HOSTILE:
                 // handle state logic
-                vel = vel.add(Game.player.pos.sub(pos).toUnit().mul(ACCELERATION));
+                vel = vel.add(new Vector(Game.player.pos.sub(pos).toUnit().mul(ACCELERATION).x, 0));
                 // Handle exiting this state
                 break;
             case DAMAGED:
@@ -64,22 +80,59 @@ public class FinalBoss extends Boss {
                 break;
         }
         // global logic
+        boolean hasTouchedGround = false;
+        boolean jumped = false;
+        boolean collided = true;
         // touching player
-        if (HitBox.areBoxesColliding(hitbox, ((Player)Game.player).getHitBox())) {
-            if (((Player)Game.player).isDamagableState()) { // if damaging was successful
-                ((Player)Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
-                vel = vel.add(Vector.sub(pos, Game.player.pos).mul(0.1f)); // bounce away from player
-            } else if(invincibleFrames == 0) {
-                ((Player)Game.player).heal(20);
-                damage(100, Game.player.pos);
+        if (HitBox.areBoxesColliding(hitbox, ((Player) Game.player).getHitBox())) {
+            if (((Player) Game.player).isDamagableState()) { // if damaging was successful
+                ((Player) Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
+                // vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(0.05f).x, 0)); // bounce away from player
+            } else if (invincibleFrames == 0) {
+                ((Player) Game.player).heal(20);
+                damage(10, Game.player.pos);
             }
+        }
+
+        vel = vel.add(new Vector(0, Game.GRAVITY));
+        // Handle vertical collisions
+        if (Game.touchingCollidable(this, lowerHitBox)) {
+            // collided = true;
+            hasTouchedGround = true;
+            pos.y = pos.y - (vel.y * 1.5f);
+            createHitBox(pos, pos.add(HITBOX_SIZE));
+            vel.y = 0;
+            if ((int)(Math.random() * 50) == 1) {
+                vel = vel.add(new Vector(0, -JUMP_HEIGHT));
+                jumped = true;
+            }
+        }
+        // Handle lateral collisions
+        if (Game.touchingCollidable(this) && collided) {
+            pos.x = pos.x - (vel.x * 1.5f);
+            createHitBox(pos, pos.add(HITBOX_SIZE));
+            vel.x = vel.x * -0.5f;
         }
         if (invincibleFrames > 0) invincibleFrames--;
         // add position
         pos = pos.add(vel);
         createHitBox(pos, pos.add(HITBOX_SIZE));
         // reduce velocity for next frame
-        vel = vel.mul(0.99f);
+        vel = vel.mul(0.9f);
+    }
+    /**
+     * Method called when damaged
+     * @param amount Amount of damage
+     * @param location Location
+     * @return Whether the state was changed to damaged
+     */
+    public boolean damage(int amount, Vector location) {
+        hp -= amount;
+        invincibleFrames = 20;
+        boolean result = requestStateChange(BossState.DAMAGED) == BossState.DAMAGED;
+        // if (result)
+            // vel = vel.add(new Vector(location.sub(pos).mul(-0.01f).x, 5));
+        return result;
     }
     /**
      * Getter for node

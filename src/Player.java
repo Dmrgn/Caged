@@ -230,7 +230,7 @@ public class Player extends CollidableObject {
                     if (damagedFrames > DAMAGE_STUDDER_DURATION) {
                         requestStateChange(PlayerState.IDLE);
                         if (hp <= 0)
-                            Game.navigateLevel(Game.getLevel(Game.levelNum-1), Game.getLevel(Game.levelNum).levelScreen, 0);
+                            Game.navigateLevel(Game.getLevel(Game.levelNum-1), Game.getLevel(Game.levelNum-1).levelScreen, 0);
                     }
                     break;
                 }
