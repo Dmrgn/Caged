@@ -44,12 +44,15 @@ public class EscapeCage extends CollidableObject implements Interactable{
     private boolean answeredCorrectly;
 
     private boolean brotherTip;
+    private Image brotherTipImane;
+
 
     public EscapeCage(Image scenario, int x, int y, int level, int answer)
     {
         isLocked = true;
         imageLocked = new Image("assets/doors/cageClosed.png");
-        imageOpen = new Image("assets/doors/cageOpen.png");;
+        imageOpen = new Image("assets/doors/cageOpen.png");
+        brotherTipImane = new Image("assets/doors/BrotherTips5.png");
         this.scenario = scenario;
         node = new ImageView(imageLocked);
         pos = new Vector(x, y);
@@ -85,12 +88,12 @@ public class EscapeCage extends CollidableObject implements Interactable{
         }
         if(brotherTip)
         {
-            Image brotherTip = new Image("assets/doors/BrotherTips5.png");
             clearTransformations();
-            ((ImageView) node).setImage(brotherTip);
-            pos = new Vector(0, 0);
+            ((ImageView) node).setImage(brotherTipImane);
+            setTranslate(Game.toWorld(new Vector(0, 0)).mul(-1));
+            getNode().relocate((pos.x), (pos.y));
             Player.playerMoving = false;
-            Game.player.getNode().setVisible(true);
+            Game.player.getNode().setVisible(false);
             //teleport to final boss fight
             if(Keyboard.isKeyDown(KeyCode.L)) {
                 Game.player.getNode().setVisible(true);
@@ -110,14 +113,16 @@ public class EscapeCage extends CollidableObject implements Interactable{
     }
     @Override
     public void draw() {
-        clearTransformations();
-        if (accessing && !answeredCorrectly) {
-            setTranslate(Game.toWorld(new Vector(0,0)).mul(-1));
-            getNode().relocate((pos.x), (pos.y));
-        } else {
-            setScale(Game.ZOOM, Main.getDims().div(2));
-            setTranslate(Game.cameraPos);
-            getNode().relocate((pos.x)*Game.ZOOM, (pos.y)*Game.ZOOM);
+        if(!brotherTip) {
+            clearTransformations();
+            if (accessing && !answeredCorrectly) {
+                setTranslate(Game.toWorld(new Vector(0, 0)).mul(-1));
+                getNode().relocate((pos.x), (pos.y));
+            } else {
+                setScale(Game.ZOOM, Main.getDims().div(2));
+                setTranslate(Game.cameraPos);
+                getNode().relocate((pos.x) * Game.ZOOM, (pos.y) * Game.ZOOM);
+            }
         }
     }
 
