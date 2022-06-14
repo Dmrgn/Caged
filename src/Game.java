@@ -120,6 +120,8 @@ public class Game {
             Main.setWidth(newVal.intValue());
         });
         // add layers to sceneGroup
+        sceneGroup.getChildren().clear();
+        gameObjects.clear();
         sceneGroup.getChildren().addAll(foreground, midground, background);
         // add sceneGroup to the window and create the scene
         buildScene(sceneGroup);
@@ -129,7 +131,7 @@ public class Game {
         levels[0] = new Level1();
         levels[1] = new Level2();
         levels[2] = new Level3();
-        levelNum = 3;
+        levelNum = 1;
         createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
         // set the current scene
@@ -296,7 +298,8 @@ public class Game {
      * the actual gameplay section of the game
      * @throws FileNotFoundException For splashScreen
      */
-    public void mainMenu() throws FileNotFoundException {
+    public static boolean breakGame = false;
+    public static void mainMenu() throws FileNotFoundException {
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
         Credits credits = new Credits(window);
@@ -304,6 +307,15 @@ public class Game {
         AnimationTimer at = new AnimationTimer() {
             @Override
             public void handle(long l) {
+                if (breakGame) {
+                    breakGame = false;
+                    try {
+
+                        Main.recreate(window);
+                    } catch (FileNotFoundException e) {
+                    }
+                    this.stop();
+                }
                 if (menu.getSelection() == -1) {
                     window.setScene(menu.getScene());
                     menu.setSelection(0);

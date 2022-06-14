@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.FileNotFoundException;
 
@@ -38,7 +39,7 @@ public class Main extends Application {
     /** Instance of the player */
     public Player player;
     /** Instance of the current game */
-    public Game game;
+    public static Game game;
     /**
      * returns the width of the current window
      * @return Width of the current window in pixels
@@ -82,6 +83,10 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage window) throws FileNotFoundException {
+        recreate(window);
+    }
+    /** Recreats the game instance */
+    public static void recreate(Stage window) throws FileNotFoundException {
         game = new Game(window);
         Keyboard.init(game.getScene());
         game.playGame();
