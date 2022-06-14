@@ -128,7 +128,7 @@ public class Game {
         levels[1] = new Level2();
         levels[2] = new Level3();
         levelNum = 3;
-        createLevel(levels[2]);
+        createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
         // set the current scene
         window.setScene(scene);
