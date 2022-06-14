@@ -43,8 +43,6 @@ public class EscapeCage extends CollidableObject implements Interactable{
 
     private boolean answeredCorrectly;
 
-    private boolean stop;
-
     public EscapeCage(Image scenario, int x, int y, int level, int answer)
     {
         isLocked = true;
@@ -61,27 +59,22 @@ public class EscapeCage extends CollidableObject implements Interactable{
         answeredCorrectly = false;
         accessing = false;
         this.answer = answer;
-        stop = false;
     }
     public void update() {
-        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.stageObjectTask[level] && Game.stageRiddleTask[level] && Game.stageMainTask[level]) {
+        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.stageObjectTask[level] && Game.stageRiddleTask[level] && Game.stageMainTask[level] && isLocked) {
             isLocked = false;
             ((ImageView)node).setImage(imageOpen);
             createHitBox(new Vector(0,0), new Vector(0,0));
         }
         if(isLocked) {
-            ((ImageView)node).setImage(imageLocked);
-            pos = normalPos;
-        }
-        else if(!answeredCorrectly){
             display();
-            if (accessing && !answeredCorrectly) {
+        }
+
+        if(!answeredCorrectly && !isLocked){
+            if (!accessing && Vector.dist(Game.player.pos, this.pos) < 100 && Keyboard.isKeyDown(KeyCode.E)) {
                 ((ImageView) node).setImage(scenario);
                 displayScenario();
                 pos = Game.toWorld(new Vector(20, 20));
-            } else {
-                ((ImageView) node).setImage(imageOpen);
-                pos = normalPos;
             }
         }
     }
@@ -116,20 +109,17 @@ public class EscapeCage extends CollidableObject implements Interactable{
     }
 
     public void display() {
-        if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E) && !answeredCorrectly) {
-            accessing = true;
-            Player.playerMoving = false;
-            Game.player.getNode().setVisible(false);
-
-        }
+        ((ImageView)node).setImage(imageLocked);
+        pos = normalPos;
     }
     /**
      * Method to display the scenario when going through doors
      */
     public void displayScenario() {
+
         Player.playerMoving = false;
         Game.player.getNode().setVisible(false);
-        ((ImageView)node).setImage(scenario);
+        ((ImageView) node).setImage(scenario);
         if (!answered) {
             if (Keyboard.isKeyDown(KeyCode.DIGIT1)) {
                 userAnswer = 1;
