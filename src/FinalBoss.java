@@ -16,9 +16,9 @@ import javafx.scene.image.*;
  */
 public class FinalBoss extends Boss {
     /** The boss's acceleration speed which is a constant*/
-    protected static final float ACCELERATION = 0.1f;
+    protected static final float ACCELERATION = 0.04f;
     /** how high the boss can jump */
-    private static final int JUMP_HEIGHT = 20;
+    private static final int JUMP_HEIGHT = 8;
     /** The bottom hitbox of the player */
     private HitBox lowerHitBox;
     /** Node for boss to be displayed*/
@@ -87,14 +87,14 @@ public class FinalBoss extends Boss {
         if (HitBox.areBoxesColliding(hitbox, ((Player) Game.player).getHitBox())) {
             if (((Player) Game.player).isDamagableState()) { // if damaging was successful
                 ((Player) Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
-                // vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(0.05f).x, 0)); // bounce away from player
+                vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-1f).x, 0)); // bounce away from player
             } else if (invincibleFrames == 0) {
                 ((Player) Game.player).heal(20);
                 damage(10, Game.player.pos);
             }
         }
 
-        vel = vel.add(new Vector(0, Game.GRAVITY));
+        vel = vel.add(new Vector(0, Game.GRAVITY*2));
         // Handle vertical collisions
         if (Game.touchingCollidable(this, lowerHitBox)) {
             // collided = true;
@@ -118,7 +118,7 @@ public class FinalBoss extends Boss {
         pos = pos.add(vel);
         createHitBox(pos, pos.add(HITBOX_SIZE));
         // reduce velocity for next frame
-        vel = vel.mul(0.9f);
+        vel = vel.mul(0.98f);
     }
     /**
      * Method called when damaged
@@ -130,8 +130,8 @@ public class FinalBoss extends Boss {
         hp -= amount;
         invincibleFrames = 20;
         boolean result = requestStateChange(BossState.DAMAGED) == BossState.DAMAGED;
-        // if (result)
-            // vel = vel.add(new Vector(location.sub(pos).mul(-0.01f).x, 5));
+        if (result)
+            vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-1f).x, 0)); // bounce away from player
         return result;
     }
     /**
