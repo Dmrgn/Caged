@@ -30,7 +30,7 @@ public class TeleportLocation extends GameObject {
     public TeleportLocation(float x, float y, int index) {
         this.index = index;
         pos = new Vector(x, y);
-        node = new ImageView(new Image("assets/teleporterDebug.png"));
+        node = new ImageView(new Image(Game.IS_DEBUG_MODE ? "assets/teleporterDebug.png" : "assets/teleporter.png"));
     }
     /**
      * Update method

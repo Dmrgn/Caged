@@ -45,7 +45,7 @@ public class Level2 extends Level {
             textures.put("Key:"+key.getName().split("\\.")[0], new Image(key.getPath()));
         }
         levelScreen = 0;
-        files = new String[]{"Level2_1.txt","LevelBoss_1.txt"};
+        files = new String[]{"Level2_1.txt", "LevelBoss_1.txt"};
         ldp = new LevelDataParser(textures);
     }
     /**

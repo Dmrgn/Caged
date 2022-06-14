@@ -130,7 +130,7 @@ public class Game {
         levels[0] = new Level1();
         levels[1] = new Level2();
         levels[2] = new Level3();
-        levelNum = 2;
+        levelNum = 1;
         createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
         startedGame = false;
@@ -342,8 +342,7 @@ public class Game {
                                 obj.setTranslate(cameraPos);
                             }
                             obj.update();
-                            if (gameObjects.size() == 0)
-                            break;
+                            if (gameObjects.size() == 0) break;
                             obj.draw();
                         }
                         if (levelNum == 3) {
