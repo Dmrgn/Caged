@@ -40,9 +40,8 @@ public class Boss1 extends Boss {
      */
     public void update() {
         if (killed) {
-            //boss.setVisible(false);
-            createHitBox(new Vector(0,0), new Vector(0,0));
             ((ImageView) boss).setImage(brotherScreen);
+            createHitBox(new Vector(0,0), new Vector(0,0));
             pos = Game.toWorld(new Vector(25, 20));
             Game.player.getNode().setVisible(false);
             Player.playerMoving = false;
