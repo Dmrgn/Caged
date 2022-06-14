@@ -27,7 +27,7 @@ public class Boss1 extends Boss {
      * @param HITBOX_SIZE Hitbox size
      */
     public Boss1(float x, float y, Vector HITBOX_SIZE, Image image){
-        super(10, x, y, HITBOX_SIZE);
+        super(150, x, y, HITBOX_SIZE);
         sprite = image;
         createHitBox(pos, pos.add(HITBOX_SIZE));
         boss = new ImageView(sprite);
