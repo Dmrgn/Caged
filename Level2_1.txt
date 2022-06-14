@@ -31,7 +31,7 @@ Platform, rottedPlatform, false, 1670, 500
 Platform, rottedPlatform, false, 1670, 500
 Platform, rottedPlatform, false, 1540, 640
 Platform, rottedClimber, false, 904, 445
-Key, picframeout, picframe, 940, 515
+Key, picframeout, picframe, 940, 515, -1
 Door, bigDoor, bigDoor, DoorSignLvl2, BrotherTips3, 90, 905, true
 Sign, QuesSign1, true, 800, 940, 2
 Sign, QuesSign2, true, 1730, 940, 4

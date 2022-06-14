@@ -37,6 +37,9 @@ public class Level3 extends Level {
         for (File platform : (new File("assets/platforms").listFiles())) {
             textures.put("Platform:"+platform.getName().split("\\.")[0], new Image(platform.getPath()));
         }
+        for (File key : (new File("assets/keys").listFiles())){
+            textures.put("Key:"+key.getName().split("\\.")[0], new Image(key.getPath()));
+        }
         for (File escapeRoomClues : (new File("assets/escapeRoomClues").listFiles())) {
             textures.put("EscapeRoomClues:"+escapeRoomClues.getName().split("\\.")[0], new Image(escapeRoomClues.getPath()));
         }
