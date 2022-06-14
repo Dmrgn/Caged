@@ -70,8 +70,8 @@ public class Boss1 extends Boss {
                 ((Player)Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
                 vel = vel.add(Vector.sub(pos, Game.player.pos).mul(0.01f)); // bounce away from player
             } else if(invincibleFrames == 0) {
-                ((Player)Game.player).heal(20);
-                damage(20, Game.player.pos);
+                ((Player)Game.player).heal(10);
+                damage(10, Game.player.pos);
             }
         }
         if (invincibleFrames > 0) invincibleFrames--;
