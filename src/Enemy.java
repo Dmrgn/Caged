@@ -85,7 +85,6 @@ public class Enemy extends CollidableObject {
 
                     // Handle exiting this state
                     if (inRange((Player) Game.player)) {
-                        System.out.println("agro");
                         requestStateChange(EnemyState.HOSTILE);
                     }
                     break;

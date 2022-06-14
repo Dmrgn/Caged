@@ -194,7 +194,6 @@ public class Sign extends GameObject implements Interactable {
                 Enemy.canMove = false;
                 for (GameObject obj : Game.gameObjects){
                     if (obj instanceof Enemy){
-                    //System.out.println("test 3");
                         obj.getNode().setVisible(false);
                     }
                 }
@@ -209,7 +208,6 @@ public class Sign extends GameObject implements Interactable {
             Enemy.canMove = true;
             for (GameObject obj : Game.gameObjects){
                 if (obj instanceof Enemy){
-                    //System.out.println("test 4");
                     obj.getNode().setVisible(true);
                 }
             }
@@ -227,7 +225,6 @@ public class Sign extends GameObject implements Interactable {
             Enemy.canMove = false;
             for (GameObject obj : Game.gameObjects){
                 if (obj instanceof Enemy){
-                    //System.out.println("test 3");
                     obj.getNode().setVisible(false);
                 }
             }
@@ -262,7 +259,6 @@ public class Sign extends GameObject implements Interactable {
                 //tell upward it works
 //                answeredCorrectly = true;
 //                Game.questionsCorrect++;
-//                System.out.println(Game.questionsCorrect);
                 messageBox(true);
             } else {
                 //tell upward it is false;
@@ -270,8 +266,6 @@ public class Sign extends GameObject implements Interactable {
                 messageBox(false);
             }
 //            accessing = false;
-//            System.out.println(userAnswer);
-//            System.out.println(answeredCorrectly);
 //            answered = false;
 //            userAnswer = 0;
 //            Game.player.getNode().setVisible(true);
@@ -297,10 +291,7 @@ public class Sign extends GameObject implements Interactable {
         {
             answeredCorrectly = true;
             Game.questionsCorrect++;
-            System.out.println(Game.questionsCorrect);
             accessing = false;
-            System.out.println(userAnswer);
-            System.out.println(answeredCorrectly);
             answered = false;
             userAnswer = 0;
             Game.player.getNode().setVisible(true);
@@ -315,10 +306,7 @@ public class Sign extends GameObject implements Interactable {
         if(Keyboard.isKeyDown(KeyCode.H) && !correct)
         {
             answeredCorrectly = false;
-            System.out.println(Game.questionsCorrect);
             accessing = false;
-            System.out.println(userAnswer);
-            System.out.println(answeredCorrectly);
             answered = false;
             userAnswer = 0;
             Game.player.getNode().setVisible(true);

@@ -54,7 +54,6 @@ public class FinalBoss extends Boss {
             boss.setVisible(false);
             createHitBox(new Vector(0, 0), new Vector(0, 0));
             Game.breakGame = true;
-            System.out.println("here");
             return;
         }
         switch (state) {
@@ -121,6 +120,9 @@ public class FinalBoss extends Boss {
         createHitBox(pos, pos.add(HITBOX_SIZE));
         // reduce velocity for next frame
         vel = vel.mul(0.98f);
+        if (pos.y > 1000) {
+            pos = new Vector(523, 494);
+        }
     }
     /**
      * Method called when damaged

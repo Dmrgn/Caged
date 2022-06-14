@@ -88,7 +88,6 @@ public class Keyboard {
         scene.setOnMousePressed(new EventHandler <MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                System.out.println("mouse: " + Game.toWorld(Keyboard.mouseCoords()));
                 final Clipboard clipboard = Clipboard.getSystemClipboard();
                 final ClipboardContent content = new ClipboardContent();
                 content.putString((int)Game.toWorld(Keyboard.mouseCoords()).x + ", " + (int)Game.toWorld(Keyboard.mouseCoords()).y);

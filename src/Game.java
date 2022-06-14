@@ -356,14 +356,12 @@ public class Game {
                     instructions.controlScreens();
                     window.setScene(instructions.getScene());
                     if (Keyboard.isKeyDown(KeyCode.H)) {
-                        System.out.println("Works");
                         menu.setSelection(-1);
                     }
                 } else if (menu.getSelection() == 3) {
                     credits.display();
                     window.setScene(credits.getScene());
                     if (Keyboard.isKeyDown(KeyCode.H)) {
-                        System.out.println("Works");
                         menu.setSelection(-1);
                     }
                 }
@@ -417,7 +415,6 @@ public class Game {
             trans.setY(cameraPos.y);
             p = trans.inverseTransform(p);
         } catch (Exception e) {
-            System.out.println("Cant invert transform.");
         }
         return new Vector((float)p.getX(), (float)p.getY());
     }
@@ -441,7 +438,6 @@ public class Game {
             p = trans.transform(p);
 
         } catch (Exception e) {
-            System.out.println("Cant invert transform.");
         }
         return new Vector((float)p.getX(), (float)p.getY());
     }

@@ -32,6 +32,9 @@ Platform, moleRightLeft, false, 1480, 2578
 Platform, moleRightRight, false, 1553, 2676
 Platform, startingRoofThing, false, 1457, 2150
 Platform, rightShaftWall, false, 1081, 829
+Platform, rightRoomWall, false, 1575, 564
+Platform, tinyPlat, false, 1473, 774
+Platform, tinyPlat, false, 161, 1712
 EscapeRoomCage, Scenario1, 800, 2490, 0, 4
 EscapeRoomClues, CollectKey1, 1945, 2540, 7, 0, false
 EscapeRoomClues, Riddle1, 890, 2510, 6, 0, true
