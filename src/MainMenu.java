@@ -129,7 +129,7 @@ public class MainMenu {
         background.setFill(Color.BLACK);
 
         Group root = new Group(background, title, newGameButton0, instructionsButton0, creditsButton0, quitButton0, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
-        scene = new Scene(root, Main.getWidth(), Main.getHeight());
+        scene = new Scene(root);
         //stage.setScene(scene);
         scene.setFill(Color.BLACK);
         Keyboard.init(scene);
