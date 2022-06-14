@@ -34,7 +34,7 @@ public class FinalBoss extends Boss {
      * @param HITBOX_SIZE Hitbox size
      */
     public FinalBoss(float x, float y, Vector HITBOX_SIZE, Image image) {
-        super(120, x, y, HITBOX_SIZE);
+        super(10, x, y, HITBOX_SIZE);
         sprite = image;
         createHitBox(pos, pos.add(HITBOX_SIZE));
         boss = new ImageView(sprite);
@@ -56,11 +56,9 @@ public class FinalBoss extends Boss {
      */
     public void update() {
         if (killed) {
-            boss.setVisible(false);
-            createHitBox(new Vector(0, 0), new Vector(0, 0));
+            clearTransformations();
             ((ImageView) boss).setImage(brotherScreen);
-            createHitBox(new Vector(0,0), new Vector(0,0));
-            pos = Game.toWorld(new Vector(25, 20));
+            pos = new Vector(0, 0);
             Game.player.getNode().setVisible(false);
             Player.playerMoving = false;
             if(Keyboard.isKeyDown(KeyCode.H)) {
@@ -104,7 +102,7 @@ public class FinalBoss extends Boss {
         if (HitBox.areBoxesColliding(hitbox, ((Player) Game.player).getHitBox())) {
             if (((Player) Game.player).isDamagableState()) { // if damaging was successful
                 ((Player) Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
-                vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-0.6f).x, 0)); // bounce away from player
+                vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-0.25f).x, 0)); // bounce away from player
             } else if (invincibleFrames == 0) {
                 ((Player) Game.player).heal(20);
                 damage(10, Game.player.pos);
@@ -151,7 +149,7 @@ public class FinalBoss extends Boss {
         invincibleFrames = 20;
         boolean result = requestStateChange(BossState.DAMAGED) == BossState.DAMAGED;
         if (result)
-            vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-0.6f).x, 0)); // bounce away from player
+            vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-0.25f).x, 0)); // bounce away from player
         return result;
     }
     /**
