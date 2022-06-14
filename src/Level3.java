@@ -24,6 +24,7 @@ public class Level3 extends Level {
     public Level3() {
         textures = new HashMap();
         textures.put("Sign", new Image("assets/player.png"));
+        textures.put("FinalBoss", new Image("assets/finalBoss.png"));
         for (File mold : (new File("assets/molds").listFiles())) {
             textures.put("Mold:"+mold.getName().split("\\.")[0], new Image(mold.getPath()));
         }
@@ -40,7 +41,7 @@ public class Level3 extends Level {
             textures.put("EscapeRoomClues:"+escapeRoomClues.getName().split("\\.")[0], new Image(escapeRoomClues.getPath()));
         }
         levelScreen = 0;
-        files = new String[]{"Level3_1.txt", "LevelBoss_2.txt"};
+        files = new String[]{"LevelBoss_2.txt", "Level3_1.txt"};
         ldp = new LevelDataParser(textures);
     }
     /**

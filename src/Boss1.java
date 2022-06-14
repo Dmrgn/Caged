@@ -37,6 +37,7 @@ public class Boss1 extends Boss {
         if (killed) {
             boss.setVisible(false);
             createHitBox(new Vector(0,0), new Vector(0,0));
+            Game.navigateLevel(Game.getLevel(2), 0, 0);
             return;
         }
         switch (state) {
