@@ -27,7 +27,7 @@ public class Boss1 extends Boss {
      * @param HITBOX_SIZE Hitbox size
      */
     public Boss1(float x, float y, Vector HITBOX_SIZE, Image image){
-        super(150, x, y, HITBOX_SIZE);
+        super(10, x, y, HITBOX_SIZE);
         sprite = image;
         createHitBox(pos, pos.add(HITBOX_SIZE));
         boss = new ImageView(sprite);
@@ -40,9 +40,9 @@ public class Boss1 extends Boss {
      */
     public void update() {
         if (killed) {
+            clearTransformations();
             ((ImageView) boss).setImage(brotherScreen);
-            createHitBox(new Vector(0,0), new Vector(0,0));
-            pos = Game.toWorld(new Vector(25, 20));
+            pos = new Vector(0, 0);
             Game.player.getNode().setVisible(false);
             Player.playerMoving = false;
             if(Keyboard.isKeyDown(KeyCode.H)) {

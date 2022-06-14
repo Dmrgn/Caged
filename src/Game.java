@@ -109,9 +109,6 @@ public class Game {
         questionsCorrect = 0;
         signsRead = new boolean[4];
         stageObjectTask = new boolean[3];
-//        stageObjectTask[0] = true;
-//        stageObjectTask[1] = true;
-//        stageObjectTask[2] = true;
         stageRiddleTask = new boolean[3];
         stageMainTask = new boolean[3];
         // render the background, then midground, then foreground first
@@ -133,7 +130,7 @@ public class Game {
         levels[0] = new Level1();
         levels[1] = new Level2();
         levels[2] = new Level3();
-        levelNum = 1;
+        levelNum = 2;
         createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
         startedGame = false;

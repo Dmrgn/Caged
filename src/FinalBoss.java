@@ -58,7 +58,6 @@ public class FinalBoss extends Boss {
         if (killed) {
             boss.setVisible(false);
             createHitBox(new Vector(0, 0), new Vector(0, 0));
-            Game.breakGame = true;
             ((ImageView) boss).setImage(brotherScreen);
             createHitBox(new Vector(0,0), new Vector(0,0));
             pos = Game.toWorld(new Vector(25, 20));

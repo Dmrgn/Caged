@@ -46,4 +46,4 @@ Enemy, 1203, 250
 Enemy, 600, 310
 Enemy, 330, 400
 Enemy, 1500, 610
-Teleporter, 90, 988, 1, 1, 0
+Teleporter, 190, 988, 1, 1, 0
