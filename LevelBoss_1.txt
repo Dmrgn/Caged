@@ -1,3 +1,4 @@
+Mold, boss, 0, 0
 TeleportLocation, 1151, 604, 0
 Platform, rottedPlatform, false, 981, 552
 Platform, rottedSmallPlatform, false, 1099, 434
