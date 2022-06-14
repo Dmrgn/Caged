@@ -101,10 +101,10 @@ public class Game {
     public Game(Stage w) {
         window = w;
         window.setTitle("Caged Inside the Mind");
-        window.setMinWidth(Main.getWidth());
-        window.setMinHeight(Main.getHeight());
-        window.setMaxWidth(Main.getWidth());
-        window.setMaxHeight(Main.getHeight());
+        window.setWidth(Main.getWidth());
+        window.setHeight(Main.getHeight());
+        //window.setMaxWidth(Main.getWidth());
+        //window.setMaxHeight(Main.getHeight());
         window.setResizable(false);
         canOpenDoor = false;
         objectFound = false;
@@ -126,7 +126,7 @@ public class Game {
         levels[0] = new Level1();
         levels[1] = new Level2();
         levels[2] = new Level3();
-        levelNum = 3;
+        levelNum = 1;
         createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
         startedGame = false;
