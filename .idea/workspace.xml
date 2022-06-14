@@ -6,11 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Boss is now visible">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/EscapeCage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/EscapeCage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EscapeCage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EscapeCage.java" afterDir="false" />
-    </list>
+    <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Boss in LevelDataParser changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
