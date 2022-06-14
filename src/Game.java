@@ -84,7 +84,8 @@ public class Game {
     public static boolean[] stageMainTask;
     /** Level number */
     public static int levelNum;
-
+    /** Whether the game has started */
+    private static boolean startedGame;
     /** Programmatic representation of scene layers */
     public static enum SceneLayer {
         FOREGROUND,
@@ -135,6 +136,7 @@ public class Game {
         levelNum = 1;
         createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
+        startedGame = false;
         // set the current scene
         window.setScene(scene);
     }
@@ -178,16 +180,17 @@ public class Game {
         int temp = levelNum;
         updateLevelScreen(level, screen);
         createLevel(level);
-        if (temp != levelNum){
+        if (temp != levelNum || levelNum == 1 && screen == 0 && !startedGame){
             canOpenDoor = false;
+            String fileName = "Level " + levelNum +".mp3";
+            mediaPlayer.stop();
+            Media menuTheme = new Media(new File(fileName).toURI().toString());
+            mediaPlayer = new MediaPlayer(menuTheme);
+            mediaPlayer.setVolume(0.3);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+            startedGame = true;
         }
-        String fileName = "Level " + levelNum +".mp3";
-        mediaPlayer.stop();
-        Media menuTheme = new Media(new File(fileName).toURI().toString());
-        mediaPlayer = new MediaPlayer(menuTheme);
-        mediaPlayer.setVolume(0.3);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
         ArrayList<TeleportLocation> locations = new ArrayList<TeleportLocation>();
         for (GameObject obj : gameObjects) {
             if (obj instanceof TeleportLocation)
