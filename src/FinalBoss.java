@@ -62,11 +62,10 @@ public class FinalBoss extends Boss {
             Game.player.getNode().setVisible(false);
             Player.playerMoving = false;
             if(Keyboard.isKeyDown(KeyCode.H)) {
-                Game.navigateLevel(Game.getLevel(2), 0, 0);
+                Game.navigateLevel(Game.getLevel(0), 0, 0);
                 Game.player.getNode().setVisible(true);
                 Player.playerMoving = true;
                 Game.breakGame = true;
-                System.out.println("here");
             }
             return;
         }

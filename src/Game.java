@@ -103,6 +103,8 @@ public class Game {
         window.setTitle("Caged Inside the Mind");
         window.setMinWidth(Main.getWidth());
         window.setMinHeight(Main.getHeight());
+        window.setMaxWidth(Main.getWidth());
+        window.setMaxHeight(Main.getHeight());
         window.setResizable(false);
         canOpenDoor = false;
         objectFound = false;
@@ -112,12 +114,6 @@ public class Game {
         stageRiddleTask = new boolean[3];
         stageMainTask = new boolean[3];
         // render the background, then midground, then foreground first
-        w.widthProperty().addListener((obs, oldVal, newVal) -> {
-            Main.setWidth(newVal.intValue());
-        });
-        w.heightProperty().addListener((obs, oldVal, newVal) -> {
-            Main.setWidth(newVal.intValue());
-        });
         // add layers to sceneGroup
         sceneGroup.getChildren().clear();
         gameObjects.clear();
@@ -130,7 +126,7 @@ public class Game {
         levels[0] = new Level1();
         levels[1] = new Level2();
         levels[2] = new Level3();
-        levelNum = 1;
+        levelNum = 3;
         createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
         startedGame = false;
@@ -180,7 +176,7 @@ public class Game {
         int temp = levelNum;
         updateLevelScreen(level, screen);
         createLevel(level);
-        if (temp != levelNum || levelNum == 1 && screen == 0 && !startedGame){
+        if (temp != levelNum || (levelNum == 1 && screen == 0 && !startedGame)){
             canOpenDoor = false;
             String fileName = "Level " + levelNum +".mp3";
             mediaPlayer.stop();
@@ -263,12 +259,6 @@ public class Game {
 
     }
     /**
-     * Creates the two boss fights in the game which are designed to teach the
-     * player to never give up, even when all hope seems lost
-     * @param boss The boss whose fight is being created
-     */
-    public void createBossfight(Boss boss) {}
-    /**
      * Creates and displays the splash screen to the user
      * @throws FileNotFoundException In case the files cannot be found
      */
@@ -304,12 +294,13 @@ public class Game {
         }
         return gameObject;
     }
+    /** Whether to break the game*/
+    public static boolean breakGame = false;
     /**
      * Method that is active as long as the player is currently playing
      * the actual gameplay section of the game
      * @throws FileNotFoundException For splashScreen
      */
-    public static boolean breakGame = false;
     public static void mainMenu() throws FileNotFoundException {
         MainMenu menu = new MainMenu(window);
         Instructions instructions = new Instructions(window);
@@ -321,7 +312,6 @@ public class Game {
                 if (breakGame) {
                     breakGame = false;
                     try {
-
                         Main.recreate(window);
                     } catch (FileNotFoundException e) {
                     }
