@@ -1,6 +1,6 @@
 Background, abyss
 Mold, two, 0, 0
-TeleportLocation, 186, 973, 0
+TeleportLocation, 220, 973, 0
 Platform, partialLeftWall, false, 332, 438
 Platform, rottedLongFloor, false, 656, 1007
 Platform, rottedTShapeBottom, false, 1564, 936
@@ -46,4 +46,4 @@ Enemy, 1203, 250
 Enemy, 600, 310
 Enemy, 330, 400
 Enemy, 1500, 610
-Teleporter, 190, 988, 1, 1, 0
+Teleporter, 90, 988, 1, 1, 0
