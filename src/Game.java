@@ -130,7 +130,7 @@ public class Game {
         levels[0] = new Level1();
         levels[1] = new Level2();
         levels[2] = new Level3();
-        levelNum = 3;
+        levelNum = 1;
         createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
         startedGame = false;
@@ -276,7 +276,7 @@ public class Game {
         SplashScreen splash = new SplashScreen(window);
         Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(menuTheme);
-        mediaPlayer.setVolume(0.3);
+        mediaPlayer.setVolume(0.0);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
         splash.runSplashScreen();

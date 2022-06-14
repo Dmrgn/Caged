@@ -1,5 +1,5 @@
 Mold, three, 0, 0
-TeleportLocation, 750, 825, 0
+TeleportLocation, 1850, 2550, 0
 Platform, startingEdge, false, 1825, 2609
 Platform, betweenWall, false, 1075, 2206
 Platform, cageRestingPlace, false, 657, 2580
