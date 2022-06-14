@@ -1,5 +1,7 @@
 import javafx.scene.*;
 import javafx.scene.image.*;
+import javafx.scene.input.KeyCode;
+
 /**
  * <p>
  * This class is used for the final boss.
@@ -23,6 +25,8 @@ public class FinalBoss extends Boss {
     private HitBox lowerHitBox;
     /** Node for boss to be displayed*/
     private Node boss;
+    /** Image for final brother screen */
+    private Image brotherScreen;
     /**
      * Constructor that initializes variables
      * @param x Starting x position
@@ -34,6 +38,7 @@ public class FinalBoss extends Boss {
         sprite = image;
         createHitBox(pos, pos.add(HITBOX_SIZE));
         boss = new ImageView(sprite);
+        brotherScreen = new Image("assets/doors/BrotherTips6.png");
     }
     /**
      * Method to create hitbox from 2 vectors
@@ -51,10 +56,18 @@ public class FinalBoss extends Boss {
      */
     public void update() {
         if (killed) {
-            boss.setVisible(false);
-            createHitBox(new Vector(0, 0), new Vector(0, 0));
-            Game.breakGame = true;
-            System.out.println("here");
+            ((ImageView) boss).setImage(brotherScreen);
+            createHitBox(new Vector(0,0), new Vector(0,0));
+            pos = Game.toWorld(new Vector(25, 20));
+            Game.player.getNode().setVisible(false);
+            Player.playerMoving = false;
+            if(Keyboard.isKeyDown(KeyCode.H)) {
+                Game.navigateLevel(Game.getLevel(2), 0, 0);
+                Game.player.getNode().setVisible(true);
+                Player.playerMoving = true;
+                Game.breakGame = true;
+                System.out.println("here");
+            }
             return;
         }
         switch (state) {

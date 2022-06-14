@@ -43,6 +43,8 @@ public class EscapeCage extends CollidableObject implements Interactable{
 
     private boolean answeredCorrectly;
 
+    private boolean brotherTip;
+
     public EscapeCage(Image scenario, int x, int y, int level, int answer)
     {
         isLocked = true;
@@ -59,6 +61,7 @@ public class EscapeCage extends CollidableObject implements Interactable{
         answeredCorrectly = false;
         accessing = false;
         this.answer = answer;
+        brotherTip = false;
     }
     public void update() {
         if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.stageObjectTask[level] && Game.stageRiddleTask[level] && Game.stageMainTask[level] && isLocked) {
@@ -78,6 +81,19 @@ public class EscapeCage extends CollidableObject implements Interactable{
             } else {
                 ((ImageView) node).setImage(imageOpen);
                 pos = normalPos;
+            }
+        }
+        if(brotherTip)
+        {
+            Image brotherTip = new Image("assets/doors/BrotherTips5.png");
+            ((ImageView) node).setImage(brotherTip);
+            Game.player.getNode().setVisible(false);
+            Player.playerMoving = false;
+            //teleport to final boss fight
+            if(Keyboard.isKeyDown(KeyCode.L)) {
+                Game.player.getNode().setVisible(true);
+                Player.playerMoving = true;
+                Game.navigateLevel(Game.getLevel(2), 1, 0);
             }
         }
 
@@ -188,9 +204,9 @@ public class EscapeCage extends CollidableObject implements Interactable{
             {
 //                Image brotherTip = new Image("assets/doors/BrotherTips5");
 //                ((ImageView) node).setImage(brotherTip);
-//                pos
-                //teleport to final boss fight
-                Game.navigateLevel(Game.getLevel(2), 1, 0);
+//                //teleport to final boss fight
+//                Game.navigateLevel(Game.getLevel(2), 1, 0);
+                brotherTip = true;
             }
             //teleport player somewhere
 
