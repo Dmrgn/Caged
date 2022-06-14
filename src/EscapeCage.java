@@ -86,9 +86,11 @@ public class EscapeCage extends CollidableObject implements Interactable{
         if(brotherTip)
         {
             Image brotherTip = new Image("assets/doors/BrotherTips5.png");
+            clearTransformations();
             ((ImageView) node).setImage(brotherTip);
-            Game.player.getNode().setVisible(false);
+            pos = new Vector(0, 0);
             Player.playerMoving = false;
+            Game.player.getNode().setVisible(true);
             //teleport to final boss fight
             if(Keyboard.isKeyDown(KeyCode.L)) {
                 Game.player.getNode().setVisible(true);
