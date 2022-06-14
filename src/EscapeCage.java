@@ -43,8 +43,6 @@ public class EscapeCage extends CollidableObject implements Interactable{
 
     private boolean answeredCorrectly;
 
-    private boolean stop;
-
     public EscapeCage(Image scenario, int x, int y, int level, int answer)
     {
         isLocked = true;
@@ -61,13 +59,11 @@ public class EscapeCage extends CollidableObject implements Interactable{
         answeredCorrectly = false;
         accessing = false;
         this.answer = answer;
-        stop = false;
     }
     public void update() {
-        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.stageObjectTask[level] && Game.stageRiddleTask[level] && Game.stageMainTask[level]) {
+        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.stageObjectTask[level] && Game.stageRiddleTask[level] && Game.stageMainTask[level] && isLocked) {
             isLocked = false;
             ((ImageView)node).setImage(imageOpen);
-            createHitBox(new Vector(0,0), new Vector(0,0));
         }
         if(isLocked) {
             ((ImageView)node).setImage(imageLocked);
@@ -84,6 +80,7 @@ public class EscapeCage extends CollidableObject implements Interactable{
                 pos = normalPos;
             }
         }
+
     }
 
     /**
@@ -96,7 +93,7 @@ public class EscapeCage extends CollidableObject implements Interactable{
     @Override
     public void draw() {
         clearTransformations();
-        if (!isLocked) {
+        if (accessing && !answeredCorrectly) {
             setTranslate(Game.toWorld(new Vector(0,0)).mul(-1));
             getNode().relocate((pos.x), (pos.y));
         } else {
@@ -116,7 +113,7 @@ public class EscapeCage extends CollidableObject implements Interactable{
     }
 
     public void display() {
-        if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E) && !answeredCorrectly) {
+        if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E)) {
             accessing = true;
             Player.playerMoving = false;
             Game.player.getNode().setVisible(false);
@@ -129,7 +126,7 @@ public class EscapeCage extends CollidableObject implements Interactable{
     public void displayScenario() {
         Player.playerMoving = false;
         Game.player.getNode().setVisible(false);
-        ((ImageView)node).setImage(scenario);
+        ((ImageView) node).setImage(scenario);
         if (!answered) {
             if (Keyboard.isKeyDown(KeyCode.DIGIT1)) {
                 userAnswer = 1;
@@ -175,6 +172,8 @@ public class EscapeCage extends CollidableObject implements Interactable{
             userAnswer = 0;
             Game.player.getNode().setVisible(true);
             Player.playerMoving = true;
+            pos = normalPos;
+            ((ImageView) node).setImage(imageOpen);
             //teleport player somewhere
         }
         if(Keyboard.isKeyDown(KeyCode.H) && !correct)
