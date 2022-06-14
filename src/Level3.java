@@ -44,7 +44,7 @@ public class Level3 extends Level {
             textures.put("EscapeRoomClues:"+escapeRoomClues.getName().split("\\.")[0], new Image(escapeRoomClues.getPath()));
         }
         levelScreen = 0;
-        files = new String[]{"Level3_1.txt", "LevelBoss_2.txt"};
+        files = new String[]{ "Level3_1.txt", "LevelBoss_2.txt"};
         ldp = new LevelDataParser(textures);
     }
     /**
