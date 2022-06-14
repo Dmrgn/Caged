@@ -42,8 +42,7 @@ public class Boss1 extends Boss {
         if (killed) {
             clearTransformations();
             ((ImageView) boss).setImage(brotherScreen);
-            pos = Game.toWorld(new Vector(25, 20));
-            // setTranslate(Game.toWorld(new Vector(25, 20)).mul(-1));
+            pos = new Vector(0, 0);
             Game.player.getNode().setVisible(false);
             Player.playerMoving = false;
             if(Keyboard.isKeyDown(KeyCode.H)) {
