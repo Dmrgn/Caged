@@ -66,9 +66,20 @@ public class EscapeCage extends CollidableObject implements Interactable{
             ((ImageView)node).setImage(imageOpen);
         }
         if(isLocked) {
-            display();
+            ((ImageView)node).setImage(imageLocked);
+            pos = normalPos;
         }
-        
+        else if(!answeredCorrectly){
+            display();
+            if (accessing && !answeredCorrectly) {
+                ((ImageView) node).setImage(scenario);
+                displayScenario();
+                pos = Game.toWorld(new Vector(20, 20));
+            } else {
+                ((ImageView) node).setImage(imageOpen);
+                pos = normalPos;
+            }
+        }
 
     }
 
@@ -79,18 +90,18 @@ public class EscapeCage extends CollidableObject implements Interactable{
     public Node getNode() {
         return node;
     }
-//    @Override
-//    public void draw() {
-//        clearTransformations();
-//        if (!isLocked) {
-//            setTranslate(Game.toWorld(new Vector(0,0)).mul(-1));
-//            getNode().relocate((pos.x), (pos.y));
-//        } else {
-//            setScale(Game.ZOOM, Main.getDims().div(2));
-//            setTranslate(Game.cameraPos);
-//            getNode().relocate((pos.x)*Game.ZOOM, (pos.y)*Game.ZOOM);
-//        }
-//    }
+    @Override
+    public void draw() {
+        clearTransformations();
+        if (accessing && !answeredCorrectly) {
+            setTranslate(Game.toWorld(new Vector(0,0)).mul(-1));
+            getNode().relocate((pos.x), (pos.y));
+        } else {
+            setScale(Game.ZOOM, Main.getDims().div(2));
+            setTranslate(Game.cameraPos);
+            getNode().relocate((pos.x)*Game.ZOOM, (pos.y)*Game.ZOOM);
+        }
+    }
 
     /**
      * Method to check whether the player is in range of the object
@@ -102,8 +113,12 @@ public class EscapeCage extends CollidableObject implements Interactable{
     }
 
     public void display() {
-        ((ImageView)node).setImage(imageLocked);
-        pos = normalPos;
+        if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E)) {
+            accessing = true;
+            Player.playerMoving = false;
+            Game.player.getNode().setVisible(false);
+
+        }
     }
     /**
      * Method to display the scenario when going through doors
@@ -157,6 +172,8 @@ public class EscapeCage extends CollidableObject implements Interactable{
             userAnswer = 0;
             Game.player.getNode().setVisible(true);
             Player.playerMoving = true;
+            pos = normalPos;
+            ((ImageView) node).setImage(imageOpen);
             //teleport player somewhere
         }
         if(Keyboard.isKeyDown(KeyCode.H) && !correct)
