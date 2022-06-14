@@ -140,12 +140,18 @@ public class Player extends CollidableObject {
      * Damage this player with the specified amount
      * @return If damaging was successful
      */
+    long invincibleFrames = 0;
     public boolean damage(int amount, Vector location) {
-        hp -= amount;
-        boolean result = requestStateChange(PlayerState.DAMAGED) == PlayerState.DAMAGED;
-        if (result)
-            vel = location.sub(pos).mul(-0.04f);
-        return result;
+        if (invincibleFrames == 0) {
+            invincibleFrames = 100;
+            hp -= amount;
+            boolean result = requestStateChange(PlayerState.DAMAGED) == PlayerState.DAMAGED;
+            if (result)
+                vel = location.sub(pos).mul(-0.04f);
+            return result;
+        } else {
+            return false;
+        }
     }
     /**
      * Heal this player with the specified amount
@@ -168,6 +174,8 @@ public class Player extends CollidableObject {
     private long damagedFrames = 0;
     public void update() {
         hpBar.update();
+        invincibleFrames--;
+        invincibleFrames = Math.max(invincibleFrames,0);
         if(playerMoving) {
             // handle lateral movement keyboard input
             if (Keyboard.isKeyDown(KeyCode.D))
