@@ -68,6 +68,7 @@ public class EscapeCage extends CollidableObject implements Interactable{
         if(isLocked) {
             display();
         }
+        
 
     }
 
@@ -78,18 +79,18 @@ public class EscapeCage extends CollidableObject implements Interactable{
     public Node getNode() {
         return node;
     }
-    @Override
-    public void draw() {
-        clearTransformations();
-        if (!isLocked) {
-            setTranslate(Game.toWorld(new Vector(0,0)).mul(-1));
-            getNode().relocate((pos.x), (pos.y));
-        } else {
-            setScale(Game.ZOOM, Main.getDims().div(2));
-            setTranslate(Game.cameraPos);
-            getNode().relocate((pos.x)*Game.ZOOM, (pos.y)*Game.ZOOM);
-        }
-    }
+//    @Override
+//    public void draw() {
+//        clearTransformations();
+//        if (!isLocked) {
+//            setTranslate(Game.toWorld(new Vector(0,0)).mul(-1));
+//            getNode().relocate((pos.x), (pos.y));
+//        } else {
+//            setScale(Game.ZOOM, Main.getDims().div(2));
+//            setTranslate(Game.cameraPos);
+//            getNode().relocate((pos.x)*Game.ZOOM, (pos.y)*Game.ZOOM);
+//        }
+//    }
 
     /**
      * Method to check whether the player is in range of the object
