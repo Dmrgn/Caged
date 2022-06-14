@@ -40,3 +40,6 @@ EscapeRoomCage, Scenario2, 825, 1655, 1, 1
 EscapeRoomClues, CollectKey2, 235, 1670, 1, 1, false
 EscapeRoomClues, Riddle2, 1700, 1865, 2, 1, true
 Platform, fallFloor, false, 630, 860
+EscapeRoomCage, Scenario3, 820, 765, 4, 2
+EscapeRoomClues, Riddle3, 205, 845, 5, 2, true
+EscapeRoomClues, CollectKey3, 1400, 720, 5, 2, false
