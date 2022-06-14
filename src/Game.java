@@ -1,7 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.io.File;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
@@ -42,7 +43,7 @@ public class Game {
     /** Camera zoom factor */
     public static final float ZOOM = 1.5f;
     /** If we are currently playing in debug mode */
-    public static final boolean IS_DEBUG_MODE = true;
+    public static final boolean IS_DEBUG_MODE = false;
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.055f;
     /** ArrayList of gameobjects in the current scene */
@@ -66,7 +67,7 @@ public class Game {
     /** The position of the camera */
     public static Vector cameraPos = new Vector(0, 0);
     /** Media player for music*/
-    private MediaPlayer mediaPlayer;
+    private static MediaPlayer mediaPlayer;
     /** Whether the current door can be opened*/
     public static boolean canOpenDoor;
     /** Whether the object in the current level is picked up by the user*/
@@ -180,6 +181,13 @@ public class Game {
         if (temp != levelNum){
             canOpenDoor = false;
         }
+        String fileName = "Level " + levelNum +".mp3";
+        mediaPlayer.stop();
+        Media menuTheme = new Media(new File(fileName).toURI().toString());
+        mediaPlayer = new MediaPlayer(menuTheme);
+        mediaPlayer.setVolume(0.3);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
         ArrayList<TeleportLocation> locations = new ArrayList<TeleportLocation>();
         for (GameObject obj : gameObjects) {
             if (obj instanceof TeleportLocation)
@@ -263,11 +271,11 @@ public class Game {
      */
     public void splashScreen() throws FileNotFoundException {
         SplashScreen splash = new SplashScreen(window);
-//        Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
-//        mediaPlayer = new MediaPlayer(menuTheme);
-//        mediaPlayer.setVolume(0.3);
-//        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-//        mediaPlayer.play();
+        Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(menuTheme);
+        mediaPlayer.setVolume(0.3);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
         splash.runSplashScreen();
     }
 

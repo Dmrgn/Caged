@@ -29,7 +29,6 @@ public class BrotherTips {
 
     /**
      * The constructor of the BrotherTips Class.
-     * @param page is used to take in the current Image used for the certain transition
      */
     public BrotherTips() {
         screen = new ImageView(new Image("assets/doors/BrotherTips1.png"));
@@ -48,7 +47,7 @@ public class BrotherTips {
         screen.setPreserveRatio(true);
         Group root = new Group(screen);
         //Creating a scene object
-        scene = new Scene(root, Main.getWidth(), Main.getHeight());
+        scene = new Scene(root);
         Keyboard.init(scene);
         if(Keyboard.isKeyDown(KeyCode.H))
         {

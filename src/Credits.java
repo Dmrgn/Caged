@@ -52,7 +52,7 @@ public class Credits {
         creditScreen.setPreserveRatio(true);
         Group root = new Group(creditScreen);
         //Creating a scene object
-        scene = new Scene(root, Main.getWidth(), Main.getHeight());
+        scene = new Scene(root);
         //window.setScene(scene);
         Keyboard.init(scene);
     }
