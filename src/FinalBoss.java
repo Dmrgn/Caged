@@ -104,7 +104,7 @@ public class FinalBoss extends Boss {
         if (HitBox.areBoxesColliding(hitbox, ((Player) Game.player).getHitBox())) {
             if (((Player) Game.player).isDamagableState()) { // if damaging was successful
                 ((Player) Game.player).damage(20, pos.add(hitbox.p2.sub(hitbox.p1).div(2)));
-                vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-0.3f).x, 0)); // bounce away from player
+                vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-0.25f).x, 0)); // bounce away from player
             } else if (invincibleFrames == 0) {
                 ((Player) Game.player).heal(20);
                 damage(10, Game.player.pos);
@@ -151,7 +151,7 @@ public class FinalBoss extends Boss {
         invincibleFrames = 20;
         boolean result = requestStateChange(BossState.DAMAGED) == BossState.DAMAGED;
         if (result)
-            vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-0.3f).x, 0)); // bounce away from player
+            vel = vel.add(new Vector(Vector.sub(pos, Game.player.pos).mul(-0.25f).x, 0)); // bounce away from player
         return result;
     }
     /**

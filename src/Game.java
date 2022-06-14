@@ -43,7 +43,7 @@ public class Game {
     /** Camera zoom factor */
     public static final float ZOOM = 1.5f;
     /** If we are currently playing in debug mode */
-    public static final boolean IS_DEBUG_MODE = true;
+    public static final boolean IS_DEBUG_MODE = false;
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.055f;
     /** ArrayList of gameobjects in the current scene */
@@ -134,6 +134,9 @@ public class Game {
         createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
         startedGame = false;
+        if (mediaPlayer != null){
+            mediaPlayer.stop();
+        }
         // set the current scene
         window.setScene(scene);
     }
