@@ -463,6 +463,6 @@ public class Game {
      * @param g The group to be added to the scene
      */
     public void buildScene(Group g) {
-        scene = new Scene(g, Main.getWidth(), Main.getHeight(), Color.BLACK);
+        scene = new Scene(g, Color.BLACK);
     }
 }
