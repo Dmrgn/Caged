@@ -46,8 +46,6 @@ public class MainMenu {
     private Rectangle quitButton;
     /** Current scene*/
     private Scene scene;
-    /** Group */
-    private Group root;
     /**
      * MainMenu constructor, initializes selection to 0 as a default
      */
@@ -130,8 +128,11 @@ public class MainMenu {
         Rectangle background = new Rectangle(0, 0, 1270, 720);
         background.setFill(Color.BLACK);
 
-        root = new Group(background, title, newGameButton0, instructionsButton0, creditsButton0, quitButton0, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
-
+        Group root = new Group(background, title, newGameButton0, instructionsButton0, creditsButton0, quitButton0, newGameButton, instructionsButton, creditsButton, quitButton, newGameText, instructionsText, creditsText, quitText);
+        scene = new Scene(root);
+        //stage.setScene(scene);
+        scene.setFill(Color.BLACK);
+        Keyboard.init(scene);
 
         //animate each button on rect
         //button 1
@@ -238,10 +239,8 @@ public class MainMenu {
      * Getter method for the scene instance variable
      * @return The game scene
      */
-    public Scene getScene() {
-        scene = new Scene(root);
-        scene.setFill(Color.BLACK);
-        Keyboard.init(scene);
+    public Scene getScene()
+    {
         return scene;
     }
 }

@@ -29,6 +29,7 @@ public class BrotherTips {
 
     /**
      * The constructor of the BrotherTips Class.
+     * @param page is used to take in the current Image used for the certain transition
      */
     public BrotherTips() {
         screen = new ImageView(new Image("assets/doors/BrotherTips1.png"));
@@ -38,15 +39,17 @@ public class BrotherTips {
      * This method gets called to display the tips screen
      *
      */
+    boolean hasShown = false;
     public void display() {
         //Setting the position of the  image:
+        //Creating a scene object
         screen.setX(0);
         screen.setY(0);
         screen.setFitWidth(1266);
         screen.setFitHeight(720);
         screen.setPreserveRatio(true);
+        hasShown = true;
         Group root = new Group(screen);
-        //Creating a scene object
         scene = new Scene(root);
         Keyboard.init(scene);
         if(Keyboard.isKeyDown(KeyCode.H))
