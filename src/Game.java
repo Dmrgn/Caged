@@ -276,7 +276,7 @@ public class Game {
         SplashScreen splash = new SplashScreen(window);
         Media menuTheme = new Media(new File("Caged Main Theme.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(menuTheme);
-        mediaPlayer.setVolume(0.0);
+        mediaPlayer.setVolume(0.3);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
         splash.runSplashScreen();
