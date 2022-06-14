@@ -46,7 +46,7 @@ public class Healthbar extends GameObject{
      */
     public void update(){
         this.hp = ((Player)Game.player).hp;
-        pos = Game.toWorld(new Vector(0, 0));
+        pos = Game.toWorld(new Vector(130, 0));
         backing.setX(pos.x);
         backing.setY(pos.y);
         health.setX(pos.x+10);
