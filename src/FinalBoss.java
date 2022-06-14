@@ -31,17 +31,8 @@ public class FinalBoss extends Boss {
     }
 
     /**
-     * Draw method
-     */
-    @Override
-    public void draw() {
-
-    }
-
-    /**
      * Update method controls boss' behaviour, movement, states and health
      */
-    @Override
     public void update() {
         if (killed) {
             boss.setVisible(false);
@@ -94,7 +85,6 @@ public class FinalBoss extends Boss {
      * Getter for node
      * @return The node
      */
-    @Override
     public Node getNode() {
         return boss;
     }

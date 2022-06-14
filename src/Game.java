@@ -75,6 +75,12 @@ public class Game {
     public static int questionsCorrect;
     /** Array of signs and whether each is read */
     public static boolean[] signsRead;
+    /** Array of boolean check if the object task is complete for that stage */
+    public static boolean[] stageObjectTask;
+    /** Array of boolean check if the riddle task is complete for that stage */
+    public static boolean[] stageRiddleTask;
+    /** Array of boolean check if the main  task is complete for that stage */
+    public static boolean[] stageMainTask;
     /** Level number */
     public static int levelNum;
 
@@ -100,6 +106,10 @@ public class Game {
         objectFound = false;
         questionsCorrect = 0;
         signsRead = new boolean[4];
+        stageObjectTask = new boolean[3];
+        stageObjectTask[0] = true;
+        stageRiddleTask = new boolean[3];
+        stageMainTask = new boolean[3];
         // render the background, then midground, then foreground first
         w.widthProperty().addListener((obs, oldVal, newVal) -> {
             Main.setWidth(newVal.intValue());
@@ -117,8 +127,8 @@ public class Game {
         levels[1] = new Level1();
         levels[0] = new Level2();
         levels[2] = new Level3();
-        levelNum = 2;
-        createLevel(levels[0]);
+        levelNum = 1;
+        createLevel(levels[2]);
         Player.playerMoving = true;
         // set the current scene
         window.setScene(scene);
