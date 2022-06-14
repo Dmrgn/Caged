@@ -56,11 +56,9 @@ public class FinalBoss extends Boss {
      */
     public void update() {
         if (killed) {
-<<<<<<< HEAD
             boss.setVisible(false);
             createHitBox(new Vector(0, 0), new Vector(0, 0));
             Game.breakGame = true;
-=======
             ((ImageView) boss).setImage(brotherScreen);
             createHitBox(new Vector(0,0), new Vector(0,0));
             pos = Game.toWorld(new Vector(25, 20));
@@ -73,7 +71,6 @@ public class FinalBoss extends Boss {
                 Game.breakGame = true;
                 System.out.println("here");
             }
->>>>>>> 92b9421220b6f54e1f51483fe12f835d8a4b1cda
             return;
         }
         switch (state) {
