@@ -64,19 +64,11 @@ public class EscapeCage extends CollidableObject implements Interactable{
         if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.stageObjectTask[level] && Game.stageRiddleTask[level] && Game.stageMainTask[level] && isLocked) {
             isLocked = false;
             ((ImageView)node).setImage(imageOpen);
-            createHitBox(new Vector(0,0), new Vector(0,0));
         }
         if(isLocked) {
             display();
         }
 
-        if(!answeredCorrectly && !isLocked){
-            if (!accessing && Vector.dist(Game.player.pos, this.pos) < 100 && Keyboard.isKeyDown(KeyCode.E)) {
-                ((ImageView) node).setImage(scenario);
-                displayScenario();
-                pos = Game.toWorld(new Vector(20, 20));
-            }
-        }
     }
 
     /**
@@ -116,7 +108,6 @@ public class EscapeCage extends CollidableObject implements Interactable{
      * Method to display the scenario when going through doors
      */
     public void displayScenario() {
-
         Player.playerMoving = false;
         Game.player.getNode().setVisible(false);
         ((ImageView) node).setImage(scenario);

@@ -23,15 +23,15 @@ to navigate to either the instructions, main game, credits or to exit. The instr
 in-depth instructions on how to play the game. Inside the game, you can control the player with W, A, D and
 SHIFT. As the game does platforming in a side-scrolling manner, D moves the player right across the screen,
 A moves the player left and W jumps. SHIFT functions as the player's dash, which also deals damage to enemies
-and bosses and allows for greater mobility. E is used to interact with objects in game, including signs, doors
-and the sentimental items used to open doors. Holding E will keep a sign open, releasing it will close the sign.
+and bosses and allows for greater mobility. Dealing damage heals the player. E is used to interact with objects in game, 
+including signs, doors and the sentimental items used to open doors. Holding E will keep a sign open, releasing it will close the sign.
 Different screens within levels can be accessed by reaching certain points and getting teleported into the next screen, 
 though each level requires the player to open and go through a door. In the instructions and credits screens, 
-H is used to close those screens and return to the menu. The number keys 1, 2, 3, and 4 are used to answer the questions 
-displayed on question signs, which test the player's knowledge. Collecting items in game and passing the quiz signs are 
-required to move on to the next level. Some levels (2 and 3) will also require the player to defeat a boss to move on. 
-Remembering information and advice given by the brother and by signs in-game will be important for progressing
-And remember, above all, never give up hope!
+H is used to close those screens and return to the menu. H is also used to close pop-ups. The number keys 1, 2, 3, 
+and 4 are used to answer the questions displayed on question signs, which test the player's knowledge. Collecting items 
+in game and passing the quiz signs are required to move on to the next level. Some levels (2 and 3) will also require the 
+player to defeat a boss to move on. Remembering information and advice given by the brother and by signs in-game will be 
+important for progressing And remember, above all, never give up hope!
 
 Story Summary
 
@@ -55,7 +55,8 @@ Possible Glitches
 
 The game, despite our best efforts, contains some bugs still that may affect gameplay but not crash
 the program or softlock the game. These are: extraneous red rectangles (red rectangles occasionally
-appear near menu buttons for no particular reason), and menu button visuals being off on re-entry (returning to 
-the menu occasionally results in half of each button not flashing). Please report any new glitches to any of the 
-developers at ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca or samuel.huang4@student.tdsb.on.ca. 
-Although this is a class assignment, we do care about the game for its own sake and may issue fixes in the future.
+appear near menu buttons for no particular reason), long loading times when first entering the main game, and menu button 
+visuals being off on re-entry (returning to the menu occasionally results in half of each button not flashing). 
+Please report any new glitches to any of the developers at ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca 
+or samuel.huang4@student.tdsb.on.ca. Although this is a class assignment, we do care about the game for its own sake and may issue 
+fixes in the future.
