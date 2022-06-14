@@ -37,7 +37,7 @@ public class Level3 extends Level {
             textures.put("Platform:"+platform.getName().split("\\.")[0], new Image(platform.getPath()));
         }
         levelScreen = 0;
-        files = new String[]{"Level3_1.txt"};
+        files = new String[]{"Level3_1.txt", "LevelBoss_2.txt"};
         ldp = new LevelDataParser(textures);
     }
     /**

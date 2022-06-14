@@ -1,0 +1,8 @@
+TeleportLocation, 1151, 604, 0
+Platform, rottedPlatform, false, 981, 552
+Platform, rottedSmallPlatform, false, 1099, 434
+Platform, bossFloor, false, 367, 659
+Platform, bossLeftWall, false, 239, 78
+Platform, bossRightWall, false, 1213, 110
+Platform, bossTop, false, 257, 24
+Boss, Boss1, 523, 494
