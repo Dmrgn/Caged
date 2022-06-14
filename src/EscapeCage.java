@@ -186,6 +186,9 @@ public class EscapeCage extends CollidableObject implements Interactable{
             }
             else if(level == 2)
             {
+//                Image brotherTip = new Image("assets/doors/BrotherTips5");
+//                ((ImageView) node).setImage(brotherTip);
+//                pos
                 //teleport to final boss fight
                 Game.navigateLevel(Game.getLevel(2), 1, 0);
             }

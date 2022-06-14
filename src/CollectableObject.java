@@ -27,6 +27,8 @@ public class CollectableObject extends GameObject implements Interactable {
     private Image objectIn;
     /** Whether the object should be highlighted*/
     private boolean highlighted;
+    /** What stage this object is found in. If the object is not found in an escape stage, the value will be 0*/
+    private int escapeStage;
     /**
      * Initializes variables and stores the position in the GameObject's
      * pos vector
@@ -35,33 +37,43 @@ public class CollectableObject extends GameObject implements Interactable {
      * @param x X pos
      * @param y Y pos
      */
-    public CollectableObject(Image objectOutRange, Image objectInRange, int x, int y) {
+    public CollectableObject(Image objectOutRange, Image objectInRange, int x, int y, int escapeStage) {
         objectOut = objectOutRange;
         objectIn = objectInRange;
         pos = new Vector(x, y);
         node = new ImageView(objectOut);
         highlighted = false;
+        this.escapeStage = escapeStage;
     }
     /**
      * Updates the item every frame
      */
     public void update() {
-        if (!Game.objectFound) {
-            if (!highlighted && inRange((Player) Game.player)) {
-                ((ImageView) node).setImage(objectIn);
-                highlighted = true;
-            } else if (highlighted && !inRange((Player) Game.player)) {
-                ((ImageView) node).setImage(objectOut);
-                highlighted = false;
+        if(escapeStage == -1) {
+            if (!Game.objectFound) {
+                if (!highlighted && inRange((Player) Game.player)) {
+                    ((ImageView) node).setImage(objectIn);
+                    highlighted = true;
+                } else if (highlighted && !inRange((Player) Game.player)) {
+                    ((ImageView) node).setImage(objectOut);
+                    highlighted = false;
+                }
+                if (inRange((Player) Game.player) && Keyboard.isKeyDown(KeyCode.E)) {
+                    //make a boolean true signalling that the object is found.
+                    node.setVisible(false);
+                    Game.objectFound = true;
+                    Game.canOpenDoor = true;
+                }
+            } else {
+                node.setVisible(false);
             }
+        } else if(escapeStage > -1) {
+            ((ImageView) node).setImage(objectIn);
             if (inRange((Player) Game.player) && Keyboard.isKeyDown(KeyCode.E)) {
                 //make a boolean true signalling that the object is found.
                 node.setVisible(false);
-                Game.objectFound = true;
-                Game.canOpenDoor = true;
+                Game.stageObjectTask[escapeStage] = true;
             }
-        } else {
-            node.setVisible(false);
         }
     }
     /**

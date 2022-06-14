@@ -43,3 +43,6 @@ Platform, fallFloor, false, 630, 860
 EscapeRoomCage, Scenario3, 820, 765, 2, 4
 EscapeRoomClues, Riddle3, 205, 845, 5, 2, true
 EscapeRoomClues, CollectKey3, 1400, 720, 5, 2, false
+Key, glove, glove, 1278, 2520, 0
+Key, rod, rod, 1327, 1762, 1
+Key, wires, wires, 470, 875, 2
