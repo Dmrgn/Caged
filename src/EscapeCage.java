@@ -174,6 +174,21 @@ public class EscapeCage extends CollidableObject implements Interactable{
             Player.playerMoving = true;
             pos = normalPos;
             ((ImageView) node).setImage(imageOpen);
+            if(level == 0)
+            {
+                //teleport to lvl 1
+                Game.player.pos = new Vector(750, 1725);
+            }
+            else if(level == 1)
+            {
+                //teleport to lvl2
+                Game.player.pos = new Vector(750, 825);
+            }
+            else if(level == 2)
+            {
+                //teleport to final boss fight
+                Game.navigateLevel(Game.getLevel(2), 1, 0);
+            }
             //teleport player somewhere
 
         }
