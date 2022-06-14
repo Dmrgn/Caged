@@ -42,7 +42,7 @@ public class Game {
     /** Camera zoom factor */
     public static final float ZOOM = 1.5f;
     /** If we are currently playing in debug mode */
-    public static final boolean IS_DEBUG_MODE = true;
+    public static final boolean IS_DEBUG_MODE = false;
     /** Gravity applied to all moveable objects */
     public static final float GRAVITY = 0.055f;
     /** ArrayList of gameobjects in the current scene */
@@ -128,7 +128,7 @@ public class Game {
         levels[0] = new Level1();
         levels[1] = new Level2();
         levels[2] = new Level3();
-        levelNum = 2;
+        levelNum = 1;
         createLevel(levels[levelNum-1]);
         Player.playerMoving = true;
         // set the current scene
