@@ -170,7 +170,7 @@ public class SplashScreen {
         continueText.setX(360);
         continueText.setY(600);
         //Rectangle Background
-        Rectangle background = new Rectangle(0, 0, 1280, 720);
+        Rectangle background = new Rectangle(0, 0, Main.getWidth(), Main.getHeight());
         background.setFill(Color.BLACK);
         //Creating a Group object
         Group root = new Group(background, title, continueText, imageViewCage);
