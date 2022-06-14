@@ -1,3 +1,5 @@
+import java.util.concurrent.locks.Condition;
+
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
@@ -72,7 +74,18 @@ public class Door extends CollidableObject implements Interactable {
      * Overridden update method from GameObject
      */
     public void update() {
-        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor && Game.signsRead[0] && Game.signsRead[1] && Game.signsRead[2] && Game.signsRead[3] && Game.questionsCorrect >= 5) {
+        System.out.println("==========");
+        System.out.println("Can open door: " + Game.canOpenDoor);
+        System.out.println("Questions Correct: " + Game.questionsCorrect);
+        System.out.println("Signs Read: ");
+        for (int i = 0 ; i < Game.signsRead.length ; i++) {
+            System.out.println("    " + Game.signsRead[i]);
+        }
+        System.out.println("==========");
+        boolean condition = true;
+        if (Game.levelNum == 1)
+            condition = Game.signsRead[0] && Game.signsRead[1] && Game.signsRead[2] && Game.signsRead[3];
+        if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.canOpenDoor && condition && Game.questionsCorrect >= 5) {
             isLocked = false;
             ((ImageView)node).setImage(imageOpen);
             createHitBox(new Vector(0,0), new Vector(0,0));
