@@ -175,6 +175,7 @@ public class EscapeCage extends CollidableObject implements Interactable{
             pos = normalPos;
             ((ImageView) node).setImage(imageOpen);
             //teleport player somewhere
+
         }
         if(Keyboard.isKeyDown(KeyCode.H) && !correct)
         {

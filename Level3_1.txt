@@ -1,5 +1,5 @@
 Mold, three, 0, 0
-TeleportLocation, 750, 825, 0
+TeleportLocation, 1850, 2550, 0
 Platform, startingEdge, false, 1825, 2609
 Platform, betweenWall, false, 1075, 2206
 Platform, cageRestingPlace, false, 657, 2580
@@ -40,6 +40,6 @@ EscapeRoomCage, Scenario2, 825, 1655, 1, 1
 EscapeRoomClues, CollectKey2, 235, 1670, 1, 1, false
 EscapeRoomClues, Riddle2, 1700, 1865, 2, 1, true
 Platform, fallFloor, false, 630, 860
-EscapeRoomCage, Scenario3, 820, 765, 4, 2
+EscapeRoomCage, Scenario3, 820, 765, 2, 4
 EscapeRoomClues, Riddle3, 205, 845, 5, 2, true
 EscapeRoomClues, CollectKey3, 1400, 720, 5, 2, false
