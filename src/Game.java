@@ -331,8 +331,7 @@ public class Game {
                                 obj.setTranslate(cameraPos);
                             }
                             obj.update();
-                            if (gameObjects.size() == 0)
-                            break;
+                            if (gameObjects.size() == 0) break;
                             obj.draw();
                         }
                         if (levelNum == 3) {
