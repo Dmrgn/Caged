@@ -56,7 +56,9 @@ Possible Glitches
 The game, despite our best efforts, contains some bugs still that may affect gameplay but not crash
 the program or softlock the game. These are: extraneous red rectangles (red rectangles occasionally
 appear near menu buttons for no particular reason), long loading times when first entering the main game, and menu button 
-visuals being off on re-entry (returning to the menu occasionally results in half of each button not flashing). 
-Please report any new glitches to any of the developers at ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca 
-or samuel.huang4@student.tdsb.on.ca. Although this is a class assignment, we do care about the game for its own sake and may issue 
-fixes in the future.
+visuals being off on re-entry (returning to the menu occasionally results in half of each button not flashing). There may
+also be some weird collision, especially around object interaction in Level 3. Additionally, when the game ends, there is a
+brief moment where part of a level is displayed before the game returns to the main menu. Some images may be slightly cut off, we are 
+not entirely sure why as they were not cut off previously, but the visual inconsistency is minor. Please report any new glitches to any of the 
+developers at ryan.atlas@student.tdsb.on.ca, daniel.morgan@student.tdsb.on.ca or samuel.huang4@student.tdsb.on.ca. Although this is a 
+class assignment, we do care about the game for its own sake and may issue fixes in the future.
