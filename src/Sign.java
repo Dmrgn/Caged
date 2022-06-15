@@ -311,6 +311,12 @@ public class Sign extends GameObject implements Interactable {
             userAnswer = 0;
             Game.player.getNode().setVisible(true);
             Player.playerMoving = true;
+            Enemy.canMove = true;
+            for (GameObject obj : Game.gameObjects){
+                if (obj instanceof Enemy){
+                    obj.getNode().setVisible(true);
+                }
+            }
         }
 
     }
