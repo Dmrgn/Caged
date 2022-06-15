@@ -14,6 +14,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FinalBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FinalBoss.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
@@ -231,7 +232,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes" />
