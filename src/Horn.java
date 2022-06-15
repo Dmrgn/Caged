@@ -17,10 +17,20 @@ import javafx.scene.image.ImageView;
  * </p>
  */
 public class Horn extends CollidableObject {
+    /** Spawn rate constant*/
     private static final int SPAWN_RATE = 90;
+    /** Direction facing*/
     int direction;
+    /** Node*/
     Node node;
+    /** Image*/
     Image img;
+    /**
+     * Constructor that inits variables
+     * @param x X-coord
+     * @param y Y-coord
+     * @param direction Direction it is facing
+     */
     public Horn(int x, int y, int direction) {
         pos = new Vector(x, y);
         this.direction = direction;
@@ -28,7 +38,11 @@ public class Horn extends CollidableObject {
         img = new Image("assets/horn.png");
         createHitBox(pos, pos.add(new Vector((float)img.getWidth(), (float)img.getHeight())));
     }
+    /** Frame count*/
     long frameCount = 0;
+    /**
+     * Update method to continue updating the horn so that enemies spawn
+     */
     @Override
     public void update() {
         if (frameCount % SPAWN_RATE == 0) {
@@ -41,6 +55,11 @@ public class Horn extends CollidableObject {
             }
         }
     }
+
+    /**
+     * Getter for node
+     * @return The current node
+     */
     @Override
     public Node getNode() {
         return node;

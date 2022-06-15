@@ -15,38 +15,48 @@ import javafx.scene.input.KeyCode;
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since June 13th, 2022
  * <p>
- * File was created by Samuel Huang June 13th, 2022. 1 hour spent. Comments were added, variables created,
+ * File was created by Samuel Huang June 13th, 2022. 2 hours spent. Comments were added, variables created,
  * the constructor was made and the getNode(), draw(), inRange(), display() and update() methods were added
  * </p>
  */
 public class EscapeCage extends CollidableObject implements Interactable{
-
     /** JavaFX node for the platform*/
     private Node node;
-    /** Image for the door's locked texture */
+    /** Image for the cage's locked texture */
     private Image imageLocked;
-    /** Image for the door's locked texture */
+    /** Image for the cage's locked texture */
     private Image imageOpen;
     /** Image for the scenario after opening the cage texture */
     private Image scenario;
-    /** Whether the door is locked */
+    /** Whether the cage is locked */
     private boolean isLocked;
-    /** Vector for the normal position of the door */
+    /** Vector for the normal position of the cage */
     private Vector normalPos;
+    /** Stage within Level 3*/
     private int level;
+    /** Whether it has been answered*/
     private boolean answered;
-
+    /** User's current answer*/
     private int userAnswer;
+    /** Correct answer*/
     private int answer;
-
+    /** Whether the player is accessing it*/
     private boolean accessing;
-
+    /** Whether it has been answered correctly*/
     private boolean answeredCorrectly;
-
+    /** Whether it has a brother tip*/
     private boolean brotherTip;
+    /** Image for brother tip*/
     private Image brotherTipImane;
 
-
+    /**
+     * Constructor that inits variables
+     * @param scenario Image for the scenario to be displayed
+     * @param x X-coord
+     * @param y Y-coord
+     * @param level Stage in level 3
+     * @param answer Correct answer
+     */
     public EscapeCage(Image scenario, int x, int y, int level, int answer)
     {
         isLocked = true;
@@ -66,6 +76,9 @@ public class EscapeCage extends CollidableObject implements Interactable{
         this.answer = answer;
         brotherTip = false;
     }
+    /**
+     * Update method to constantly ensure everything is drawn in the correct state and updated each frame
+     */
     public void update() {
         if (inRange((Player)Game.player) && Keyboard.isKeyDown(KeyCode.E) && Game.stageObjectTask[level] && Game.stageRiddleTask[level] && Game.stageMainTask[level] && isLocked) {
             isLocked = false;
@@ -103,7 +116,6 @@ public class EscapeCage extends CollidableObject implements Interactable{
         }
 
     }
-
     /**
      * Getter method for the Node
      * @return The Node
@@ -111,6 +123,9 @@ public class EscapeCage extends CollidableObject implements Interactable{
     public Node getNode() {
         return node;
     }
+    /**
+     * Method to draw both normally and when a brother screen is active
+     */
     @Override
     public void draw() {
         if(!brotherTip) {
@@ -134,7 +149,9 @@ public class EscapeCage extends CollidableObject implements Interactable{
     public boolean inRange(Player p){
         return (Math.abs(p.getNode().getLayoutX() - node.getLayoutX()) < 200 && Math.abs(p.getNode().getLayoutY() - node.getLayoutY()) < 200);
     }
-
+    /**
+     * Marks the player as acessing when in range and pressing E
+     */
     public void display() {
         if ((Vector.dist(Game.player.pos, this.pos) < 100) && Keyboard.isKeyDown(KeyCode.E)) {
             accessing = true;

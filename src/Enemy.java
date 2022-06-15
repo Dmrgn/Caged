@@ -12,6 +12,7 @@ import javafx.scene.*;
  * @since June 6th, 2022
  * <p>
  * File was created by Ryan Atlas on June 6th. He spent 1.5 hours creating the frame for this class
+ * Daniel Morgan spent 30 minutes modifying the update method and AI
  * </p>
  */
 public class Enemy extends CollidableObject {

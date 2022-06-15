@@ -318,6 +318,5 @@ public class Sign extends GameObject implements Interactable {
                 }
             }
         }
-
     }
 }

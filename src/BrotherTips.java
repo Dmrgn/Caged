@@ -17,19 +17,18 @@ import javafx.scene.input.KeyCode;
  * <p>
  * File was created by Samuel Huang on May 19th, 2022.
  * Samuel Huang spent 10 minutes on this file.
+ * Samuel Huang spent 30 minutes on this file June 10th.
  * </p>
  */
 public class BrotherTips {
     /** This Image variable stores the current Transition page. */
     private ImageView screen;
-
+    /** Current scene*/
     private Scene scene;
-
+    /** Whether stared*/
     private boolean start;
-
     /**
-     * The constructor of the BrotherTips Class.
-     * @param page is used to take in the current Image used for the certain transition
+     * The constructor of the BrotherTips Class. Inits stuff
      */
     public BrotherTips() {
         screen = new ImageView(new Image("assets/doors/BrotherTips1.png"));
@@ -40,6 +39,9 @@ public class BrotherTips {
      *
      */
     boolean hasShown = false;
+    /**
+     * Display method to display the screen
+     */
     public void display() {
         //Setting the position of the  image:
         //Creating a scene object

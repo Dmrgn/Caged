@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
  * @since June 12th, 2022
  * <p>
  * File was created by Ryan Atlas on June 12th, 30 minutes were spent
+ * Daniel Morgan spent 30 minutes modifying the update method and making the boss obey gravity
  * </p>
  */
 public class FinalBoss extends Boss {

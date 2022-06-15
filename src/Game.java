@@ -37,6 +37,8 @@ import javafx.util.Duration;
  * 2 hours were spent by Ryan Atlas June 6-10th adjusted how levels are drawn, Level1 and Level2 methods which have were adjusted many times
  * 2 hours were spent by Samuel Huang on June 6-10th modifying code to make interaction work correctly
  * 3 hours were spent by Daniel Morgan June 6-10th making the camera, toScreen, toWorld and navigateLevelScreen methods
+ * 30 minutes were spent by Ryan Atlas making the music work fully on June 14th
+ * 1 hour was spent by all of us debugging on June 14th
  * </p>
  */
 public class Game {

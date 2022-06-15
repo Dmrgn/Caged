@@ -42,7 +42,15 @@ public class EscapeRoomSign extends GameObject implements Interactable{
     private boolean riddle;
     /** What stage the signs are in*/
     private int level;
-
+    /**
+     * Constructor that inits variables
+     * @param message Image for the message
+     * @param x X-coord
+     * @param y Y-coord
+     * @param answer Correct answer number
+     * @param level Level within Stage 3
+     * @param riddle Whether it has a riddle
+     */
     public EscapeRoomSign(Image message, int x, int y, int answer, int level, boolean riddle)
     {
         this.message = message;
@@ -99,6 +107,9 @@ public class EscapeRoomSign extends GameObject implements Interactable{
         return node;
     }
 
+    /**
+     * Draw method to draw it all states correctly
+     */
     @Override
     public void draw() {
         clearTransformations();
