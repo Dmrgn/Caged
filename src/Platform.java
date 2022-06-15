@@ -52,8 +52,5 @@ public class Platform extends CollidableObject {
      * Implementation of the update method from GameObject
      */
     public void update() {
-        if (isFlipped) {
-            
-        }
     }
 }

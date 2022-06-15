@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since June 6th, 2022
  * <p>
- * File was created by Daniel Morgan on June 6th. 20 minutes were spent
+ * File was created by Daniel Morgan on June 6th. 30 minutes were spent
  * </p>
  */
 public class Teleporter extends GameObject {

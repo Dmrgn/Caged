@@ -69,7 +69,13 @@ public class Player extends CollidableObject {
     private HitBox upperHitBox;
     /** Player's healthbar*/
     public Healthbar hpBar;
+    /** To change whether or not the player is moving */
     public static boolean playerMoving;
+    /** How many frames player has been invincible*/
+    private long invincibleFrames = 0;
+    /** How many frames player has been damaged*/
+    private long damagedFrames = 0;
+
     /** Possible player states */
     private enum PlayerState {
         IDLE,
@@ -140,7 +146,6 @@ public class Player extends CollidableObject {
      * Damage this player with the specified amount
      * @return If damaging was successful
      */
-    long invincibleFrames = 0;
     public boolean damage(int amount, Vector location) {
         if (invincibleFrames == 0) {
             invincibleFrames = 100;
@@ -171,7 +176,6 @@ public class Player extends CollidableObject {
      * Updates the player's position Vector based on keyboard input, implementation
      * of the method from the GameObject interface
      */
-    private long damagedFrames = 0;
     public void update() {
         hpBar.update();
         invincibleFrames--;

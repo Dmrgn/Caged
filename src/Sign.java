@@ -154,16 +154,16 @@ public class Sign extends GameObject implements Interactable {
                 checkQuestions();
                 pos = Game.toWorld(new Vector(20, 20));
 
-                //player position -
-//                Game.player.getNode().setVisible(false);
             } else {
                 pos = normal;
 
-//                Game.player.getNode().setVisible(true);
             }
         }
     }
 
+    /**
+     * Redraws objects in correct positions
+     */
     @Override
     public void draw() {
         clearTransformations();
@@ -229,11 +229,6 @@ public class Sign extends GameObject implements Interactable {
                 }
             }
         }
-//        else if(Keyboard.isKeyDown(KeyCode.H) && accessing)
-//        {
-//            accessing = false;
-//            Player.playerMoving = true;
-//        }
     }
     /**
      * Displays the message on the sign for question signs
@@ -257,20 +252,11 @@ public class Sign extends GameObject implements Interactable {
         if (answered) {
             if (userAnswer == answer && userAnswer != 0) {
                 //tell upward it works
-//                answeredCorrectly = true;
-//                Game.questionsCorrect++;
                 messageBox(true);
             } else {
                 //tell upward it is false;
-                //answeredCorrectly = false;
                 messageBox(false);
             }
-//            accessing = false;
-//            answered = false;
-//            userAnswer = 0;
-//            Game.player.getNode().setVisible(true);
-//            Player.playerMoving = true;
-
         }
     }
     /**

@@ -7,18 +7,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Music + some other fixes">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaISP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaISP.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FinalBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FinalBoss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Platform.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Platform.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Player$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Player$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Player$PlayerState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Player$PlayerState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Sign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/SplashScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/SplashScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Keyboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SplashScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SplashScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Teleporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teleporter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,13 +61,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/openjfx-18.0.1_windows-x64_bin-sdk/javafx-sdk-18.0.1/lib" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.19504644" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Users/huang/javafx-sdk-18.0.1/lib",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ryatl\IdeaProjects\Caged\assets" />
@@ -77,7 +88,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="JavaISP" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\ryatl\Downloads\openjfx-18.0.1_windows-x64_bin-sdk\javafx-sdk-18.0.1\lib --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.media --add-exports javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\huang\javafx-sdk-18.0.1\lib --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.media --add-exports javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

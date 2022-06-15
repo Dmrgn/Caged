@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
  * @author Ryan Atlas, Samuel Huang and Daniel Morgan
  * @since May 19th, 2022
  * <p>
- * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
+ * 20 minutes were spent by Ryan Atlas on this file on May 19th, 2022.
  * </p>
  */
 public class Level3 extends Level {
