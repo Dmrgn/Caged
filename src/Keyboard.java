@@ -21,6 +21,7 @@ import javafx.scene.input.*;
  * Daniel Morgan spent 1 hours on May 17th.
  * Daniel Morgan spent 30 minutes on May 27th updating for JavaFX.
  * Ryan Atlas spent 20 minutes on May 30th adding mouse input
+ * Samuel Huang spent 20 minutes on June 7th adding keyUp
  * </p>
  */
 public class Keyboard {

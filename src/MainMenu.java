@@ -25,7 +25,7 @@ import javafx.util.Duration;
  * @since May 17th, 2022
  * <p>
  * Ten minutes were spent by Ryan Atlas on this file on May 19th, 2022.
- * 1 hour was spent by Samuel Huang on this file on May 30th, 2022.
+ * 2.5 hours was spent by Samuel Huang on this file on May 30th, 2022.
  * </p>
  */
 
@@ -34,8 +34,6 @@ public class MainMenu {
     public int selection;
     /** Current stage*/
     private Stage stage;
-    /** Whether buttons are active*/
-    private boolean[] buttonActive = new boolean[4];
     /** Button to start a new game*/
     private Rectangle newGameButton;
     /** Button to go to instructions screen*/

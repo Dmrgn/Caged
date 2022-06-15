@@ -7,16 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="553fe913-e55d-42c6-b39e-685a80365174" name="Changes" comment="Music + some other fixes">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Boss1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Boss1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BrotherTips.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BrotherTips.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EscapeCage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EscapeCage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EscapeRoomSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EscapeRoomSign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/FinalBoss.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaISP/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaISP/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FinalBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FinalBoss.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Horn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Horn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,21 +209,7 @@
       <option name="project" value="LOCAL" />
       <updated>1655241239804</updated>
     </task>
-    <task id="LOCAL-00015" summary="Fixes">
-      <created>1655251379737</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1655251379737</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Sign">
-      <created>1655251506663</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1655251506663</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -244,7 +232,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes" />
@@ -259,9 +246,7 @@
     <MESSAGE value="Boss in LevelDataParser changes" />
     <MESSAGE value="Temporary changes. Committing so I don't lose them" />
     <MESSAGE value="Music + some other fixes" />
-    <MESSAGE value="Fixes" />
-    <MESSAGE value="Sign" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sign" />
+    <option name="LAST_COMMIT_MESSAGE" value="Music + some other fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
